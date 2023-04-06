@@ -1,0 +1,28 @@
+<div id="id01" class="modal">
+  
+    <form class="modal-content animate" action="/action_page.php" method="post">
+      <div class="container" style="background-color: rgb(255, 130, 6)">
+        <label style="color: white"><b>Login</b></label>
+        <a href="#" style="color: white;position: relative; left: 95%;text-decoration:none;"><font size="5">&times;</font></a>
+      </div>
+  
+      <div class="container" style="background-color: #333;">
+        <label for="uname" style="color: white"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+  
+        <label for="psw" style="color: white"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+    
+        <button type="submit">Login</button>
+        <label style="color: white">
+          <input type="checkbox" name="remember"> Remember me
+        </label>
+      </div>
+  
+      <div class="container" style="background-color: rgb(255, 130, 6)">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+
+        <span class="psw"><a href="#" style="color: white;">Forgot password?</a></span>
+      </div>
+    </form>
+  </div>

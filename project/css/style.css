@@ -77,7 +77,7 @@ html {
 #myBar {
   width: 10%;
   height: 2.5vw;
-  background-color:red;
+  background-color:rgb(255, 130, 6);
   text-align: center;
   line-height: 2vw;
 }
