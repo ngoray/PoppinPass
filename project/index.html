@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ray's Resume</title>
+<title>PoppinPass</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/modal.css">
 <link rel="stylesheet" href="./css/navbar.css">
+<link rel="stylesheet" href="./css/feedback.css">
 </head>
 <body class="w3-black">
     
-<!-- <div w3-include-html="./html/loader.html"></div>   -->
+<div w3-include-html="./html/loader.html"></div>  
 
-<div style="display: block;" id="Home">
+<div style="display: none;" id="Home">
     
     <div w3-include-html="./html/navbar.html"></div>
     <div w3-include-html="./html/loginmodal.html"></div>
     <div w3-include-html="./html/signup.html"></div>
 
+    <div w3-include-html="./html/movie.html"></div>
+    <div w3-include-html="./html/menu.html"></div>
+    <div w3-include-html="./html/feedback.html"></div>
+
 </div>
 
 
 <!-- END PAGE CONTENT -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="./js/navbar.js"></script>
 <script src="./js/loading.js"></script>
 <script src="./js/loginmodal.js"></script>

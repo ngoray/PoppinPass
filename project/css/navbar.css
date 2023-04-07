@@ -29,7 +29,15 @@ ul.topnav {
     ul.topnav li {float: none;}
   }
 
-  .navchanger:active{
+  .active{
     background-color:rgb(255, 130, 6);
-    font: bold;
+  }
+
+  .topnav input[type=text] {
+    text-align: left;
+    width: 30%;
+    height: 10px;
+    position: relative;
+    left: 18%;
+    border-radius: 25px;
   }
