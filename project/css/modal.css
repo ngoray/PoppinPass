@@ -15,7 +15,7 @@ input[type=text], input[type=password] {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 15%;
   }
   
   button:hover {
@@ -47,7 +47,6 @@ input[type=text], input[type=password] {
   
   span.psw {
     float: right;
-    padding-top: 16px;
   }
   
   /* The Modal (background) */
@@ -69,7 +68,7 @@ input[type=text], input[type=password] {
   .modal-content {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 50%; /* Could be more or less, depending on screen size */
   }
   
   /* The Close Button (x) */

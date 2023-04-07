@@ -28,3 +28,8 @@ ul.topnav {
     ul.topnav li.right, 
     ul.topnav li {float: none;}
   }
+
+  .navchanger:active{
+    background-color:rgb(255, 130, 6);
+    font: bold;
+  }
