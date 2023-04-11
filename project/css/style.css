@@ -4,7 +4,7 @@ body, h1,h2,h3,h4,h5,h6 {
 }
 body{
   background-image: url(./../images/black.jpg);
-  
+  background-color:black ;    
 }
 html {
   scroll-behavior: smooth;
@@ -76,11 +76,13 @@ html {
 }
 
 #myBar {
-  width: 10%;
-  height: 2.5vw;
-  background-color:rgb(255, 130, 6);
-  text-align: center;
-  line-height: 2vw;
+  width: 5%;
+  height: 1vw;
+  background-color:rgb(255, 131, 6);
+  color: rgb(255, 131, 6);
+  text-align: right;
+  line-height: 1vw;
+  border-radius: 25px;
 }
 
 .back {

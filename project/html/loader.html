@@ -1,15 +1,20 @@
 <div style="max-width: 100%; max-height: 100%; position: relative; top: 300px;" id="Start">
     <center>
-        <button class="button2 button3" onclick="move()">
+        <button class="button2 button3" onclick="play(),move()">
             <div class="img">  </div>
-        </button>
+        </button><br>
+        <button class="button3" onclick="corp()">Coperate Login? <a>Click here</a></button>
     </center>
 </div>
-<div style="max-width: 100%; max-height: 100%; position: relative; top: 250px;display: none;" id="Loading">
+<div style="max-width: 100%; max-height: 100%; position: relative; top: 150px;display: none;" id="Loading">
 
-    <CENTER><h1 style="font-size: 4.5vw;">PoppinPass</h1></CENTER>
+    <CENTER><img src="./../images/logo.jpg" style="width: 260px; height: 250px;">
         <div id="myProgress">
             <div id="myBar">10%</div>
                 <br>
         </div>
+    </CENTER>
+        <audio controls autoplay style="display: none;">
+            <source src="./../phaudio.mp3" type="audio/mpeg">
+        </audio>
 </div>

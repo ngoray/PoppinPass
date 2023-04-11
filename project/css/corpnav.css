@@ -1,0 +1,25 @@
+.corpdiv{
+  background-color: #333;
+  height: 170px;
+  text-size-adjust: 30px;
+}
+
+.corpdiv2{
+  background-color: #333;
+  height: 580px;
+  width: 13%;
+  float: left;
+}
+
+.thinline{
+  background-color:rgb(255, 130, 6);
+  height: 5px;
+}
+
+.corpbody{
+  background-image: url('./../images/logo.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-color:black ;  
+}
