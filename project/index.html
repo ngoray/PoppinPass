@@ -6,22 +6,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/modal.css">
+<link rel="stylesheet" href="./css/movie.css">
+
 <link rel="stylesheet" href="./css/navbar.css">
 <link rel="stylesheet" href="./css/feedback.css">
+
 <link rel="stylesheet" href="./css/corpnav.css">
 <link rel="stylesheet" href="./css/corplogin.css">
 </head>
-<body class="w3-black">
+<body class="w3-black"  onload="getMovieData()">
     
-<div w3-include-html="./html/loader.html"></div>  
+<!-- <div w3-include-html="./html/loader.html"></div>   -->
 
-<div style="display: none;" id="Home">
+<div style="display: block;" id="Home">
     
     <div w3-include-html="./html/navbar.html"></div>
+
     <div w3-include-html="./html/loginmodal.html"></div>
     <div w3-include-html="./html/signup.html"></div>
 
-    <div w3-include-html="./html/movie.html"></div>
+    <div w3-include-html="./html/movie-modal.html"></div>
+    <div style="display: block; background-color: rgba(43, 44, 44, 0.57);" id="moviepage">
+
+        <!--This is the container that holds the initial message, heading and movies-->
+        <div class="container">
+            <!--This initial message will be shown when the page loads and will disappar after the movies are loaded in the page-->
+            <div class="row" id="parent">
+            Retrieving Latest Movies in Singapore...Please Wait...<br><br>If you are seeing this message for a long time, it is likely that you have a javascript error. Trouble-shoot your script by using the browser console panel now. Please use either Firefox or Chrome to render this webpage.
+
+            </div>
+            <p>
+                <!--This is the heading showng how many movies there are-->
+                <h3  id="summary"></h3>
+    
+            </p>
+            <!--This is the portion containing image of all movies under the specific category-->
+            <div id="moviesTable" class="row"></div>
+        </div>
+
     <div w3-include-html="./html/menu.html"></div>
     <div w3-include-html="./html/feedback.html"></div>
 
@@ -36,10 +58,19 @@
 
 <!-- END PAGE CONTENT -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap-native-v4.js"></script>
+
 <script src="./js/navbar.js"></script>
+
+    </div>
 <script src="./js/loading.js"></script>
 <script src="./js/loginmodal.js"></script>
 <script src="./js/signupmodal.js"></script>
+
+<script src="./js/customerAccount.js"></script>
+<script src="./js/movies.js"></script>
+
 <script src="./js/include.js"></script>
 <script>w3.includeHTML();</script>
 </body>

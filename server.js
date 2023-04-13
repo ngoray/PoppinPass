@@ -1,9 +1,9 @@
 "use strict"
 
 const express = require('express');
-// const routeMovies=require('./routes/routeMovies');
-// const routeComments = require('./routes/routeComments');
 const bodyParser = require('body-parser');
+const routeAuth = require('./routes/customerRoutes.js');
+const routeMovies = require('./routes/movieRoutes.js');
 
 
 var app = express();
@@ -15,8 +15,8 @@ app.use(express.static('./project'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// routeMovies.routeMovies(app);
-// routeComments.routeComments(app);
+routeAuth.routeMember(app);
+routeMovies.movieRoutes(app);
 
 function gotoIndex(f, request, respond) {
     respond.sendFile(__dirname + f);

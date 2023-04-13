@@ -1,6 +1,6 @@
 <div id="id01" class="modal">
   
-    <form class="modal-content animate" action="/action_page.php" method="post">
+    <form class="modal-content animate">
       <div class="container" style="background-color: rgb(255, 130, 6)">
         <label style="color: white"><b>Login</b></label>
         <a href="#" style="color: white;position: relative; left: 90%;text-decoration:none;" onclick="document.getElementById('id01').style.display='none'"><font size="5">&times;</font></a>
@@ -8,12 +8,12 @@
   
       <div class="container" style="background-color: #333;">
         <label for="uname" style="color: white"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input type="text" placeholder="Enter Username" name="uname" id="loginname" required>
   
         <label for="psw" style="color: white"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password" name="psw" id="loginpw" required>
     
-        <button class="button" type="submit" style="float: right;">Login</button>
+        <button class="button" onclick="customer.loginUser()" style="float: right;">Login</button>
         <label style="color: white;">
           <input type="checkbox" name="remember"> Remember me
         </label>
