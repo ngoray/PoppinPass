@@ -13,4 +13,23 @@ function getAllMovies(request, respond) {
         }
     });
 }
-module.exports = { getAllMovies };
+
+function updateMovie(request, respond) {
+    var movieDetails = {
+        "_id": parseInt(request.params._id),
+        "thumb": request.body.thumb,
+        "poster": request.body.poster
+        
+    }
+    movieDB.updateMovie(movieDetails, function(error, result){
+        if (error) {
+            respond.json(error);
+            console.log(error);
+        } else {
+            respond.json(result);
+            console.log(movieDetails);
+        }
+    });
+}
+
+module.exports = { getAllMovies, updateMovie };

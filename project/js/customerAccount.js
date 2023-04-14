@@ -43,10 +43,7 @@ class Customer {
       loginUser.open('POST', this.loginUrl, true);
   
       const username = document.getElementById("loginname").value;
-      const email = document.getElementById("loginpw").value;
-  
-      const signupModal = document.getElementById("id02");
-      const signinModal = document.getElementById("id01");
+      const password = document.getElementById("loginpw").value;
   
       const loginData = {
           "username": username,

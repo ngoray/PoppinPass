@@ -1,6 +1,6 @@
 function play(){    
   var audio = new Audio('./../phaudio.mp3');
-  audio.play();
+  //audio.play();
 }
 
 function move() {
@@ -16,14 +16,15 @@ function move() {
       i = 1;
       var elem = document.getElementById("myBar");
       var width = 20;
-      var id = setInterval(frame, 30);
+      var id = setInterval(frame, 10);
       function frame() {
         if (width >= 100) {
           clearInterval(id);
           i = 0;
           x.style.display = "none";
           y.style.display = "block";
-          document.body.style.backgroundImage = "url('./../images/black .jpg')";
+          document.body.style.backgroundImage = "url('./../images/logo1.jpg')";
+          getMovieData();
           //document.body.style.backgroundImage="url(https://thumbs.gfycat.com/BeneficialNastyGermanspaniel-max-1mb.gif)";
         } else {
           width++;
@@ -32,6 +33,7 @@ function move() {
         }
       }
     }
+    
   }
 
   function corp(){    

@@ -6,14 +6,6 @@ var movie_array=[];
 
 var category="Now Showing";
 
-var remote_comment ="https://api.mlab.com/api/1/databases/jobs/collections/comments";
-//API key needed by cloud DB API
-var remote_api_key="?apiKey=V0HsJe9lC8Q7naTJK7kS3ZfKnLJdrbQg&s={'datePosted':-1}";
-//Set comment variable to either remote_comment or local_comment
-
-var comment_url=remote_comment + remote_api_key;
-var comment_array = [];
-
 //This function is to call the movies api and get all the movies
 //that is showing in Shaw Theatres for Showing Now and Coming Soon
 function getMovieData() {
@@ -60,10 +52,9 @@ function displayMovies(category) {
                                         </a>                                                                                                                                                                                                    \
                                     </div>                                                                                                                                                                                                      \
                                     <div class="back">                                                                                                                                                                                          \
-                                        <div class="bg-dark mystyle text-center py-3" >                                                                                                                                                         \
+                                        <div class="bg-dark mystyle text-center py-3" style="text-align:center;" >                                                                                                                                                         \
                                             <span>' + title + '('+movie_array[count].genre+')</span><br>                                                                                                                                                                      \
-                                            <button item="' + count + '" type="button" class="button" onClick="showMovieDetails(this)" >See More</button>       \
-                                            <button' + count + '" type="button" class="button" onClick="showMovieComments(this)" >Comments</button>    \
+                                            <button item="' + count + '" type="button" class="button" style="width:60%;" onClick="showMovieDetails(this)" >See More</button>       \
                                         </div>                                                                                                                                                                                                  \
                                     </div>                                                                                                                                                                                                      \
                                 </div>                                                                                                                                                                                                          \
@@ -83,9 +74,11 @@ function displayMovies(category) {
 function showMovieDetails(element)
 {
     var item = element.getAttribute("item");
+    currentIndex = item;
     // console.log("movie_array[item].title");
     document.getElementById("movieTitle").innerHTML=movie_array[item].title;
-    document.getElementById("moviePoster").src='products/' + movie_array[item].poster;
+    document.getElementById("moviePoster").src='./../images/' + movie_array[item].poster;
+    document.getElementById("movieThumb").innerHTML='./../images/' + movie_array[item].thumb;
     document.getElementById("genre").innerHTML="<strong>Genre:</strong>"+movie_array[item].genre;
     document.getElementById("director").innerHTML="<strong>Story:</strong>"+movie_array[item].story;
     document.getElementById("release").innerHTML="<strong>Cast:</strong>"+movie_array[item].cast;
@@ -98,4 +91,37 @@ function showMovieDetails(element)
 
     var movieModal = document.getElementById("movieModal");
     movieModal.style.display="block";
+}
+
+
+function updateMovie() {
+
+    var edit_movie_url = movie_url + "/" + movie_array[currentIndex]._id;
+    var response = confirm("Are you sure you want to edit your information?");
+
+    var thumb = document.getElementById("thumb1").value;
+    var poster = document.getElementById("poster1").value;
+
+    var editedMovie = {
+        "thumbnail": thumb,
+        "poster": poster
+    }
+    console.log(editedMovie);
+
+    if (response == true) {
+        var updateMovie = new XMLHttpRequest();
+        var edit_movie_url = movie_url + "/" + movie_array[currentIndex]._id;
+
+        updateMovie.open("PUT", edit_movie_url, true);
+        updateMovie.setRequestHeader("Content-Type", "application/json");
+        movie_array[currentIndex].thumb = document.getElementById("thumb1").value;
+        movie_array[currentIndex].poster = document.getElementById("poster1").value;
+
+        updateMovie.onload = function() {
+
+            alert("Your user information has been edited.");
+        }
+        updateMovie.send(JSON.stringify(movie_array[currentIndex]));
+    }
+
 }
