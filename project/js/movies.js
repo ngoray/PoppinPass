@@ -62,8 +62,8 @@ function displayMovies(category) {
                                     <div class="back">                                                                                                                                                                                          \
                                         <div class="bg-dark mystyle text-center py-3" >                                                                                                                                                         \
                                             <span>' + title + '('+movie_array[count].genre+')</span><br>                                                                                                                                                                      \
-                                            <button href="#" data-toggle="modal" data-target="#movieModal" item="' + count + '" type="button" class="comments btn btn-primary btn-sm" onClick="showMovieDetails(this)" >See More</button>       \
-                                            <button href="#" data-toggle="modal" data-target="#commentModal" item="' + count + '" type="button" class="comments btn btn-primary btn-sm" onClick="showMovieComments(this)" >Comments</button>    \
+                                            <button item="' + count + '" type="button" class="button" onClick="showMovieDetails(this)" >See More</button>       \
+                                            <button' + count + '" type="button" class="button" onClick="showMovieComments(this)" >Comments</button>    \
                                         </div>                                                                                                                                                                                                  \
                                     </div>                                                                                                                                                                                                      \
                                 </div>                                                                                                                                                                                                          \
@@ -96,6 +96,6 @@ function showMovieDetails(element)
 
     document.getElementById("buy").href=movie_array[item].buy;
 
-    var movieModal = new Modal(document.getElementById("movieModal"));
-    movieModal.show();
+    var movieModal = document.getElementById("movieModal");
+    movieModal.style.display="block";
 }

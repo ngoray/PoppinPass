@@ -1,4 +1,4 @@
- <!-- Modal -->
+ <!-- Modal
  <div class="modal fade" id="movieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -52,4 +52,55 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+
+  <div id="movieModal" class="modal">
+  
+    <form class="modal-content animate" style="background-color: #333; width: 77.5%;">
+      <div class="container" style="background-color: rgb(255, 130, 6);">
+        <label style="color: white"><b id="movieTitle">Movie Title</b></label>
+        <a href="#" style="color: white;position: relative; left: 86%;text-decoration:none;" onclick="document.getElementById('movieModal').style.display='none'"><font size="5">&times;</font></a>
+      </div>
+
+            <div >
+              <table border="1" padding="6" style="background-color: #333;">
+                <tr>
+                  <td colspan="2">
+                    <img class="img-fluid" id="moviePoster"/>
+                  </td>
+                </tr>
+                    <tr>
+                      <td colspan="2" id="genre">@mdo</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" id="director">@fat</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" id="release">@twitter</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"><button class="button" href="#" role="button" id="buy">BUY</button></td>
+                    </tr>
+                    <tr>
+                      <td> <iframe id="trailer1" width="100%"></iframe></td>
+                      <td> <iframe id="trailer2" width="100%"></iframe></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12" id="story"></div>
+            <div class="w-100"></div>
+            <div class="col-12" id="cast"></div>
+            <div class="w-100"></div>
+            <div class="col-12" id="advice"></div>
+            <div class="w-100"></div>
+
+  
+      <div class="container" style="background-color: rgb(255, 130, 6)">
+        <button type="button" class="button3" style="float: right;"  onclick="document.getElementById('movieModal').style.display='none'">Close</button>
+        <button type="button" class="button3"></button>
+
+      </div>
+    </form>
   </div>
