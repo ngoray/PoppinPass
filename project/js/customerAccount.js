@@ -27,9 +27,9 @@ class Customer {
       registerUser.onload = function () {
           const output = JSON.parse(registerUser.responseText);
           if (output.token) {
-              alert("Register successfully");
               sessionStorage.setItem("token", output.token);
               sessionStorage.setItem("username", output.username);
+              alert("Register successfully this Page will now reload");
           } else {
               alert("Your Username or Email has been taken");
           }
@@ -58,8 +58,15 @@ class Customer {
           if (output.token) {
               sessionStorage.setItem("token", output.token);
               sessionStorage.setItem("username", output.username);
-              window.location.href = "./../html/test.html";
-              
+              sessionStorage.setItem("status", output.status);
+              if (output.status == "suspended")
+                {
+                    alert("this account has been suspended")
+                    document.getElementById("id01").style.display ="none";
+                }
+                else{
+                  window.location.href = "./../html/test.html";
+                }
           } else {
               alert("Invalid Username or Password...Please try again");
           }

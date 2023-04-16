@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/modal.css">
 <link rel="stylesheet" href="./css/movie.css">
+<link rel="stylesheet" href="./css/movieslideshow.css">
 
 <link rel="stylesheet" href="./css/navbar.css">
 <link rel="stylesheet" href="./css/feedback.css">
@@ -19,13 +20,46 @@
 <div w3-include-html="./html/loader.html"></div>  
 
 <div style="display: none;" id="Home">
-    
+
     <div w3-include-html="./html/navbar.html"></div>
 
     <div w3-include-html="./html/loginmodal.html"></div>
     <div w3-include-html="./html/signup.html"></div>
 
     <div w3-include-html="./html/movie-modal.html"></div>
+
+    <div id="slideshow"  style="background-color: #33333381;">
+        <div class="slideshow-container">
+
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                    <center>
+                        <img src="./../images/products/Three Billboards Outside Ebbing, Missouri_poster.jpg" style="width:80%; height: 270px;">
+                    </center>
+            </div>
+        
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                    <center>
+                        <img src="./images/products/Darkest Hour_poster.jpg" style="width:80%; height: 270px; vertical-align: middle;">
+                    </center>   
+            </div>
+        
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                    <center>
+                        <img src="./images/products/Fifty Shades Freed_poster.jpg" style="width:80%; height: 270px; vertical-align: middle;">
+                    </center>
+            </div>
+        
+        </div>
+        <br> 
+        <div style="text-align:center">
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+        </div>
+    </div>
 
     <div w3-include-html="./html/movie.html"></div>
     <div w3-include-html="./html/menu.html"></div>
@@ -49,8 +83,10 @@
 <script src="./js/loading.js"></script>
 <script src="./js/loginmodal.js"></script>
 <script src="./js/signupmodal.js"></script>
+<script src="./js/slideshow.js"></script>
 
 <script src="./js/customerAccount.js"></script>
+<script src="./js/staffAccount.js"></script>
 <script src="./js/movies.js"></script>
 
 <script src="./js/include.js"></script>

@@ -1,127 +1,193 @@
-// console.log("hi")
+class Movies {
+    constructor(movieUrl) {
+      this.movieUrl = movieUrl;
+      this.movieArray = [];
+      this.comingSoon = "Coming Soon";
+      this.nowShowing = "Now Showing";
+    }
+  
+    // This method calls the movies api and gets all the movies that are showing in Shaw Theatres for Showing Now and Coming Soon
+    getMovieData() {
+      const request = new XMLHttpRequest();
+      request.open("GET", this.movieUrl, true);
+  
+      // This function will be called when data returns from the web api
+      request.onload = () => {
+        // Get all the movies records into our movie array
+        this.movieArray = JSON.parse(request.responseText);
+  
+        // Call the function to display all movies tiles for "Now Showing"
+        this.displayMovies(this.comingSoon);
+        this.displayMovies2(this.nowShowing);
+      };
+  
+      // This command starts the calling of the movies web api
+      request.send();
+    }
 
-var movie_url ="/movies";
+    // This method displays the movies tiles that filters based on "Now Showing" or "Coming Soon"
+    displayMovies(comingSoon) {
+      const table = document.getElementById("moviesTable");
+      let movieCount = 0;
+      let message = "";
+  
+      table.innerHTML = "";
+      const totalMovies = this.movieArray.length;
+  
+      for (let count = 0; count < totalMovies; count++) {
+        if (this.movieArray[count].availability === comingSoon) {
+          const thumbnail = "products/" + this.movieArray[count].thumb;
+          const title = this.movieArray[count].title;
+  
+          const cell =
+            '<div>                                                                                                                                                                                                   \
+                              <div class="flip-container" >                                                                                                                                                                                       \
+                                  <div class="flipper">                                                                                                                                                                                           \
+                                      <div class="front">                                                                                                                                                                                         \
+                                          <a id="movies" class="movies" href="#" data-toggle="modal" data-target="#movieModal" item=' +
+            count +
+            '>                                                                                                \
+                                              <img class="img-fluid img-thumbnail" src="./../images/'+thumbnail+'" />                                                                                                                                       \
+                                          </a>                                                                                                                                                                                                    \
+                                      </div>                                                                                                                                                                                                      \
+                                      <div class="back">                                                                                                                                                                                          \
+                                          <div class="bg-dark mystyle text-center py-3" style="text-align:center;" >                                                                                                                                                         \
+                                              <span>' +
+            title +
+            "<br>" +
+            "(" +
+            this.movieArray[count].genre +
+            ')</span><br>                                                                                                                                                                      \
+                                              <button item="' +
+            count +
+            '" type="button" class="button" style="width:60%; border-radius:25px;" onClick="movies.showMovieDetails(this)" >See More</button>       \
+                                          </div>                                                                                                                                                                                                  \
+                                      </div>                                                                                                                                                                                                      \
+                                  </div>                                                                                                                                                                                                          \
+                              </div>                                                                                                                                                                                                              \
+                          </div>';
+  
+          table.insertAdjacentHTML("beforeend", cell);
+          movieCount++;
+        }
+      }
+  
+      message = movieCount + " Movies " + comingSoon;
+      document.getElementById("summary").textContent = message;
+      document.getElementById("parent").textContent = "";
+    }
 
-var movie_array=[];
+        // This method displays the movies tiles that filters based on "Now Showing" or "Coming Soon"
+        displayMovies2(nowShowing) {
+          const table = document.getElementById("moviesTable2");
+          let movieCount = 0;
+          let message = "";
+      
+          table.innerHTML = "";
+          const totalMovies = this.movieArray.length;
+      
+          for (let count = 0; count < totalMovies; count++) {
+            if (this.movieArray[count].availability === nowShowing) {
+              const thumbnail = "products/" + this.movieArray[count].thumb;
+              const title = this.movieArray[count].title;
+      
+              const cell =
+                '<div class="scroll">                                                                                                                                                                                                   \
+                                  <div class="flip-container" >                                                                                                                                                                                       \
+                                      <div class="flipper">                                                                                                                                                                                           \
+                                          <div class="front">                                                                                                                                                                                         \
+                                              <a id="movies" class="movies" href="#" data-toggle="modal" data-target="#movieModal" item=' +
+                count +
+                '>                                                                                                \
+                                                  <img class="img-fluid img-thumbnail" src="./../images/' + thumbnail +'" />                                                                                                                                       \
+                                              </a>                                                                                                                                                                                                    \
+                                          </div>                                                                                                                                                                                                      \
+                                          <div class="back">                                                                                                                                                                                          \
+                                              <div class="bg-dark mystyle text-center py-3" style="text-align:center;" >                                                                                                                                                         \
+                                                  <span>' +
+                title +
+                "<br>" +
+                "(" +
+                this.movieArray[count].genre +
+                ')</span><br>                                                                                                                                                                      \
+                                                  <button item="' +
+                count +
+                '" type="button" class="button" style="width:60%; border-radius:25px;" onClick="movies.showMovieDetails(this)" >See More</button>       \
+                                              </div>                                                                                                                                                                                                  \
+                                          </div>                                                                                                                                                                                                      \
+                                      </div>                                                                                                                                                                                                          \
+                                  </div>                                                                                                                                                                                                              \
+                              </div>';
+      
+              table.insertAdjacentHTML("beforeend", cell);
+              movieCount++;
+            }
+          }
+      
+          message = movieCount + " Movies " + nowShowing;
+          document.getElementById("summary2").textContent = message;
+          document.getElementById("parent2").textContent = "";
+        }
 
-var category="Now Showing";
+    showMovieDetails(element)
+    {
+        var item = element.getAttribute("item");
+        const currentIndex = item;
+        console.log(this.movieArray[item]._id);
+        // console.log("movie_array[item].title");
+        document.getElementById("movieId").innerHTML=this.movieArray[item]._id;
+        document.getElementById("movieTitle").innerHTML=this.movieArray[item].title;
+        document.getElementById("moviePoster").src='./../images/products/' + this.movieArray[item].poster;
+        document.getElementById("movieThumb").innerHTML='./../images/products/' + this.movieArray[item].thumb;
+        document.getElementById("genre").innerHTML="<strong>Genre:</strong>"+this.movieArray[item].genre;
+        document.getElementById("director").innerHTML="<strong>Story:</strong>"+this.movieArray[item].story;
+        document.getElementById("release").innerHTML="<strong>Cast:</strong>"+this.movieArray[item].cast;
+        document.getElementById("release").innerHTML="<strong>Advice:</strong>"+this.movieArray[item].advice;
 
-//This function is to call the movies api and get all the movies
-//that is showing in Shaw Theatres for Showing Now and Coming Soon
-function getMovieData() {
+        document.getElementById("trailer1").src=this.movieArray[item].video1;
+        document.getElementById("trailer2").src=this.movieArray[item].video2;
 
+        document.getElementById("buy").href=this.movieArray[item].buy;
 
-    var request = new XMLHttpRequest();
-    request.open('GET', movie_url, true);
+        var movieModal = document.getElementById("movieModal");
+        movieModal.style.display="block";
+    }
 
-
-    //This function will be called when data returns from the web api
-    request.onload = function () {
-        //get all the movies records into our movie array
-        movie_array = JSON.parse(request.responseText);
-
-
-        //call the function so as to display all movies tiles for "Now Showing"
-        displayMovies(category);
-    };
-    //This command starts the calling of the movies web api
-    request.send();
-}
-
-//This function is to display the movies tiles
-//that filters based on "Now Showing" or "Coming Soon"
-function displayMovies(category) {
-    var table = document.getElementById("moviesTable");
-    var movieCount = 0;
-    var message = "";
-
-    table.innerHTML = "";
-    totalMovies = movie_array.length;
-
-    for (var count = 0; count < totalMovies; count++) {
-        if (movie_array[count].availability === category) {
-            var thumbnail = 'products/' + movie_array[count].thumb;
-            var title = movie_array[count].title;
-
-            var cell = '<div class="col-md-3" style="float: none; margin: 0 auto;">                                                                                                                                                                                                   \
-                            <div class="flip-container" >                                                                                                                                                                                       \
-                                <div class="flipper">                                                                                                                                                                                           \
-                                    <div class="front">                                                                                                                                                                                         \
-                                        <a id="movies" class="movies" href="#" data-toggle="modal" data-target="#movieModal" item=' + count + '>                                                                                                \
-                                            <img class="img-fluid img-thumbnail" src="./../images/play.png" />                                                                                                                                       \
-                                        </a>                                                                                                                                                                                                    \
-                                    </div>                                                                                                                                                                                                      \
-                                    <div class="back">                                                                                                                                                                                          \
-                                        <div class="bg-dark mystyle text-center py-3" style="text-align:center;" >                                                                                                                                                         \
-                                            <span>' + title + '('+movie_array[count].genre+')</span><br>                                                                                                                                                                      \
-                                            <button item="' + count + '" type="button" class="button" style="width:60%;" onClick="showMovieDetails(this)" >See More</button>       \
-                                        </div>                                                                                                                                                                                                  \
-                                    </div>                                                                                                                                                                                                      \
-                                </div>                                                                                                                                                                                                          \
-                            </div>                                                                                                                                                                                                              \
-                        </div>';
-
-            table.insertAdjacentHTML('beforeend', cell);
-            movieCount++;
+    updateMovie(currentIndex) {
+        console.log(document.getElementById("movieId").innerHTML);
+        currentIndex = document.getElementById("movieId").innerHTML;
+        console.log(currentIndex);
+        const edit_movie_url = this.movieUrl + "/" + document.getElementById("movieId").innerHTML;
+        const response = confirm("Are you sure you want to edit your information?");
+        
+        const thumb = document.getElementById("thumb1").value;
+        const poster = document.getElementById("poster1").value;
+        
+        const editedMovie = {
+            thumbnail: thumb,
+            poster: poster,
+        };
+        console.log(editedMovie);
+        
+        if (response == true) {
+            const updateMovie = new XMLHttpRequest();
+            updateMovie.open("PUT", edit_movie_url, true);
+            updateMovie.setRequestHeader("Content-Type", "application/json");
+    
+            //Update the movie object in the movieArray
+            this.movieArray[currentIndex].thumb = thumb;
+            this.movieArray[currentIndex].poster = poster;
+    
+            updateMovie.onload = function () {
+                alert("Your movie information has been edited.");
+            };
+    
+            // Send the updated movie object as a JSON string
+            updateMovie.send(JSON.stringify(this.movieArray[currentIndex]));
         }
     }
-
-    message = movieCount + " Movies " + category;
-    document.getElementById("summary").textContent = message;
-    document.getElementById("parent").textContent = "";
+    
 }
-
-function showMovieDetails(element)
-{
-    var item = element.getAttribute("item");
-    currentIndex = item;
-    // console.log("movie_array[item].title");
-    document.getElementById("movieTitle").innerHTML=movie_array[item].title;
-    document.getElementById("moviePoster").src='./../images/' + movie_array[item].poster;
-    document.getElementById("movieThumb").innerHTML='./../images/' + movie_array[item].thumb;
-    document.getElementById("genre").innerHTML="<strong>Genre:</strong>"+movie_array[item].genre;
-    document.getElementById("director").innerHTML="<strong>Story:</strong>"+movie_array[item].story;
-    document.getElementById("release").innerHTML="<strong>Cast:</strong>"+movie_array[item].cast;
-    document.getElementById("release").innerHTML="<strong>Advice:</strong>"+movie_array[item].advice;
-
-    document.getElementById("trailer1").src=movie_array[item].video1;
-    document.getElementById("trailer2").src=movie_array[item].video2;
-
-    document.getElementById("buy").href=movie_array[item].buy;
-
-    var movieModal = document.getElementById("movieModal");
-    movieModal.style.display="block";
-}
-
-
-function updateMovie() {
-
-    var edit_movie_url = movie_url + "/" + movie_array[currentIndex]._id;
-    var response = confirm("Are you sure you want to edit your information?");
-
-    var thumb = document.getElementById("thumb1").value;
-    var poster = document.getElementById("poster1").value;
-
-    var editedMovie = {
-        "thumbnail": thumb,
-        "poster": poster
-    }
-    console.log(editedMovie);
-
-    if (response == true) {
-        var updateMovie = new XMLHttpRequest();
-        var edit_movie_url = movie_url + "/" + movie_array[currentIndex]._id;
-
-        updateMovie.open("PUT", edit_movie_url, true);
-        updateMovie.setRequestHeader("Content-Type", "application/json");
-        movie_array[currentIndex].thumb = document.getElementById("thumb1").value;
-        movie_array[currentIndex].poster = document.getElementById("poster1").value;
-
-        updateMovie.onload = function() {
-
-            alert("Your user information has been edited.");
-        }
-        updateMovie.send(JSON.stringify(movie_array[currentIndex]));
-    }
-
-}
+  
+  // Instantiate a Movies object and call the getMovieData method
+  const movies = new Movies('/movies');

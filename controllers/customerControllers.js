@@ -25,7 +25,7 @@ function register(request,respond) {
             var token = jwt.sign({"username": result.username}, "secretstring",{expiresIn:3000} )
             respond.status(200).json({
                 token,
-                "username": result.username,            
+                "username": result.username,         
                 "message": "Success"
             });
         }
@@ -50,7 +50,8 @@ function login(request, respond) {
             var token = jwt.sign({ "username": result[0].username}, "secretstring",{expiresIn:3000} )
             respond.status(200).json({
                 token,    
-                "username": result[0].username,            
+                "username": result[0].username,
+                "status": result[0].status,                
                 "message": "Success"
             });
         }

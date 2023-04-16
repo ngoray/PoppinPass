@@ -10,7 +10,7 @@ input[type=text], select, textarea {
   }
   
   input[type=submit] {
-    background-color: #edaf07;
+    background-color:rgb(255, 130, 6);
     color: white;
     padding: 12px 20px;
     border: none;
@@ -23,11 +23,9 @@ input[type=text], select, textarea {
   }
   
   .feedbackcontainer {
-    width: 40%;
-    float: left;
+    width: 100%;
   }
 
   .mapcontainer{
-    float: right;
-    width: 50%;
+    width: 100%;
   }

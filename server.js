@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routeAuth = require('./routes/customerRoutes.js');
 const routeMovies = require('./routes/movieRoutes.js');
+const routeStaff = require('./routes/corpRoutes.js');
+const routeReviews = require('./routes/reviewRoutes.js');
 
 
 var app = express();
@@ -17,6 +19,8 @@ app.use(bodyParser.json());
 
 routeAuth.routeMember(app);
 routeMovies.movieRoutes(app);
+routeStaff.routecorp(app);
+routeReviews.routeReviews(app);
 
 function gotoIndex(f, request, respond) {
     respond.sendFile(__dirname + f);

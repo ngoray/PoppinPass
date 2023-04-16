@@ -2,8 +2,7 @@
   
     <form class="modal-content animate" style="background-color: #333; width: 77.5%;">
       <div class="container" style="background-color: rgb(255, 130, 6);">
-        <label style="color: white"><b id="movieTitle">Movie Title</b></label>
-        <a href="#" style="color: white;position: relative; left: 86%;text-decoration:none;" onclick="document.getElementById('movieModal').style.display='none'"><font size="5">&times;</font></a>
+        <label style="color: white"><b id="movieId">1</b><b>. </b><b id="movieTitle">Movie Title</b></label>
       </div>
 
             <div >
@@ -50,8 +49,8 @@
 
   
       <div class="container" style="background-color: rgb(255, 130, 6)">
-        <button type="button" class="button3" style="float: right;"  onclick="document.getElementById('movieModal').style.display='none'">Close</button>
-        <button type="button" class="button3" onclick="updateMovie()">updateMovie</button>
+        <button type="button" class="button3 button2" style="float: right; background-color: red;"  onclick="document.getElementById('movieModal').style.display='none'">Close</button>
+        <button type="button" class="button3 button2" onclick="movies.updateMovie()">updateMovie</button>
 
       </div>
     </form>
