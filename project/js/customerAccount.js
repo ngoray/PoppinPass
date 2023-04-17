@@ -1,7 +1,9 @@
 class Customer {
-    constructor(loginUrl, signupUrl) {
+    constructor(loginUrl, signupUrl, getUserUrl) {
       this.loginUrl = loginUrl;
       this.signupUrl = signupUrl;
+      this.getUserUrl = getUserUrl;
+      this.customerArray = [];
     }
   
     createUser() {
@@ -11,9 +13,6 @@ class Customer {
       const username = document.getElementById("username").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-  
-      const signupModal = document.getElementById("id02");
-      const signinModal = document.getElementById("id01");
   
       const registerData = {
           "username": username,
@@ -39,7 +38,7 @@ class Customer {
 
 
     loginUser() {
-        const loginUser = new XMLHttpRequest();
+      const loginUser = new XMLHttpRequest();
       loginUser.open('POST', this.loginUrl, true);
   
       const username = document.getElementById("loginname").value;
@@ -74,8 +73,28 @@ class Customer {
       loginUser.send(JSON.stringify(loginData));
       
     }
+
+    getAllCustomer(){
+      const getAllCustomer = new XMLHttpRequest();
+      getAllCustomer.open('GET', this.getUserUrl, true);
+
+      getAllCustomer.setRequestHeader("Content-Type", "application/json");
+      getAllCustomer.onload = function () {
+        this.customerArray = JSON.parse(request.responseText);
+
+        this.displayCustomer();
+      }
+    }
+
+    displayCustomer(){
+      const totalcust = this.customerArray.length
+      for (i = 0; i < totalstaff; i++){
+        //html codes go here omg how tf do i do that
+        
+      }
+    }
   }
 
   
 
-  const customer = new Customer("/login", "/signup");
+  const customer = new Customer("/login", "/signup", "/user");

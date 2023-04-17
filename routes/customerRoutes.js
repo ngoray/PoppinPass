@@ -14,6 +14,8 @@ function routeMember(app) {
     .put(customerControllers.updateUser)
     .delete(customerControllers.deleteUser);
 
+    app.route('/user')
+    .get(customerControllers.getAllUsers);
 }
 
 module.exports =  {routeMember};

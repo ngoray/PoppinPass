@@ -28,8 +28,8 @@ class CustomerDB{
         return db.query(sql, [_id], callback);
     }
 
-    getAllUsers(callback) {
-        var sql = "SELECT * FROM poppinpass.customeraccount";
+    geAllUsers(callback) {
+        var sql = "SELECtT * FROM poppinpass.customeraccount";
         return db.query(sql, callback);
     }
 }

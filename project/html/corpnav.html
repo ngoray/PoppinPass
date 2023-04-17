@@ -1,10 +1,18 @@
 <div class="corpbody">
+  <center>
+  <div id="corploggout1" class="corploggout1" style="padding: 50px 50px;">
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <h2>Do you wish to log out of this account?</h2>
+    <button class="button" onclick="corpLoggedout()">Logout</button><br>
+    <button class="button" style="background-color: #333!important;" onclick="corpCancel()">Cancel</button>
+  </div>
+</center>
 <div class="corpdiv">
   <br>&nbsp;
   <center style="font-size: 40px;">Cinema Management System</center>
   <br><br>
   <div class="thinline"> </div>
-  <a class="button3" id="corploggout" href="#" style="float: right; padding: 10px 10px; display: none;">Loggout</a>
+  <button class="button3" id="corploggout" onclick="corpLoggout()" style="float: right; padding: 10px 10px; display: none;">Loggout</button>
 </div>
 <div class="corpdiv2"> 
   <div style="background-color: #454545; display: none;" id="corpPic" >
@@ -35,9 +43,11 @@
   </div>
 
   <div id="adminMenu" style="display: none;">
-    <button class="button2 button3" style="width: 100%; text-align: left!important;">Create Customer Account</button>
-    <button class="button2 button3" style="width: 100%; text-align: left!important;">Create Staff Account</button>
-    <button class="button2 button3"style="width: 100%; text-align: left!important;">View Accounts</button>
+    <button id="createCust" class="button2 button3" style="width: 100%; text-align: left!important;"  onclick="createCust()">Create Customer Account</button>
+    <button id="createAdm" class="button2 button3" style="width: 100%; text-align: left!important;"  onclick="createStaff()">Create Staff Account</button>
+    <button id="viewCust" class="button2 button3"style="width: 100%; text-align: left!important;" onclick="customer.getAllCustomer(), viewCust()">Customer Accounts</button>
+    <button id="viewAdm" class="button2 button3"style="width: 100%; text-align: left!important;"onclick="viewStaff()">Staff Accounts</button>
+
   </div>
 </div>
 
