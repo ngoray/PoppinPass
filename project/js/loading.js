@@ -39,6 +39,7 @@ function move() {
   function corp(){    
     var x = document.getElementById("CorpHome");
     var y = document.getElementById("Start");
+    document.body.style.backgroundImage = "url('./../images/logo2.jpg')";
     $("#CorpHome").fadeIn()
     y.style.display = "none";
     x.style.display = "block";

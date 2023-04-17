@@ -25,13 +25,39 @@ class Staff {
               sessionStorage.setItem("token", output.token);
               sessionStorage.setItem("username", output.username);
               sessionStorage.setItem("status", output.status);
+              sessionStorage.setItem("role", output.role);
+              console.log(output.role);
               if (output.status == "suspended")
                 {
                     alert("this account has been suspended")
                     document.getElementById("id01").style.display ="none";
                 }
-                else{
-                  window.location.href = "./../html/test.html";
+                else if (output.role =="owner")
+                {
+                  alert("welcome owner")
+                  document.getElementById("corploggout").style.display ="block";
+                  document.getElementById("corpPic").style.display ="block";
+                  document.getElementById("ownerMenu").style.display ="block";
+                  document.getElementById("corplogin").style.display ="none";
+                  staffName.innerText = output.role;
+                }
+                else if (output.role =="manager")
+                {
+                  alert("welcome manager")
+                  document.getElementById("corploggout").style.display ="block";
+                  document.getElementById("corpPic").style.display ="block";
+                  document.getElementById("managerMenu").style.display ="block";
+                  document.getElementById("corplogin").style.display ="none";
+                  staffName.innerText = output.role;
+                }
+                else if (output.role =="admin")
+                {
+                  alert("welcome admin")
+                  document.getElementById("corploggout").style.display ="block";
+                  document.getElementById("corpPic").style.display ="block";
+                  document.getElementById("adminMenu").style.display ="block";
+                  document.getElementById("corplogin").style.display ="none";
+                  staffName.innerText = output.role;
                 }
           } else {
               alert("Invalid Username or Password...Please try again");
@@ -40,5 +66,6 @@ class Staff {
       loginCorp.send(JSON.stringify(loginData));
       
     }
+    
   }
   const staff = new Staff("/stafflogin"); 

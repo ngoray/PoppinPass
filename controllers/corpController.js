@@ -25,7 +25,8 @@ function login(request, respond) {
             respond.status(200).json({
                 token,    
                 "username": result[0].username,
-                "status": result[0].status,            
+                "status": result[0].status,  
+                "role": result[0].role,            
                 "message": "Success"
             });
         }
