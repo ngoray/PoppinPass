@@ -4,13 +4,13 @@ class ReviewDB{
 
     addReview(reviews, callback){
 
-        console.log("Username: "+ reviews.name);
+        console.log("Name: "+ reviews.name);
         console.log("Email: " + reviews.email);
         console.log("Rating: "+reviews.rating);
         console.log("Review: "+reviews.review);
         var sql = "INSERT INTO poppinpass.reviews (name, email, rating, review) VALUES (?, ?, ?, ?)";
         
-        db.query(sql, [reviews.name,reviews.email, reviews.rating, reviews.review], callback);
+        db.query(sql, [reviews.name, reviews.email, reviews.rating, reviews.review], callback);
     }
 
     getAllReview(callback) {

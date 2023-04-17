@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 routeAuth.routeMember(app);
 routeMovies.movieRoutes(app);
 routeStaff.routecorp(app);
-routeReviews.routeReviews(app);
+routeReviews.routereview(app);
 
 function gotoIndex(f, request, respond) {
     respond.sendFile(__dirname + f);

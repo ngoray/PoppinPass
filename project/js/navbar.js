@@ -80,5 +80,8 @@ function makeActive() {
         slide.style.display="none";
         b.style.display="none";
         c.style.display="none";
+
+        review.fetchReview();
+        typewriter();
     }
  }

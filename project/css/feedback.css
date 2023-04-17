@@ -29,3 +29,13 @@ input[type=text], select, textarea {
   .mapcontainer{
     width: 100%;
   }
+
+  .reviews {
+    white-space: nowrap;
+    width: 80%;
+    height: 150px;
+    overflow: hidden;
+  }
+  .reviews:hover {
+    overflow-y: scroll;
+  }

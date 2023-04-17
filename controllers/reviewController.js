@@ -1,20 +1,19 @@
 "use strict"
 
-const CommentDB = require('../models/ReviewDB');
-const jwt = require('jsonwebtoken');
+const ReviewDB = require('../models/ReviewDB');
 
-var CommentDB = new CommentDB();
+var reviewDB = new ReviewDB();
 
 function addReview(request,respond) {
 
     var reviewComment = {
-        "name":request.body.username,
+        "name":request.body.name,
         "email": request.body.email,
-        "rating":request.body.password,
+        "rating":request.body.rating,
         "review": request.body.review
     };
     console.log(reviewComment);
-    commentDB.addReview(reviewComment, function (error, result) {
+    reviewDB.addReview(reviewComment, function (error, result) {
         console.log(result)
         if (error) {
             respond.json({
@@ -28,4 +27,17 @@ function addReview(request,respond) {
     });
 }
 
-module.exports = {addReview};
+function getAllReview(request, respond) {
+
+    reviewDB.getAllReview(function (error, result){
+
+        if (error) {
+            respond.json(error);
+        } else {
+
+            respond.json(result);
+        }
+    });
+}
+
+module.exports = {addReview, getAllReview};

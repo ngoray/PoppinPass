@@ -4,8 +4,9 @@ const reviewControllers = require('../controllers/reviewController');
 
 function routereview(app) {
 
-    app.route('/addreview')
-    .post(reviewControllers.addReview);
+    app.route('/review')
+    .post(reviewControllers.addReview)
+    .get(reviewControllers.getAllReview);
 
 }
 

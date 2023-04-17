@@ -5,50 +5,68 @@ class Review {
     }
 
     fetchReview() {
-
-        var request = new XMLHttpRequest();
-        request.open('GET', this.reviewUrl, true);
-    
-    
-        //This function will be called when data returns from the web api
-        request.onload = function () {
-         
-            //get all the movies records into our movie array
-            this.review_array = JSON.parse(request.responseText);
-            console.log("ok");
-            console.log(this.review_array);
-    
-    
-            //call the function so as to display all movies tiles for "Now Showing"
-            // displayMovies(category);
-        };
-        //This command starts the calling of the movies web api
-        request.send();
-    }
+      const reviewRequest = new XMLHttpRequest();
+      reviewRequest.open('GET', this.reviewUrl, true);
   
-    addReview() {
-      const addReview = new XMLHttpRequest();
-      addReview.open('POST', this.reviewUrl, true);
-  
-      const name = document.getElementById("reviewname").value;
-      const email = document.getElementById("reviewemail").value;
-      const rating = document.getElementById("reviewrating").value;
-      const review = document.getElementById("review").value;
-
-  
-      const reviewData = {
-          "name": name,
-          "email": email,
-          "rating": rating,
-          "review": review
-      }
-  
-      console.log(reviewData)
-  
-      addReview.setRequestHeader("Content-Type", "application/json");
-      addReview.onload = function () {
-         fetchReview();
+      // Use an arrow function to preserve the 'this' context
+      reviewRequest.onload = () => {
+          this.review_array = JSON.parse(reviewRequest.responseText);
+          console.log("ok");
+          console.log(this.review_array);
+          this.displayReviews();
       };
-      addReview.send(JSON.stringify(reviewData));
+  
+      reviewRequest.send();
+  }
+  // This method displays the movies tiles that filters based on "Now Showing" or "Coming Soon"
+  displayReviews() {
+    const table = document.getElementById("reviewTable");
+    let reviewCount = 0;
+    let message = "";
+      
+    table.innerHTML = "";
+    const totalReviews = this.review_array.length;
+      
+    for (let count = 0; count < totalReviews; count++) {
+           
+      const name = this.review_array[count].name;
+      const review = this.review_array[count].review;
+      const rating = this.review_array[count].rating;
+      const cell ='<div style="background-color: #333;"><table border="0" style="width:100%;"><tr><td width="60px"><img src="./../images/profile.png" style="padding: 10px;"></td> <td> <h5 style="text-align:left;">'+ name +'</h5><h5 style="text-align:left;">'+ review +'</h5></td><td><h5 style="text-align:right;">'+rating+'</h5></td><td width="35px"><img src="./../images/star.png" style="width:30px; height:30px;"/></td></tr></table></div><br>'
+      table.insertAdjacentHTML("beforeend", cell);
+            reviewCount++;
     }
+    message = reviewCount + " Reviews ";
+    document.getElementById("reviewsummary").textContent = message;
+  }
+
+  addReview() {
+    const addReview = new XMLHttpRequest();
+    addReview.open('POST', this.reviewUrl, true);
+
+    const name = document.getElementById("reviewname").value;
+    const email = document.getElementById("reviewemail").value;
+    const rating = document.getElementById("reviewrating").value;
+    const review = document.getElementById("review").value;
+
+
+    const reviewData = {
+        "name": name,
+        "email": email,
+        "rating": rating,
+        "review": review
+    }
+
+    console.log(reviewData)
+
+    addReview.setRequestHeader("Content-Type", "application/json");
+    addReview.onload = function () {
+      alert("Reviews added!");
+      this.fetchReview();
+    };
+    addReview.send(JSON.stringify(reviewData));
+  }
+    
 }
+
+const review = new Review("/review");
