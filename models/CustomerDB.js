@@ -17,9 +17,10 @@ class CustomerDB{
         db.query(sql, [customeraccount.username, customeraccount.password], callback);
     }
 
-    updateUser(customeraccount, callback){
-        var sql = "UPDATE customeraccount SET username = ?, email = ?, password = ? WHERE _id = ?";
-        return db.query(sql, [customeraccount.username, customeraccount.email, customeraccount.password, customeraccount._id], callback);
+    updateUser(customeraccount, callback) {
+        var sql = "UPDATE poppinpass.customeraccount SET username = ?, role = ?, status = ? WHERE _id = ?";
+
+        return db.query(sql, [customeraccount.username, customeraccount.role, customeraccount.status, customeraccount._id], callback);
     }
 
     deleteUser(_id, callback) {

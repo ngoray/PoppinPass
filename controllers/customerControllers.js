@@ -60,19 +60,19 @@ function login(request, respond) {
 
 function updateUser(request, respond) {
     var userDetails = {
-        "_id": request.params._id,
-        "username": request.body.username,
-        "email": request.body.email,
-        "password": request.body.password
-        
+        "_id": parseInt(request.params._id),
+        "username":request.body.username,
+        "role":request.body.role,
+        "status":request.body.status
     }
+
     loginDB.updateUser(userDetails, function(error, result){
         if (error) {
             respond.json(error);
             console.log(error);
         } else {
             respond.json(result);
-            console.log(userDetails);
+            console.log(staffDetails);
         }
     });
 }

@@ -132,6 +132,7 @@ class Movies {
     showMovieDetails(element)
     {
         var item = element.getAttribute("item");
+        console.log(item);
         const currentIndex = item;
         console.log(this.movieArray[item]._id);
         // console.log("movie_array[item].title");

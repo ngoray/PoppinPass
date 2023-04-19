@@ -47,23 +47,23 @@ function getAllStaff(request, respond) {
 }
 
 function updateStaff(request, respond) {
-    var userDetails = {
-        "_id": request.params._id,
-        "username": request.body.username,
-        "email": request.body.email,
-        "password": request.body.password
-        
+    var staffDetails = {
+        "_id": parseInt(request.params._id),
+        "username":request.body.username,
+        "role":request.body.role,
+        "status":request.body.status
     }
-    staffDB.updateUser(userDetails, function(error, result){
+
+    staffDB.updateStaff(staffDetails, function(error, result){
         if (error) {
             respond.json(error);
             console.log(error);
         } else {
             respond.json(result);
-            console.log(userDetails);
+            console.log(staffDetails);
         }
     });
 }
 
 
-module.exports = {login, getAllStaff};
+module.exports = {login, getAllStaff, updateStaff};

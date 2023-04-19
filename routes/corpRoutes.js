@@ -4,11 +4,12 @@ const corpControllers = require('../controllers/corpControllers');
 
 function routecorp(app) {
 
-    app.route('/stafflogin')
+    app.route('/staff')
+    .get(corpControllers.getAllStaff)
     .post(corpControllers.login);
 
-    app.route('/staff')
-    .get(corpControllers.getAllStaff);
+    app.route('/staff/:_id')
+    .put(corpControllers.updateStaff);
 
 }
 

@@ -1,7 +1,6 @@
 class Staff {
-    constructor(loginUrl, getStaffUrl) {
+    constructor(loginUrl) {
       this.loginUrl = loginUrl;
-      this.getStaffUrl = getStaffUrl;
       this.staffArray = [];
     }
 
@@ -58,6 +57,7 @@ class Staff {
                   document.getElementById("corploggout").style.display ="block";
                   document.getElementById("corpPic").style.display ="block";
                   document.getElementById("adminMenu").style.display ="block";
+                  document.getElementById("adminpagecontent").style.display ="block";
                   document.getElementById("corplogin").style.display ="none";
                   staffName.innerText = output.role;
                 }
@@ -69,53 +69,97 @@ class Staff {
       
     }
 
-    getAllStaff1(){
-      const getStaff = new XMLHttpRequest();
-      getStaff.open('GET', this.getStaffUrl, true);
-
-      // getAllStaff.setRequestHeader("Content-Type", "application/json");
-      // getAllStaff.onload = function () {
-      //   this.staffArray = JSON.parse(request.responseText);
-      //   console.log("")
-      //   this.displayStaff();
-      //   console.log(this.staffArray);
-
-      getStaff.onload = () => {
-          this.staffArray = JSON.parse(getStaff.responseText);
+    fetchStaff() {
+      const staffRequest = new XMLHttpRequest();
+      staffRequest.open('GET', this.loginUrl, true);
+      console.log(staffRequest);
+      // Use an arrow function to preserve the 'this' context
+      staffRequest.onload = () => {
+          this.staffArray = JSON.parse(staffRequest.responseText);
           console.log("ok");
           console.log(this.staffArray);
           this.displayStaff();
-        };
-      }
-
-      getAllStaff() {
-        const request = new XMLHttpRequest();
-        request.open("GET", this.getStaffUrl, true);
-    
-        // This function will be called when data returns from the web api
-        request.onload = () => {
-          console.log("WORK LA KNN")
-          this.staffArray = JSON.parse(request.responseText);
-    
-          
-          this.displayStaff();
-        };
-    
-      }
-    
-    displayStaff(){
-      const table = document.getElementById("getStaffAccount");
-      table.innerHTML = "";
-      const totalstaff = this.staffArray.length
-      for (i = 0; i < totalstaff; i++){
-        //html codes go here omg how tf do i do that
-        const username = this.staffArray[i].username;
-        const role = this.staffArray[i].role;
-        const status = this.staffArray[i].status;
-        const cell ='<tr><td style="width: 10%;"><img src="./../images/profile.png"></td><td>'+username+'</td><td>'+role+'</td><td>'+status+'</td><td ><img src="./../images/edit.png" width="30px" height="30px"></td></tr>'
+      };
+  
+      staffRequest.send();
+  }
+  // This method displays the movies tiles that filters based on "Now Showing" or "Coming Soon"
+  displayStaff() {
+    const table = document.getElementById("getStaffAccount");
+    let staffCount = 0;
+    let message = "";
+      
+    table.innerHTML = "";
+    const totalstaff = this.staffArray.length;
+      
+    for (let count = 0; count < totalstaff; count++) {
+           
+       //html codes go here omg how tf do i do that
+        const username = this.staffArray[count].username;
+        const role = this.staffArray[count].role;
+        const status = this.staffArray[count].status;
+        const cell ='<td style="width: 10%;"><img src="./../images/profile.png"></td><td><strong id="staff_id" style="display:none;">'+this.staffArray[count]._id+'</strong><a>'+username+'</a></td><td>'+role+'</td><td>'+status+'</td><td ><button item = '+count+' style="background-color:#333333a0;" onclick="staff.showStaffDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
         table.insertAdjacentHTML("beforeend", cell);
-        
-      }
+        staffCount++;
     }
+  }
+
+  showStaffDetails(element)
+  {
+    console.log(this.staffArray);
+    var item = element.getAttribute("item");
+    console.log(item);
+    const currentIndex = item;
+    
+    document.getElementById("editStafftable").style.display ="block";
+    document.getElementById("updateStaff_id").value = this.staffArray[item]._id;
+    document.getElementById("editStaffName").value = this.staffArray[item].username;
+    document.getElementById("editStaffRole").value = this.staffArray[item].role;
+    document.getElementById("editStaffStatus").value = this.staffArray[item].status;
+  }
+
+  cancelStaffDetails(){
+    document.getElementById("editStafftable").style.display ="none"; 
+  }
+
+  updateStaff(currentIndex) {
+    console.log( document.getElementById("updateStaff_id").value);
+    currentIndex = document.getElementById("updateStaff_id").value;
+    console.log(currentIndex);
+    const edit_staff_url = this.loginUrl + "/" + currentIndex;
+    const response = confirm("Are you sure you want to edit your information?");
+    
+    const username = document.getElementById("editStaffName").value;
+    const role = document.getElementById("editStaffRole").value;
+    const status = document.getElementById("editStaffStatus").value;
+    
+    const editedStaff = {
+        username: username,
+        role: role,
+        status: status
+    };
+    console.log(editedStaff);
+    
+    if (response == true) {
+        const updateStaff = new XMLHttpRequest();
+        updateStaff.open("PUT", edit_staff_url, true);
+        updateStaff.setRequestHeader("Content-Type", "application/json");
+
+        //Update the movie object in the movieArray
+        this.staffArray[currentIndex].username = username;
+        this.staffArray[currentIndex].role = role;
+        this.staffArray[currentIndex].status = status;
+
+        updateStaff.onload = function () {
+            alert("Your staff account information has been edited.");
+        };
+
+        // Send the updated movie object as a JSON string
+        updateStaff.send(JSON.stringify(this.staffArray[currentIndex]));
+    }
+    document.getElementById("editStafftable").style.display ="none";
+    staff.displayStaff();
 }
-const staff = new Staff("/stafflogin", "/staff"); 
+
+}
+const staff = new Staff("/staff"); 

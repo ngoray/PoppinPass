@@ -7,7 +7,7 @@ class Review {
     fetchReview() {
       const reviewRequest = new XMLHttpRequest();
       reviewRequest.open('GET', this.reviewUrl, true);
-  
+      console.log(reviewRequest);
       // Use an arrow function to preserve the 'this' context
       reviewRequest.onload = () => {
           this.review_array = JSON.parse(reviewRequest.responseText);

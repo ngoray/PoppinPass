@@ -1,54 +1,86 @@
-
-
+<div id="adminpagecontent">
 <div id="createCustomerAccount" style="display: none;">createCustomerAccount</div>
 <div id="createStaffAccount" style="display: none;">createStaffAccount</div>
 <div id="viewCustomerAccount" style="display: none;">viewCustomerAccount</div>
 
-<div id="viewStaffAccount" style="display: none;background-color: #333333b3;">
+<div id="viewStaffAccount" style="display: none;background-color: #333333c4;">
     <div class="center">
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <input type="text" placeholder="Search.." name="search">
-                </td>
-                <td style="padding: 10px 10px;">
-                    <button class="button" style="width: 40%; border-radius: 25px;">add</button>
+                    <input type="text" placeholder="Search.." onkeyup="searchStaffAccount()" id="staffSearch" style="width: 89%;" name="search">
+                    <button class="button" style="width: 10%; border-radius: 25px;">add</button>
                 </td>
             </tr>
         </table>
-        <table border="1" id="getStaffAccount" style="width: 100%;">
+        <table border="1" style="width: 100%;">
             <tr>
-                <td colspan="2">
+                <td colspan="2" width="23%">
                     Username
                 </td>
-                <td>
+                <td width="23%">
                     Role
                 </td>
-                <td>
+                <td width="25%">
                     Status
                 </td>
                 <td>
                     Edit
                 </td>
             </tr>
-            <tr>
-                <td style="width: 10%;">
-                    <img src="./../images/profile.png">
-                </td>
-                <td>
-                    Username
-                </td>
-                <td>
-                    Role
-                </td>
-                <td>
-                    Status
-                </td>
-                <td >
-                    <img src="./../images/edit.png" width="30px" height="30px">
-                </td>
-            </tr>
         </table>
-      
+        <table id="getStaffAccount" width="100%">
+
+        </table>
   </div>
+</div>
+
+
+<div class="adminedit" id="editStafftable" style="display: none;">
+    <br><br><br><br><br><br><br>
+    <center>
+        <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Edit Staff Account</h2></div>
+    </center>
+    <table class="center" style="background-color: #333;">
+        <tr>
+        </tr>
+        <tr>
+            <td>
+                <strong id ="updateStaff_id" style="display: none;">id</strong>
+                Name:
+            </td>
+            <td>
+                <input type="text" id="editStaffName">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Role:
+            </td>
+            <td>
+                <input type="text" id="editStaffRole">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Status:
+            </td>
+            <td>
+                <input type="text" id="editStaffStatus">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div> </div>
+            </td>
+            <td>
+                <div style="float: right;">
+                    <button class="button" style="width: 48%;" onclick="staff.updateStaff(this)">Update</button>
+                    <button class="button" style="width: 48%;" onclick="staff.cancelStaffDetails()">Cancel</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+  </div>
+
 </div>
