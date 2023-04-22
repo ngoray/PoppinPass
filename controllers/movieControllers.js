@@ -1,35 +1,36 @@
-"use strict"
+"use strict";
+
 const MovieDB = require('../models/MovieDB');
-var movieDB = new MovieDB();
-function getAllMovies(request, respond) {
+const movieDB = new MovieDB();
 
-    movieDB.getAllMovies(function (error, result){
+class MovieController {
 
-        if (error) {
-            respond.json(error);
-        } else {
-
-            respond.json(result);
-        }
-    });
-}
-
-function updateMovie(request, respond) {
-    var movieDetails = {
-        "_id": parseInt(request.params._id),
-        "thumb": request.body.thumb,
-        "poster": request.body.poster
-        
+    getAllMovies(request, respond) {
+        movieDB.getAllMovies(function (error, result){
+            if (error) {
+                respond.json(error);
+            } else {
+                respond.json(result);
+            }
+        });
     }
-    movieDB.updateMovie(movieDetails, function(error, result){
-        if (error) {
-            respond.json(error);
-            console.log(error);
-        } else {
-            respond.json(result);
-            console.log(movieDetails);
-        }
-    });
+
+    updateMovie(request, respond) {
+        const movieDetails = {
+            "_id": parseInt(request.params._id),
+            "thumb": request.body.thumb,
+            "poster": request.body.poster
+        };
+        movieDB.updateMovie(movieDetails, function(error, result){
+            if (error) {
+                respond.json(error);
+                console.log(error);
+            } else {
+                respond.json(result);
+                console.log(movieDetails);
+            }
+        });
+    }
 }
 
-module.exports = { getAllMovies, updateMovie };
+module.exports = MovieController;

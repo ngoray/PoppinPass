@@ -30,7 +30,7 @@ class CustomerDB{
     }
 
     geAllUsers(callback) {
-        var sql = "SELECtT * FROM poppinpass.customeraccount";
+        var sql = "SELECT * FROM poppinpass.customeraccount";
         return db.query(sql, callback);
     }
 }

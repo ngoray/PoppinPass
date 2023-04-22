@@ -1,21 +1,25 @@
 "use strict"
 
-const customerControllers = require('../controllers/customerControllers');
+const CustomerControllers = require('../controllers/customerControllers');
+const customerControllers = new CustomerControllers();
 
-function routeMember(app) {
-    app.route('/signup')
-    .post(customerControllers.register)
-    .get(customerControllers.getAllUsers);
+class CustomerRoutes{
 
-    app.route('/login')
-    .post(customerControllers.login)
-
-    app.route('/signup/:_id')
-    .put(customerControllers.updateUser)
-    .delete(customerControllers.deleteUser);
-
-    app.route('/user')
-    .get(customerControllers.getAllUsers);
+    routeMember(app) {
+        app.route('/signup')
+        .post(customerControllers.register);
+    
+        app.route('/login')
+        .post(customerControllers.login);
+    
+        app.route('/user/:_id')
+        .put(customerControllers.updateUser)
+        .delete(customerControllers.deleteUser);
+    
+        app.route('/user')
+        .get(customerControllers.getAllUsers);
+    }
+    
 }
 
-module.exports =  {routeMember};
+module.exports =  CustomerRoutes;

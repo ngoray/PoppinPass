@@ -1,13 +1,15 @@
-"use strict"
+"use strict";
 
-const reviewControllers = require('../controllers/reviewController');
+const ReviewController = require('../controllers/reviewController');
+const reviewController = new ReviewController();
 
-function routereview(app) {
+class ReviewRouter {
 
+    routereview(app) {
     app.route('/review')
-    .post(reviewControllers.addReview)
-    .get(reviewControllers.getAllReview);
-
+      .post(reviewController.addReview)
+      .get(reviewController.getAllReview);
+  }
 }
 
-module.exports =  {routereview};
+module.exports = ReviewRouter;
