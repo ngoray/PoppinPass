@@ -1,6 +1,7 @@
 class Staff {
-    constructor(loginUrl) {
+    constructor(loginUrl, createUrl) {
       this.loginUrl = loginUrl;
+      this.createUrl = createUrl;
       this.staffArray = [];
     }
 
@@ -39,6 +40,8 @@ class Staff {
                   document.getElementById("corploggout").style.display ="block";
                   document.getElementById("corpPic").style.display ="block";
                   document.getElementById("ownerMenu").style.display ="block";
+                  document.getElementById("ownerpagecontent").style.display="block";
+                  
                   document.getElementById("corplogin").style.display ="none";
                   staffName.innerText = output.role;
                 }
@@ -48,6 +51,7 @@ class Staff {
                   document.getElementById("corploggout").style.display ="block";
                   document.getElementById("corpPic").style.display ="block";
                   document.getElementById("managerMenu").style.display ="block";
+
                   document.getElementById("corplogin").style.display ="none";
                   staffName.innerText = output.role;
                 }
@@ -114,6 +118,7 @@ class Staff {
     document.getElementById("editStafftable").style.display ="block";
     document.getElementById("updateStaff_id").value = this.staffArray[item]._id;
     document.getElementById("editStaffName").value = this.staffArray[item].username;
+    document.getElementById("editStaffPassword").value = this.staffArray[item].password;
     document.getElementById("editStaffRole").value = this.staffArray[item].role;
     document.getElementById("editStaffStatus").value = this.staffArray[item].status;
   }
@@ -130,11 +135,13 @@ class Staff {
     const response = confirm("Are you sure you want to edit your information?");
     
     const username = document.getElementById("editStaffName").value;
+    const password = document.getElementById("editStaffPassword").value;
     const role = document.getElementById("editStaffRole").value;
     const status = document.getElementById("editStaffStatus").value;
     
     const editedStaff = {
         username: username,
+        password:password,
         role: role,
         status: status
     };
@@ -147,6 +154,7 @@ class Staff {
 
         //Update the movie object in the movieArray
         this.staffArray[currentIndex].username = username;
+        this.staffArray[currentIndex].password = password;
         this.staffArray[currentIndex].role = role;
         this.staffArray[currentIndex].status = status;
 
@@ -159,7 +167,50 @@ class Staff {
     }
     document.getElementById("editStafftable").style.display ="none";
     staff.displayStaff();
-}
+  }
+
+  createStuff(){ 
+    const createStaff = new XMLHttpRequest();
+      createStaff.open('POST', this.createUrl, true);
+  
+      const username = document.getElementById("createStaffName").value;
+      const password = document.getElementById("createStaffPassword").value;
+      const role = document.getElementById("createStaffRole").value;
+      const status = document.getElementById("createStaffStatus").value;
+  
+      const createData = {
+          "username": username,
+          "password": password,
+          "role": role,
+          "status": status
+      }
+  
+      console.log(createData)
+  //SHING STOPPED HERE
+      createStaff.setRequestHeader("Content-Type", "application/json");
+      createStaff.onload = function () {
+          const output = JSON.parse(createStaff.responseText);
+          if (output.token) {
+              alert("Staff account added successfully!");
+              document.getElementById("createStaffName").value = "";
+              document.getElementById("createStaffPassword").value = "";
+              document.getElementById("createStaffRole").value = "";
+              document.getElementById("createStaffStatus").value = "";
+              document.getElementById("createStafftable").style.display ="none";
+          } else {
+              alert("An account with that username or passowrd has already been taken");
+          }
+      };
+      createStaff.send(JSON.stringify(createData));
+  }
+
+  cancelCreateStaff(){
+    document.getElementById("createStafftable").style.display ="none"; 
+    
+  }
+  viewCreateStaffModal(){
+    document.getElementById("createStafftable").style.display ="block";
+  }
 
 }
-const staff = new Staff("/staff"); 
+const staff = new Staff("/staff", "/newstaff"); 

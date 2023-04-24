@@ -12,6 +12,9 @@ class StaffRoutes {
 
     app.route("/staff/:_id")
         .put(staffcontroller.updateStaff);
+
+    app.route("/newstaff")
+        .post(staffcontroller.createStaff);
   }
 }
 

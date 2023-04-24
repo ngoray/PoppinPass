@@ -10,12 +10,14 @@ function corpLoggedout() {
     document.getElementById("ownerMenu").style.display ="none";
     document.getElementById("corpPic").style.display ="none";
     document.getElementById("corploggout").style.display ="none";
-    document.getElementById("corplogin").style.display ="block";
     document.getElementById("adminpagecontent").style.display="none";
+    document.getElementById("ownerpagecontent").style.display="none";
+    document.getElementById("managercontent").style.display="none";
 
-    
-    document.getElementById("corpusername").value = "";
+    document.getElementById("corplogin").style.display ="block";
+
     document.getElementById("corppw").value = "";
+    document.getElementById("corpusername").value = "";
 
     var a = document.getElementById("createCust");
     var b = document.getElementById("createAdm");

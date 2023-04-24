@@ -93,6 +93,14 @@ class Customer {
         
       }
     }
+
+    createCust(){
+      document.getElementById("createCusttable").style.display ="block"; 
+    }
+  
+    cancelCreateCust(){
+      document.getElementById("createCusttable").style.display ="none"; 
+    }
   }
 
   

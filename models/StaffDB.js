@@ -14,9 +14,15 @@ class staffDB{
     }
 
     updateStaff(staffaccount, callback) {
-        var sql = "UPDATE poppinpass.staffaccount SET username = ?, role = ?, status = ? WHERE _id = ?";
+        var sql = "UPDATE poppinpass.staffaccount SET username = ?, password = ?, role = ?, status = ? WHERE _id = ?";
 
-        return db.query(sql, [staffaccount.username, staffaccount.role, staffaccount.status, staffaccount._id], callback);
+        return db.query(sql, [staffaccount.username, staffaccount.password,staffaccount.role, staffaccount.status, staffaccount._id], callback);
+    }
+
+    createStaff(staffaccount, callback) {
+        var sql = "INSERT INTO poppinpass.staffaccount (username, password, role, status) VALUES (?, ?, ?, ?)";
+
+        return db.query(sql, [staffaccount.username, staffaccount.password, staffaccount.role, staffaccount.status], callback);
     }
 
 }

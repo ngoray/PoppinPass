@@ -62,7 +62,10 @@ class Review {
     addReview.setRequestHeader("Content-Type", "application/json");
     addReview.onload = function () {
       alert("Reviews added!");
-      this.fetchReview();
+      document.getElementById("reviewname").value = "";
+      document.getElementById("reviewemail").value = "";
+      document.getElementById("review").value = "";
+      makeActive();
     };
     addReview.send(JSON.stringify(reviewData));
   }

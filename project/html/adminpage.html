@@ -1,15 +1,11 @@
 <div id="adminpagecontent">
-<div id="createCustomerAccount" style="display: none;">createCustomerAccount</div>
-<div id="createStaffAccount" style="display: none;">createStaffAccount</div>
-<div id="viewCustomerAccount" style="display: none;">viewCustomerAccount</div>
-
-<div id="viewStaffAccount" style="display: none;background-color: #333333c4;">
+<div id="viewCustomerAccount" style="display: none; background-color: #333333c4;">
     <div class="center">
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <input type="text" placeholder="Search.." onkeyup="searchStaffAccount()" id="staffSearch" style="width: 89%;" name="search">
-                    <button class="button" style="width: 10%; border-radius: 25px;">add</button>
+                    <input type="text" placeholder="Search.." onkeyup="searchCustomerAccount()" id="customerSearch" style="width: 89%;" name="searchcustomer">
+                    <button class="button" style="width: 10%; border-radius: 25px;" onclick="customer.createCust()">add</button>
                 </td>
             </tr>
         </table>
@@ -29,15 +25,104 @@
                 </td>
             </tr>
         </table>
-        <table id="getStaffAccount" width="100%">
+        <table id="getCustomerAccount" width="100%">
 
         </table>
+  </div>
+
+
+  <div class="adminedit" id="createCusttable" style="display: none;">
+    <br><br><br><br>
+    <center>
+        <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Create Customer Account</h2></div>
+    </center>
+    <table class="center" style="background-color: #333;">
+        <tr>
+        </tr>
+        <tr>
+            <td>
+                Name:
+            </td>
+            <td>
+                <input type="text" id="createCustName" placeholder="Name...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password:
+            </td>
+            <td>
+                <input type="text" id="createCustPassword" placeholder="Password...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Role:
+            </td>
+            <td>
+                <input type="text" id="createCustRole" placeholder="Role...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Status:
+            </td>
+            <td>
+                <input type="text" id="createCustStatus" placeholder="Status...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div> </div>
+            </td>
+            <td>
+                <div style="float: right;">
+                    <button class="button" style="width: 48%;" onclick="customer.addCust()">Create</button>
+                    <button class="button" style="width: 48%;" onclick="customer.cancelCreateCust()">Cancel</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+  </div>
+</div>
+
+<div id="viewStaffAccount" style="display: none;background-color: #333333c4;">
+    <div class="center">
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <input type="text" placeholder="Search.." onkeyup="searchStaffAccount()" id="staffSearch" style="width: 89%;" name="search">
+                    <button class="button" style="width: 10%; border-radius: 25px;" onclick="staff.viewCreateStaffModal()">add</button>
+                </td>
+            </tr>
+        </table>
+        <table border="1" style="width: 100%;">
+            <tr>
+                <td colspan="2" width="23%">
+                    Username
+                </td>
+                <td width="23%">
+                    Role
+                </td>
+                <td width="25%">
+                    Status
+                </td>
+                <td>
+                    Edit
+                </td>
+            </tr>
+        </table>
+        <div class="adminScroll">
+            <table id="getStaffAccount" width="100%">
+
+            </table>
+        </div>
   </div>
 </div>
 
 
 <div class="adminedit" id="editStafftable" style="display: none;">
-    <br><br><br><br><br><br><br>
+    <br><br><br><br><br>
     <center>
         <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Edit Staff Account</h2></div>
     </center>
@@ -51,6 +136,14 @@
             </td>
             <td>
                 <input type="text" id="editStaffName">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password:
+            </td>
+            <td>
+                <input type="text" id="editStaffPassword">
             </td>
         </tr>
         <tr>
@@ -77,6 +170,60 @@
                 <div style="float: right;">
                     <button class="button" style="width: 48%;" onclick="staff.updateStaff(this)">Update</button>
                     <button class="button" style="width: 48%;" onclick="staff.cancelStaffDetails()">Cancel</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+  </div>
+
+  <div class="adminedit" id="createStafftable" style="display: none;">
+    <br><br><br><br>
+    <center>
+        <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Create Staff Account</h2></div>
+    </center>
+    <table class="center" style="background-color: #333;">
+        <tr>
+        </tr>
+        <tr>
+            <td>
+                Name:
+            </td>
+            <td>
+                <input type="text" id="createStaffName" placeholder="Name...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password:
+            </td>
+            <td>
+                <input type="text" id="createStaffPassword" placeholder="Password...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Role:
+            </td>
+            <td>
+                <input type="text" id="createStaffRole" placeholder="Role...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Status:
+            </td>
+            <td>
+                <input type="text" id="createStaffStatus" placeholder="Status...">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div> </div>
+            </td>
+            <td>
+                <div style="float: right;">
+                    <button class="button" style="width: 48%;" onclick="staff.createStuff()">Create</button>
+                    <button class="button" style="width: 48%;" onclick="staff.cancelCreateStaff()">Cancel</button>
                 </div>
             </td>
         </tr>

@@ -10,4 +10,13 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: #333333a0;
   }
+
+  .adminScroll {
+    white-space: nowrap;
+    height: 450px;
+    overflow: hidden;
+  }
+  .adminScroll:hover {
+    overflow-y: scroll;
+  }
   
