@@ -15,7 +15,7 @@
                     Username
                 </td>
                 <td width="23%">
-                    Role
+                    Email
                 </td>
                 <td width="25%">
                     Status
@@ -29,7 +29,6 @@
 
         </table>
   </div>
-
 
   <div class="adminedit" id="createCusttable" style="display: none;">
     <br><br><br><br>
@@ -49,18 +48,18 @@
         </tr>
         <tr>
             <td>
-                Password:
+                Email:
             </td>
             <td>
-                <input type="text" id="createCustPassword" placeholder="Password...">
+                <input type="text" id="createCustEmail" placeholder="Email...">
             </td>
         </tr>
         <tr>
             <td>
-                Role:
+                Password:
             </td>
             <td>
-                <input type="text" id="createCustRole" placeholder="Role...">
+                <input type="text" id="createCustPassword" placeholder="Password...">
             </td>
         </tr>
         <tr>
@@ -77,8 +76,55 @@
             </td>
             <td>
                 <div style="float: right;">
-                    <button class="button" style="width: 48%;" onclick="customer.addCust()">Create</button>
+                    <button class="button" style="width: 48%;" onclick="customer.createUser4admin()">Create</button>
                     <button class="button" style="width: 48%;" onclick="customer.cancelCreateCust()">Cancel</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+  </div>
+
+  <div class="adminedit" id="editCusttable" style="display: none;">
+    <br><br><br><br><br>
+    <center>
+        <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Edit Customer Account</h2></div>
+    </center>
+    <table class="center" style="background-color: #333;">
+        <tr>
+        </tr>
+        <tr>
+            <td>
+                <strong id ="editCust_id" style="display: none;">id</strong>
+                Name:
+            </td>
+            <td>
+                <input type="text" id="editCustName">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email:
+            </td>
+            <td>
+                <input type="text" id="editCustEmail">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Status:
+            </td>
+            <td>
+                <input type="text" id="editCustStatus">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div> </div>
+            </td>
+            <td>
+                <div style="float: right;">
+                    <button class="button" style="width: 48%;" onclick="customer.updateCust(this)">Update</button>
+                    <button class="button" style="width: 48%;" onclick="customer.cancelCustDetails()">Cancel</button>
                 </div>
             </td>
         </tr>

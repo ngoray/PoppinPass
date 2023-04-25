@@ -251,3 +251,12 @@ var loadFile = function(event) {
 	var image = document.getElementById('output');
 	image.src = URL.createObjectURL(event.target.files[0]);
 }
+
+function openAddOccupancyModal(){
+    $("#createMovietable").fadeIn()
+    document.getElementById("createOccupancytable").style.display="block";
+}
+
+function closeAddOccupancyModal(){
+    document.getElementById("createOccupancytable").style.display="none";
+}

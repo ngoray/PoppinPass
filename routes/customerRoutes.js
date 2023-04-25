@@ -8,6 +8,9 @@ class CustomerRoutes{
     routeMember(app) {
         app.route('/signup')
         .post(customerControllers.register);
+
+        app.route('/create')
+        .post(customerControllers.register4admin);
     
         app.route('/login')
         .post(customerControllers.login);
@@ -18,6 +21,7 @@ class CustomerRoutes{
     
         app.route('/user')
         .get(customerControllers.getAllUsers);
+
     }
     
 }

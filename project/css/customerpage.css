@@ -1,0 +1,10 @@
+.transaction {
+    white-space: nowrap;
+    width: 80%;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .transaction:hover {
+    overflow-y: scroll;
+  }

@@ -39,11 +39,11 @@
     <button class="button2 button3"style="width: 100%; text-align: left!important;" id="screenTime" onclick="mScreenTime()">Manage Screening Time</button>
     <button class="button2 button3"style="width: 100%; text-align: left!important;" id="movies" onclick="mMovies()">Manage Movies</button>
     <button class="button2 button3"style="width: 100%; text-align: left!important;" id="movieTicket" onclick="mMovieTicket()">Manage Movie Ticket</button>
-    <button class="button2 button3"style="width: 100%; text-align: left!important;" id="foodbevaragesTicket" onclick="mFoodBeveragesTicket()">Manage Food&Beverages Ticket</button>
+    <button class="button2 button3"style="width: 100%; text-align: left!important;" id="foodbevaragesTicket" onclick="mFoodBeveragesTicket()">Manage Food&Beverages Menu</button>
   </div>
 
   <div id="adminMenu" style="display: none;">
-    <button id="viewCust" class="button2 button3"style="width: 100%; text-align: left!important;" onclick="viewCust()">Customer Accounts</button>
+    <button id="viewCust" class="button2 button3"style="width: 100%; text-align: left!important;" onclick="viewCust(),customer.fetchCust()">Customer Accounts</button>
     <button id="viewAdm" class="button2 button3"style="width: 100%; text-align: left!important;" onclick="viewStaff(),staff.fetchStaff()">Staff Accounts</button>
 
   </div>

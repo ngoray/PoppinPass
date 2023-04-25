@@ -1,6 +1,55 @@
 <div id="managercontent">
     <div id="manageSeatMap" style="display: none;">manageSeatMap</div>
-    <div id="manageOccupancy" style="display: none;">manageOccupancy</div>
+    <div id="manageOccupancy" style="display: none;">
+        
+        <div class="center">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Search.." onkeyup="searchOccupancy()" id="occupancySearch" style="width: 89%;" name="search">
+                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="openAddOccupancyModal()">add</button>
+                    </td>
+                </tr>
+            </table>
+            <table border="1" style="width: 100%;">
+                <tr>
+                    <td colspan="2" width="23%">
+                        ID
+                    </td>
+                    <td width="30%">
+                        Seat Number
+                    </td>
+                    <td>
+                        Edit
+                    </td>
+                </tr>
+            </table>
+            <table id="getOccupancy" width="100%">
+    
+            </table>
+      </div>
+
+      <div class="adminedit" id="createOccupancytable" style="display: none;">
+        <br><br><br><br>
+        <center>
+            <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Seats</h2></div>
+        </center>
+        <table class="center" style="background-color: #333;">
+            <tr>
+                <td>
+                    <input type="text" id="createSeatNumber" placeholder="Seat No....">
+                </td>
+                <td>
+                    <div style="float: right;">
+                        <button class="button" style="width: 48%;" onclick="">Create</button>
+                        <button class="button" style="width: 48%;" onclick="closeAddOccupancyModal()">Cancel</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+      </div>
+
+    </div>
     <div id="manageScreenTime" style="display: none;">manageScreenTime</div>
 
     <div id="manageMovies" style="display: none;">

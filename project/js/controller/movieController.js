@@ -140,10 +140,10 @@ class Movies {
         document.getElementById("movieTitle").innerHTML=this.movieArray[item].title;
         document.getElementById("moviePoster").src='./../images/products/' + this.movieArray[item].poster;
         document.getElementById("movieThumb").innerHTML='./../images/products/' + this.movieArray[item].thumb;
-        document.getElementById("genre").innerHTML="<strong>Genre:</strong>"+this.movieArray[item].genre;
-        document.getElementById("director").innerHTML="<strong>Story:</strong>"+this.movieArray[item].story;
-        document.getElementById("release").innerHTML="<strong>Cast:</strong>"+this.movieArray[item].cast;
-        document.getElementById("release").innerHTML="<strong>Advice:</strong>"+this.movieArray[item].advice;
+        document.getElementById("genre").innerHTML="<strong>Genre: </strong><br>"+this.movieArray[item].genre;
+        document.getElementById("director").innerHTML="<br><strong>Story: </strong><br>"+this.movieArray[item].story;
+        document.getElementById("release").innerHTML="<strong>Cast: </strong><br>"+this.movieArray[item].cast;
+        document.getElementById("release").innerHTML="<br><strong>Advice: </strong><br>"+this.movieArray[item].advice;
 
         document.getElementById("trailer1").src=this.movieArray[item].video1;
         document.getElementById("trailer2").src=this.movieArray[item].video2;
@@ -186,6 +186,34 @@ class Movies {
             // Send the updated movie object as a JSON string
             updateMovie.send(JSON.stringify(this.movieArray[currentIndex]));
         }
+    }
+    addMovie(){
+      const newMovie = new XMLHttpRequest();
+      newMovie.open('POST', this.movieUrl, true);
+  
+      const title = document.getElementById("createMovieTitle").value;
+      const advice = document.getElementById("createMovieAdvice").value;
+      const genre = document.getElementById("createMovieGenre").value;
+      const duration = document.getElementById("createMovieDuration").value;
+  
+      const movieData = {
+          "title": username,
+          "advice": password,
+          "genre": genre,
+          "duration": duration
+      }
+
+      console.log(movieData)
+      newMovie.setRequestHeader("Content-Type", "application/json");
+      newMovie.onload = function () {
+        alert("Movie Added");
+        document.getElementById("createMovieTitle").value = "";
+        document.getElementById("createMovieAdvice").value = "";
+        document.getElementById("createMovieGenre").value = "";
+        document.getElementById("createMovieDuration").value = "";
+        
+      };
+      newMovie.send(JSON.stringify(movieData));
     }
     
 }

@@ -31,6 +31,29 @@ class MovieController {
             }
         });
     }
+
+    addMovie(request, respond) {
+        const addDetails = {
+            "title":request.body.title,
+            "advice":request.body.advice,
+            "genre":request.body.genre,
+            "duration":request.body.duration
+        };
+        movieDB.addMovie(addDetails, function(error, result){
+            console.log(result);
+
+      if (error) {
+        respond.json({
+          message: 'Something went wrong',
+          error,
+        });
+      } else {
+        respond.json(result);
+      }
+    
+        });
+
+    }
 }
 
 module.exports = MovieController;

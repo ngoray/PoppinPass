@@ -51,6 +51,7 @@ class Staff {
                   document.getElementById("corploggout").style.display ="block";
                   document.getElementById("corpPic").style.display ="block";
                   document.getElementById("managerMenu").style.display ="block";
+                  document.getElementById("managercontent").style.display="block";
 
                   document.getElementById("corplogin").style.display ="none";
                   staffName.innerText = output.role;
@@ -128,10 +129,17 @@ class Staff {
   }
 
   updateStaff(currentIndex) {
-    console.log( document.getElementById("updateStaff_id").value);
-    currentIndex = document.getElementById("updateStaff_id").value;
-    console.log(currentIndex);
-    const edit_staff_url = this.loginUrl + "/" + currentIndex;
+
+    var id = parseInt(document.getElementById("updateStaff_id").value);
+    var currentIndex = -1;
+    for (var i = 0; i < this.staffArray.length; i++) {
+        if (id == this.staffArray[i]._id) {   
+        currentIndex = i;
+        break; // Exit the loop once a match is found
+      }
+    }
+
+    const edit_staff_url = this.loginUrl + "/" + id;
     const response = confirm("Are you sure you want to edit your information?");
     
     const username = document.getElementById("editStaffName").value;
@@ -186,7 +194,6 @@ class Staff {
       }
   
       console.log(createData)
-  //SHING STOPPED HERE
       createStaff.setRequestHeader("Content-Type", "application/json");
       createStaff.onload = function () {
           const output = JSON.parse(createStaff.responseText);

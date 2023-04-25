@@ -1,7 +1,11 @@
 <ul class="topnav">
-  <li><a href="#1" id="movie" class="active" onclick="makeActive()">Movies</a></li>
-  <li><a href="#2" id="menu" onclick="makeActive1()">Menu</a></li>
-  <li><a href="#3" id="feedback" onclick="makeActive2()">Feedback</a></li>
+  <li><a href="#1" id="movie" class="active" onclick="moviePage()">Movies</a></li>
+  <li><a href="#2" id="menu" onclick="menuPage()">Menu</a></li>
+  <li><a href="#3" id="feedback" onclick="reviewPage()">Reviews</a></li>
+  <li><a href="#3" id="uProfile" style="display: none;" onclick="profilePage()">Profile</a></li>
   <input type="text" placeholder="Search.." name="search">
-  <li class="right"><a href="#login" onclick="document.getElementById('id01').style.display='block'">Login</a></li>
+  <li class="right">
+    <img id="userCart" src="./../images/cart.png" width="30px" height="30px" style="display: none; margin: 10px 10px;"/>
+    <a href="#login" id="loginbtn" onclick="document.getElementById('id01').style.display='block'">Login</a>
+  </li>
 </ul>

@@ -7,7 +7,8 @@ class MovieRoutes{
 
     movieRoutes(app) {
         app.route('/movies')
-        .get(movieController.getAllMovies);
+        .get(movieController.getAllMovies)
+        .post(movieController.addMovie);
     
         app.route('/movies/:_id')
         .put(movieController.updateMovie);

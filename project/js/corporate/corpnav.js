@@ -18,16 +18,6 @@ function corpLoggedout() {
 
     document.getElementById("corppw").value = "";
     document.getElementById("corpusername").value = "";
-
-    var a = document.getElementById("createCust");
-    var b = document.getElementById("createAdm");
-    var c = document.getElementById("viewCust");
-    var d = document.getElementById("viewAdm");
-
-    a.classList.remove("active");
-    b.classList.remove("active");
-    c.classList.remove("active");
-    d.classList.remove("active");
 }
 
 function corpCancel(){

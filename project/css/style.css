@@ -48,7 +48,6 @@ html {
   }
 
   .button2 {
-    border: none;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -57,17 +56,29 @@ html {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+    background-color:transparent; 
+    color: white;
   }
 
-.button3 {
+  .button3 {
     background-color:transparent;
     border: none; 
     color: white;
   }
 
+  .buttonMenu {
+    background-color:transparent;
+    color: white;
+  }
+
+  .buttonMenu:hover{
+    /* background-color: red; */
+    color: rgb(255, 131, 6);
+  }
+
   .button3 a:hover, .button3 a:focus {
     /* background-color: red; */
-    color: red!important;
+    color: rgb(255, 131, 6);
   }
 
   .button2:hover{
@@ -114,4 +125,9 @@ html {
   margin: auto;
   width: 50%;
   padding: 10px;
+}
+
+.centerTable {
+  margin: auto;
+  width: 50%;
 }

@@ -135,6 +135,33 @@ class CustomerController {
     });
   }
 
+  register4admin(request, respond) {
+    const signupReg = {
+      "username": request.body.username,
+      "email": request.body.email,
+      "password": request.body.password,
+      "status": request.body.status
+    };
+    console.log(signupReg);
+    loginDB.registerUser4admin(signupReg, (error, result) => {
+      console.log(result);
+      if (error || result.length == 0) {
+        respond.status(200).json({
+          "message": "Something went wrong",
+          error
+        });
+      }
+      else {
+        const token = jwt.sign({"username": result.username}, "secretstring",{expiresIn:3000} )
+        respond.status(200).json({
+          token,
+          "username": result.username,         
+          "message": "Success"
+        });
+      }
+    });
+  }
+
   login(request, respond) {
     const signup = { "username": request.body.username, "password": request.body.password };
     loginDB.loginUser(signup, (error, result) => {
@@ -148,6 +175,7 @@ class CustomerController {
         respond.status(200).json({
           token,    
           "username": result[0].username,
+          "email": result[0].email,
           "status": result[0].status,                
           "message": "Success"
         });
@@ -159,7 +187,7 @@ class CustomerController {
     const userDetails = {
       "_id": parseInt(request.params._id),
       "username": request.body.username,
-      "role": request.body.role,
+      "email": request.body.email,
       "status": request.body.status
     };
     loginDB.updateUser(userDetails, (error, result) => {
@@ -183,7 +211,7 @@ class CustomerController {
     });
   }
 
-  getAllUsers(respond) {
+  getAllUsers(request, respond) {
     loginDB.getAllUsers((error, result) => {
       if (error) {
         respond.json(error);
