@@ -178,7 +178,7 @@ class Occupancy {
             const seatno = this.occuArray[count].seatno;
             const row = this.occuArray[count].row;
             const cell =
-              '<button class="mapbtn" id="seatno" onclick="seatmap.addSM()" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+              '<button item="' + count +'" class="mapbtn"  id="' + count +'" onclick="seatmap.addSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label><button item="' + count +'" class="mapbtn"  id="' + count +'" style="display:none;" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><button item="' + count +'" class="mapbtn"  id="' + count +'active" style="display:none;" onclick="seatmap.activeSM(this)" >'+seatno+'</button>';
     
             table.insertAdjacentHTML("beforeend", cell);
             RowCount++;
@@ -199,7 +199,7 @@ class Occupancy {
             const seatno = this.occuArray[count].seatno;
             const row = this.occuArray[count].row;
             const cell =
-              '<button class="mapbtn" id="seatno" onclick="seatmap.addSM()">'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+              '<button item="' + count +'" class="mapbtn"  id="' + count +'" onclick="seatmap.addSM(this)">'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
     
             table.insertAdjacentHTML("beforeend", cell);
             RowCount++;
@@ -220,7 +220,7 @@ class Occupancy {
             const seatno = this.occuArray[count].seatno;
             const row = this.occuArray[count].row;
             const cell =
-              '<button class="mapbtn" id="seatno" onclick="seatmap.addSM()">'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+              '<button item="' + count +'" class="mapbtn"  id="' + count +'" onclick="seatmap.addSM(this)">'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
     
             table.insertAdjacentHTML("beforeend", cell);
             RowCount++;
@@ -242,7 +242,7 @@ class Occupancy {
             const seatno = this.occuArray[count].seatno;
             const row = this.occuArray[count].row;
             const cell =
-              '<button class="mapbtn" id="seatno"  onclick="seatmap.addSM()">'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+              '<button item="' + count +'" class="mapbtn"  id="' + count +'"  onclick="seatmap.addSM(this)">'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
     
             table.insertAdjacentHTML("beforeend", cell);
             RowCount++;
@@ -264,7 +264,7 @@ class Occupancy {
             const row = this.occuArray[count].row;
     
             const cell =
-              '<button class="mapbtn" id="seatno"  onclick="seatmap.addSM()">'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+              '<button item="' + count +'"  id="' + count +'" class="mapbtn"  onclick="seatmap.addSM(this)">'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
     
             table.insertAdjacentHTML("beforeend", cell);
             RowCount++;
