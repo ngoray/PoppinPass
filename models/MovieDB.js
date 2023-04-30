@@ -14,8 +14,8 @@ class MoviesDB {
     }
 
     addMovie(movie, callback){
-        var sql = "INSERT INTO poppinpass.movie (title, advice, genre, duration) VALUES (?, ?, ?, ?)";
-        return db.query(sql, [movie.title, movie.advice, movie.genre, movie.duration], callback)
+        var sql = "INSERT INTO poppinpass.movie (story, buy, video1, thumb, video2, poster, advice, title, cast, director, genre, duration, `release`, availability) VALUES ('lol', 'lol', 'lol', 'lol', 'lol', 'lol', ?, ?, 'lol', 'lol', ?, ?, 'lol', 'lol')";
+        return db.query(sql, [movie.advice, movie.title, movie.genre, movie.duration], callback)
     }
 
     

@@ -195,15 +195,16 @@ class Movies {
       const advice = document.getElementById("createMovieAdvice").value;
       const genre = document.getElementById("createMovieGenre").value;
       const duration = document.getElementById("createMovieDuration").value;
+      console.log("HERE" + title,advice,genre,duration);
   
       const movieData = {
-          "title": username,
-          "advice": password,
+          "title": title,
+          "advice": advice,
           "genre": genre,
           "duration": duration
       }
 
-      console.log(movieData)
+      console.log("MOVIE DATA = "+ movieData);
       newMovie.setRequestHeader("Content-Type", "application/json");
       newMovie.onload = function () {
         alert("Movie Added");
@@ -212,9 +213,80 @@ class Movies {
         document.getElementById("createMovieGenre").value = "";
         document.getElementById("createMovieDuration").value = "";
         
+        document.getElementById("createMovietable").style.display = "none";
       };
       newMovie.send(JSON.stringify(movieData));
     }
+
+    //everything below is used for manager page instead of homepage
+    getMovieData2() {
+      const request = new XMLHttpRequest();
+      request.open("GET", this.movieUrl, true);
+  
+      // This function will be called when data returns from the web api
+      request.onload = () => {
+        // Get all the movies records into our movie array
+        this.movieArray = JSON.parse(request.responseText);
+  
+        // Call the function to display all movies tiles for "Now Showing"
+        this.displayMovies4Manager();
+      };
+  
+      // This command starts the calling of the movies web api
+      request.send();
+    }
+
+    displayMovies4Manager() {
+        const table = document.getElementById("getMovies");
+        let movieCount = 0;
+        let message = "";
+        table.innerHTML = "";
+        const totalmovies = this.movieArray.length;
+
+        for (let count = 0; count < totalmovies; count++)
+        {
+            const id = this.movieArray[count]._id;
+            const title = this.movieArray[count].title;
+            const advice = this.movieArray[count].advice;
+            const genre = this.movieArray[count].genre;
+            const duration = this.movieArray[count].duration;
+
+
+            const cell ='<td style="width: 20%;"><strong id="movie_id" style="display:none;">'+id+'</strong><a>'+title+'</a></td><td><a>'+genre+'</a></td><td ><button item = '+count+' style="background-color:#333333a0;" onclick="movies.showMovieDetails2(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
+
+            table.insertAdjacentHTML("beforeend", cell);
+            movieCount++;
+        }
+    
+    }
+
+//MANAGER EDIT MOVIE NOT DONE DONT CLICK
+    showMovieDetails2(element)
+    {
+        var item = element.getAttribute("item");
+        console.log(item);
+        const currentIndex = item;
+        console.log(this.movieArray[item]._id);
+        // console.log("movie_array[item].title");
+        document.getElementById("movieId").innerHTML=this.movieArray[item]._id;
+        document.getElementById("movieTitle").innerHTML=this.movieArray[item].title;
+        document.getElementById("moviePoster").src='./../images/products/' + this.movieArray[item].poster;
+        document.getElementById("movieThumb").innerHTML='./../images/products/' + this.movieArray[item].thumb;
+        document.getElementById("genre").innerHTML="<strong>Genre: </strong><br>"+this.movieArray[item].genre;
+        document.getElementById("director").innerHTML="<br><strong>Story: </strong><br>"+this.movieArray[item].story;
+        document.getElementById("release").innerHTML="<strong>Cast: </strong><br>"+this.movieArray[item].cast;
+        document.getElementById("release").innerHTML="<br><strong>Advice: </strong><br>"+this.movieArray[item].advice;
+
+        document.getElementById("trailer1").src=this.movieArray[item].video1;
+        document.getElementById("trailer2").src=this.movieArray[item].video2;
+
+        document.getElementById("buy").href=this.movieArray[item].buy;
+
+        var movieModal = document.getElementById("movieModal");
+        movieModal.style.display="block";
+    }
+
+
     
 }
   

@@ -1,5 +1,139 @@
 <div id="managercontent">
-    <div id="manageSeatMap" style="display: none;">manageSeatMap</div>
+    <div id="manageSeatMap" style="display: none;">
+    
+        <div id="seatMapContent" class="center">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Search.." onkeyup="searchRoomNumber()" id="RoomNumberSearch" style="width: 89%;" name="search">
+                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="cinemaroom.openAddRoomNumberModal()">add</button>
+                    </td>
+                </tr>
+            </table>
+            <table border="1" style="width: 100%;">
+                <tr>
+                    <td width="30%">
+                        Room Number
+                    </td>
+                    <td>
+                        Edit
+                    </td>
+                </tr>
+            </table>
+            <div class="adminScroll">
+                <table id="getRoomNumber" style="background-color: #333;" width="100%">
+                </table>
+            </div>
+        </div>
+
+        <div id="addCinemaSeats" class="center" style="display: none;">
+            <br><br><br>
+            <table style="width: 100%; height: 400px; background-color: #333;">
+                <tr>
+                    <td colspan="3">
+                        <center>
+                            <label>Adding Map Object to Cinema Room:</label> <label id="editRoomName">i</label>
+                        </center>
+                    </td>
+                </tr>
+                <tr id="Sreen">
+                    <td  style="width: 10%;"><img src="./../images/exit left.png" style="width: 30px; height: 30px;"></td>
+                    <td>
+                        <center>
+                            <button style="background-color:rgb(255, 130, 6); color:white; width: 60%;" id="seatNo">Screen</button>
+                        </center>
+                    </td>
+                    <td style="width: 10%;"><img src="./../images/exit right.png" style="width: 30px; height: 30px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><br><br></td>
+                </tr>
+                <tr>
+                    <td rowspan="5"></td>
+                
+                        <td>
+                            <center id="rowA">
+                                
+                            </center>
+                        </td>
+                    <td rowspan="5"></td>
+                        
+                </tr>
+                <tr>
+                    <td>
+
+                        <center id="rowB">
+                                
+                        </center>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <center id="rowC">
+                                
+                        </center>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <center id="rowD">
+                                
+                        </center>      
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td>
+                        <center id="rowE">
+                                
+                        </center>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td><label style="margin-left: 15px;">Entrance</label></td>
+                    <td><br><br></td>
+                    <td>Entrance</td>
+                </tr>
+                <tr>
+
+                    <td colspan="3"><br><br><br></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button class="button" style="border-radius: 25px; float: right; margin-left: 10px; margin-right: 10px;">Submit</button>
+                        <button class="button" style="border-radius: 25px; float: right;" onclick="cinemaroom.closeSeatMapContent()">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="adminedit" id="createRoomNumbertable" style="display: none;">
+            <br><br><br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Cinema Room</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                    <td>
+                        <input type="text" id="createRoomNumber" placeholder="Cinema Room Number....">
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="cinemaroom.addCinemaRoom()">Create</button>
+                            <button class="button" style="width: 48%;" onclick="cinemaroom.closeAddRoomNumberModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+
+
+    </div>
     <div id="manageOccupancy" style="display: none;">
         
         <div class="center">
@@ -7,26 +141,28 @@
                 <tr>
                     <td>
                         <input type="text" placeholder="Search.." onkeyup="searchOccupancy()" id="occupancySearch" style="width: 89%;" name="search">
-                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="openAddOccupancyModal()">add</button>
+                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="occupancy.openAddOccupancyModal()">add</button>
                     </td>
                 </tr>
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
-                    <td colspan="2" width="23%">
-                        ID
-                    </td>
-                    <td width="30%">
+                    <td width="25%">
                         Seat Number
                     </td>
                     <td>
-                        Edit
+                        Row
+                    </td>
+                    <td width="10%">
+                        <label>Edit</label>
                     </td>
                 </tr>
             </table>
-            <table id="getOccupancy" width="100%">
+            <div class="adminScroll">
+                <table id="getOccupancy" style="width: 100%; background-color: #333;">
     
-            </table>
+                </table>
+            </div>
       </div>
 
       <div class="adminedit" id="createOccupancytable" style="display: none;">
@@ -40,9 +176,48 @@
                     <input type="text" id="createSeatNumber" placeholder="Seat No....">
                 </td>
                 <td>
+                    <input type="text" id="createSeatRow" placeholder="Input Row of the Seat....">
+                </td>
+                <td>
                     <div style="float: right;">
-                        <button class="button" style="width: 48%;" onclick="">Create</button>
-                        <button class="button" style="width: 48%;" onclick="closeAddOccupancyModal()">Cancel</button>
+                        <button class="button" style="width: 48%;" onclick="occupancy.addOccu()">Create</button>
+                        <button class="button" style="width: 48%;" onclick="occupancy.closeAddOccupancyModal()">Cancel</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+      </div>
+
+      <div class="adminedit" id="editOccupancytable" style="display: none;">
+        <br><br><br><br><br>
+        <center>
+            <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Edit Seat Number</h2></div>
+        </center>
+        <table class="center" style="background-color: #333;">
+            <tr>
+            </tr>
+            <tr>
+                <td>
+                    <strong id ="editOccu_id" style="display: none;">id</strong>
+                    Seatno.
+                </td>
+                <td>
+                    <input type="text" id="editSeatNo">
+                </td>
+            </tr>
+ 
+            <tr>
+                <td>
+                    <strong id ="editOccu_id" style="display: none;">id</strong>
+                    Row:
+                </td>
+                <td>
+                    <input type="text" id="editSeatRow">
+                </td>
+                <td>
+                    <div style="float: right;">
+                        <button class="button" style="width: 48%;" onclick="occupancy.updateOccu(this)">Update</button>
+                        <button class="button" style="width: 48%;" onclick="occupancy.cancelOccupancyDetails()">Cancel</button>
                     </div>
                 </td>
             </tr>
@@ -65,23 +240,21 @@
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
-                    <td colspan="2" width="23%">
-                        Image
-                    </td>
-                    <td width="23%">
+                    <td width="40%">
                         Title
                     </td>
-                    <td width="25%">
-                        Advice
-                    </td>
                     <td>
+                        Genre
+                    </td>
+                    <td width="10%">
                         Edit
                     </td>
                 </tr>
             </table>
-            <table id="getMovies" width="100%">
-    
-            </table>
+            <div class="adminScroll">
+                <table id="getMovies" style="background-color: #333;" width="100%">
+                </table>
+            </div>
       </div>
 
       <div class="adminedit" id="createMovietable" style="display: none;">
@@ -137,7 +310,7 @@
                 </td>
                 <td>
                     <div style="float: right;">
-                        <button class="button" style="width: 48%;" onclick="">Create</button>
+                        <button class="button" style="width: 48%;" onclick="movies.addMovie()">Create</button>
                         <button class="button" style="width: 48%;" onclick="closeAddMovieModal()">Cancel</button>
                     </div>
                 </td>

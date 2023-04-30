@@ -20,6 +20,8 @@ function mSeatMap() {
     e.classList.remove("active");
     f.classList.remove("active");
 
+    cinemaroom.fetchCinemaRoom();
+
     if (u.style.display == "block") {
         u.style.display = "block";
         v.style.display = "none";
@@ -59,6 +61,8 @@ function mOccupancy() {
     d.classList.remove("active");
     e.classList.remove("active");
     f.classList.remove("active");
+
+    occupancy.fetchOccu();
 
     if (v.style.display == "block") {
         u.style.display = "none";
@@ -139,6 +143,9 @@ function mMovies() {
     d.classList.add("active");
     e.classList.remove("active");
     f.classList.remove("active");
+
+    //HERE
+    movies.getMovieData2();
 
     if (x.style.display == "block") {
         u.style.display = "none";
@@ -252,11 +259,3 @@ var loadFile = function(event) {
 	image.src = URL.createObjectURL(event.target.files[0]);
 }
 
-function openAddOccupancyModal(){
-    $("#createMovietable").fadeIn()
-    document.getElementById("createOccupancytable").style.display="block";
-}
-
-function closeAddOccupancyModal(){
-    document.getElementById("createOccupancytable").style.display="none";
-}

@@ -28,6 +28,18 @@ const routeReviews = require('./routes/reviewRoutes.js');
 const routeReview = new routeReviews();
 routeReview.routereview(app);
 
+const routeOccupancys = require('./routes/occupancyRoutes.js');
+const routeOccupancy = new routeOccupancys();
+routeOccupancy.occupancyRoutes(app);
+
+const routeCinemaRoom = require('./routes/cinemaroomRoutes.js');
+const routeCinemaroom = new routeCinemaRoom();
+routeCinemaroom.cinemaroomRoutes(app);
+
+const routeSM = require('./routes/seatmapRoutes.js');
+const routesm = new routeSM();
+routesm.smRoutes(app);
+
 function gotoIndex(f, request, respond) {
     respond.sendFile(__dirname + f);
 }
