@@ -38,6 +38,26 @@ class SeatMapController {
     });
   }
 
+  getSomeSM(request, respond) {
+    var SMDeets = {
+      "roomnumber":request.body.roomnumber
+    }
+
+    console.log("getsomeSM called")
+    console.log("request.body: " + request.body.roomnumber);
+    console.log("SMDeets: " + JSON.stringify(SMDeets));
+    console.log("SMDeets: " + SMDeets);
+    seatmapDB.getSomeSM(SMDeets,(error,result) => {
+      if (error || result.length == 0) {
+        respond.json(error);
+        console.log("YOU IDIOT");
+      } else {
+        respond.json(result);
+        console.log("YOU WORKED");
+      }
+    })
+  }
+
   updateSM(request, respond) {
     var SMDetails = {
         "_id": parseInt(request.params._id),
@@ -54,6 +74,18 @@ class SeatMapController {
         } else {
             respond.json(result);
             console.log(SMDetails);
+        }
+    });
+  }
+
+  deleteSM(request, respond) {
+
+    seatmapDB.deleteSM(request.params._id, function (error, result) {
+
+        if (error) {
+            respond.json(error);
+        } else {
+            respond.json(result);
         }
     });
 }

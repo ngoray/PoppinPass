@@ -40,6 +40,10 @@ const routeSM = require('./routes/seatmapRoutes.js');
 const routesm = new routeSM();
 routesm.smRoutes(app);
 
+const routeMenu = require('./routes/menuRoutes.js');
+const routemenu = new routeMenu();
+routemenu.menuRoutes(app);
+
 function gotoIndex(f, request, respond) {
     respond.sendFile(__dirname + f);
 }

@@ -12,11 +12,14 @@
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
-                    <td width="30%">
+                    <td>
                         Room Number
                     </td>
-                    <td>
-                        Edit
+                    <td width="10%">
+                        Add
+                    </td>
+                    <td width="10%">
+                        Delete
                     </td>
                 </tr>
             </table>
@@ -132,6 +135,91 @@
             </table>
           </div>
 
+          <div id="suspendCinemaSeats" class="center" style="display: none;">
+            <br><br><br>
+            <table style="width: 100%; height: 400px; background-color: #333;">
+                <tr>
+                    <td colspan="3">
+                        <center>
+                            <label>Suspending Map Object in Cinema Room:</label> <label id="suspendRoomName">i</label>
+                        </center>
+                    </td>
+                </tr>
+                <tr id="Screen">
+                    <td  style="width: 10%;"><img src="./../images/exit left.png" style="width: 30px; height: 30px;"></td>
+                    <td>
+                        <center>
+                            <button style="background-color:rgb(255, 130, 6); color:white; width: 60%;" id="seatNo">Screen</button>
+                        </center>
+                    </td>
+                    <td style="width: 10%;"><img src="./../images/exit right.png" style="width: 30px; height: 30px;"></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><br><br></td>
+                </tr>
+                <tr>
+                    <td rowspan="5"></td>
+                
+                        <td>
+                            <center id="rowA1">
+                                
+                            </center>
+                        </td>
+                    <td rowspan="5"></td>
+                        
+                </tr>
+                <tr>
+                    <td>
+
+                        <center id="rowB1">
+                                
+                        </center>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <center id="rowC1">
+                                
+                        </center>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <center id="rowD1">
+                                
+                        </center>      
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td>
+                        <center id="rowE1">
+                                
+                        </center>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td><label style="margin-left: 15px;">Entrance</label></td>
+                    <td><br><br></td>
+                    <td>Entrance</td>
+                </tr>
+                <tr>
+
+                    <td colspan="3"><br><br><br></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button class="button" style="border-radius: 25px; float: right; margin-left: 10px; margin-right: 10px;">Submit</button>
+                        <button class="button" style="border-radius: 25px; float: right;" onclick="seatmap.closeSuspendCinemaSeat()">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
 
     </div>
     <div id="manageOccupancy" style="display: none;">
@@ -225,11 +313,38 @@
       </div>
 
     </div>
-    <div id="manageScreenTime" style="display: none;">manageScreenTime</div>
+    <div id="manageScreenTime" style="display: none;">
+    
+        <div id="screenTimeContent" class="center">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Search.." onkeyup="searchScreenTime()" id="screenTimeSearch" style="width: 89%;" name="search">
+                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="menu.openScreenTimeModal()">add</button>
+                    </td>
+                </tr>
+            </table>
+            <table border="1" style="width: 100%;">
+                <tr>
+                    <td>
+                        Screen Time
+                    </td>
+                    <td>
+                        Edit
+                    </td>
+                </tr>
+            </table>
+            <div class="adminScroll">
+                <table id="getScreenTime" style="background-color: #333;" width="100%">
+                </table>
+            </div>
+        </div>
+
+    </div>
 
     <div id="manageMovies" style="display: none;">
     
-        <div class="center">
+        <div id="manageMovieContent" class="center">
             <table style="width: 100%;">
                 <tr>
                     <td>
@@ -258,18 +373,21 @@
       </div>
 
       <div class="adminedit" id="createMovietable" style="display: none;">
-        <br><br><br><br>
-        <center>
-            <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Movies</h2></div>
-        </center>
-        <table class="center" style="background-color: #333;">
+        <table class="center" style="background-color: #333;padding: 10px;">
             <tr>
+                <td style="background-color:rgb(255, 130, 6);" colspan="3">
+                    <center>
+                    <h2>Adding Movie</h2>
+                </center>
+                </td>
             </tr>
             <tr>
                 <td>
                     <input type="text" id="createMovieTitle" placeholder="Title...">
+                    <textarea id="createMovieStory" placeholder="About the Movie.." style="width:100%;height:50px"></textarea>
                 </td>
-                <td rowspan="4" style="width: 350px;">
+                <td colspan="2">
+                    <br>
                     <center>
                     <img id="output" src="#" style="width: 300px; height: 150px;">
                     <input type="file" onchange="loadFile(event)"/>
@@ -277,6 +395,13 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <select id="createMovieAvaliability">
+                        <option value="Now Showing">Now Showing</option>
+                        <option value="Coming Soon">Coming Soon</option>
+                        <option value="Sneak Preview">Sneak Preview</option>
+                      </select>
+                </td>
                 <td>
                     <select id="createMovieAdvice">
                         <option value="G">G</option>
@@ -287,8 +412,6 @@
                         <option value="R21">R21</option>
                       </select>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <select id="createMovieGenre">
                         <option value="Action">Action</option>
@@ -301,7 +424,83 @@
             </tr>
             <tr>
                 <td>
+                    <input type="text" id="createMovieRelease" placeholder="Release...">
+                </td>
+                <td>
+                    <input type="text" id="createMovieDirector" placeholder="Director...">
+                </td>
+                <td>
                     <input type="text" id="createMovieDuration" placeholder="Duration...">
+                </td>
+        </tr>
+            <tr>
+                <td>
+                    <input type="text" id="createMovieVideo1" placeholder="Youtube Link...">
+                </td>
+                <td>
+                    <input type="text" id="createMovieVideo2" placeholder="Youtube Link...">
+                </td>
+                <td>
+                    <input type="text" id="createMovieCast" placeholder="Cast...">  
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3">
+                    <div style="float: right;">
+                        <button class="button" style="width: 48%;" onclick="movies.addMovie()">Create</button>
+                        <button class="button" style="width: 48%;" onclick="closeAddMovieModal()">Cancel</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+      </div>
+
+      <div class="adminedit" id="updateMovietable" style="display: none;">
+        <br><br><br><br>
+        <center>
+            <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2> Update Movie</h2></div>
+        </center>
+        <table class="center" style="background-color: #333;">
+            <tr>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="updateMovieTitle" placeholder="Title...">
+                </td>
+                <td rowspan="4" style="width: 350px;">
+                    <center>
+                    <img id="output" src="#" style="width: 300px; height: 150px;">
+                    <input type="file" onchange="loadFile(event)"/>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="updateMovieAdvice">
+                        <option value="G">G</option>
+                        <option value="PG">PG</option>
+                        <option value="PG13">PG13</option>
+                        <option value="NC16">NC16</option>
+                        <option value="M18">M18</option>
+                        <option value="R21">R21</option>
+                      </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select id="updateMovieGenre">
+                        <option value="Action">Action</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                      </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="updateMovieDuration" placeholder="Duration...">
                 </td>
             </tr>
             <tr>
@@ -317,10 +516,248 @@
             </tr>
         </table>
       </div>
-
     </div>
 
-    <div id="manageMovieTicket" style="display: none;">manageMovieTicket</div>
-    <div id="manageFoodBeveragesTicket" style="display: none;">manageFood&BeveragesTicket</div>
+    <div id="manageMovieTicket" style="display: none;">
+        <div id="ticketContent" class="center">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Search.." onkeyup="searchTicket()" id="ticketSearch" style="width: 89%;" name="search">
+                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="ticket.openAddTicketModal()">add</button>
+                    </td>
+                </tr>
+            </table>
+            <table border="1" style="width: 100%;">
+                <tr>
+                    <td>
+                        Name
+                    </td>
+                    <td>
+                        Age
+                    </td>
+                    <td>
+                        Price
+                    </td>
+                    <td>
+                        Edit
+                    </td>
+                </tr>
+            </table>
+            <div class="adminScroll">
+                <table id="getTicket" style="background-color: #333;" width="100%">
+                </table>
+            </div>
+        </div>
+
+        <div class="adminedit" id="createTickettable" style="display: none;">
+            <br><br><br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Ticket Type</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="createTicketName" placeholder="Name of Ticket...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="createTicketAge" placeholder="Age Limit...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" id="createTicketPrice" placeholder="Price of ticket...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div> </div>
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="">Create</button>
+                            <button class="button" style="width: 48%;" onclick="ticket.closeAddTicketModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+
+    </div>
+    <div id="manageFoodBeveragesTicket" style="display: none;">
+        <div id="menuContent" class="center">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Search.." onkeyup="searchMenu()" id="menuSearch" style="width: 89%;" name="search">
+                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="menu.openAddMenuModal()">add</button>
+                    </td>
+                </tr>
+            </table>
+            <table border="1" style="width: 100%;">
+                <tr>
+                    <td width="100px">
+                        Image
+                    </td>
+                    <td width="100px">
+                        Name
+                    </td>
+                    <td>
+                        Small Price
+                    </td>
+                    <td>
+                        Medium Price
+                    </td>
+                    <td>
+                        Large Price
+                    </td>
+                    <td width="10%">
+                        Edit
+                    </td>
+                </tr>
+            </table>
+            <div class="adminScroll">
+                <table id="getMenu" style="background-color: #333;" width="100%">
+                </table>
+            </div>
+        </div>
+
+
+        <div class="adminedit" id="createMenutable" style="display: none;">
+            <br><br><br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Menu</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="createMenuName" placeholder="name...">
+                    </td>
+                    <td rowspan="4" style="width: 350px;">
+                        <center>
+                        <img id="output1" src="#" style="width: 300px; height: 150px;">
+                        <input type="file" id = "picname" onchange="loadFile1(event), menu.displayFileName()"/>
+                        <input style="display: none;" id = "picname1"/>
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="createMenuType">
+                            <option value="Snacks">Snacks</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Combo">Combo</option>
+                          </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="createMenuSmallPrice" placeholder="Price for Small...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" id="createMenuMediumPrice" placeholder="Price for Medium...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" id="createMenuLargePrice" placeholder="Price for Large...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div> </div>
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="menu.newMenu()">Create</button>
+                            <button class="button" style="width: 48%;" onclick="menu.closeAddMenuModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+
+
+          <div class="adminedit" id="updateMenutable" style="display: none;">
+            <br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Menu</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="updateMenuName" placeholder="name...">
+                        <input id="editmenu_id" style="display: none;"/>
+                    </td>
+                    <td rowspan="5" style="width: 350px;">
+                        <center>
+                        <img id="updateOutput1" src="#" style="width: 300px; height: 150px;">
+                        <input type="file" id = "updatepicname" onchange="loadFile1(event), menu.displayFileName()"/>
+                        <input style="display: none;" id = "updatePicname1"/>
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="updateMenuType">
+                            <option value="Snacks">Snacks</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Combo">Combo</option>
+                          </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="updateMenuSmallPrice" placeholder="Price for Small...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" id="updateMenuMediumPrice" placeholder="Price for Medium...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" id="updateMenuLargePrice" placeholder="Price for Large...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="updateAvailability">
+                            <option value="active">active</option>
+                            <option value="suspend">suspend</option>
+                          </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div> </div>
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="menu.updateMenu()">Update</button>
+                            <button class="button" style="width: 48%;" onclick="menu.closeAddMenuModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+    </div>
 </div>
 

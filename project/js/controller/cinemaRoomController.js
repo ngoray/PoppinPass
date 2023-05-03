@@ -30,11 +30,30 @@ class CinemaRoom {
         {
             const id = this.cinemaroomArray[count]._id;
             const seatno = this.cinemaroomArray[count].roomnumber;
-            const cell ='<td style="width: 30%;"><strong id="occu_id" style="display:none;">'+id+'</strong><a>'+seatno+'</a></td><td ><button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showCinemaRoomDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
+            const cell ='<td><strong id="occu_id" style="display:none;">'+id+'</strong><a>'+seatno+'</a></td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showCinemaRoomDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showseatMapDetails(this)"><img src="./../images/delete.png" width="30px" height="30px"></td>'
 
             table.insertAdjacentHTML("beforeend", cell);
             cinemaroomCount++;
         }
+    }
+
+    showseatMapDetails(element) {
+        console.log(this.cinemaroomArray);
+        var item = element.getAttribute("item");
+        console.log(item);
+        const currentIndex = item;
+
+        document.getElementById("seatMapContent").style.display ="none";
+
+        document.getElementById("corploggout").style.display ="none";
+        document.getElementById("managerMenu").style.display ="none";
+
+        document.getElementById("suspendCinemaSeats").style.display ="block";
+        var cinemaRoom = this.cinemaroomArray[item].roomnumber;
+        document.getElementById("suspendRoomName").innerHTML = this.cinemaroomArray[item].roomnumber;
+        console.log(this.cinemaroomArray[item].roomnumber);
+        seatmap.getRoomSeats(cinemaRoom);
+
     }
 
     showCinemaRoomDetails(element) {
@@ -63,10 +82,8 @@ class CinemaRoom {
     
     
         const cinemaroomData = {
-            "roomnumber": roomnumber,
+            "roomnumber": roomnumber
         }
-    
-        console.log(cinemaroomData)
     
         addCinemaRoom.setRequestHeader("Content-Type", "application/json");
         addCinemaRoom.onload = function () {

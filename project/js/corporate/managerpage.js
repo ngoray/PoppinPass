@@ -195,7 +195,7 @@ function mMovieTicket() {
         y.style.display = "block";
         z.style.display = "none";
     } else {
-        $("#movieTicket").fadeIn()
+        $("#manageMovieTicket").fadeIn()
         y.style.display = "block";
         u.style.display = "none";
         v.style.display = "none";
@@ -227,6 +227,8 @@ function mFoodBeveragesTicket() {
     e.classList.remove("active");
     f.classList.add("active");
 
+    menu.fetchMenu();
+
     if (z.style.display == "block") {
         u.style.display = "none";
         v.style.display = "none";
@@ -252,10 +254,22 @@ function openAddMovieModal(){
 
 function closeAddMovieModal(){
     document.getElementById("createMovietable").style.display="none";
+   
+}
+
+function openAddMovie(){
+    document.getElementById("manageMovieContent").style.display="none";
+    $("#addMovie").fadeIn()
+    document.getElementById("addMovie").style.display="block";
 }
 
 var loadFile = function(event) {
 	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+}
+
+var loadFile1 = function(event) {
+	var image = document.getElementById('output1');
 	image.src = URL.createObjectURL(event.target.files[0]);
 }
 

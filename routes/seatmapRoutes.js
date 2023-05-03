@@ -7,11 +7,15 @@ class SmRoutes{
 
     smRoutes(app) {
         app.route('/seatmap')
-        .get(smController.getAllSM)
-        .post(smController.addSM);
+        .post(smController.getSomeSM);
+        
 
         app.route("/seatmap/:_id")
-        .put(smController.updateSM);
+        .put(smController.updateSM)
+        .delete(smController.deleteSM);
+
+        app.route('/seatmaps')
+        .post(smController.addSM);
     }
 
 }

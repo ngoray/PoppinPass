@@ -19,5 +19,17 @@ class SeatmapDB{
 
         return db.query(sql, [sm.seatno, sm.row, sm.roomnumber, sm.availability, sm._id], callback);
     }
+
+    deleteSM(sm, callback) {
+        var sql = "DELETE FROM poppinpass.seatmap WHERE _id = ?";
+
+        return db.query(sql, sm, callback);
+    }
+
+    getSomeSM(sm, callback){
+        var sql = "SELECT * FROM poppinpass.seatmap WHERE roomnumber = ?";
+
+        return db.query(sql, [sm.roomnumber], callback);
+    }
 }
 module.exports = SeatmapDB;
