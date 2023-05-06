@@ -1,17 +1,17 @@
 "use strict"
 
-const OccupancyController = require('../controllers/occupancyControllers');
-const occupancyController = new OccupancyController();
+const Occupancy = require('./../project/Entity/Occupancy');
+const occupancy = new Occupancy();
 
 class OccupancyRoutes{
 
     occupancyRoutes(app) {
         app.route('/occupancy')
-        .get(occupancyController.getAllOccu)
-        .post(occupancyController.addOccu);
+        .get(occupancy.viewAllOccu)
+        .post(occupancy.addOccu);
 
         app.route("/occupancy/:_id")
-        .put(occupancyController.updateOccu);
+        .put(occupancy.updateOccu);
     }
 
 }

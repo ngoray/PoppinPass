@@ -1,5 +1,5 @@
 'use strict';
-const MenuDB = require('../models/MenuDB');
+const MenuDB = require('../entity/Menu');
 const menuDB = new MenuDB();
 
 class MenuController {

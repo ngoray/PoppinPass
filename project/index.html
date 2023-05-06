@@ -4,31 +4,31 @@
 <title>PoppinPass</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="./css/modal.css">
-<link rel="stylesheet" href="./css/movie.css">
-<link rel="stylesheet" href="./css/movieslideshow.css">
+<link rel="stylesheet" href="./Boundary/css/style.css">
+<link rel="stylesheet" href="./Boundary/css/modal.css">
+<link rel="stylesheet" href="./Boundary/css/movie.css">
+<link rel="stylesheet" href="./Boundary/css/movieslideshow.css">
 
-<link rel="stylesheet" href="./css/navbar.css">
-<link rel="stylesheet" href="./css/feedback.css">
-<link rel="stylesheet" href="./css/customerpage.css">
+<link rel="stylesheet" href="./Boundary/css/navbar.css">
+<link rel="stylesheet" href="./Boundary/css/feedback.css">
+<link rel="stylesheet" href="./Boundary/css/customerpage.css">
 
-<link rel="stylesheet" href="./css/corpnav.css">
-<link rel="stylesheet" href="./css/adminpage.css">
-<link rel="stylesheet" href="./css/managerpage.css">
+<link rel="stylesheet" href="./Boundary/css/corpnav.css">
+<link rel="stylesheet" href="./Boundary/css/adminpage.css">
+<link rel="stylesheet" href="./Boundary/css/managerpage.css">
 </head>
 <body class="w3-black">
     
-<div w3-include-html="./html/loader.html"></div>  
+<div w3-include-html="./Boundary/html/loader.html"></div>  
 
 <div style="display: none;" id="Home">
 
-    <div w3-include-html="./html/navbar.html"></div>
+    <div w3-include-html="./Boundary/html/navbar.html"></div>
 
-    <div w3-include-html="./html/loginmodal.html"></div>
-    <div w3-include-html="./html/signup.html"></div>
+    <div w3-include-html="./Boundary/html/CustomerLoginUI.html"></div>
+    <div w3-include-html="./Boundary/html/CustomerSignUpUI.html"></div>
 
-    <div w3-include-html="./html/movie-modal.html"></div>
+    <div w3-include-html="./Boundary/html/movie-modal.html"></div>
     <div id="slideshow"  style="background-color: #33333381;">
         <div class="slideshow-container">
 
@@ -62,20 +62,21 @@
         </div>
     </div>
 
-        <div w3-include-html="./html/movie.html"></div>
-        <div w3-include-html="./html/menu.html"></div>
-        <div w3-include-html="./html/feedback.html"></div>
+        <div w3-include-html="./Boundary/html/movie.html"></div>
+        <div w3-include-html="./Boundary/html/menu.html"></div>
+        <div w3-include-html="./Boundary/html/ReviewUI.html"></div>
 
-    <div w3-include-html="./html/customerpage.html"></div>
+    <div w3-include-html="./Boundary/html/CustomerUI.html"></div>
 
 </div>
 
 <div style="display: none;" id="CorpHome">
-    <div w3-include-html="./html/corpnav.html"></div>
-    <div w3-include-html="./html/corplogin.html"></div>
-    <div w3-include-html="./html/adminpage.html"></div>
-    <div w3-include-html="./html/ownerpage.html"></div>
-    <div w3-include-html="./html/managerpage.html"></div>
+    <div w3-include-html="./Boundary/html/coperate/corpnav.html"></div>
+    <div w3-include-html="./Boundary/html/coperate/StaffLoginUI.html"></div>
+    <div w3-include-html="./Boundary/html/coperate/StaffLogoutUI.html"></div>
+    <div w3-include-html="./Boundary/html/coperate/UserAdminUI.html"></div>
+    <div w3-include-html="./Boundary/html/coperate/CinemaOwnerUI.html"></div>
+    <div w3-include-html="./Boundary/html/coperate/CinemaManagerUI.html"></div>
 </div>
 
 
@@ -83,41 +84,41 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- Navigation bar function -->
-<script src="./js/navbar.js"></script>
-<script src="./js/loginmodal.js"></script>
-<script src="./js/signupmodal.js"></script>
+<script src="./Boundary/js/navbar.js"></script>
+<script src="./Boundary/js/loginmodal.js"></script>
+<script src="./Boundary/js/signupmodal.js"></script>
 
 <!-- Page Function -->
-<script src="./js/loading.js"></script>
-<script src="./js/slideshow.js"></script>
-<script src="./js/reviewform.js"></script>
-<script src="./js/menu.js"></script>
+<script src="./Boundary/js/loading.js"></script>
+<script src="./Boundary/js/slideshow.js"></script>
+<script src="./Boundary/js/reviewform.js"></script>
+<script src="./Boundary/js/menu.js"></script>
 
 <!-- Database Controllers -->
-<script src="./js/controller/customerController.js"></script>
-<script src="./js/controller/staffController.js"></script>
-<script src="./js/controller/movieController.js"></script>
-<script src="./js/controller/reviewControllers.js"></script>
-<script src="./js/controller/occupancyController.js"></script>
-<script src="./js/controller/seatMapController.js"></script>
-<script src="./js/controller/cinemaRoomController.js"></script>
-<script src="./js/controller/menuController.js"></script>
-<script src="./js/controller/ticketController.js"></script>
+<script src="./Controller/customerController.js"></script>
+<script src="./Controller/staffController.js"></script>
+<script src="./Controller/movieController.js"></script>
+<script src="./Controller/reviewControllers.js"></script>
+<script src="./Controller/occupancyController.js"></script>
+<script src="./Controller/seatMapController.js"></script>
+<script src="./Controller/cinemaRoomController.js"></script>
+<script src="./Controller/menuController.js"></script>
+<script src="./Controller/ticketController.js"></script>
+<script src="./Controller/userprofileController.js"></script>
 
 
 <!-- Corporate Page Functions -->
-<script src="./js/corporate/corpnav.js"></script>
-<script src="./js/corporate/searchFunctions.js"></script>
-
-<script src="./js/corporate/adminpage.js"></script>
-<script src="./js/corporate/ownerpage.js"></script>
-<script src="./js/corporate/managerpage.js"></script>
+<script src="./Boundary/js/corporate/corpnav.js"></script>
+<script src="./Boundary/js/corporate/searchFunctions.js"></script>
+<script src="./Boundary/js/corporate/adminpage.js"></script>
+<script src="./Boundary/js/corporate/ownerpage.js"></script>
+<script src="./Boundary/js/corporate/managerpage.js"></script>
 
 
 <!-- Page include Function -->
-<script src="./js/include.js"></script>
+<script src="./Boundary/js/include.js"></script>
 <script>w3.includeHTML();</script>
-<script src="./js/bootstrap-native-v4.js"></script>
+<script src="./Boundary/js/bootstrap-native-v4.js"></script>
 
 </body>
 </html>

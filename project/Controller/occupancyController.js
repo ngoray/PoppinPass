@@ -117,12 +117,12 @@ class Occupancy {
       const seatno = document.getElementById("createSeatNumber").value;
       const row = document.getElementById("createSeatRow").value;
   
-      const occuData = {
+      const occupancyDetails = {
           "seatno": seatno,
           "row": row
       }
   
-      console.log(occuData)
+      console.log(occupancyDetails)
   
       addOccu.setRequestHeader("Content-Type", "application/json");
       addOccu.onload = function () {
@@ -133,7 +133,7 @@ class Occupancy {
               document.getElementById("createSeatRow").value = "";
           
       };
-      addOccu.send(JSON.stringify(occuData));
+      addOccu.send(JSON.stringify(occupancyDetails));
     }
 
   openAddOccupancyModal(){

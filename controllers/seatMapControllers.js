@@ -1,5 +1,5 @@
 'use strict';
-const SeatMapDB = require('../models/seatMapDB');
+const SeatMapDB = require('../Entity/seatMapDB');
 const seatmapDB = new SeatMapDB();
 
 class SeatMapController {

@@ -1,4 +1,4 @@
-var db = require('../dbconnection');
+var db = require('./../../dbconnection');
 
 class CustomerDB{
 

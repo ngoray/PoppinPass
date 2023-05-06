@@ -1,5 +1,5 @@
 'use strict';
-var db = require('../dbconnection');
+var db = require('./../../dbconnection');
 
 class Review {
 
@@ -42,6 +42,8 @@ class Review {
 }
 
   viewAllReview(request, respond) {
+
+    console.log("called");
     review.viewAllReviewDB((error, result) => {
       if (error) {
         respond.json(error);

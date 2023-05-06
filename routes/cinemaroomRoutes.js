@@ -1,17 +1,16 @@
 "use strict"
 
-const CinemaRoomController = require('../controllers/cinemaRoomControllers');
-const cinemaroomController = new CinemaRoomController();
-
+const CinemaRoom = require('./../project/Entity/CinemaRoom');
+const cinemaroom = new CinemaRoom();
 class CinemaRoomRoutes{
 
     cinemaroomRoutes(app) {
         app.route('/room')
-        .get(cinemaroomController.getAllCinemaRoom)
-        .post(cinemaroomController.addCinemaRoom);
+        .get(cinemaroom.viewAllCinemaRoom)
+        .post(cinemaroom.addCinemaRoom);
 
         app.route("/room/:_id")
-        .put(cinemaroomController.updateCinemaRoom);
+        .put(cinemaroom.updateCinemaRoom);
     }
 
 }

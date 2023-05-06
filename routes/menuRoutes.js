@@ -1,17 +1,17 @@
 "use strict"
 
-const MenuController = require('../controllers/menuControllers');
-const menuController = new MenuController();
+const Menu = require('./../project/Entity/Menu');
+const menu = new Menu();
 
 class MenuRoutes{
 
     menuRoutes(app) {
         app.route('/menu')
-        .get(menuController.getAllMenu)
-        .post(menuController.addMenu);
+        .get(menu.viewAllMenu)
+        .post(menu.addMenu);
 
         app.route("/menu/:_id")
-        .put(menuController.updateMenu);
+        .put(menu.updateMenu);
     }
 
 }

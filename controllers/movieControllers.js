@@ -1,6 +1,6 @@
 "use strict";
 
-const MovieDB = require('../models/MovieDB');
+const MovieDB = require('../entity/Movie');
 const movieDB = new MovieDB();
 
 class MovieController {

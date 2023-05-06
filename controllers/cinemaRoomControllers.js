@@ -1,5 +1,5 @@
 'use strict';
-const CinemaRoomDB = require('../models/CinemaRoomDB');
+const CinemaRoomDB = require('../entity/CinemaRoomDB');
 const cinemaroomDB = new CinemaRoomDB();
 
 class CinemaroomController {

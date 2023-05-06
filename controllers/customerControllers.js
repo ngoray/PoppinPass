@@ -103,7 +103,7 @@
 
 "use strict";
 
-const LoginDB = require('../models/CustomerDB');
+const LoginDB = require('./../project/Entity/CustomerDB');
 const jwt = require('jsonwebtoken');
 const loginDB = new LoginDB();
 

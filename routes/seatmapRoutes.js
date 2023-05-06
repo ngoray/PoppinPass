@@ -1,21 +1,21 @@
 "use strict"
 
-const SmController = require('../controllers/seatMapControllers');
-const smController = new SmController();
+const Sm = require('./../project/Entity/seatMap');
+const sm = new Sm();
 
 class SmRoutes{
 
     smRoutes(app) {
         app.route('/seatmap')
-        .post(smController.getSomeSM);
+        .post(sm.getSomeSM);
         
 
         app.route("/seatmap/:_id")
-        .put(smController.updateSM)
-        .delete(smController.deleteSM);
+        .put(sm.updateSM)
+        .delete(sm.deleteSM);
 
         app.route('/seatmaps')
-        .post(smController.addSM);
+        .post(sm.addSM);
     }
 
 }

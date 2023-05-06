@@ -44,6 +44,10 @@ const routeMenu = require('./routes/menuRoutes.js');
 const routemenu = new routeMenu();
 routemenu.menuRoutes(app);
 
+const routeProfile = require('./routes/userprofileRoutes.js');
+const routeprofile = new routeProfile();
+routeprofile.userprofileRoutes(app);
+
 function gotoIndex(f, request, respond) {
     respond.sendFile(__dirname + f);
 }

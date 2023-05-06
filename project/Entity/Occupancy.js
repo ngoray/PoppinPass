@@ -1,10 +1,10 @@
 'use strict';
-var db = require('../dbconnection');
+var db = require('./../../dbconnection');
 
 class Occupancy {
 
   // add occupancy
-  addOccuDB(occupancy, callback){
+  addOccuTable(occupancy, callback){
 
     var sql = "INSERT INTO poppinpass.occupancy (seatno, `row`) VALUES (?, ?)";
     
@@ -16,7 +16,7 @@ class Occupancy {
       row: request.body.row
     };
 
-    occupancy.addOccuDB(occupancyDetails, (error, result) => {
+    occupancy.addOccuTable(occupancyDetails, (error, result) => {
       console.log(result);
 
       if (error) {
@@ -29,14 +29,15 @@ class Occupancy {
       }
     });
   }
+
   // view all occupancy
-  viewAllOccuDB(callback) {
+  viewAllOccuTable(callback) {
     var sql = "SELECT * FROM poppinpass.occupancy";
     return db.query(sql, callback);
 }
 
   viewAllOccu(request, respond) {
-    occupancy.viewAllOccuDB((error, result) => {
+    occupancy.viewAllOccuTable((error, result) => {
       if (error) {
         respond.json(error);
       } else {
@@ -46,7 +47,7 @@ class Occupancy {
   }
 
   // update occupancy
-  updateOccuDB(occupancy, callback) {
+  updateOccuTable(occupancy, callback) {
     var sql = "UPDATE poppinpass.occupancy SET seatno = ?, `row` = ? WHERE _id = ?";
 
     return db.query(sql, [occupancy.seatno, occupancy.row, occupancy._id], callback);
@@ -59,7 +60,7 @@ class Occupancy {
         "row":request.body.row
       }
 
-    occupancy.updateOccuDB(OccupancyDetails, function(error, result){
+    occupancy.updateOccuTable(OccupancyDetails, function(error, result){
         if (error) {
             respond.json(error);
             console.log(error);

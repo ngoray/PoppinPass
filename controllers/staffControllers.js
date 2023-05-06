@@ -1,6 +1,6 @@
 "use strict";
 
-const StaffLoginDB = require('../models/StaffDB');
+const StaffLoginDB = require('./../project/Entity/StaffDB');
 const jwt = require('jsonwebtoken');
 const staffDB = new StaffLoginDB();
 
