@@ -9,7 +9,11 @@ class UserProfileRoutes{
         app.route('/userprofile')
         .post(userProfile.addingUserProfile)
         .get(userProfile.viewAllUserProfile);
+
+        app.route("/userprofile/:_id")
+        .put(userProfile.updateUserProfile);
     }
+
 
 }
 

@@ -88,6 +88,28 @@ class Menu{
             }
         });
     }
+
+    // Update Suspend
+    suspendMenu(menu, callback){
+      var sql = "UPDATE poppinpass.menu SET `availability` = ? WHERE _id = ?";
+      return db.query(sql, [menu.availability, menu._id], callback);
+    }
+
+    suspendedMenu(request, respond) {
+      var menuDetails = {
+        "_id": parseInt(request.params._id),
+        "availability":request.body.availability
+      }
+      menu.suspendMenu(menuDetails, function(error, result){
+          if (error) {
+              respond.json(error);
+              console.log(error);
+          } else {
+              respond.json(result);
+              console.log(menuDetails);
+            }
+        });
+      }
 }
 const menu = new Menu;
 module.exports = Menu;

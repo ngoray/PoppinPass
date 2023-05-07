@@ -257,6 +257,16 @@ function closeAddMovieModal(){
    
 }
 
+function closeAddMovieModal(){
+    document.getElementById("createMovietable").style.display="none";
+   
+}
+
+function closeUpdateMovieModal(){
+    document.getElementById("updateMovietable").style.display="none";
+   
+}
+
 function openAddMovie(){
     document.getElementById("manageMovieContent").style.display="none";
     $("#addMovie").fadeIn()
@@ -269,7 +279,24 @@ var loadFile = function(event) {
 }
 
 var loadFile1 = function(event) {
-	var image = document.getElementById('output1');
+	var image = document.getElementById('updateOutput1');
 	image.src = URL.createObjectURL(event.target.files[0]);
 }
+
+function closeUpdateMenuModal(){
+    document.getElementById("updateMenutable").style.display="none";
+   
+}
+
+function displayMoviePic() {
+    var input = document.getElementById('pictureMovie');
+    var fileName = input.value.split('\\').pop();
+    document.getElementById('picMovie').value = fileName;
+  }
+
+  function displayUpdateMenu() {
+    var input = document.getElementById('updatepicname');
+    var fileName = input.value.split('\\').pop();
+    document.getElementById('updatePicname1').value = fileName;
+  }
 

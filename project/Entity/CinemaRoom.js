@@ -5,7 +5,7 @@ class CinemaRoom{
     addCinemaRoomTable(cinemaroom, callback){
 
         console.log("Room Number: "+ cinemaroom.roomnumber);
-        var sql = "INSERT INTO poppinpass.cinemaroom (roomnumber) VALUES (?)";
+        var sql = "INSERT INTO poppinpass.cinemaroom (roomnumber, availability) VALUES (?, 'active')";
         
         db.query(sql, [cinemaroom.roomnumber], callback);
     }
@@ -50,15 +50,16 @@ class CinemaRoom{
 
     // Update CinemaRoom
     updateCinemaRoomTable(cinemaroom, callback) {
-        var sql = "UPDATE poppinpass.cinemaroom SET roomnumber = ? WHERE _id = ?";
+        var sql = "UPDATE poppinpass.cinemaroom SET roomnumber = ?, availability = ?, WHERE _id = ?";
 
-        return db.query(sql, [cinemaroom.roomnumber, cinemaroom._id], callback);
+        return db.query(sql, [cinemaroom.roomnumber, cinemaroom.availability, cinemaroom._id], callback);
     }
 
     updateCinemaRoom(request, respond) {
         var CinemaRoomDetails = {
             "_id": parseInt(request.params._id),
             "room number":request.body.roomnumber,
+            "availability":request.body.availability
           }
     
           cinemaroom.updateCinemaRoomTable(CinemaRoomDetails, function(error, result){

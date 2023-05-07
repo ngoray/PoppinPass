@@ -127,6 +127,7 @@ class Customer {
                   document.getElementById("feedback").classList.remove("active");
                   document.getElementById("movie").classList.remove("active");
                   document.getElementById("menu").classList.remove("active");
+                  document.getElementById("uProfile").classList.add("active");
                   
                   // customer.showCustProfile(this);
                   $("#customercontent").fadeIn()

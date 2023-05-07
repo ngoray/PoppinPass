@@ -12,14 +12,14 @@
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
-                    <td>
+                    <td width="25%">
                         Room Number
                     </td>
-                    <td width="10%">
-                        Add
+                    <td>
+                        Status
                     </td>
-                    <td width="10%">
-                        Delete
+                    <td width="20%">
+                        Action
                     </td>
                 </tr>
             </table>
@@ -181,7 +181,8 @@
                     <td>
 
                         <center id="rowC1">
-                                
+                            <h1>There are no seats available in this cinema room</h1>
+                            <h1>Please add some seats before coming to this section!!</h1>
                         </center>
                         
                     </td>
@@ -213,7 +214,7 @@
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <button class="button" style="border-radius: 25px; float: right; margin-left: 10px; margin-right: 10px;">Submit</button>
+                        <button class="button" style="border-radius: 25px; float: right; margin-left: 10px; margin-right: 10px;" onclick="seatmap.closeSuspendCinemaSeat()">Done</button>
                         <button class="button" style="border-radius: 25px; float: right;" onclick="seatmap.closeSuspendCinemaSeat()">Cancel</button>
                     </td>
                 </tr>
@@ -359,9 +360,9 @@
                         Title
                     </td>
                     <td>
-                        Genre
+                        Status
                     </td>
-                    <td width="10%">
+                    <td width="20%">
                         Action
                     </td>
                 </tr>
@@ -390,7 +391,8 @@
                     <br>
                     <center>
                     <img id="output" src="#" style="width: 300px; height: 150px;">
-                    <input type="file" onchange="loadFile(event)"/>
+                    <input type="file" id="pictureMovie" onchange="loadFile(event), displayMoviePic()"/>
+                    <input style="display: none;" id = "picMovie"/>
                     </center>
                 </td>
             </tr>
@@ -509,8 +511,8 @@
                 </td>
                 <td>
                     <div style="float: right;">
-                        <button class="button" style="width: 48%;" onclick="movies.addMovie()">Create</button>
-                        <button class="button" style="width: 48%;" onclick="closeAddMovieModal()">Cancel</button>
+                        <button class="button" style="width: 48%;" onclick="movies.updateMovie4Manager(this)">Update</button>
+                        <button class="button" style="width: 48%;" onclick="closeUpdateMovieModal()">Cancel</button>
                     </div>
                 </td>
             </tr>
@@ -594,29 +596,23 @@
             <table style="width: 100%;">
                 <tr>
                     <td>
-                        <input type="text" placeholder="Search.." onkeyup="searchMenu()" id="menuSearch" style="width: 89%;" name="search">
+                        <input type="text" placeholder="Search.." onkeyup="searchFood()" id="menuSearch" style="width: 89%;" name="search">
                         <button class="button" style="width: 10%; border-radius: 25px;" onclick="menu.openAddMenuModal()">add</button>
                     </td>
                 </tr>
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
-                    <td width="100px">
+                    <td>
                         Image
                     </td>
-                    <td width="100px">
+                    <td>
                         Name
                     </td>
-                    <td>
-                        Small Price
+                    <td width="20%">
+                        Status
                     </td>
-                    <td>
-                        Medium Price
-                    </td>
-                    <td>
-                        Large Price
-                    </td>
-                    <td width="10%">
+                    <td width="12%">
                         Action
                     </td>
                 </tr>
@@ -706,7 +702,7 @@
                     <td rowspan="5" style="width: 350px;">
                         <center>
                         <img id="updateOutput1" src="#" style="width: 300px; height: 150px;">
-                        <input type="file" id = "updatepicname" onchange="loadFile1(event), menu.displayFileName()"/>
+                        <input type="file" id = "updatepicname" onchange="loadFile1(event), displayUpdateMenu()"/>
                         <input style="display: none;" id = "updatePicname1"/>
                         </center>
                     </td>
@@ -752,7 +748,7 @@
                     <td>
                         <div style="float: right;">
                             <button class="button" style="width: 48%;" onclick="menu.updateMenu()">Update</button>
-                            <button class="button" style="width: 48%;" onclick="menu.closeAddMenuModal()">Cancel</button>
+                            <button class="button" style="width: 48%;" onclick="closeUpdateMenuModal()">Cancel</button>
                         </div>
                     </td>
                 </tr>

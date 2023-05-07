@@ -29,8 +29,29 @@ class CinemaRoom {
         for (let count = 0; count < totalCinemaRoom; count++)
         {
             const id = this.cinemaroomArray[count]._id;
-            const seatno = this.cinemaroomArray[count].roomnumber;
-            const cell ='<td><strong id="occu_id" style="display:none;">'+id+'</strong><a>'+seatno+'</a></td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showCinemaRoomDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showseatMapDetails(this)"><img src="./../images/delete.png" width="30px" height="30px"></td>'
+            const roomno = this.cinemaroomArray[count].roomnumber;
+            const status = this.cinemaroomArray[count].availability;
+            const cell ='<td>\
+                            <strong id="occu_id" style="display:none;">\
+                                '+id+'\
+                            </strong>\
+                            <a>\
+                                '+roomno+'\
+                            </a>\
+                        </td>\
+                        <td>\
+                            <a>\
+                                '+status+'\
+                            </a>\
+                        </td>\
+                        <td width="10%">\
+                            <button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showCinemaRoomDetails(this)">\
+                                <img src="./../images/edit.png" width="30px" height="30px">\
+                            </button>\
+                            <button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showseatMapDetails(this)">\
+                                <img src="./../images/delete.png" width="30px" height="30px">\
+                            </button>\
+                        </td> '
 
             table.insertAdjacentHTML("beforeend", cell);
             cinemaroomCount++;
@@ -91,6 +112,8 @@ class CinemaRoom {
                 alert("Seat added!");
                 document.getElementById("createRoomNumber").value = "";
                 document.getElementById("createRoomNumbertable").style.display ="none";
+                document.getElementById("manageSeatMap").style.display="none";
+                mSeatMap();
             
         };
         addCinemaRoom.send(JSON.stringify(cinemaroomData));

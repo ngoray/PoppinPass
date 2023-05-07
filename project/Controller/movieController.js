@@ -191,29 +191,55 @@ class Movies {
       const newMovie = new XMLHttpRequest();
       newMovie.open('POST', this.movieUrl, true);
   
+      const story = document.getElementById("createMovieStory").value;
+      const video1 = document.getElementById("createMovieVideo1").value;
+      const thumb = document.getElementById("picMovie").value;
+      const video2 = document.getElementById("createMovieVideo2").value;
+      const poster = document.getElementById("picMovie").value;
+      const cast = document.getElementById("createMovieCast").value;
+      const director = document.getElementById("createMovieDirector").value;
       const title = document.getElementById("createMovieTitle").value;
       const advice = document.getElementById("createMovieAdvice").value;
       const genre = document.getElementById("createMovieGenre").value;
       const duration = document.getElementById("createMovieDuration").value;
+      const release = document.getElementById("createMovieRelease").value;
+      const availability = document.getElementById("createMovieAvaliability").value;
       console.log("HERE" + title,advice,genre,duration);
   
       const movieData = {
+          "story": story,
+          "video1": video1,
+          "thumb": thumb,
+          "video2": video2,
+          "poster": poster,
           "title": title,
           "advice": advice,
+          "cast": cast,
+          "director": director,
           "genre": genre,
-          "duration": duration
+          "duration": duration,
+          "release": release,
+          "availability": availability
       }
 
       console.log("MOVIE DATA = "+ movieData);
       newMovie.setRequestHeader("Content-Type", "application/json");
       newMovie.onload = function () {
         alert("Movie Added");
+        document.getElementById("createMovieStory").value = "";
+        document.getElementById("createMovieVideo1").value = "";
+        document.getElementById("createMovieVideo2").value = "";
+        document.getElementById("createMovieCast").value = "";
+        document.getElementById("createMovieDirector").value = "";
+        document.getElementById("createMovieRelease").value = "";
         document.getElementById("createMovieTitle").value = "";
         document.getElementById("createMovieAdvice").value = "";
         document.getElementById("createMovieGenre").value = "";
         document.getElementById("createMovieDuration").value = "";
         
         document.getElementById("createMovietable").style.display = "none";
+        document.getElementById("manageMovies").style.display = "none";
+        mMovies();
       };
       newMovie.send(JSON.stringify(movieData));
     }
@@ -248,11 +274,31 @@ class Movies {
             const id = this.movieArray[count]._id;
             const title = this.movieArray[count].title;
             const advice = this.movieArray[count].advice;
-            const genre = this.movieArray[count].genre;
+            const genre = this.movieArray[count].availability;
             const duration = this.movieArray[count].duration;
 
 
-            const cell ='<td style="width: 20%;"><strong id="movie_id" style="display:none;">'+id+'</strong><a>'+title+'</a></td><td><a>'+genre+'</a></td><td ><button item = '+count+' style="background-color:#333333a0;" onclick="movies.showMovieDetails2(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
+            const cell ='<td style="width: 20%;">\
+                          <strong id="movie_id" style="display:none;">\
+                            '+id+'\
+                          </strong>\
+                          <a>\
+                            '+title+'\
+                          </a>\
+                        </td>\
+                        <td>\
+                          <a>\
+                            '+genre+'\
+                          </a>\
+                        </td>\
+                        <td  width="10%">\
+                          <button item = '+count+' style="background-color:#333333a0;" onclick="movies.showMovieDetails2(this)">\
+                            <img src="./../images/edit.png" width="30px" height="30px">\
+                          </button>\
+                          <button item = '+count+' style="background-color:#333333a0;" onclick="">\
+                            <img src="./../images/delete.png" width="30px" height="30px">\
+                          </button>\
+                        </td>'
 
             table.insertAdjacentHTML("beforeend", cell);
             movieCount++;
@@ -284,6 +330,17 @@ class Movies {
 
         var movieModal = document.getElementById("movieModal");
         movieModal.style.display="block";
+    }
+
+    updateMovie4manager(currentIndex){
+      var id = parseInt(document.getElementById("movieId").value);
+      for (var i = 0; i < this.movieArray.length; i++) {
+        if (id == this.movieArray[i]._id) {   
+        currentIndex = i;
+        break; // Exit the loop once a match is found
+      }
+    }
+
     }
 
 

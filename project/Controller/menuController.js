@@ -1,6 +1,7 @@
 class Menu {
-    constructor(menuUrl) {
-      this.menuUrl = menuUrl;
+    constructor(menuUrl,newmenuUrl) {
+        this.menuUrl = menuUrl;
+        this.newmenuUrl = newmenuUrl;
       this.menu_array = [];
     }
 
@@ -77,33 +78,27 @@ class Menu {
             const smol = this.menu_array[count].smallprice;
             const med = this.menu_array[count].mediumprice;
             const large = this.menu_array[count].largeprice;
-            const cell ='<td width="100px">\
+            const availability = this.menu_array[count].availability;
+            const cell ='<td>\
                             <img src="./../images/menu/'+image+'" width="100px" height="70px">\
                         </td>\
-                        <td width="100px">\
+                        <td>\
                             <center>\
-                            <a style="display:none;">'+id+'</a>\
+                            <a id="Menu_id" style="display:none;">'+id+'</a>\
                             <a>'+name+'</a>\
                             </center>\
                         </td>\
                         <td>\
                             <center>\
-                            <a>$'+smol+'</a>\
-                            </center>\
-                        </td>\
-                        <td width="175px">\
-                            <center>\
-                            <a>$'+med+'</a>\
-                            </center>\
-                        </td>\
-                        <td>\
-                            <center>\
-                            <a>$'+large+'</a>\
+                                <label>'+availability+'</label>\
+                                <label id="suspendMenu" style="display:none;">suspended</label>\
                             </center>\
                         </td>\
                         <td width="10%">\
                             <button item = '+count+' style="background-color:#333333a0;" onclick="menu.showMenuDetails(this)">\
                                 <img src="./../images/edit.png" width="30px" height="30px">\
+                                <button item = '+count+' style="background-color:#333333a0;" onclick="menu.suspendMenu(this)">\
+                                <img src="./../images/delete.png" width="30px" height="30px">\
                         </td>'
 
             table.insertAdjacentHTML("beforeend", cell);
@@ -124,14 +119,14 @@ class Menu {
         document.getElementById("seatMapContent").style.display ="none";
 
         document.getElementById("corploggout").style.display ="none";
-        document.getElementById("managerMenu").style.display ="none";
+        // document.getElementById("managerMenu").style.display ="none";
 
         document.getElementById("updateMenutable").style.display ="block";
         img.src = "./../images/menu/" + this.menu_array[item].image;
         document.getElementById("editmenu_id").value = this.menu_array[item]._id;
         document.getElementById("updateMenuName").value = this.menu_array[item].name;
-        document.getElementById("updatePicname1").value = this.menu_array[item].image;
         document.getElementById("updateMenuType").value = this.menu_array[item].type;
+        document.getElementById("updatePicname1").value = this.menu_array[item].image;
         document.getElementById("updateMenuSmallPrice").value =this.menu_array[item].smallprice;
         document.getElementById("updateMenuMediumPrice").value =this.menu_array[item].mediumprice;
         document.getElementById("updateMenuLargePrice").value =this.menu_array[item].largeprice;
@@ -184,12 +179,49 @@ class Menu {
         this.menu_array[currentIndex].availability = avail;
 
         updateMenu.onload = function () {
-            alert("The menu information has been edited.");
+            alert("The menu information has been edited, please switch to other tab to refresh");
+            document.getElementById("updateMenutable").style.display ="none";
+            document.getElementById("manageFoodBeveragesTicket").style.display="none";
+            mFoodBeveragesTicket();
         };
 
         
         updateMenu.send(JSON.stringify(editedmenu));
+        }
     }
+
+    suspendMenu(currentIndex){
+        var id = parseInt(document.getElementById("Menu_id").innerHTML);
+        var currentIndex = -1;
+        for (var i = 0; i < this.menu_array.length; i++) {
+            if (id == this.menu_array[i]._id) {   
+            currentIndex = i;
+            break; // Exit the loop once a match is found
+            }
+        }
+        const suspend_menu_url = this.newmenuUrl + "/" + id;
+        const response = confirm("Are you sure you want to suspend this menu?");
+        const avail = document.getElementById("suspendMenu").innerHTML;
+        console.log(suspend_menu_url);
+
+        const suspendmenu = {
+            _id: id,
+            availability: avail
+          };
+
+          if (response == true) {
+            const suspendMenu = new XMLHttpRequest();
+            suspendMenu.open("PUT", suspend_menu_url, true);
+            suspendMenu.setRequestHeader("Content-Type", "application/json");
+            this.menu_array[currentIndex].availability = avail;
+            suspendMenu.onload = function () {
+                alert("The menu has been suspended");
+                document.getElementById("manageFoodBeveragesTicket").style.display="none";
+                mFoodBeveragesTicket();
+            };
+
+            suspendMenu.send(JSON.stringify(suspendmenu));
+        }
     }
 
     
@@ -204,4 +236,4 @@ class Menu {
     
 }
 
-const menu = new Menu("/menu");
+const menu = new Menu("/menu","/suspendmenu");

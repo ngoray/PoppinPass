@@ -268,7 +268,23 @@ class SeatMap {
             const duration = this.movieArray[count].duration;
 
 
-            const cell ='<td style="width: 20%;"><strong id="movie_id" style="display:none;">'+id+'</strong><a>'+title+'</a></td><td><a>'+genre+'</a></td><td ><button item = '+count+' style="background-color:#333333a0;" onclick="movies.showMovieDetails2(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
+            const cell ='<td style="width: 20%;">\
+                          <strong id="movie_id" style="display:none;">\
+                              '+id+'\
+                          </strong>\
+                          <a>\
+                            '+title+'\
+                          </a>\
+                        </td>\
+                        <td>\
+                          <a>\
+                            '+genre+'\
+                          </a>\
+                        </td>\
+                        <td>\
+                          <button item = '+count+' style="background-color:#333333a0;" onclick="movies.showMovieDetails2(this)">\
+                            <img src="./../images/edit.png" width="30px" height="30px">\
+                        </td>'
 
             table.insertAdjacentHTML("beforeend", cell);
             movieCount++;
@@ -280,6 +296,7 @@ class SeatMap {
     document.getElementById("corploggout").style.display ="block";
     document.getElementById("managerMenu").style.display ="block";
     document.getElementById("seatMapContent").style.display ="block";
+    
   }
 
 }

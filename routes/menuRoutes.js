@@ -12,6 +12,9 @@ class MenuRoutes{
 
         app.route("/menu/:_id")
         .put(menu.updateMenu);
+
+        app.route("/suspendmenu/:_id")
+        .put(menu.suspendedMenu);
     }
 
 }

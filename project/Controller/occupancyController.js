@@ -101,6 +101,8 @@ class Occupancy {
   
           updateOccu.onload = function () {
               alert("Your occupancy information has been edited.");
+              document.getElementById("manageOccupancy").style.display="none";
+              mOccupancy();
           };
   
           // Send the updated movie object as a JSON string
@@ -131,6 +133,8 @@ class Occupancy {
               document.getElementById("createSeatNumber").value = "";
               document.getElementById("createOccupancytable").style.display ="none";
               document.getElementById("createSeatRow").value = "";
+              document.getElementById("manageOccupancy").style.display="none";
+              mOccupancy();
           
       };
       addOccu.send(JSON.stringify(occupancyDetails));

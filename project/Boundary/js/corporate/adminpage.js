@@ -52,7 +52,7 @@ function viewUserProfile() {
     var c = document.getElementById("viewCust");
     var d = document.getElementById("viewAdm");
 
-    userprofile.fetchUserProfile;
+    userprofile.fetchUserProfile();
     
     b.classList.add("active");
     c.classList.remove("active");

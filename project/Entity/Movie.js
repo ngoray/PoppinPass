@@ -43,16 +43,25 @@ class Movie {
 
     // add Movies
     addMovieDB(movie, callback){
-        var sql = "INSERT INTO poppinpass.movie (story, buy, video1, thumb, video2, poster, advice, title, cast, director, genre, duration, `release`, availability) VALUES ('lol', 'lol', 'lol', 'lol', 'lol', 'lol', ?, ?, 'lol', 'lol', ?, ?, 'lol', 'lol')";
-        return db.query(sql, [movie.advice, movie.title, movie.genre, movie.duration], callback)
+        var sql = "INSERT INTO poppinpass.movie (story, buy, video1, thumb, video2, poster, advice, title, cast, director, genre, duration, `release`, availability) VALUES (?, 'lol', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        return db.query(sql, [movie.story, movie.video1, movie.thumb, movie.video2, movie.poster, movie.advice, movie.title, movie.cast, movie.director, movie.genre, movie.duration, movie.release, movie.availability], callback)
     }
 
     addMovie(request, respond) {
         const addDetails = {
+            "story":request.body.story,
+            "video1":request.body.video1,
+            "thumb":request.body.thumb,
+            "video2":request.body.video2,
+            "poster":request.body.poster,
             "title":request.body.title,
             "advice":request.body.advice,
+            "cast":request.body.cast,
+            "director":request.body.director,
             "genre":request.body.genre,
-            "duration":request.body.duration
+            "duration":request.body.duration,
+            "release":request.body.release,
+            "availability":request.body.availability
         };
         movie.addMovieDB(addDetails, function(error, result){
             console.log(result);
