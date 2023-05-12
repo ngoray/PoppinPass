@@ -18,7 +18,7 @@
                     <td>
                         Status
                     </td>
-                    <td width="20%">
+                    <td width="19%">
                         Action
                     </td>
                 </tr>
@@ -107,8 +107,7 @@
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <button class="button" style="border-radius: 25px; float: right; margin-left: 10px; margin-right: 10px;">Submit</button>
-                        <button class="button" style="border-radius: 25px; float: right;" onclick="cinemaroom.closeSeatMapContent()">Cancel</button>
+                        <button class="button" style="border-radius: 25px; float: right;" onclick="cinemaroom.closeSeatMapContent()">Done</button>
                     </td>
                 </tr>
             </table>
@@ -236,7 +235,7 @@
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
-                    <td width="25%">
+                    <td width="30%">
                         Seat Number
                     </td>
                     <td>
@@ -315,22 +314,25 @@
 
     </div>
     <div id="manageScreenTime" style="display: none;">
-    
+        <!-- Screentime Content -->
         <div id="screenTimeContent" class="center">
             <table style="width: 100%;">
                 <tr>
                     <td>
                         <input type="text" placeholder="Search.." onkeyup="searchScreenTime()" id="screenTimeSearch" style="width: 89%;" name="search">
-                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="menu.openScreenTimeModal()">add</button>
+                        <button class="button" style="width: 10%; border-radius: 25px;" onclick="openAddScreenTimeModal()">add</button>
                     </td>
                 </tr>
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
                     <td>
-                        Screen Time
+                        Day
                     </td>
-                    <td>
+                    <td width="30%">
+                        Time
+                    </td>
+                    <td width="15%">
                         Action
                     </td>
                 </tr>
@@ -341,6 +343,69 @@
             </div>
         </div>
 
+        <!-- Create Screentime -->
+        <div class="adminedit" id="createScreenTimetable" style="display: none;">
+            <br><br><br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Screen Time</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                    <td>
+                        <select id="createDay">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" id="createTime" placeholder="Time....">
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="screentime.addScreenTime()">Create</button>
+                            <button class="button" style="width: 48%;" onclick="closeAddScreenTimeModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+          <!-- update Screen time -->
+          <div class="adminedit" id="updateScreenTimetable" style="display: none;">
+            <br><br><br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Screen Time</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                    <td>
+                        <a id="updatestId" style="display: none;"></a>
+                        <select id="updateDay">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" id="updateTime" placeholder="Time....">
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="screentime.updateScreenTime()">Update</button>
+                            <button class="button" style="width: 48%;" onclick="closeUpdateScreenTimeModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
     </div>
 
     <div id="manageMovies" style="display: none;">
@@ -391,7 +456,7 @@
                     <br>
                     <center>
                     <img id="output" src="#" style="width: 300px; height: 150px;">
-                    <input type="file" id="pictureMovie" onchange="loadFile(event), displayMoviePic()"/>
+                    <input type="file" id="pictureMovie" onchange="loadMovie(event), displayMoviePic()"/>
                     <input style="display: none;" id = "picMovie"/>
                     </center>
                 </td>
@@ -459,25 +524,35 @@
       </div>
 
       <div class="adminedit" id="updateMovietable" style="display: none;">
-        <br><br><br><br>
+        <br>
         <center>
             <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2> Update Movie</h2></div>
         </center>
         <table class="center" style="background-color: #333;">
             <tr>
-            </tr>
-            <tr>
                 <td>
+                    <a id="updateMovieId" style="display: none;"></a>
                     <input type="text" id="updateMovieTitle" placeholder="Title...">
+                    <textarea id="updateMovieStory" placeholder="About the Movie.." style="width:100%;height:50px"></textarea>
                 </td>
-                <td rowspan="4" style="width: 350px;">
+                <td colspan="2">
+                    <br>
                     <center>
-                    <img id="output" src="#" style="width: 300px; height: 150px;">
-                    <input type="file" onchange="loadFile(event)"/>
+                    <img id="updateMoviePic" src="#" style="width: 300px; height: 150px;">
+                    <input type="file" id="updatepictureMovie" onchange="loadUpdateMovie(event), displayUpdateMoviePic()"/>
+                    <input style="display: none;" id = "updatepicMovie"/>
                     </center>
                 </td>
             </tr>
             <tr>
+                <td>
+                    <select id="updateMovieAvaliability">
+                        <option value="Now Showing">Now Showing</option>
+                        <option value="Coming Soon">Coming Soon</option>
+                        <option value="Sneak Preview">Sneak Preview</option>
+                        <option value="Suspended">Suspended</option>
+                      </select>
+                </td>
                 <td>
                     <select id="updateMovieAdvice">
                         <option value="G">G</option>
@@ -488,8 +563,6 @@
                         <option value="R21">R21</option>
                       </select>
                 </td>
-            </tr>
-            <tr>
                 <td>
                     <select id="updateMovieGenre">
                         <option value="Action">Action</option>
@@ -502,16 +575,30 @@
             </tr>
             <tr>
                 <td>
+                    <input type="text" id="updateMovieRelease" placeholder="Release...">
+                </td>
+                <td>
+                    <input type="text" id="updateMovieDirector" placeholder="Director...">
+                </td>
+                <td>
                     <input type="text" id="updateMovieDuration" placeholder="Duration...">
+                </td>
+        </tr>
+            <tr>
+                <td>
+                    <input type="text" id="updateMovieVideo1" placeholder="Youtube Link...">
+                </td>
+                <td>
+                    <input type="text" id="updateMovieVideo2" placeholder="Youtube Link...">
+                </td>
+                <td>
+                    <input type="text" id="updateMovieCast" placeholder="Cast...">  
                 </td>
             </tr>
             <tr>
-                <td>
-                    <div> </div>
-                </td>
-                <td>
+                <td colspan="3">
                     <div style="float: right;">
-                        <button class="button" style="width: 48%;" onclick="movies.updateMovie4Manager(this)">Update</button>
+                        <button class="button" style="width: 48%;" onclick="movies.updateMovie4manager()">Update</button>
                         <button class="button" style="width: 48%;" onclick="closeUpdateMovieModal()">Cancel</button>
                     </div>
                 </td>
@@ -521,6 +608,7 @@
     </div>
 
     <div id="manageMovieTicket" style="display: none;">
+        <!-- Ticket content -->
         <div id="ticketContent" class="center">
             <table style="width: 100%;">
                 <tr>
@@ -532,16 +620,16 @@
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
-                    <td>
+                    <td width="38%">
                         Name
                     </td>
                     <td>
                         Age
                     </td>
-                    <td>
+                    <td width="12%">
                         Price
                     </td>
-                    <td>
+                    <td width="13%">
                         Action
                     </td>
                 </tr>
@@ -551,7 +639,7 @@
                 </table>
             </div>
         </div>
-
+        <!-- Create ticket type -->
         <div class="adminedit" id="createTickettable" style="display: none;">
             <br><br><br><br>
             <center>
@@ -582,7 +670,7 @@
                     </td>
                     <td>
                         <div style="float: right;">
-                            <button class="button" style="width: 48%;" onclick="">Create</button>
+                            <button class="button" style="width: 48%;" onclick="ticket.addTicketType()">Create</button>
                             <button class="button" style="width: 48%;" onclick="ticket.closeAddTicketModal()">Cancel</button>
                         </div>
                     </td>
@@ -590,6 +678,45 @@
             </table>
           </div>
 
+          <!-- Update Ticket Type -->
+          <div class="adminedit" id="updateTickettable" style="display: none;">
+            <br><br><br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Update Ticket Type</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                </tr>
+                <tr>
+                    <td>
+                        <a id="updatemtId" style="display: none;"></a>
+                        <input type="text" id="updateTicketName" placeholder="Name of Ticket...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="updateTicketAge" placeholder="Age Limit...">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" id="updateTicketPrice" placeholder="Price of ticket...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div> </div>
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="ticket.updateTicketType()">Update</button>
+                            <button class="button" style="width: 48%;" onclick="ticket.closeUpdateTicketModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
     </div>
     <div id="manageFoodBeveragesTicket" style="display: none;">
         <div id="menuContent" class="center">
@@ -603,13 +730,13 @@
             </table>
             <table border="1" style="width: 100%;">
                 <tr>
-                    <td>
+                    <td width="20%">
                         Image
                     </td>
                     <td>
                         Name
                     </td>
-                    <td width="20%">
+                    <td width="29%">
                         Status
                     </td>
                     <td width="12%">
@@ -639,7 +766,7 @@
                     <td rowspan="4" style="width: 350px;">
                         <center>
                         <img id="output1" src="#" style="width: 300px; height: 150px;">
-                        <input type="file" id = "picname" onchange="loadFile1(event), menu.displayFileName()"/>
+                        <input type="file" id = "picname" onchange="loadFile(event), displayCreateMenu()"/>
                         <input style="display: none;" id = "picname1"/>
                         </center>
                     </td>

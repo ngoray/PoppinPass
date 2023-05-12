@@ -1,0 +1,236 @@
+<div style="display: none; background-color: rgba(43, 44, 44, 0.648); width: 100%;" id="bookingpage">
+    <table width="100%" id="bookST">
+        <tr>
+            <td rowspan="5">
+                <center><h1>Movie Title</h1>
+                    <img src="./../../images/products/pony_poster.jpg" style="margin: 20px 20px;"/>
+                </center>
+            </td>
+
+            <td>
+                <h3>Monday</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <button class="button2">6:30PM</button>
+                        </td>                       
+                        <td>
+                            <button class="button2">6:30PM</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <h3>Friday</h3>
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="button2">6:30PM</button>
+                            </td>                       
+                            <td>
+                                <button class="button2">6:30PM</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Tuesday</h3>
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="button2">6:30PM</button>
+                            </td>                       
+                            <td>
+                                <button class="button2">6:30PM</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <h3>Saturday</h3>
+                        <table>
+                            <tr>
+                                <td>
+                                    <button class="button2">6:30PM</button>
+                                </td>                       
+                                <td>
+                                    <button class="button2">6:30PM</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Wednesday</h3>
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="button2">6:30PM</button>
+                            </td>                       
+                            <td>
+                                <button class="button2">6:30PM</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <h3>Sunday</h3>
+                        <table>
+                            <tr>
+                                <td>
+                                    <button class="button2">6:30PM</button>
+                                </td>                       
+                                <td>
+                                    <button class="button2">6:30PM</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Thursday</h3>
+                    <table>
+                        <tr>
+                            <td>
+                                <button class="button2">6:30PM</button>
+                            </td>                       
+                            <td>
+                                <button class="button2">6:30PM</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+                <td><button class="button" onclick="viewTicketType()" style="width: 100%;">Next</button></td>
+        </tr>
+    </table>
+    <div id="bookTicketType" style="display: none;">
+       
+    <table class="center">
+        <tr>
+            <td colspan="2">
+                <button class="button" style="float: right;" onclick="createTable()">+</button>
+            </td>
+        </tr>
+        <tr id="myTable">
+            <td style="background-color: #333;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <h3>Ticket Type</h3>
+                        </td>
+                        <td>
+                            <select name="cars" id="TicketType">
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                              </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Quantity</h3>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Quantity">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button class="button" onclick="viewSeatMap()" style="float: right;">Next</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="bookSeatMap" style="display: none;">
+    <table style="width: 100%; height: 400px; background-color: #333333b5;">
+        <tr>
+            <td colspan="3">
+                <center>
+                    <label>Adding Map Object to Cinema Room:</label> <label id="editRoomName">i</label>
+                </center>
+            </td>
+        </tr>
+        <tr id="Screen">
+            <td  style="width: 10%;"><img src="./../images/exit left.png" style="width: 30px; height: 30px;"></td>
+            <td>
+                <center>
+                    <button style="background-color:rgb(255, 130, 6); color:white; width: 60%;" id="seatNo">Screen</button>
+                </center>
+            </td>
+            <td style="width: 10%;"><img src="./../images/exit right.png" style="width: 30px; height: 30px;"></td>
+        </tr>
+        <tr>
+            <td colspan="3"><br><br></td>
+        </tr>
+        <tr>
+            <td rowspan="5"></td>
+        
+                <td>
+                    <center id="BrowA">
+                        <button class="mapbtn" style="background-color:rgb(255, 130, 6);">A1</button>
+                    </center>
+                </td>
+            <td rowspan="5"></td>
+                
+        </tr>
+        <tr>
+            <td>
+
+                <center id="BrowB">
+                        
+                </center>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <center id="BrowC">
+                        
+                </center>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center id="BrowD">
+                        
+                </center>      
+            </td>
+        </tr>
+        <tr>
+            
+            <td>
+                <center id="BrowE">
+                        
+                </center>
+            </td>
+            
+        </tr>
+        <tr>
+            <td><label style="margin-left: 15px;">Entrance</label></td>
+            <td><br><br></td>
+            <td>Entrance</td>
+        </tr>
+        <tr>
+
+            <td colspan="3"><br><br><br></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button class="button" style="border-radius: 25px; float: right;">Next</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>

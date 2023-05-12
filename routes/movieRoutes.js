@@ -10,8 +10,11 @@ class MovieRoutes{
         .get(movie.viewAllMovies)
         .post(movie.addMovie);
     
+        app.route('/movie/:_id')
+        .put(movie.updateMovieStatus);
+
         app.route('/movies/:_id')
-        .put(movie.updateMovie);
+        .put(movie.updateMovie4Manager);
     }
 
 }

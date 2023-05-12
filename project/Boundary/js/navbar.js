@@ -48,6 +48,8 @@ function moviePage() {
 
     var slide = document.getElementById("slideshow");
 
+    menu.getSnacks();
+
     y.classList.add("active");
     z.classList.remove("active");
     x.classList.remove("active");
@@ -139,5 +141,29 @@ function moviePage() {
 
         review.fetchReview();
         typewriter();
+    }
+ }
+
+ function bookMoviePage() {
+    var e = document.getElementById("bookingpage");
+    var d = document.getElementById("customercontent");
+    var c = document.getElementById("moviepage");
+    var b = document.getElementById("menupage");
+    var a = document.getElementById("feedbackpage");
+    var slide = document.getElementById("slideshow");
+
+    if (d.style.display == "block") {
+        a.style.display="none";
+        b.style.display="none";
+        c.style.display="none";
+    } else {
+        $("bookingpage").fadeIn()
+        e.style.display="block";
+        d.style.display="none";
+        slide.style.display="none";
+        a.style.display="none";
+        b.style.display="none";
+        c.style.display="none";
+
     }
  }

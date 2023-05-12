@@ -50,15 +50,14 @@ class CinemaRoom{
 
     // Update CinemaRoom
     updateCinemaRoomTable(cinemaroom, callback) {
-        var sql = "UPDATE poppinpass.cinemaroom SET roomnumber = ?, availability = ?, WHERE _id = ?";
+        var sql = "UPDATE poppinpass.cinemaroom SET  availability = ? WHERE _id = ?";
 
-        return db.query(sql, [cinemaroom.roomnumber, cinemaroom.availability, cinemaroom._id], callback);
+        return db.query(sql, [cinemaroom.availability, cinemaroom._id], callback);
     }
 
     updateCinemaRoom(request, respond) {
         var CinemaRoomDetails = {
             "_id": parseInt(request.params._id),
-            "room number":request.body.roomnumber,
             "availability":request.body.availability
           }
     

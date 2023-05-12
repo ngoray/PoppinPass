@@ -5,7 +5,7 @@ function mSeatMap() {
     var x = document.getElementById("manageMovies");
     var y = document.getElementById("manageMovieTicket");
     var z = document.getElementById("manageFoodBeveragesTicket");
-
+7
     var a = document.getElementById("seatMap");
     var b = document.getElementById("occupancy");
     var c = document.getElementById("screenTime");
@@ -104,6 +104,8 @@ function mScreenTime() {
     e.classList.remove("active");
     f.classList.remove("active");
 
+    screentime.fetchScreenTime();
+
     if (w.style.display == "block") {
         u.style.display = "none";
         v.style.display = "none";
@@ -187,6 +189,8 @@ function mMovieTicket() {
     e.classList.add("active");
     f.classList.remove("active");
 
+    ticket.fetchTicketType();
+
     if (y.style.display == "block") {
         u.style.display = "none";
         v.style.display = "none";
@@ -257,46 +261,76 @@ function closeAddMovieModal(){
    
 }
 
-function closeAddMovieModal(){
-    document.getElementById("createMovietable").style.display="none";
-   
-}
-
-function closeUpdateMovieModal(){
-    document.getElementById("updateMovietable").style.display="none";
-   
-}
-
 function openAddMovie(){
     document.getElementById("manageMovieContent").style.display="none";
     $("#addMovie").fadeIn()
     document.getElementById("addMovie").style.display="block";
 }
 
-var loadFile = function(event) {
+var loadMovie = function(event) {
 	var image = document.getElementById('output');
 	image.src = URL.createObjectURL(event.target.files[0]);
-}
-
-var loadFile1 = function(event) {
-	var image = document.getElementById('updateOutput1');
-	image.src = URL.createObjectURL(event.target.files[0]);
-}
-
-function closeUpdateMenuModal(){
-    document.getElementById("updateMenutable").style.display="none";
-   
 }
 
 function displayMoviePic() {
     var input = document.getElementById('pictureMovie');
     var fileName = input.value.split('\\').pop();
     document.getElementById('picMovie').value = fileName;
+}
+
+var loadUpdateMovie = function(event) {
+	var image = document.getElementById('updateMoviePic');
+	image.src = URL.createObjectURL(event.target.files[0]);
+}
+
+function displayUpdateMoviePic() {
+    var input = document.getElementById('updatepictureMovie');
+    var fileName = input.value.split('\\').pop();
+    document.getElementById('updatepicMovie').value = fileName;
+}
+
+
+function closeUpdateMovieModal(){
+    document.getElementById("updateMovietable").style.display="none";
+   
+}
+
+var loadFile = function(event) {
+	var image = document.getElementById('output1');
+	image.src = URL.createObjectURL(event.target.files[0]);
+}
+
+function displayCreateMenu() {
+    var input = document.getElementById('picname');
+    var fileName = input.value.split('\\').pop();
+    document.getElementById('picname1').value = fileName;
   }
 
-  function displayUpdateMenu() {
+
+var loadFile1 = function(event) {
+	var image = document.getElementById('updateOutput1');
+	image.src = URL.createObjectURL(event.target.files[0]);
+}
+
+function displayUpdateMenu() {
     var input = document.getElementById('updatepicname');
     var fileName = input.value.split('\\').pop();
     document.getElementById('updatePicname1').value = fileName;
   }
 
+function closeUpdateMenuModal(){
+    document.getElementById("updateMenutable").style.display="none";
+   
+}
+
+function openAddScreenTimeModal(){
+    document.getElementById("createScreenTimetable").style.display="block";
+}
+
+function closeAddScreenTimeModal() {
+    document.getElementById("createScreenTimetable").style.display="none";   
+}
+
+function closeUpdateScreenTimeModal() {
+    document.getElementById("updateScreenTimetable").style.display="none"; 
+}

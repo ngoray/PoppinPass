@@ -12,6 +12,9 @@ class UserProfileRoutes{
 
         app.route("/userprofile/:_id")
         .put(userProfile.updateUserProfile);
+
+        app.route('/searchuserprofile')
+        .post(userProfile.searchUserProfile);
     }
 
 

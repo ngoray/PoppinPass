@@ -40,6 +40,7 @@ class SeatMap {
     grs.send(JSON.stringify(smData));
   }
 
+
   displayRowA(row1) {
     const table = document.getElementById("rowA1");
     let RowCount = 0;

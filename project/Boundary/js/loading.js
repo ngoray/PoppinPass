@@ -23,7 +23,7 @@ function move() {
           i = 0;
           x.style.display = "none";
           y.style.display = "block";
-          document.body.style.backgroundImage = "url('./../images/logo2.jpg')";
+          document.body.style.backgroundImage = "url('./../images/black.jpg')";
           movies.getMovieData();
           //document.body.style.backgroundImage="url(https://thumbs.gfycat.com/BeneficialNastyGermanspaniel-max-1mb.gif)";
         } else {

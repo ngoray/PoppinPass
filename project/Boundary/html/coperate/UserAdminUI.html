@@ -1,282 +1,4 @@
 <div id="adminpagecontent">
-<div id="viewCustomerAccount" style="display: none;">
-    <div class="center">
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <input type="text" placeholder="Search.." onkeyup="searchCustomerAccount()" id="customerSearch" style="width: 89%;" name="searchcustomer">
-                    <button class="button" style="width: 10%; border-radius: 25px;" onclick="customer.createCust()">add</button>
-                </td>
-            </tr>
-        </table>
-        <table border="1" style="width: 100%;">
-            <tr>
-                <td colspan="2" width="23%">
-                    Username
-                </td>
-                <td width="23%">
-                    Email
-                </td>
-                <td width="25%">
-                    Status
-                </td>
-                <td>
-                    Action
-                </td>
-            </tr>
-        </table>
-        <div class="adminScroll">
-        <table id="getCustomerAccount" style="background-color: #333333c4;" width="100%">
-
-        </table>
-        </div>
-  </div>
-
-  <div class="adminedit" id="createCusttable" style="display: none;">
-    <br><br><br><br>
-    <center>
-        <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Create Customer Account</h2></div>
-    </center>
-    <table class="center" style="background-color: #333;">
-        <tr>
-        </tr>
-        <tr>
-            <td>
-                Name:
-            </td>
-            <td>
-                <input type="text" id="createCustName" placeholder="Name...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Email:
-            </td>
-            <td>
-                <input type="text" id="createCustEmail" placeholder="Email...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Password:
-            </td>
-            <td>
-                <input type="text" id="createCustPassword" placeholder="Password...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Status:
-            </td>
-            <td>
-                <input type="text" id="createCustStatus" placeholder="Status...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div> </div>
-            </td>
-            <td>
-                <div style="float: right;">
-                    <button class="button" style="width: 48%;" onclick="customer.createUser4admin()">Create</button>
-                    <button class="button" style="width: 48%;" onclick="customer.cancelCreateCust()">Cancel</button>
-                </div>
-            </td>
-        </tr>
-    </table>
-  </div>
-
-  <div class="adminedit" id="editCusttable" style="display: none;">
-    <br><br><br><br><br>
-    <center>
-        <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Edit Customer Account</h2></div>
-    </center>
-    <table class="center" style="background-color: #333;">
-        <tr>
-        </tr>
-        <tr>
-            <td>
-                <strong id ="editCust_id" style="display: none;">id</strong>
-                Name:
-            </td>
-            <td>
-                <input type="text" id="editCustName">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Email:
-            </td>
-            <td>
-                <input type="text" id="editCustEmail">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Status:
-            </td>
-            <td>
-                <input type="text" id="editCustStatus">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div> </div>
-            </td>
-            <td>
-                <div style="float: right;">
-                    <button class="button" style="width: 48%;" onclick="customer.updateCust(this)">Update</button>
-                    <button class="button" style="width: 48%;" onclick="customer.cancelCustDetails()">Cancel</button>
-                </div>
-            </td>
-        </tr>
-    </table>
-  </div>
-</div>
-
-<div id="viewStaffAccount" style="display: none;">
-    <div class="center">
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <input type="text" placeholder="Search.." onkeyup="searchStaffAccount()" id="staffSearch" style="width: 89%;" name="search">
-                    <button class="button" style="width: 10%; border-radius: 25px;" onclick="staff.viewCreateStaffModal()">add</button>
-                </td>
-            </tr>
-        </table>
-        <table border="1" style="width: 100%;">
-            <tr>
-                <td colspan="2" width="23%">
-                    Username
-                </td>
-                <td width="23%">
-                    Role
-                </td>
-                <td width="25%">
-                    Status
-                </td>
-                <td>
-                    Action
-                </td>
-            </tr>
-        </table>
-        <div class="adminScroll">
-            <table id="getStaffAccount"  style="background-color: #333333c4;" width="100%">
-
-            </table>
-        </div>
-  </div>
-
-  <div class="adminedit" id="editStafftable" style="display: none;">
-    <br><br><br><br><br>
-    <center>
-        <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Edit Staff Account</h2></div>
-    </center>
-    <table class="center" style="background-color: #333;">
-        <tr>
-        </tr>
-        <tr>
-            <td>
-                <strong id ="updateStaff_id" style="display: none;">id</strong>
-                Name:
-            </td>
-            <td>
-                <input type="text" id="editStaffName">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Password:
-            </td>
-            <td>
-                <input type="text" id="editStaffPassword">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Role:
-            </td>
-            <td>
-                <input type="text" id="editStaffRole">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Status:
-            </td>
-            <td>
-                <input type="text" id="editStaffStatus">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div> </div>
-            </td>
-            <td>
-                <div style="float: right;">
-                    <button class="button" style="width: 48%;" onclick="staff.updateStaff(this)">Update</button>
-                    <button class="button" style="width: 48%;" onclick="staff.cancelStaffDetails()">Cancel</button>
-                </div>
-            </td>
-        </tr>
-    </table>
-  </div>
-
-  <div class="adminedit" id="createStafftable" style="display: none;">
-    <br><br><br><br>
-    <center>
-        <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Create Staff Account</h2></div>
-    </center>
-    <table class="center" style="background-color: #333;">
-        <tr>
-        </tr>
-        <tr>
-            <td>
-                Name:
-            </td>
-            <td>
-                <input type="text" id="createStaffName" placeholder="Name...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Password:
-            </td>
-            <td>
-                <input type="text" id="createStaffPassword" placeholder="Password...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Role:
-            </td>
-            <td>
-                <input type="text" id="createStaffRole" placeholder="Role...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Status:
-            </td>
-            <td>
-                <input type="text" id="createStaffStatus" placeholder="Status...">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div> </div>
-            </td>
-            <td>
-                <div style="float: right;">
-                    <button class="button" style="width: 48%;" onclick="staff.createStuff()">Create</button>
-                    <button class="button" style="width: 48%;" onclick="staff.cancelCreateStaff()">Cancel</button>
-                </div>
-            </td>
-        </tr>
-    </table>
-  </div>
-</div>
-
 <div id="viewUserProfile" style="display: none;">
     <div class="center">
         <table style="width: 100%;">
@@ -289,20 +11,21 @@
         </table>
         <table border="1" style="width: 100%;">
             <tr>
-                <td colspan="2" width="23%">
+                <td colspan="2" width="19%">
                     Roles
                 </td>
-                <td width="23%">
+                <td>
                     Description
                 </td>
-                <td>
+                <td width="10%">
                     Action
                 </td>
             </tr>
         </table>
         <div class="adminScroll">
             <table id="getUserProfile" style="background-color: #333333c4;" width="100%">
-
+            </table>
+            <table id="getSearchProfile" style="display:none; background-color: #333333c4;" width="100%">
             </table>
         </div>
   </div>
@@ -384,6 +107,169 @@
         </tr>
     </table>
   </div>
+</div>
+
+<div id="viewUserAccount" style="display: none;">
+
+    <div class="center">
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <input type="text" placeholder="Search.." onkeyup="searchUserAccount()" id="userSearch" style="width: 89%;" name="search">
+                    <button class="button" style="width: 10%; border-radius: 25px;" onclick="useraccount.openCreateUserModal()">add</button>
+                </td>
+            </tr>
+        </table>
+        <table border="1" style="width: 100%;">
+            <tr>
+                <td colspan="2" width="19%">
+                    Name
+                </td>
+                <td width="15%">
+                    Email
+                </td>
+                <td width="38.5%">
+                    Role
+                </td>
+                <td>
+                    Status
+                </td>
+                <td width="13%">
+                    Action
+                </td>
+            </tr>
+        </table>
+        <div class="adminScroll">
+            <table id="getUser" style="background-color: #333333c4;" width="100%">
+
+            </table>
+        </div>
+
+        <div class="adminedit" id="createUserAcounttable" style="display: none;">
+            <br><br><br><br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Create User Account</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                </tr>
+                <tr>
+                    <td>
+                        Name:
+                    </td>
+                    <td>
+                        <input type="text" id="createAccountName" placeholder="Name...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email:
+                    </td>
+                    <td>
+                        <input type="text" id="createAccountEmail" placeholder="Email...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password:
+                    </td>
+                    <td>
+                        <input type="password" id="createAccountPassword" placeholder="Password...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Role:
+                    </td>
+                    <td>
+                        <select id="getUserProfiles">
+                            <option value="Snacks">Snacks</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Combo">Combo</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div> </div>
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="useraccount.addUserAccount()">Create</button>
+                            <button class="button" style="width: 48%;" onclick="useraccount.closeCreateUserModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+
+          <div class="adminedit" id="updateUserAccounttable" style="display: none;">
+            <br><br><br><br><br>
+            <center>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Edit User Account</h2></div>
+            </center>
+            <table class="center" style="background-color: #333;">
+                <tr>
+                </tr>
+                <tr>
+                    <td>
+                        <strong id="updateuaId" style="display: none;"></strong>
+                        Name:
+                    </td>
+                    <td>
+                        <input type="text" id="updateAccountName" placeholder="Name...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email:
+                    </td>
+                    <td>
+                        <input type="text" id="updateAccountEmail" placeholder="Email...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password:
+                    </td>
+                    <td>
+                        <input type="password" id="updateAccountPassword" placeholder="Password...">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Status:
+                    </td>
+                    <td>
+                        <select id="updateAccountStatus">
+                            <option value="active">active</option>
+                            <option value="suspended">suspended</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Role:
+                    </td>
+                    <td>
+                        <select id="updateGetUserProfiles">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div> </div>
+                    </td>
+                    <td>
+                        <div style="float: right;">
+                            <button class="button" style="width: 48%;" onclick="useraccount.updateUserAccount()">Update</button>
+                            <button class="button" style="width: 48%;" onclick="useraccount.closeUpdateUserModal()">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+
 </div>
 
 </div>

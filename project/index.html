@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="./Boundary/css/modal.css">
 <link rel="stylesheet" href="./Boundary/css/movie.css">
 <link rel="stylesheet" href="./Boundary/css/movieslideshow.css">
+<link rel="stylesheet" href="./Boundary/css/cart.css">
 
 <link rel="stylesheet" href="./Boundary/css/navbar.css">
 <link rel="stylesheet" href="./Boundary/css/feedback.css">
@@ -64,6 +65,23 @@
 
         <div w3-include-html="./Boundary/html/movie.html"></div>
         <div w3-include-html="./Boundary/html/menu.html"></div>
+
+        <div id="cart-modal" class="modal">
+            <div class="container" style="background-color: rgb(255, 130, 6)">
+                <label style="color: white"><b>Cart</b></label>
+                <a href="#" style="color: white;position: relative; left: 95%;text-decoration:none;" onclick="ccloseModal()"><font size="5">&times;</font></a>
+              </div>
+
+                <div class="container" style="background-color: #333; width: 100%; height: auto;">
+                    <ul id="cart-items"></ul>
+                </div>
+
+            <div class="container" style="background-color: rgb(255, 130, 6)">
+                <span><h3>Total: <span id="cart-total"></span></h3></span>
+              </div>
+          </div>
+          <div w3-include-html="./Boundary/html/BookingMovieUI.html"></div>
+
         <div w3-include-html="./Boundary/html/ReviewUI.html"></div>
 
     <div w3-include-html="./Boundary/html/CustomerUI.html"></div>
@@ -93,6 +111,8 @@
 <script src="./Boundary/js/slideshow.js"></script>
 <script src="./Boundary/js/reviewform.js"></script>
 <script src="./Boundary/js/menu.js"></script>
+<script src="./Boundary/js/addtocart.js"></script>
+<script src="./Boundary/js/moviebooking.js"></script>
 
 <!-- Database Controllers -->
 <script src="./Controller/customerController.js"></script>
@@ -104,7 +124,9 @@
 <script src="./Controller/cinemaRoomController.js"></script>
 <script src="./Controller/menuController.js"></script>
 <script src="./Controller/ticketController.js"></script>
+<script src="./Controller/screenTimeController.js"></script>
 <script src="./Controller/userprofileController.js"></script>
+<script src="./Controller/useraccountController.js"></script>
 
 
 <!-- Corporate Page Functions -->

@@ -12,6 +12,8 @@ function snackMenu(){
     b.classList.remove("active");
     c.classList.remove("active");
 
+    menu.getSnacks();
+
     if (x.style.display == "block") {
         y.style.display="none";
         z.style.display="none";
@@ -36,6 +38,8 @@ function drinkMenu(){
     a.classList.remove("active");
     b.classList.add("active");
     c.classList.remove("active");
+
+    menu.getDrinks();
 
     if (y.style.display == "block") {
         x.style.display="none";
@@ -62,6 +66,8 @@ function comboMenu(){
     b.classList.remove("active");
     c.classList.add("active");
 
+    menu.getCombo();
+
     if (z.style.display == "block") {
         x.style.display="none";
         y.style.display="none";
@@ -71,5 +77,17 @@ function comboMenu(){
         x.style.display="none";
         y.style.display="none";
         z.style.display="block";
+    }
+}
+
+function check4Login(){
+    if (sessionStorage.getItem("name") === null){
+        alert("PLS LOGIN TO CONTINUE");
+        document.getElementById('id01').style.display="block";
+    }
+    else 
+    {
+        console.log(document.getElementById('product-name').innerText);
+        addToCart();
     }
 }

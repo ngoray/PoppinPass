@@ -4,6 +4,7 @@ function corpLoggout() {
 }
 
 function corpLoggedout() {
+    sessionStorage.clear();
     document.getElementById("corploggout1").style.display ="none";
     document.getElementById("adminMenu").style.display ="none";
     document.getElementById("managerMenu").style.display ="none";

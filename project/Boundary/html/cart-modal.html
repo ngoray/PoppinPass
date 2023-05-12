@@ -28,3 +28,23 @@
       </div>
     </div>
   </div>
+
+
+
+  <div id="cart-modal" class="modal">
+    <div class="container" style="background-color: rgb(255, 130, 6)">
+        <label style="color: white"><b>Login</b></label>
+        <a href="#" style="color: white;position: relative; left: 90%;text-decoration:none;" onclick="ccloseModal()"><font size="5">&times;</font></a>
+      </div>
+    <div class="modal-content animate">
+        <div class="container" style="background-color: #333;">
+            <ul id="cart-items"></ul>
+            <p>Total: <span id="cart-total"></span></p>
+        </div>
+    </div>
+
+    <div class="container" style="background-color: rgb(255, 130, 6)">
+        <span><a href="#" style="color: white;">Forgot password?</a></span>
+        <span class="psw"><a style="color: white; text-decoration: none;">Don't have an account?</a> <a href="#" style="color: white;" onclick="document.getElementById('id02').style.display='block'; document.getElementById('id01').style.display='none'">click here to sign up</a></span>
+      </div>
+  </div>

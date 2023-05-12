@@ -1,7 +1,66 @@
 class UserProfile {
-    constructor(userprofileUrl) {
+    constructor(userprofileUrl,searchUrl) {
       this.userprofileUrl = userprofileUrl;
+      this.searchUrl = searchUrl;
       this.userprofile_array = [];
+
+    }
+    
+    searchUserProfile(){
+      var input, filter, table, tr, td, a, i, txtValue;
+        input = document.getElementById("profileSearch");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("getUserProfile");
+        const searchUP = new XMLHttpRequest();
+
+        if (filter === null)
+        {
+          document.getElementById("viewUserProfile").style.display="none";
+          viewUserProfile();
+        }
+
+        else{
+          const search1 = "%" +filter + "%"
+          console.log ("search: " + search1);
+        searchUP.open('POST', this.searchUrl, true);
+
+        const searchdata = {
+          "search": search1
+        }
+
+        console.log("search data: "+ JSON.stringify(searchdata))
+
+        searchUP.setRequestHeader("Content-Type", "application/json");
+        searchUP.onload = function () {
+          this.userprofile_array = []
+          this.userprofile_array = JSON.parse(searchUP.responseText);
+          console.log("array length" + this.userprofile_array.length);
+          document.getElementById("getUserProfile").style.display="none";
+          document.getElementById("getSearchProfile").style.display="block";
+          
+
+          const table = document.getElementById("getSearchProfile");
+          let upCount = 0;
+          let message = "";
+          table.innerHTML = "";
+          const totalup = this.userprofile_array.length;
+          console.log("array length" + this.userprofile_array.length);
+
+          for (let count = 0; count < totalup; count++)
+          {
+              const id = this.userprofile_array[count]._id;
+              const role = this.userprofile_array[count].role;
+              const desc = this.userprofile_array[count].description;
+              const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+role+'</a></td><td>'+desc+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="userprofile.showUserProfileDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
+
+              table.insertAdjacentHTML("beforeend", cell);
+              console.log(table);
+              upCount++;
+          }
+        };
+        searchUP.send(JSON.stringify(searchdata));
+      }
+
     }
 
   addUserProfile() {
@@ -24,6 +83,9 @@ class UserProfile {
       alert("user profile added");
       document.getElementById("createProfileRole").value = "";
       document.getElementById("createProfileDescription").value = "";
+      document.getElementById("createUserProfiletable").style.display="none";
+      document.getElementById("viewUserProfile").style.display="none";
+      viewUserProfile();
     };
     addUserProfile.send(JSON.stringify(userprofileData));
   }
@@ -34,13 +96,14 @@ class UserProfile {
   
       fetchUserProfile.onload = () => {
         this.userprofile_array = JSON.parse(fetchUserProfile.responseText);
-  
         this.displayUserProfile();
+        this.displayUpdateUserProfile();
       };
   
       
       fetchUserProfile.send();
   }
+
 
   displayUserProfile(){
     const table = document.getElementById("getUserProfile");
@@ -48,6 +111,7 @@ class UserProfile {
       let message = "";
       table.innerHTML = "";
       const totalup = this.userprofile_array.length;
+      console.log("array length" + this.userprofile_array.length);
 
       for (let count = 0; count < totalup; count++)
       {
@@ -57,6 +121,7 @@ class UserProfile {
           const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+role+'</a></td><td>'+desc+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="userprofile.showUserProfileDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
 
           table.insertAdjacentHTML("beforeend", cell);
+          console.log(table);
           upCount++;
       }
   }
@@ -107,11 +172,14 @@ class UserProfile {
 
     updateUP.onload = function () {
         alert("User Profile Editted.");
+        document.getElementById("editUserProfiletable").style.display="none";
+        document.getElementById("viewUserProfile").style.display="none";
+        viewUserProfile();
     };
 
     // Send the updated movie object as a JSON string
     updateUP.send(JSON.stringify(this.userprofile_array[currentIndex]));
-}
+    }
    
   }
   
@@ -127,7 +195,58 @@ class UserProfile {
   closeEditUserProfileModal(){
     document.getElementById("editUserProfiletable").style.display="none";
   }
-    
+   
+  
+  fetchUserProfile2(){
+    const fetchUserProfile = new XMLHttpRequest();
+    fetchUserProfile.open("GET", this.userprofileUrl, true);
+  
+      fetchUserProfile.onload = () => {
+        this.userprofile_array = JSON.parse(fetchUserProfile.responseText);
+  
+        this.displayUserProfile2();
+        this.displayUpdateUserProfile();
+      };
+  
+      
+      fetchUserProfile.send();
+  }
+
+  displayUserProfile2(){
+    const table = document.getElementById("getUserProfiles");
+      let upCount = 0;
+      let message = "";
+      table.innerHTML = "";
+      const totalup = this.userprofile_array.length;
+
+      for (let count = 0; count < totalup; count++)
+      {
+          const role = this.userprofile_array[count].role;
+          const cell ='<option value="'+role+'">'+role+'</option>'
+
+          table.insertAdjacentHTML("beforeend", cell);
+          upCount++;
+      }
+  }
+
+  displayUpdateUserProfile(){
+    const table = document.getElementById("updateGetUserProfiles");
+      let upCount = 0;
+      let message = "";
+      table.innerHTML = "";
+      const totalup = this.userprofile_array.length;
+
+      for (let count = 0; count < totalup; count++)
+      {
+          const id = this.userprofile_array[count]._id;
+          const role = this.userprofile_array[count].role;
+          const desc = this.userprofile_array[count].description;
+          const cell ='<option value="'+role+'">'+role+'</option>'
+
+          table.insertAdjacentHTML("beforeend", cell);
+          upCount++;
+      }
+  }
 }
 
-const userprofile = new UserProfile("/userprofile");
+const userprofile = new UserProfile("/userprofile","/searchuserprofile");

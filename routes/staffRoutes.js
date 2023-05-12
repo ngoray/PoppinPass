@@ -8,7 +8,7 @@ class StaffRoutes {
     StaffRoute(app) {
     app.route("/staff")
         .get(staffcontroller.getAllStaff)
-        .post(staffcontroller.login);
+        .post(staffcontroller.loginStaff);
 
     app.route("/staff/:_id")
         .put(staffcontroller.updateStaff);

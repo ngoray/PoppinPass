@@ -12,17 +12,17 @@ app.use(express.static('./project'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const  CustomerRoutes = require('./routes/customerRoutes.js');
-const  customerRoutes = new  CustomerRoutes();
-customerRoutes.routeMember(app);
+// const  CustomerRoutes = require('./routes/customerRoutes.js');
+// const  customerRoutes = new  CustomerRoutes();
+// customerRoutes.routeMember(app);
 
 const routeMovies = require('./routes/movieRoutes.js');
 const  routemovies = new  routeMovies();
 routemovies.movieRoutes(app);
 
-const StaffRoutes = require('./routes/staffRoutes.js');
-const StaffRoute = new StaffRoutes();
-StaffRoute.StaffRoute(app);
+// const StaffRoutes = require('./routes/staffRoutes.js');
+// const StaffRoute = new StaffRoutes();
+// StaffRoute.StaffRoute(app);
 
 const routeReviews = require('./routes/reviewRoutes.js');
 const routeReview = new routeReviews();
@@ -47,6 +47,19 @@ routemenu.menuRoutes(app);
 const routeProfile = require('./routes/userprofileRoutes.js');
 const routeprofile = new routeProfile();
 routeprofile.userprofileRoutes(app);
+
+const routeScreenTime = require('./routes/screentimeRoutes.js');
+const routescreentime = new routeScreenTime();
+routescreentime.screentimeRoutes(app);
+
+const routeMovieTicket = require('./routes/movieticketRoutes.js');
+const routemovieticket = new routeMovieTicket();
+routemovieticket.movieticketRoutes(app);
+
+const routeUserAccount = require('./routes/useraccountRoutes.js');
+const routeuseraccount = new routeUserAccount();
+routeuseraccount.useraccountRoutes(app);
+
 
 function gotoIndex(f, request, respond) {
     respond.sendFile(__dirname + f);

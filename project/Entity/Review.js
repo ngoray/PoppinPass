@@ -4,7 +4,7 @@ var db = require('./../../dbconnection');
 class Review {
 
   // add reviews
-  addReviewDB(reviews, callback){
+  addReviewTable(reviews, callback){
 
     var sql = "INSERT INTO poppinpass.reviews (name, email, rating, review) VALUES (?, ?, ?, ?)";
     
@@ -21,7 +21,7 @@ class Review {
 
     console.log(reviewComment);
 
-    review.addReviewDB(reviewComment, (error, result) => {
+    review.addReviewTable(reviewComment, (error, result) => {
       console.log(result);
 
       if (error) {
@@ -36,7 +36,7 @@ class Review {
   }
 
 // view all reviews
-  viewAllReviewDB(callback) {
+  viewAllReviewTable(callback) {
     var sql = "SELECT * FROM poppinpass.reviews";
     return db.query(sql, callback);
 }
@@ -44,7 +44,7 @@ class Review {
   viewAllReview(request, respond) {
 
     console.log("called");
-    review.viewAllReviewDB((error, result) => {
+    review.viewAllReviewTable((error, result) => {
       if (error) {
         respond.json(error);
       } else {

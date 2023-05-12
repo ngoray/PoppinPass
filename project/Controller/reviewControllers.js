@@ -65,7 +65,6 @@ class Review {
       document.getElementById("reviewname").value = "";
       document.getElementById("reviewemail").value = "";
       document.getElementById("review").value = "";
-      makeActive();
       document.getElementById("feedbackpage").style.display="none";
       reviewPage();
     };

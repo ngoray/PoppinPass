@@ -2,7 +2,34 @@ var db = require('./../../dbconnection');
 
 class UserProfile{
 
-    addUserProfileDB(userprofile, callback){
+  searchUserProfileTable(userprofile,callback){
+    var sql = "SELECT * FROM poppinpass.userprofile WHERE role LIKE ?;"
+
+    return db.query(sql, [userprofile.search], callback);
+
+  }
+
+  searchUserProfile(request, respond){
+    console.log("THIS IS IN SEARCH PARAMS: "+ request.body.search)
+    const searchDetails = {
+      search: request.body.search
+    };
+
+    console.log("deets: "+ JSON.stringify(searchDetails));
+
+    userprofile.searchUserProfileTable(searchDetails, (error, result) => {
+      console.log("result: "+ result);
+
+      if (error) {
+        respond.json(error);
+    } else {
+        respond.json(result);
+    }
+    });
+  }
+
+
+    addUserProfileTable(userprofile, callback){
 
         console.log("Role: "+ userprofile.role);
         console.log("Description: "+ userprofile.description);
@@ -34,14 +61,14 @@ class UserProfile{
         });
       }
 
-      viewAllUserProfileDB(callback) {
+      viewAllUserProfileTable(callback) {
         var sql = "SELECT * FROM poppinpass.userprofile";
 
         return db.query(sql, callback);
       }
 
       viewAllUserProfile(request, respond) {
-        userprofile.viewAllUserProfileDB(function (error, result){
+        userprofile.viewAllUserProfileTable(function (error, result){
             if (error) {
                 respond.json(error);
             } else {
@@ -50,7 +77,7 @@ class UserProfile{
         });
     }
 
-    updateUserProfileDB(occupancy, callback) {
+    updateUserProfileTable(occupancy, callback) {
       var sql = "UPDATE poppinpass.userprofile SET `role` = ?, description = ? WHERE _id = ?";
   
       return db.query(sql, [occupancy.role, occupancy.description, occupancy._id], callback);
@@ -63,7 +90,7 @@ class UserProfile{
         "description":request.body.description
       }
 
-      userprofile.updateUserProfileDB(UPDetails, function(error, result){
+      userprofile.updateUserProfileTable(UPDetails, function(error, result){
         if (error) {
             respond.json(error);
             console.log(error);

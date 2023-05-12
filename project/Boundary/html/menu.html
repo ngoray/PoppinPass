@@ -10,112 +10,15 @@
                 </td>
             </tr>
 
-                <tr id="snacksmenu" style="display: none;">
-                    <td>
-                        <img src="./../images/menu/popcorn.jpeg" style="margin:10px 25px;width: 450px; height: 300px;">
-                        <table class="centerTable" style="width: 450px;">
-                            <tr>
-                                <td colspan="3">
-                                    <center><h2>Popcorn</h2></center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h3>Small: </h3></td>
-                                <td><label>$</label><label>4.50</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Medium: </h3></td>
-                                <td><label>$</label><label>6.00</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Large: </h3></td>
-                                <td><label>$</label><label>7.50</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <img src="./../images/menu/nachos.jpeg " style="margin:10px 25px;width: 450px; height: 300px;">
-                        <table class="centerTable" style="width: 450px;">
-                            <tr>
-                                <td colspan="3">
-                                    <center><h2>Nachos</h2></center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h3>Small: </h3></td>
-                                <td><label>$4.50</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Regular: </h3></td>
-                                <td><label>$6.00</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Large: </h3></td>
-                                <td><label>$7.50</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <img src="./../images/menu/hotdog.jpeg"  style="margin:10px 25px;width: 450px; height: 300px;">
-                        <table class="centerTable" style="width: 450px;">
-                            <tr>
-                                <td colspan="3">
-                                    <center><h2>Hot Dogs</h2></center>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><h3>Small: </h3></td>
-                                <td><label>$4.50</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Medium: </h3></td>
-                                <td><label>$6.00</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Large: </h3></td>
-                                <td><label>$7.50</label></td>
-                                <td><img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;"></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+                <tr id="snacksmenu" style="display: block;"></tr>
 
-                <tr  id="drinksmenu"  style="display: none;">
-                    <td>
-                        <img src="./../images/products/A Wrinkle In Time_poster.jpg">
-                        
-                    </td>
-                    <td>
-                        <img src="./../images/products/Ah Boys To Men 4_poster.jpg">
-                    </td>
-                    <td>
-                        <img src="./../images/products/Darkest Hour_poster.jpg">
-                    </td>
-                </tr>
+                <tr  id="drinksmenu"  style="display: none;"></tr>
 
-                <tr id="combomenu"  style="display: none;">
-                    <td>
-                        <img src="./../images/products/A Wrinkle In Time_poster.jpg">
-                    </td>
-                    <td>
-                        <img src="./../images/products/Ah Boys To Men 4_poster.jpg">
-                    </td>
-                    <td>
-                        <img src="./../images/products/Battle Of The Sexes_poster.jpg">
-                    </td>
-                </tr>
+                <tr id="combomenu"  style="display: none;"></tr>
             <tr>
                 <td colspan="3">
                     <center>
-                        <button class="buttonMenu" id="snackbtn" onclick="snackMenu()" style="border-color: rgb(255, 131, 6);height: 50px; width: 90px; border-radius: 10px;"><b style="font-size: 12px;text-align: left;">Snacks</b></button>
+                        <button class="buttonMenu active" id="snackbtn" onclick="snackMenu()" style="border-color: rgb(255, 131, 6);height: 50px; width: 90px; border-radius: 10px;"><b style="font-size: 12px;text-align: left;">Snacks</b></button>
                         <button class="buttonMenu" id="drinkbtn" onclick="drinkMenu()" style="border-color: rgb(255, 131, 6);height: 50px; width: 90px; border-radius: 10px;"><b style="font-size: 12px;text-align: left;">Drinks</b></button>
                         <button class="buttonMenu" id="combobtn" onclick="comboMenu()" style="border-color: rgb(255, 131, 6);height: 50px; width: 90px; border-radius: 10px;"><b style="font-size: 12px;text-align: left;">Combo</b></button>
                     </center>

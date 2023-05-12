@@ -2,7 +2,7 @@ var db = require('./../../dbconnection');
 
 class Seatmap {
 
-    addSMDB(sm, callback){
+    addSMTable(sm, callback){
 
         var sql = "INSERT INTO poppinpass.seatmap (seatno, `row`, roomnumber, avaliability) VALUES (?, ?, ?, 'active')";
         
@@ -19,7 +19,7 @@ class Seatmap {
     
         console.log(smdata);
     
-        seatmap.addSMDB(smdata, (error, result) => {
+        seatmap.addSMTable(smdata, (error, result) => {
           console.log(result);
     
           if (error) {
@@ -33,13 +33,13 @@ class Seatmap {
         });
       }
 
-    viewAllSMDB(callback) {
+    viewAllSMTable(callback) {
         var sql = "SELECT * FROM poppinpass.seatmap";
         return db.query(sql, callback);
     }
 
     viewAllSM(request, respond) {
-        seatmap.getAllSMDB((error, result) => {
+        seatmap.getAllSMTable((error, result) => {
           if (error) {
             respond.json(error);
           } else {
@@ -48,7 +48,7 @@ class Seatmap {
         });
       }
 
-    updateSMDB(sm, callback) {
+    updateSMTable(sm, callback) {
         var sql = "UPDATE poppinpass.seatmap SET seatno = ? , `row` = ?, roomnumber = ?, `avaliability` = ? WHERE _id = ?";
 
         return db.query(sql, [sm.seatno, sm.row, sm.roomnumber, sm.availability, sm._id], callback);
@@ -63,7 +63,7 @@ class Seatmap {
             "availability": request.body.availability
           }
     
-          seatmap.updateSMDB(SMDetails, function(error, result){
+          seatmap.updateSMTable(SMDetails, function(error, result){
             if (error) {
                 respond.json(error);
                 console.log(error);
@@ -74,7 +74,7 @@ class Seatmap {
         });
       }
 
-    deleteSMDB(sm, callback) {
+    deleteSMTable(sm, callback) {
         var sql = "DELETE FROM poppinpass.seatmap WHERE _id = ?";
 
         return db.query(sql, sm, callback);
@@ -82,7 +82,7 @@ class Seatmap {
 
     deleteSM(request, respond) {
 
-        seatmap.deleteSMDB(request.params._id, function (error, result) {
+        seatmap.deleteSMTable(request.params._id, function (error, result) {
     
             if (error) {
                 respond.json(error);
@@ -92,7 +92,7 @@ class Seatmap {
         });
     }
 
-    getSomeSMDB(sm, callback){
+    getSomeSMTable(sm, callback){
         var sql = "SELECT * FROM poppinpass.seatmap WHERE roomnumber = ?";
 
         return db.query(sql, [sm.roomnumber], callback);
@@ -103,7 +103,7 @@ class Seatmap {
           "roomnumber":request.body.roomnumber
         }
     
-        seatmap.getSomeSMDB(SMDeets,(error,result) => {
+        seatmap.getSomeSMTable(SMDeets,(error,result) => {
           if (error || result.length == 0) {
             respond.json(error);
     

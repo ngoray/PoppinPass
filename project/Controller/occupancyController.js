@@ -1,12 +1,68 @@
 class Occupancy {
-  constructor(occuUrl) {
+  constructor(occuUrl, searchUrl) {
     this.occuUrl = occuUrl;
+    this.searchUrl = searchUrl;
     this.occuArray = [];
     this.row1 = "A";
     this.row2 = "B";
     this.row3 = "C";
     this.row4 = "D";
     this.row5 = "E";
+  }
+
+  searchOccupancy(){
+    var input, filter, table, tr, td, a, i, txtValue;
+      input = document.getElementById("occuSearch");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("getOccupancy");
+      const searchoccu = new XMLHttpRequest();
+
+      if (filter === null)
+      {
+        document.getElementById("manageOccupancy").style.display="none";
+        viewUserAccount()
+      }
+
+      else{
+        const search1 = "%" +filter + "%"
+        console.log ("search: " + search1);
+        searchoccu.open('POST', this.searchUrl, true);
+
+      const searchdata = {
+        "search": search1
+      }
+
+      console.log("search data: "+ JSON.stringify(searchdata))
+
+      searchoccu.setRequestHeader("Content-Type", "application/json");
+      searchoccu.onload = function () {
+        this.movieArray= []
+        this.movieArray = JSON.parse(searchoccu.responseText);
+        console.log("array length" + this.movieArray.length);
+        document.getElementById("manageOccupancy").style.display="none";
+        document.getElementById("getOccupancy").style.display="block";
+        
+
+      const table = document.getElementById("getOccupancy");
+      let occuCount = 0;
+      let message = "";
+      table.innerHTML = "";
+      const totalOccu = this.occuArray.length;
+
+      for (let count = 0; count < totalOccu; count++)
+      {
+          const id = this.occuArray[count]._id;
+          const seatno = this.occuArray[count].seatno;
+          const row = this.occuArray[count].row;
+          const cell ='<td style="width: 30%;"><strong id="occu_id" style="display:none;">'+id+'</strong><a>'+seatno+'</a></td><td><a>'+row+'</a></td><td ><button item = '+count+' style="background-color:#333333a0; float:right;" onclick="occupancy.showOccuDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
+
+          table.insertAdjacentHTML("beforeend", cell);
+          occuCount++;
+      }
+      };
+      searchoccu.send(JSON.stringify(searchdata));
+    }
+
   }
 
   fetchOccu() {
@@ -279,4 +335,4 @@ class Occupancy {
 
 
 
-const occupancy = new Occupancy("/occupancy");
+const occupancy = new Occupancy("/occupancy", "/searchoccu");
