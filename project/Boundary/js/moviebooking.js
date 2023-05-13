@@ -1,13 +1,16 @@
+let timebooked = [];
+
 function check4LoginMovie(){
-    // if (sessionStorage.getItem("name") === null){
-    //     alert("PLS LOGIN TO CONTINUE");
-    //     document.getElementById('movieModal').style.display="none";
-    //     document.getElementById('id01').style.display="block";
-    // }
+  //  if (sessionStorage.getItem("name") === null){
+   //     alert("PLS LOGIN TO CONTINUE");
+   //    document.getElementById('movieModal').style.display="none";
+   //      document.getElementById('id01').style.display="block";
+   //  }
     // else 
-    // {
+   //  {
         document.getElementById('movieModal').style.display="none";
         bookMoviePage();
+        screentime.fetchScreenTime4Cust();
     // }
 }
 
@@ -19,6 +22,10 @@ function viewTicketType(){
 function viewSeatMap(){
     document.getElementById('bookTicketType').style.display="none";
     document.getElementById('bookSeatMap').style.display="block";   
+}
+function viewSummary(){
+    document.getElementById('bookSeatMap').style.display="none";
+    document.getElementById('movieBookingSum').style.display="block";   
 }
 
 function createTable() {
@@ -33,4 +40,9 @@ function createTable() {
 
     // Add the new table after the original table
     table.parentNode.insertBefore(newTable, table.nextSibling);
+}
+
+function bookingtiming(time){
+    console.log("booking called")
+    sessionStorage.setItem("timingbooked", time);
 }

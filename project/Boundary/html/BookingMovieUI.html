@@ -9,99 +9,99 @@
 
             <td>
                 <h3>Monday</h3>
-                <table>
-                    <tr>
+                <table id = "monday">
+
                         <td>
                             <button class="button2">6:30PM</button>
                         </td>                       
                         <td>
                             <button class="button2">6:30PM</button>
                         </td>
-                    </tr>
+    
                 </table>
             </td>
             <td>
                 <h3>Friday</h3>
-                    <table>
-                        <tr>
+                    <table id = "friday">
+                        
                             <td>
                                 <button class="button2">6:30PM</button>
                             </td>                       
                             <td>
                                 <button class="button2">6:30PM</button>
                             </td>
-                        </tr>
+                      
                     </table>
                 </td>
         </tr>
         <tr>
             <td>
                 <h3>Tuesday</h3>
-                    <table>
-                        <tr>
+                    <table id = "tuesday">
+                       
                             <td>
                                 <button class="button2">6:30PM</button>
                             </td>                       
                             <td>
                                 <button class="button2">6:30PM</button>
                             </td>
-                        </tr>
+                        
                     </table>
                 </td>
                 <td>
                     <h3>Saturday</h3>
-                        <table>
-                            <tr>
+                        <table id = "saturday">
+                          
                                 <td>
                                     <button class="button2">6:30PM</button>
                                 </td>                       
                                 <td>
                                     <button class="button2">6:30PM</button>
                                 </td>
-                            </tr>
+                          
                         </table>
                     </td>
         </tr>
         <tr>
             <td>
                 <h3>Wednesday</h3>
-                    <table>
-                        <tr>
+                    <table id = "wednesday">
+                       
                             <td>
                                 <button class="button2">6:30PM</button>
                             </td>                       
                             <td>
                                 <button class="button2">6:30PM</button>
                             </td>
-                        </tr>
+                     
                     </table>
                 </td>
                 <td>
                     <h3>Sunday</h3>
-                        <table>
-                            <tr>
+                        <table id = "sunday">
+                        
                                 <td>
                                     <button class="button2">6:30PM</button>
                                 </td>                       
                                 <td>
                                     <button class="button2">6:30PM</button>
                                 </td>
-                            </tr>
+                        
                         </table>
                     </td>
         </tr>
         <tr>
             <td>
                 <h3>Thursday</h3>
-                    <table>
-                        <tr>
+                    <table id = "thursday">
+                        
                             <td>
                                 <button class="button2">6:30PM</button>
                             </td>                       
                             <td>
                                 <button class="button2">6:30PM</button>
                             </td>
-                        </tr>
+                      
                     </table>
                 </td>
                 <td></td>
@@ -228,9 +228,97 @@
         </tr>
         <tr>
             <td colspan="3">
-                <button class="button" style="border-radius: 25px; float: right;">Next</button>
+                <button class="button" onclick="viewSummary()" style="border-radius: 25px; float: right;">Next</button>
             </td>
         </tr>
     </table>
+</div>
+
+<div id="movieBookingSum" style="display: none;">
+
+    <table class="center">
+        <tr>
+            <td colspan="2">
+                <h1>Booking Summary</h1>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="./../../images/products/Ah Boys To Men 4.jpg">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Title:</label>
+            </td>
+            <td>
+                <label id="summaryTitle">empty</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Room:</label>
+            </td>
+            <td>
+                <label id="summaryRoom">empty</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Seat:</label>
+            </td>
+            <td>
+                <label id="summarySeat">empty</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Screen Time:</label>
+            </td>
+            <td>
+                <label id="summaryTime">empty</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Day:</label>
+            </td>
+            <td>
+                <label id="summaryDay">empty</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Ticket Type:</label>
+            </td>
+            <td>
+                <label id="summaryType">empty</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Quantity:</label>
+            </td>
+            <td>
+                <label id="summaryQuantity">empty</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Total Price:</label>
+            </td>
+            <td>
+                <label id="summaryPrice">empty</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div style="float: right;">
+                    <button class="button" style="width: 100%;" id="summaryAdd2Cart">Add to Cart</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
 </div>
 </div>
