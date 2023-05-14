@@ -81,13 +81,13 @@ function comboMenu(){
 }
 
 function check4Login(){
-    if (sessionStorage.getItem("name") === null){
-        alert("PLS LOGIN TO CONTINUE");
-        document.getElementById('id01').style.display="block";
-    }
-    else 
-    {
+    // if (sessionStorage.getItem("name") === null){
+    //     alert("PLS LOGIN TO CONTINUE");
+    //     document.getElementById('id01').style.display="block";
+    // }
+    // else 
+    // {
         console.log(document.getElementById('product-name').innerText);
         addToCart();
-    }
+    // }
 }

@@ -28,6 +28,7 @@
 
     <div w3-include-html="./Boundary/html/CustomerLoginUI.html"></div>
     <div w3-include-html="./Boundary/html/CustomerSignUpUI.html"></div>
+    <div w3-include-html="./Boundary/html/CustomerEditPasswordUI.html"></div>
 
     <div w3-include-html="./Boundary/html/movie-modal.html"></div>
     <div id="slideshow"  style="background-color: #33333381;">
@@ -68,16 +69,24 @@
 
         <div id="cart-modal" class="modal">
             <div class="container" style="background-color: rgb(255, 130, 6)">
-                <label style="color: white"><b>Cart</b></label>
+                <span style="color: white"><b>Cart</b></span>
                 <a href="#" style="color: white;position: relative; left: 95%;text-decoration:none;" onclick="ccloseModal()"><font size="5">&times;</font></a>
               </div>
 
                 <div class="container" style="background-color: #333; width: 100%; height: auto;">
-                    <ul id="cart-items"></ul>
+                    <table  id="cart-items" width="70%">
+                        <tr>
+                            <td colspan="3">
+                                <span style="float: right;"><h3>Total: <span id="cart-total"></span></h3></span>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
-            <div class="container" style="background-color: rgb(255, 130, 6)">
-                <span><h3>Total: <span id="cart-total"></span></h3></span>
+            <div class="container" width="100%" style="background-color: rgb(255, 130, 6)">
+                <button class="button4"> </button>
+                <button class="button2" style="float: right;">Check Out</button>
+                
               </div>
           </div>
           <div w3-include-html="./Boundary/html/BookingMovieUI.html"></div>

@@ -47,7 +47,7 @@ class UserProfile{
     
         console.log(profileDetails);
     
-        userprofile.addUserProfileDB(profileDetails, (error, result) => {
+        userprofile.addUserProfileTable(profileDetails, (error, result) => {
           console.log(result);
     
           if (error) {

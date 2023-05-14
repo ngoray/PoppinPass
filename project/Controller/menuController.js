@@ -6,6 +6,9 @@ class Menu {
         this.Snacks = "Snacks";
         this.Drinks = "Drinks";
         this.Combo = "Combo";
+        this.cartTotalSpan = document.getElementById('cart-total');
+        this.cartModal = document.getElementById('cart-modal');
+        this.cartItems = [];
     }
 
     newMenu()
@@ -271,8 +274,8 @@ displayDrinks(Drinks) {
                           <td><h3>Small: </h3></td>\
                           <td><label>$</label><label id="product-price">'+smallprice+'</label></td>\
                           <td>\
-                          <button onclick="check4Login()" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
-                              <img src="./../images/addcart.png" style="width: 40px; height: 40px;">\
+                          <button onclick="menu.add2Cart(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
+                              <img item2="'+count+'" item='+smallprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                           </button>\
                         </td>\
                       </tr>\
@@ -280,8 +283,8 @@ displayDrinks(Drinks) {
                           <td><h3>Medium: </h3></td>\
                           <td><label>$</label><label>'+mediumprice+'</label></td>\
                           <td>\
-                          <button onclick="check4Login()" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
-                              <img src="./../images/addcart.png" style="width: 40px; height: 40px;">\
+                          <button onclick="menu.add2Cart(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
+                              <img item2="'+count+'" item='+mediumprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                           </button>\
                         </td>\
                       </tr>\
@@ -289,8 +292,8 @@ displayDrinks(Drinks) {
                           <td><h3>Large: </h3></td>\
                           <td><label>$</label><label>'+largeprice+'</label></td>\
                           <td>\
-                          <button onclick="check4Login()" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
-                              <img src="./../images/addcart.png" style="width: 40px; height: 40px;">\
+                          <button onclick="menu.add2Cart(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
+                              <img item2="'+count+'" item='+largeprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                           </button>\
                         </td>\
                       </tr>\
@@ -347,8 +350,8 @@ displaySnacks(Snacks) {
                           <td><h3>Small: </h3></td>\
                           <td><label>$</label><label>'+smallprice+'</label></td>\
                           <td>\
-                            <button onclick="check4Login()" item = '+count+' style="background-color:#333333a0;float: right;">\
-                                <img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;">\
+                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
+                                <img item2="'+count+'" item='+smallprice+' src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;">\
                             </button>\
                           </td>\
                       </tr>\
@@ -356,8 +359,8 @@ displaySnacks(Snacks) {
                           <td><h3>Medium: </h3></td>\
                           <td><label>$</label><label>'+mediumprice+'</label></td>\
                           <td>\
-                            <button onclick="check4Login()" item = '+count+' style="background-color:#333333a0; float: right;">\
-                                <img src="./../images/addcart.png" style="width: 40px; height: 40px;">\
+                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0; float: right;">\
+                                <img item2="'+count+'" item='+mediumprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                             </button>\
                           </td>\
                       </tr>\
@@ -365,8 +368,8 @@ displaySnacks(Snacks) {
                           <td><h3>Large: </h3></td>\
                           <td><label>$</label><label>'+largeprice+'</label></td>\
                           <td>\
-                            <button onclick="check4Login()" item = '+count+' style="background-color:#333333a0; float: right;">\
-                                <img src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;">\
+                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0; float: right;">\
+                                <img item2="'+count+'" item='+largeprice+' src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;">\
                             </button>\
                           </td>\
                       </tr>\
@@ -380,23 +383,23 @@ displaySnacks(Snacks) {
 }
 
 
-getCombo() {
-    const request = new XMLHttpRequest();
-    request.open("GET", this.menuUrl, true);
+    getCombo() {
+        const request = new XMLHttpRequest();
+        request.open("GET", this.menuUrl, true);
         
-    // This function will be called when data returns from the web api
-    request.onload = () => {
+        // This function will be called when data returns from the web api
+        request.onload = () => {
         // Get all the movies records into our movie array
         this.menu_array = JSON.parse(request.responseText);
         
         // Call the function to display all movies tiles for "Now Showing"
         menu.displayCombo(this.Combo);
-    };
+        };
         
-    // This command starts the calling of the movies web api
-    request.send();
-}
-displayCombo(Combo) {
+        // This command starts the calling of the movies web api
+        request.send();
+    }
+    displayCombo(Combo) {
         const table = document.getElementById("combomenu");
         let drinkCount = 0;
         
@@ -417,15 +420,15 @@ displayCombo(Combo) {
                   <table class="centerTable" style="width: 450px;">\
                       <tr>\
                           <td colspan="3">\
-                              <center><h2>'+name+'</h2></center>\
+                              <center><h2 id ="product-name">'+name+'</h2></center>\
                           </td>\
                       </tr>\
                       <tr>\
                           <td><h3>Small: </h3></td>\
                           <td><label>$</label><label>'+smallprice+'</label></td>\
                           <td>\
-                            <button onclick="check4Login()" item = '+count+' style="background-color:#333333a0;float: right;">\
-                                <img src="./../images/addcart.png" style="right; width: 40px; height: 40px;">\
+                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
+                                <img item2="'+count+'" item = '+smallprice+' src="./../images/addcart.png" style="right; width: 40px; height: 40px;">\
                             </button>\
                           </td>\
                       </tr>\
@@ -433,8 +436,8 @@ displayCombo(Combo) {
                           <td><h3>Medium: </h3></td>\
                           <td><label>$</label><label>'+mediumprice+'</label></td>\
                           <td>\
-                          <button onclick="check4Login()" item = '+count+' style="background-color:#333333a0;float: right;">\
-                              <img src="./../images/addcart.png" style="width: 40px; height: 40px;">\
+                          <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
+                              <img item2="'+count+'" item = '+mediumprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                           </button>\
                         </td>\
                       </tr>\
@@ -442,8 +445,8 @@ displayCombo(Combo) {
                           <td><h3>Large: </h3></td>\
                           <td><label>$</label><label>'+largeprice+'</label></td>\
                           <td>\
-                            <button onclick="check4Login()" item = '+count+' style="background-color:#333333a0;float: right;">\
-                                <img src="./../images/addcart.png" style="width: 40px; height: 40px;">\
+                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
+                                <img item2="'+count+'" item='+largeprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                             </button>\
                           </td>\
                       </tr>\
@@ -454,7 +457,58 @@ displayCombo(Combo) {
                 drinkCount++;
               }
             }
-}
+    }
+
+    add2Cart(event){
+        var button = event.target;
+        console.log(button);
+        var productArr = button.getAttribute("item2");
+        var productPrice = button.getAttribute("item");
+        var productName = this.menu_array[productArr].name;
+        var productImage = this.menu_array[productArr].image;
+
+        var details = {
+            image: productImage,
+            name: productName, 
+            price: productPrice 
+          }
+          console.log(details);
+        
+          if (productName && productPrice) {
+            this.cartItems.push({ image: productImage, name: productName, price: productPrice });
+            this.updateCart();
+          }
+    }
+
+    updateCart() {
+        const cartItemsList=document.getElementById('cart-items');
+        cartItemsList.innerHTML = "";
+        let total = 0;
+        console.log(this.cartItems)
+        this.cartItems.forEach(item => {
+            const li = document.createElement('tr');
+            li.innerHTML = `\
+                                <tr>\
+                                    <td>\
+                                        <img src="./../images/menu/${item.image}" style="width:100px; height:60px;">\
+                                    </td>\
+                                    <td>\
+                                        <h3>${item.name}</h3>\
+                                    </td>\
+                                    <td>\
+                                        <h3>$${item.price}</h3>\
+                                    </td>\
+                                </tr>\
+                            </table>`;
+            console.log(li);
+            cartItemsList.appendChild(li);
+            var itemprice = parseInt(item.price);
+            var totalprice = parseInt(total);
+            total = totalprice + itemprice;
+       });
+       this.cartTotalSpan.textContent = `$${total}`;
+       this.cartModal.style.display = 'block';
+    }
     
 }
 

@@ -112,6 +112,50 @@ class Seatmap {
           }
         })
       }
+
+      // for booking 
+      getUnbookedSMTable(sm, callback){
+        var sql = "SELECT * FROM poppinpass.seatmap WHERE roomnumber = ? AND avaliability = 'active'";
+
+        return db.query(sql, [sm.roomnumber], callback);
+    }
+
+    getUnbookedSM(request, respond) {
+        var SMDeets = {
+          "roomnumber":request.body.roomnumber
+        }
+    
+        seatmap.getUnbookedSMTable(SMDeets,(error,result) => {
+          if (error || result.length == 0) {
+            respond.json(error);
+    
+          } else {
+            respond.json(result);
+          }
+        })
+      }
+
+      bookedSMTable(sm, callback) {
+        var sql = "UPDATE poppinpass.seatmap SET  `avaliability` = 'Booked' WHERE _id = ?";
+
+        return db.query(sql, [sm._id], callback);
+    }
+
+    bookedSM(request, respond) {
+        var SMDetails = {
+            "_id": parseInt(request.params._id),
+          }
+    
+          seatmap.bookedSMTable(SMDetails, function(error, result){
+            if (error) {
+                respond.json(error);
+                console.log(error);
+            } else {
+                respond.json(result);
+                console.log(SMDetails);
+            }
+        });
+      }
 }
 const seatmap = new Seatmap;
 module.exports = Seatmap;

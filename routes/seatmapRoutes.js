@@ -11,11 +11,14 @@ class SmRoutes{
         
 
         app.route("/seatmap/:_id")
-        .put(sm.updateSM)
+        .put(sm.bookedSM)
         .delete(sm.deleteSM);
 
         app.route('/seatmaps')
         .post(sm.addSM);
+
+        app.route("/smbooking")
+        .post(sm.getUnbookedSM);
     }
 
 }

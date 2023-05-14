@@ -197,6 +197,45 @@ class Ticket {
     closeUpdateTicketModal(){
         document.getElementById("updateTickettable").style.display ="none";
     }
+
+    fetchTicketType2()
+    {
+        const request = new XMLHttpRequest();
+        request.open("GET", this.ticketUrl, true);
+        console.log(request);
+        request.onload = () => {
+            // Get all the movies records into our movie array
+            this.ticket_array = JSON.parse(request.responseText);
+            console.log(this.ticket_array);
+            // Call the function to display all movies tiles for "Now Showing"
+            this.displayTicketType2();
+          };
+
+          request.send();
+    }
+
+    displayTicketType2()
+    {
+        const table = document.getElementById("TicketType");
+        let mtCount = 0;
+        let message = "";
+        table.innerHTML = "";
+        const totalmt = this.ticket_array.length;
+        
+        for (let count = 0; count < totalmt; count++)
+        {
+            const id = this.ticket_array[count]._id;
+            const name = this.ticket_array[count].name;
+            const age = this.ticket_array[count].age;
+            const price = this.ticket_array[count].price;
+            const cell = '<option value="'+name+'">'+name+'</option>\
+                            <option id="ticketPrice1" value="'+price+'" style="display:none;">'+price+'</option>'
+            
+            table.insertAdjacentHTML("beforeend", cell);
+            mtCount++;    
+        }
+
+    }
 }
 
 const ticket = new Ticket("/movieticket");

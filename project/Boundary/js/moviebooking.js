@@ -9,23 +9,57 @@ function check4LoginMovie(){
     // else 
    //  {
         document.getElementById('movieModal').style.display="none";
+        var movietitle = document.getElementById("movieTitle").innerHTML;
+        movietitle1 = movietitle.trim();
+        console.log(movietitle1);
+        var picture = document.getElementById("moviePoster").src;
+        var fileName = picture.substring(picture.lastIndexOf('/')+1);
+        fileName = fileName.replace(/%20/g, ' ');
+        document.getElementById("bookingPoster").src='./../images/products/' + fileName;
+        document.getElementById("summaryPoster").src='./../images/products/' + fileName;
+        // allSpacesRemoved = movietitle.replaceAll(' ', '');
+        
+       
         bookMoviePage();
-        screentime.fetchScreenTime4Cust();
+        screentime.fetchScreenTime4Cust(movietitle1);
     // }
 }
 
 function viewTicketType(){
     document.getElementById('bookST').style.display="none";
-    document.getElementById('bookTicketType').style.display="block";   
+    document.getElementById('bookTicketType').style.display="block";
+    var time =document.getElementById('ticketDay').innerHTML;
+    var day = document.getElementById('StTime').innerHTML;
+
+    document.getElementById('summaryDay').innerHTML = day;
+    document.getElementById('summaryTime').innerHTML= time;
+
+    ticket.fetchTicketType2();
 }
 
 function viewSeatMap(){
     document.getElementById('bookTicketType').style.display="none";
-    document.getElementById('bookSeatMap').style.display="block";   
+    document.getElementById('bookSeatMap').style.display="block";
+
+    var TicketType = document.getElementById("TicketType").value;
+    var quantity = document.getElementById("quant").value;
+    var price = document.getElementById("ticketPrice1").innerHTML;
+    console.log(price);
+    
+    var intValue = parseInt(price.substring(1)); // 7
+
+    document.getElementById("summaryType").innerHTML = TicketType;
+    document.getElementById("summaryQuantity").innerHTML = quantity;
+    document.getElementById("summaryPrice").innerHTML = '$'+quantity*intValue;
+
+    roomnum = document.getElementById("bookRoomName").innerHTML;
+    seatmap.getRoomSeats4Cust(roomnum);
 }
+
 function viewSummary(){
     document.getElementById('bookSeatMap').style.display="none";
-    document.getElementById('movieBookingSum').style.display="block";   
+    document.getElementById('movieBookingSum').style.display="block";
+
 }
 
 function createTable() {

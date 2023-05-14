@@ -46,6 +46,28 @@ class ScreenTime {
     });
   }
 
+viewCertainScreenTimeTable(screentime, callback){
+  var sql = "SELECT * FROM poppinpass.screentime WHERE title = ?";
+    return db.query(sql, [screentime.movietitle],callback);
+}
+
+
+viewCertainScreenTime(request, respond){
+  console.log( "screentime_"+ request.body.movietitle);
+  const stDetails = {
+    movietitle: request.body.movietitle
+  };
+
+  console.log()
+  screentime.viewCertainScreenTimeTable(stDetails, (error, result) => {
+    if (error) {
+      respond.json(error);
+    } else {
+      respond.json(result);
+    }
+  });
+}
+  
   // update screen time
   updateScreenTimeTable(screentime, callback) {
     var sql = "UPDATE poppinpass.screentime SET day = ?, time = ? WHERE _id = ?";

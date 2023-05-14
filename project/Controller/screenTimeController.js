@@ -1,6 +1,7 @@
 class ScreenTime {
-    constructor(screentimeUrl) {
+    constructor(screentimeUrl, stbookingUrl) {
       this.screentimeUrl = screentimeUrl;
+      this.stbookingUrl = stbookingUrl;
       this.starray = [];
     }
 
@@ -169,20 +170,27 @@ class ScreenTime {
 
     }
 
-    fetchScreenTime4Cust()
+    fetchScreenTime4Cust(title)
     {
-        const request = new XMLHttpRequest();
-        request.open("GET", this.screentimeUrl, true);
-        console.log(request);
+        
+        const stmoviedeets = {
+            "movietitle": title
+          };
+
+          const request = new XMLHttpRequest();
+          request.open('POST', this.stbookingUrl, true);
+          request.setRequestHeader('Content-Type', 'application/json');
+        
         request.onload = () => {
             // Get all the movies records into our movie array
             this.starray = JSON.parse(request.responseText);
             console.log(this.starray);
+            screentime.displayScreenTime4Cust()
             // Call the function to display all movies tiles for "Now Showing"
-            this.displayScreenTime4Cust();
           };
+          console.log(JSON.stringify(stmoviedeets));
+          request.send(JSON.stringify(stmoviedeets));
 
-          request.send();
     }
 
     displayScreenTime4Cust(){
@@ -196,101 +204,31 @@ class ScreenTime {
         let stCount = 0;
         let message = "";
         table1.innerHTML = "";
-        table2.innerHTML = "";
-        table3.innerHTML = "";
-        table4.innerHTML = "";
-        table5.innerHTML = "";
-        table6.innerHTML = "";
-        table7.innerHTML = "";
         const totalst = this.starray.length;
 
         for (let count = 0; count < totalst; count++)
         {
-            if (this.starray[count].day === "Monday"){
-          
+            document.getElementById("ticketDay").innerHTML = this.starray[count].day;
+            document.getElementById("bookMovieTitle").innerHTML = this.starray[count].title;
+            document.getElementById("summaryTitle").innerHTML = this.starray[count].title;
+            var rm = this.starray[count].roomnumber;
+            var rmtrim = rm.trim();
+            document.getElementById("summaryRoom").innerHTML = rmtrim;
+            document.getElementById("bookRoomName").innerHTML = rmtrim;
+
             const id = this.starray[count]._id;
             const timing = this.starray[count].time;
             const cell = '<td> \
-                                <button item = '+count+' class="button2">'+timing+'</button> \
+                                <button id="StTime" onclick="viewTicketType()" item = '+count+' class="button2">'+timing+'</button> \
                             </td>'
             
             table1.insertAdjacentHTML("beforeend", cell);
             
         }
-        else if (this.starray[count].day === "Tuesday"){
-         
-            const id = this.starray[count]._id;
-            const timing = this.starray[count].time;
-            const cell = '<td> \
-                                <button item = '+count+' class="button2">'+timing+'</button> \
-                            </td>'
-            
-            table2.insertAdjacentHTML("beforeend", cell);
-        }
-        else if (this.starray[count].day === "Wednesday"){
-           
-            const id = this.starray[count]._id;
-            const timing = this.starray[count].time;
-            const cell = '<td> \
-                                <button item = '+count+' class="button2">'+timing+'</button> \
-                            </td>'
-            
-            table3.insertAdjacentHTML("beforeend", cell);
-        }
-        else if (this.starray[count].day === "Thursday"){
-          
-            const id = this.starray[count]._id;
-            const timing = this.starray[count].time;
-            const cell = '<td> \
-                                <button item = '+count+' class="button2">'+timing+'</button> \
-                            </td>'
-            
-            table4.insertAdjacentHTML("beforeend", cell);
-        }
-        else if (this.starray[count].day === "Friday"){
-            
-            const id = this.starray[count]._id;
-            const timing = this.starray[count].time;
-            const cell = '<td> \
-                                <button item = '+count+' class="button2">'+timing+'</button> \
-                            </td>'
-            
-            table5.insertAdjacentHTML("beforeend", cell);
-        }
-        else if (this.starray[count].day === "Saturday"){
-            
-            const id = this.starray[count]._id;
-            const timing = this.starray[count].time;
-            const cell = '<td> \
-                                <button item = '+count+' class="button2">'+timing+'</button> \
-                            </td>'
-            
-            table6.insertAdjacentHTML("beforeend", cell);
-        }
-        else if (this.starray[count].day === "Sunday"){
-
-            const id = this.starray[count]._id;
-            const timing = this.starray[count].time;
-            var time = String(timing);
-            
-            const cell = '<td> \
-                                <button item="'+count+'" class="button2" onclick="screentime.storeTime(this);">'+timing+'</button> \
-                            </td>'
-            
-            table7.insertAdjacentHTML("beforeend", cell);
-        }
-        stCount++;
-            
-    }
-
-    }
-
-    storeTime(currentIndex){
-        var item = currentIndex.getAttribute("item");
-        document.getElementById("summaryTime").innerHTML = this.starray[item].time;
-        console.log(this.starray[item].time);
+       
+        stCount++;          
     }
 }
 
-const screentime = new ScreenTime("/screentime");
+const screentime = new ScreenTime("/screentimes", "/screentiming");
 console.log(screentime.screentimeUrl);

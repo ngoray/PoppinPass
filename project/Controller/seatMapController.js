@@ -1,7 +1,9 @@
 class SeatMap {
-  constructor(smUrl, smUrl2) {
+  constructor(smUrl, smUrl2, smUrl4cust) {
     this.smUrl = smUrl;
     this.smUrl2 = smUrl2; 
+    this.smUrl4cust = smUrl4cust;
+    this.booked = [];
     this.smarray = [];
     this.row1 = "A";
     this.row2 = "B";
@@ -180,7 +182,7 @@ class SeatMap {
 
   suspendSM(currentIndex){
     console.log("suspendsm has been called");
-    var response = confirm("Are you sure you want to deactivate your account?");
+    var response = confirm("Are you sure you want to suspend this seat?");
     if (response == true) {
     
     var id = currentIndex.getAttribute("id");
@@ -228,15 +230,6 @@ class SeatMap {
       seatmap.addSM(element);
       document.getElementById(id).style.backgroundColor = "green";
     }
-    // else if (colour == "green") {
-    //   seatmap.fetchSM(element);
-    //   document.getElementById(id).style.backgroundColor = "red";
-    // }
-    // else if (colour == "red") {
-    //   console.log("caall function3");
-    //   document.getElementById(id).style.backgroundColor = "rgb(255, 130, 6)";
-    // }
-
   }
 
   fetchSM() {
@@ -300,6 +293,184 @@ class SeatMap {
     
   }
 
+  getRoomSeats4Cust(roomnum)
+  {
+    var roomm = roomnum;
+    console.log("roomnum: "+ roomnum);
+    const grs = new XMLHttpRequest();
+    grs.open('POST', this.smUrl4cust, true);   
+    
+    const smData = {
+      "roomnumber": roomm
+    }
+    console.log("Data: "+ JSON.stringify(smData));
+    grs.setRequestHeader("Content-Type", "application/json");
+    grs.onload = () =>{
+      this.smarray = JSON.parse(grs.responseText);
+      console.log(grs.responseText);
+      console.log("ok");
+      console.log(this.smarray);
+      this.displayRowA4Cust(this.row1);
+      this.displayRowB4Cust(this.row2);
+      this.displayRowC4Cust(this.row3);
+      this.displayRowD4Cust(this.row4);
+      this.displayRowE4Cust(this.row5);
+
+
+    }
+    console.log(smData);
+    grs.send(JSON.stringify(smData));
+  }
+
+  displayRowA4Cust(row1) {
+    const table = document.getElementById("BrowA");
+    let RowCount = 0;
+    let message = "";
+
+    table.innerHTML = "";
+    const totalRow = this.smarray.length;
+
+    for (let count = 0; count < totalRow; count++) {
+      if (this.smarray[count].row === row1) {
+        const seatno = this.smarray[count].seatno;
+        const row = this.smarray[count].row;
+        const id = this.smarray[count]._id;
+        const cell =
+          '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+
+        table.insertAdjacentHTML("beforeend", cell);
+        RowCount++;
+      }
+    }
+  }
+
+  displayRowB4Cust(row2) {
+    const table = document.getElementById("BrowB");
+    let RowCount = 0;
+    let message = "";
+
+    table.innerHTML = "";
+    const totalRow = this.smarray.length;
+
+    for (let count = 0; count < totalRow; count++) {
+      if (this.smarray[count].row === row2) {
+        const seatno = this.smarray[count].seatno;
+        const row = this.smarray[count].row;
+        const id = this.smarray[count]._id;
+        const cell =
+        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+
+        table.insertAdjacentHTML("beforeend", cell);
+        RowCount++;
+      }
+    }
+  }
+
+  displayRowC4Cust(row3) {
+    const table = document.getElementById("BrowC");
+    let RowCount = 0;
+    let message = "";
+
+    table.innerHTML = "";
+    const totalRow = this.smarray.length;
+
+    for (let count = 0; count < totalRow; count++) {
+      if (this.smarray[count].row === row3) {
+        const seatno = this.smarray[count].seatno;
+        const row = this.smarray[count].row;
+        const id = this.smarray[count]._id;
+        const cell =
+        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+
+        table.insertAdjacentHTML("beforeend", cell);
+        RowCount++;
+      }
+    }
+  }
+
+  displayRowD4Cust(row4) {
+    const table = document.getElementById("BrowD");
+    let RowCount = 0;
+    let message = "";
+
+    table.innerHTML = "";
+    const totalRow = this.smarray.length;
+
+    for (let count = 0; count < totalRow; count++) {
+      if (this.smarray[count].row === row4) {
+        const seatno = this.smarray[count].seatno;
+        const row = this.smarray[count].row;
+        const id = this.smarray[count]._id;
+        const cell =
+        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+
+        table.insertAdjacentHTML("beforeend", cell);
+        RowCount++;
+      }
+    }
+  }
+
+  displayRowE4Cust(row5) {
+    const table = document.getElementById("BrowE");
+    let RowCount = 0;
+    let message = "";
+
+    table.innerHTML = "";
+    const totalRow = this.smarray.length;
+
+    for (let count = 0; count < totalRow; count++) {
+      if (this.smarray[count].row === row5) {
+        const seatno = this.smarray[count].seatno;
+        const row = this.smarray[count].row;
+        const id = this.smarray[count]._id;
+
+        const cell =
+        '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this);" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+
+        table.insertAdjacentHTML("beforeend", cell);
+        RowCount++;
+      }
+    }
+  }
+
+  updateSM(currentIndex){
+    
+    var id = currentIndex.getAttribute("id");
+    var name = currentIndex.getAttribute("try");
+    document.getElementById(id).style.backgroundColor = "green";
+
+    
+    // var seatclicked = this.smarray[currentIndex].seatno;
+    var seatnobooking = document.getElementById('summarySeat');
+
+    var id1 = parseInt(id);
+    var currentIndex = -1;
+    for (var i = 0; i < this.smarray.length; i++) {
+        if (id1 == this.smarray[i]._id) {   
+        currentIndex = i;
+        break; // Exit the loop once a match is found
+     }
+    }
+    console.log("THE ID OF CURENT INDEX IS: "+ this.smarray[currentIndex]._id);
+
+    console.log("seatno: "+name);
+    var bookedSM_url = this.smUrl + "/" + id;
+
+    const susSM = new XMLHttpRequest();
+    susSM.open("PUT", bookedSM_url, true);
+
+    seatnobooking.innerHTML = seatnobooking.innerHTML +' '+name;
+    console.log(seatnobooking.innerHTML);
+
+    susSM.onload = function () {
+  
+      // document.getElementById("summarySeat").innerHTML = this.smarray[currentIndex].seatno;
+
+  };
+  susSM.send();
+
+
+}
 }
 
-const seatmap = new SeatMap("/seatmap", "/seatmaps");
+const seatmap = new SeatMap("/seatmap", "/seatmaps", "/smbooking");
