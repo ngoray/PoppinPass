@@ -336,7 +336,7 @@ class SeatMap {
         const row = this.smarray[count].row;
         const id = this.smarray[count]._id;
         const cell =
-          '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+          '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this); >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
 
         table.insertAdjacentHTML("beforeend", cell);
         RowCount++;
@@ -358,7 +358,7 @@ class SeatMap {
         const row = this.smarray[count].row;
         const id = this.smarray[count]._id;
         const cell =
-        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+        '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this); >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
 
         table.insertAdjacentHTML("beforeend", cell);
         RowCount++;
@@ -380,7 +380,7 @@ class SeatMap {
         const row = this.smarray[count].row;
         const id = this.smarray[count]._id;
         const cell =
-        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+        '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this);" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
 
         table.insertAdjacentHTML("beforeend", cell);
         RowCount++;
@@ -402,7 +402,7 @@ class SeatMap {
         const row = this.smarray[count].row;
         const id = this.smarray[count]._id;
         const cell =
-        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+        '<button item="' + count +'" class="mapbtn"  try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this); >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
 
         table.insertAdjacentHTML("beforeend", cell);
         RowCount++;

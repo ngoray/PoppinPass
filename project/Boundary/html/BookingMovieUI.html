@@ -1,14 +1,15 @@
 <div style="display: none; background-color: rgba(43, 44, 44, 0.648); width: 100%;" id="bookingpage">
-    <table width="100%" id="bookST">
+    <table width="100%"id="bookST">
         <tr>
-            <td rowspan="5">
-                <button class="button" onclick="" style="width: 30%; float: left;">Back</button>
+            <td width="10%">
+                <button class="button" style="background-color: #33333300;" onclick="returnHome()"><div class="imge"></div></button>
+            </td>
+            <td>
                 <center><h1 id="bookMovieTitle">Movie Title</h1>
                     <img id="bookingPoster" src="./../../images/products/pony_poster.jpg" style="margin: 20px 20px;"/>
                 </center>
             </td>
-
-            <td>
+            <td width="40%">
                 <h3 id="ticketDay">Empty</h3>
                 <table id = "monday">
                         <td>
@@ -20,10 +21,6 @@
     
                 </table>
             </td>
-        </tr>
-        <tr>
-                <td></td>
-                <!-- <td><button class="button" onclick="viewTicketType()" style="width: 100%;">Next</button></td> -->
         </tr>
     </table>
     <div id="bookTicketType" style="display: none;">
@@ -143,7 +140,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <button class="button" onclick="viewSummary()" style="border-radius: 25px; float: right;">Next</button>
+                <button class="button" onclick="viewMenu()" style="border-radius: 25px; float: right;">Next</button>
             </td>
         </tr>
     </table>
@@ -151,89 +148,116 @@
 
 <div id="movieBookingSum" style="display: none;">
 
-    <table class="center">
-        <tr>
-            <td colspan="2">
-                <h1>Booking Summary</h1>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <img id="summaryPoster" src="./../../images/products/Ah Boys To Men 4.jpg">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Title:</label>
-            </td>
-            <td>
-                <label id="summaryTitle">empty</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Room:</label>
-            </td>
-            <td>
-                <label id="summaryRoom">empty</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Seat:</label>
-            </td>
-            <td>
-                <label id="summarySeat"></label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Screen Time:</label>
-            </td>
-            <td>
-                <label id="summaryTime">empty</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Day:</label>
-            </td>
-            <td>
-                <label id="summaryDay">empty</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Ticket Type:</label>
-            </td>
-            <td>
-                <label id="summaryType">empty</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Quantity:</label>
-            </td>
-            <td>
-                <label id="summaryQuantity">empty</label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label>Total Price:</label>
-            </td>
-            <td>
-                <label id="summaryPrice">empty</label>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div style="float: right;">
-                    <button class="button" style="width: 100%;" id="summaryAdd2Cart">Add to Cart</button>
-                </div>
-            </td>
-        </tr>
-    </table>
+                <table class="center">
+                    <tr>
+                        <td colspan="2">
+                            <h1>Booking Summary</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <img id="summaryPoster" src="./../../images/products/Ah Boys To Men 4.jpg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Title:</label>
+                        </td>
+                        <td>
+                            <label id="summaryTitle">empty</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Room:</label>
+                        </td>
+                        <td>
+                            <label id="summaryRoom">empty</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Seat:</label>
+                        </td>
+                        <td>
+                            <label id="summarySeat"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Day:</label>
+                        </td>
+                        <td>
+                            <label id="summaryTime">empty</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Screen Time:</label>
+                        </td>
+                        <td>
+                            <label id="summaryDay">empty</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Ticket Type:</label>
+                        </td>
+                        <td>
+                            <label id="summaryType">empty</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Quantity:</label>
+                        </td>
+                        <td>
+                            <label id="summaryQuantity">empty</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Food:</label>
+                        </td>
+                        <td>
+                            <label id="summaryFood">empty</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Current Points:</label>
+                        </td>
+                        <td>
+                            <label id="summaryPoints">empty</label>
+                        </td>
+                        <td>
+                            <label>Redeem Point</label>
+                            <label class="switch">
+                                <input onclick="handleCheckboxClick(event)" type="checkbox">
+                                <span class="slider round"></span>
+                              </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Total Price:</label>
+                        </td>
+                        <td>
+                            <label id="summaryPrice">empty</label>
+                            <label style="display: none;" id="summaryPru">empty</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><br><br></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <div style="float: right;">
+                                <button class="button" style="width: 100%;" onclick="transactionhistory.addTransactionHistory()" id="summaryAdd2Cart">Check Out</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
 </div>
 </div>

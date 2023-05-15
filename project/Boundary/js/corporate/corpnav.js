@@ -25,3 +25,13 @@ function corpCancel(){
     document.getElementById("corploggout1").style.display ="none";
     
 }
+
+window.onbeforeunload = function() {
+    myFunction();
+  };
+
+  function myFunction() {
+    // Your code here
+    console.log("Page is being refreshed or unloaded");
+    sessionStorage.clear();
+  }

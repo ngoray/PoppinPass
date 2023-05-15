@@ -181,14 +181,14 @@ loginUser() {
   loginUser.setRequestHeader("Content-Type", "application/json");
   loginUser.onload = function () {
   const output = JSON.parse(loginUser.responseText);
+  console.log(JSON.stringify(output));
   if (output.token) {
     sessionStorage.setItem("token", output.token);
     sessionStorage.setItem("name", output.name);
     sessionStorage.setItem("email", output.email);
+    sessionStorage.setItem("loyaltypoints", output.loyaltypoints);
     console.log(username);
     document.getElementById("userProfileNameHeader").innerHTML = name;
-    document.getElementById("userProfileName").innerHTML = name;
-    document.getElementById("userProfileEmail").innerHTML = output.email;
   if (output.status == "suspended")
   {
     alert("this account has been suspended")
@@ -199,6 +199,9 @@ loginUser() {
   }
   else{
     alert("Welcome "+ name);
+    document.getElementById("userProfileName").innerHTML = name;
+    document.getElementById("userProfileEmail").innerHTML = output.email;
+    document.getElementById("userProfilePoints").innerHTML = output.loyaltypoints;
     document.getElementById("loginname").value ="";
     document.getElementById("loginpw").value ="";
                   
@@ -211,8 +214,11 @@ loginUser() {
 
     document.getElementById("feedback").classList.remove("active");
     document.getElementById("movie").classList.remove("active");
-    document.getElementById("menu").classList.remove("active");
+    // document.getElementById("menu").classList.remove("active");
     document.getElementById("uProfile").classList.add("active");
+
+    var currentName = sessionStorage.getItem("name");
+    transactionhistory.fetchTransactionHistory(currentName);
                   
     // customer.showCustProfile(this);
     $("#customercontent").fadeIn()

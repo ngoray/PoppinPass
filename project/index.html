@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="./Boundary/css/movie.css">
 <link rel="stylesheet" href="./Boundary/css/movieslideshow.css">
 <link rel="stylesheet" href="./Boundary/css/cart.css">
+<link rel="stylesheet" href="./Boundary/css/checkbox.css">
 
 <link rel="stylesheet" href="./Boundary/css/navbar.css">
 <link rel="stylesheet" href="./Boundary/css/feedback.css">
@@ -28,7 +29,7 @@
 
     <div w3-include-html="./Boundary/html/CustomerLoginUI.html"></div>
     <div w3-include-html="./Boundary/html/CustomerSignUpUI.html"></div>
-    <div w3-include-html="./Boundary/html/CustomerEditPasswordUI.html"></div>
+    <div w3-include-html="./Boundary/html/CustomerForgetPasswordUI.html"></div>
 
     <div w3-include-html="./Boundary/html/movie-modal.html"></div>
     <div id="slideshow"  style="background-color: #33333381;">
@@ -67,7 +68,7 @@
         <div w3-include-html="./Boundary/html/movie.html"></div>
         <div w3-include-html="./Boundary/html/menu.html"></div>
 
-        <div id="cart-modal" class="modal">
+        <!-- <div id="cart-modal" class="modal">
             <div class="container" style="background-color: rgb(255, 130, 6)">
                 <span style="color: white"><b>Cart</b></span>
                 <a href="#" style="color: white;position: relative; left: 95%;text-decoration:none;" onclick="ccloseModal()"><font size="5">&times;</font></a>
@@ -75,20 +76,24 @@
 
                 <div class="container" style="background-color: #333; width: 100%; height: auto;">
                     <table  id="cart-items" width="70%">
-                        <tr>
-                            <td colspan="3">
-                                <span style="float: right;"><h3>Total: <span id="cart-total"></span></h3></span>
-                            </td>
-                        </tr>
                     </table>
                 </div>
 
-            <div class="container" width="100%" style="background-color: rgb(255, 130, 6)">
-                <button class="button4"> </button>
-                <button class="button2" style="float: right;">Check Out</button>
-                
+            <div class="container" width="100%" style="background-color: #333">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <span style="float: left;"><h3>Total: <span id="cart-total"></span></h3></span>
+                        </td>
+                        <td>
+                            <button class="button2" style="float: right;width: 150px;height: 55px;background-color: rgb(255, 130, 6)">Check Out</button>
+                        </td>
+                    </tr>
+                </table>
               </div>
-          </div>
+          </div> -->
+
+
           <div w3-include-html="./Boundary/html/BookingMovieUI.html"></div>
 
         <div w3-include-html="./Boundary/html/ReviewUI.html"></div>
@@ -136,6 +141,7 @@
 <script src="./Controller/screenTimeController.js"></script>
 <script src="./Controller/userprofileController.js"></script>
 <script src="./Controller/useraccountController.js"></script>
+<script src="./Controller/transactionHistoryController.js"></script>
 
 
 <!-- Corporate Page Functions -->

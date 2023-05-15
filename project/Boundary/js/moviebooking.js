@@ -1,13 +1,18 @@
 let timebooked = [];
 
+function returnHome(){
+    document.getElementById('bookingpage').style.display="none";
+    moviePage();
+}
+
 function check4LoginMovie(){
-  //  if (sessionStorage.getItem("name") === null){
-   //     alert("PLS LOGIN TO CONTINUE");
-   //    document.getElementById('movieModal').style.display="none";
-   //      document.getElementById('id01').style.display="block";
-   //  }
-    // else 
-   //  {
+   if (sessionStorage.getItem("name") === null){
+       alert("PLS LOGIN TO CONTINUE");
+      document.getElementById('movieModal').style.display="none";
+        document.getElementById('id01').style.display="block";
+    }
+    else 
+    {
         document.getElementById('movieModal').style.display="none";
         var movietitle = document.getElementById("movieTitle").innerHTML;
         movietitle1 = movietitle.trim();
@@ -22,11 +27,12 @@ function check4LoginMovie(){
        
         bookMoviePage();
         screentime.fetchScreenTime4Cust(movietitle1);
-    // }
+    }
 }
 
 function viewTicketType(){
     document.getElementById('bookST').style.display="none";
+    $("#bookTicketType").fadeIn()
     document.getElementById('bookTicketType').style.display="block";
     var time =document.getElementById('ticketDay').innerHTML;
     var day = document.getElementById('StTime').innerHTML;
@@ -34,11 +40,16 @@ function viewTicketType(){
     document.getElementById('summaryDay').innerHTML = day;
     document.getElementById('summaryTime').innerHTML= time;
 
+    var lp = sessionStorage.getItem("loyaltypoints");
+    console.log("lp: " + lp);
+    document.getElementById("summaryPoints").innerHTML = lp;
+
     ticket.fetchTicketType2();
 }
 
 function viewSeatMap(){
     document.getElementById('bookTicketType').style.display="none";
+    $("#bookSeatMap").fadeIn()
     document.getElementById('bookSeatMap').style.display="block";
 
     var TicketType = document.getElementById("TicketType").value;
@@ -56,8 +67,17 @@ function viewSeatMap(){
     seatmap.getRoomSeats4Cust(roomnum);
 }
 
-function viewSummary(){
+function viewMenu(){
+    menu.getSnacks();
     document.getElementById('bookSeatMap').style.display="none";
+    $("#menupage").fadeIn()
+    document.getElementById('menupage').style.display="block";
+
+}
+
+function viewSummary(){
+    document.getElementById('menupage').style.display="none";
+    $("#movieBookingSum").fadeIn()
     document.getElementById('movieBookingSum').style.display="block";
 
 }
@@ -80,3 +100,38 @@ function bookingtiming(time){
     console.log("booking called")
     sessionStorage.setItem("timingbooked", time);
 }
+
+function handleCheckboxClick(event) {
+    var checkbox = event.target;
+    if (checkbox.checked) {
+        var points = parseInt(sessionStorage.getItem("loyaltypoints"));
+        var currentPT = parseInt(document.getElementById('summaryPoints').innerHTML);
+        
+        if (currentPT >= 100){
+            console.log("Checkbox is checked");
+            alert("checked");
+            document.getElementById('movieBookingSum').style.display="none"
+            document.getElementById("summaryPrice").innerHTML = "FREE (points redeemed)";
+            newPT = currentPT - 100;
+            document.getElementById("summaryPoints").innerHTML = newPT;
+            $("#movieBookingSum").fadeIn()
+            document.getElementById('movieBookingSum').style.display="block";
+            checkbox.checked;
+        }else if (points < 100){
+            checkbox.checked = false;
+            alert("HAHA LOSER")
+        }
+
+    }
+    else if (checkbox.checked == false){
+            alert("points has been returned");
+            document.getElementById("summaryPoints").innerHTML = newPT + 100;
+            document.getElementById("summaryPrice").innerHTML = document.getElementById("summaryPru").innerHTML;
+
+            document.getElementById('movieBookingSum').style.display="none";
+            $("#movieBookingSum").fadeIn()
+            document.getElementById('movieBookingSum').style.display="block";
+    }
+  }
+
+  

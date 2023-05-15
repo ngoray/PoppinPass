@@ -274,7 +274,7 @@ displayDrinks(Drinks) {
                           <td><h3>Small: </h3></td>\
                           <td><label>$</label><label id="product-price">'+smallprice+'</label></td>\
                           <td>\
-                          <button onclick="menu.add2Cart(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
+                          <button onclick="menu.add2sum(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
                               <img item2="'+count+'" item='+smallprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                           </button>\
                         </td>\
@@ -283,7 +283,7 @@ displayDrinks(Drinks) {
                           <td><h3>Medium: </h3></td>\
                           <td><label>$</label><label>'+mediumprice+'</label></td>\
                           <td>\
-                          <button onclick="menu.add2Cart(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
+                          <button onclick="menu.add2sum(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
                               <img item2="'+count+'" item='+mediumprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                           </button>\
                         </td>\
@@ -292,7 +292,7 @@ displayDrinks(Drinks) {
                           <td><h3>Large: </h3></td>\
                           <td><label>$</label><label>'+largeprice+'</label></td>\
                           <td>\
-                          <button onclick="menu.add2Cart(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
+                          <button onclick="menu.add2sum(event)" class="smartbtn" item = '+count+' style="background-color:#333333a0;float: right;">\
                               <img item2="'+count+'" item='+largeprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                           </button>\
                         </td>\
@@ -350,7 +350,7 @@ displaySnacks(Snacks) {
                           <td><h3>Small: </h3></td>\
                           <td><label>$</label><label>'+smallprice+'</label></td>\
                           <td>\
-                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
+                            <button onclick="menu.add2sum(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
                                 <img item2="'+count+'" item='+smallprice+' src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;">\
                             </button>\
                           </td>\
@@ -359,7 +359,7 @@ displaySnacks(Snacks) {
                           <td><h3>Medium: </h3></td>\
                           <td><label>$</label><label>'+mediumprice+'</label></td>\
                           <td>\
-                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0; float: right;">\
+                            <button onclick="menu.add2sum(event)" item = '+count+' style="background-color:#333333a0; float: right;">\
                                 <img item2="'+count+'" item='+mediumprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                             </button>\
                           </td>\
@@ -368,7 +368,7 @@ displaySnacks(Snacks) {
                           <td><h3>Large: </h3></td>\
                           <td><label>$</label><label>'+largeprice+'</label></td>\
                           <td>\
-                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0; float: right;">\
+                            <button onclick="menu.add2sum(event)" item = '+count+' style="background-color:#333333a0; float: right;">\
                                 <img item2="'+count+'" item='+largeprice+' src="./../images/addcart.png" style="float: right; width: 40px; height: 40px;">\
                             </button>\
                           </td>\
@@ -427,7 +427,7 @@ displaySnacks(Snacks) {
                           <td><h3>Small: </h3></td>\
                           <td><label>$</label><label>'+smallprice+'</label></td>\
                           <td>\
-                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
+                            <button onclick="menu.add2sum(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
                                 <img item2="'+count+'" item = '+smallprice+' src="./../images/addcart.png" style="right; width: 40px; height: 40px;">\
                             </button>\
                           </td>\
@@ -436,7 +436,7 @@ displaySnacks(Snacks) {
                           <td><h3>Medium: </h3></td>\
                           <td><label>$</label><label>'+mediumprice+'</label></td>\
                           <td>\
-                          <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
+                          <button onclick="menu.add2sum(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
                               <img item2="'+count+'" item = '+mediumprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                           </button>\
                         </td>\
@@ -445,7 +445,7 @@ displaySnacks(Snacks) {
                           <td><h3>Large: </h3></td>\
                           <td><label>$</label><label>'+largeprice+'</label></td>\
                           <td>\
-                            <button onclick="menu.add2Cart(event)" item = '+count+' style="background-color:#333333a0;float: right;">\
+                            <button onclick="menu.add2sum(this)" item = '+count+' style="background-color:#333333a0;float: right;">\
                                 <img item2="'+count+'" item='+largeprice+' src="./../images/addcart.png" style="width: 40px; height: 40px;">\
                             </button>\
                           </td>\
@@ -459,56 +459,79 @@ displaySnacks(Snacks) {
             }
     }
 
-    add2Cart(event){
-        var button = event.target;
-        console.log(button);
-        var productArr = button.getAttribute("item2");
-        var productPrice = button.getAttribute("item");
-        var productName = this.menu_array[productArr].name;
-        var productImage = this.menu_array[productArr].image;
+    // add2Cart(event){
+    //     var button = event.target;
+    //     console.log(button);
+    //     var productArr = button.getAttribute("item2");
+    //     var productPrice = button.getAttribute("item");
+    //     var productName = this.menu_array[productArr].name;
+    //     var productImage = this.menu_array[productArr].image;
 
-        var details = {
-            image: productImage,
-            name: productName, 
-            price: productPrice 
-          }
-          console.log(details);
+    //     var details = {
+    //         image: productImage,
+    //         name: productName, 
+    //         price: productPrice 
+    //       }
+    //       console.log(details);
         
-          if (productName && productPrice) {
-            this.cartItems.push({ image: productImage, name: productName, price: productPrice });
-            this.updateCart();
-          }
-    }
+    //       if (productName && productPrice) {
+    //         this.cartItems.push({ image: productImage, name: productName, price: productPrice });
+    //         this.updateCart();
+    //       }
+    // }
 
-    updateCart() {
-        const cartItemsList=document.getElementById('cart-items');
-        cartItemsList.innerHTML = "";
-        let total = 0;
-        console.log(this.cartItems)
-        this.cartItems.forEach(item => {
-            const li = document.createElement('tr');
-            li.innerHTML = `\
-                                <tr>\
-                                    <td>\
-                                        <img src="./../images/menu/${item.image}" style="width:100px; height:60px;">\
-                                    </td>\
-                                    <td>\
-                                        <h3>${item.name}</h3>\
-                                    </td>\
-                                    <td>\
-                                        <h3>$${item.price}</h3>\
-                                    </td>\
-                                </tr>\
-                            </table>`;
-            console.log(li);
-            cartItemsList.appendChild(li);
-            var itemprice = parseInt(item.price);
-            var totalprice = parseInt(total);
-            total = totalprice + itemprice;
-       });
-       this.cartTotalSpan.textContent = `$${total}`;
-       this.cartModal.style.display = 'block';
-    }
+    // updateCart() {
+    //     const cartItemsList=document.getElementById('cart-items');
+    //     cartItemsList.innerHTML = "";
+    //     let total = 0;
+    //     console.log(this.cartItems)
+    //     this.cartItems.forEach(item => {
+    //         const li = document.createElement('tr');
+    //         li.innerHTML = `\
+    //                             <tr>\
+    //                                 <td>\
+    //                                     <img src="./../images/menu/${item.image}" style="width:100px; height:60px;">\
+    //                                 </td>\
+    //                                 <td>\
+    //                                     <h3>${item.name}</h3>\
+    //                                 </td>\
+    //                                 <td>\
+    //                                     <h3>$${item.price}</h3>\
+    //                                 </td>\
+    //                             </tr>\
+    //                         </table>`;
+    //         console.log(li);
+    //         cartItemsList.appendChild(li);
+    //         var itemprice = parseInt(item.price);
+    //         var totalprice = parseInt(total);
+    //         total = totalprice + itemprice;
+    //    });
+    //    this.cartTotalSpan.textContent = `$${total}`;
+    //    this.cartModal.style.display = 'block';
+    // }
+
+    add2sum(event){
+     var button = event.target;
+        console.log(button);
+        var totalprice = document.getElementById("summaryPrice").innerHTML;
+        console.log("totalprice: "+ totalprice);
+        var intValue = parseInt(totalprice.substring(1));
+        console.log("totalprice: "+ intValue);
+
+        var productArr = button.getAttribute("item2");
+
+        var productPrice = button.getAttribute("item");
+        var newPrice = parseInt(productPrice);
+        console.log(newPrice);
+        var productName = this.menu_array[productArr].name;
+        document.getElementById("summaryFood").innerHTML = productName;
+        var NEWSUMPRICE = newPrice + intValue;
+        document.getElementById("summaryPrice").innerHTML ='$'+ NEWSUMPRICE;
+        document.getElementById("summaryPru").innerHTML ='$'+ NEWSUMPRICE;
+        
+        viewSummary();
+ }
+
     
 }
 

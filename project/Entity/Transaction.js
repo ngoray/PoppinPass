@@ -4,20 +4,22 @@ class Transaction{
 
     // POST
     viewTransactionTable(transac, callback) {
-        var sql = "SELECT * FROM poppinpass.transactionhistory WHERE name = ?";
+        var sql = "SELECT * FROM poppinpass.transactionhistory WHERE accountname = ?";
 
-        return db.query(sql, [transac.name],callback);
+        return db.query(sql, [transac.accountname],callback);
       }
     
-      viewAllUserProfile(request, respond) {
+      viewTransaction(request, respond) {
+        console.log("IVE BEEN CALLED");
         var transac = {
-            "name":request.body.name
+            "accountname":request.body.accountname
         }
 
         transaction.viewTransactionTable(transac, function (error, result){
             if (error) {
                 respond.json(error);
             } else {
+              console.log(result);
                 respond.json(result);
             }
         });
@@ -46,11 +48,11 @@ class Transaction{
     }
 
     // POST
-    addaddTransactionTable(transac, callback){
+    addTransactionTable(transac, callback){
 
-        var sql = "INSERT INTO poppinpass.movieticket (accountname, movietitle, tickettype, screentime, roomno, seatno, foodname, totalprice, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+        var sql = "INSERT INTO poppinpass.transactionhistory (accountname, movietitle, tickettype, screentime, roomno, seatno, foodname, totalprice, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE)";
         
-        db.query(sql, [movieticket.accountname, movieticket.movietitle, movieticket.tickettype, ], callback);
+        db.query(sql, [transac.accountname, transac.movietitle, transac.tickettype, transac.screentime, transac.roomno, transac.seatno, transac.foodname, transac.totalprice], callback);
     }
 
     addTransaction(request, respond) {
@@ -63,10 +65,9 @@ class Transaction{
           seatno:request.body.seatno,
           foodname:request.body.foodname,
           totalprice:request.body.totalprice,
-          date:request.body.date
         };
     
-        movieticket.addMovieTicketTable(movieTicketDetails, (error, result) => {
+        transaction.addTransactionTable(transacdeets, (error, result) => {
           console.log(result);
     
           if (error) {

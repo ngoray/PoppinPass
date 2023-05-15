@@ -18,13 +18,15 @@ login(request, respond) {
           });
       }
       else {
+        console.log("result[0].loyaltypoints: "+ result[0].loyaltypoints);
           var token = jwt.sign({ "name": result[0].name}, "secretstring",{expiresIn:3000} )
           respond.status(200).json({
               token,    
               "name": result[0].name,
               "email": result[0].email,
-              "status": result[0].status,  
-              "role": result[0].role,            
+              "status": result[0].status,
+              "role": result[0].role,
+              "loyaltypoints": result[0].loyaltypoints,
               "message": "Success"
           });
       }
@@ -37,7 +39,7 @@ login(request, respond) {
         console.log("Email: "+ useraccount.email);
         console.log("Password: "+ useraccount.password);
         console.log("Role: "+ useraccount.role);
-        var sql = "INSERT INTO poppinpass.useraccount (name, email, password, `role`, status) VALUES (?, ?, ?, ?, 'active')";
+        var sql = "INSERT INTO poppinpass.useraccount (name, email, password, `role`, status, loyaltypoints) VALUES (?, ?, ?, ?, 'active', 100)";
         
         db.query(sql, [useraccount.name, useraccount.email, useraccount.password,useraccount.role], callback);
     }

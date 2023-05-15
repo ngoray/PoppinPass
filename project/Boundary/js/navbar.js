@@ -14,61 +14,58 @@ function moviePage() {
     var slide = document.getElementById("slideshow");
 
     x.classList.add("active");
-    y.classList.remove("active");
     z.classList.remove("active");
     w.classList.remove("active");
 
     if (c.style.display == "block") {
         a.style.display="none";
-        b.style.display="none";
         d.style.display="none";
 
     } else {
         $("#moviepage").fadeIn()
         c.style.display="block";
         slide.style.display="block";
-        b.style.display="none";
         a.style.display="none";
         d.style.display="none";
     }
  }
 
- function menuPage() {
-    var w = document.getElementById("uProfile");
-    var d = document.getElementById("customercontent");
+//  function menuPage() {
+//     var w = document.getElementById("uProfile");
+//     var d = document.getElementById("customercontent");
 
-    var x = document.getElementById("movie");
-    var c = document.getElementById("moviepage");
+//     var x = document.getElementById("movie");
+//     var c = document.getElementById("moviepage");
 
-    var y = document.getElementById("menu");
-    var b = document.getElementById("menupage");
+//     var y = document.getElementById("menu");
+//     var b = document.getElementById("menupage");
 
-    var z = document.getElementById("feedback");
-    var a = document.getElementById("feedbackpage");
+//     var z = document.getElementById("feedback");
+//     var a = document.getElementById("feedbackpage");
 
-    var slide = document.getElementById("slideshow");
+//     var slide = document.getElementById("slideshow");
 
-    menu.getSnacks();
+//     menu.getSnacks();
 
-    y.classList.add("active");
-    z.classList.remove("active");
-    x.classList.remove("active");
-    w.classList.remove("active");
+//     y.classList.add("active");
+//     z.classList.remove("active");
+//     x.classList.remove("active");
+//     w.classList.remove("active");
 
 
-    if (b.style.display == "block") {
-        a.style.display="none";
-        c.style.display="none";
-        d.style.display="none";
-    } else {
-        $("#menupage").fadeIn()
-        b.style.display="block";
-        slide.style.display="none";
-        a.style.display="none";
-        c.style.display="none";
-        d.style.display="none";
-    }
- }
+//     if (b.style.display == "block") {
+//         a.style.display="none";
+//         c.style.display="none";
+//         d.style.display="none";
+//     } else {
+//         $("#menupage").fadeIn()
+//         b.style.display="block";
+//         slide.style.display="none";
+//         a.style.display="none";
+//         c.style.display="none";
+//         d.style.display="none";
+//     }
+//  }
 
  function reviewPage() {
     var w = document.getElementById("uProfile");
@@ -77,8 +74,8 @@ function moviePage() {
     var x = document.getElementById("movie");
     var c = document.getElementById("moviepage");
 
-    var y = document.getElementById("menu");
-    var b = document.getElementById("menupage");
+    // var y = document.getElementById("menu");
+    // var b = document.getElementById("menupage");
 
     var z = document.getElementById("feedback");
     var a = document.getElementById("feedbackpage");
@@ -86,19 +83,19 @@ function moviePage() {
     var slide = document.getElementById("slideshow");
 
     z.classList.add("active");
-    y.classList.remove("active");
+    // y.classList.remove("active");
     x.classList.remove("active");
     w.classList.remove("active");
 
     if (a.style.display == "block") {
-        b.style.display="none";
+        // b.style.display="none";
         c.style.display="none";
         d.style.display="none";
     } else {
         $("#feedbackpage").fadeIn()
         a.style.display="block";
         slide.style.display="none";
-        b.style.display="none";
+        // b.style.display="none";
         c.style.display="none";
         d.style.display="none";
 
@@ -114,8 +111,8 @@ function moviePage() {
     var x = document.getElementById("movie");
     var c = document.getElementById("moviepage");
 
-    var y = document.getElementById("menu");
-    var b = document.getElementById("menupage");
+    // var y = document.getElementById("menu");
+    // var b = document.getElementById("menupage");
 
     var z = document.getElementById("feedback");
     var a = document.getElementById("feedbackpage");
@@ -123,20 +120,22 @@ function moviePage() {
     var slide = document.getElementById("slideshow");
 
     w.classList.add("active");
-    y.classList.remove("active");
+    // y.classList.remove("active");
     x.classList.remove("active");
     z.classList.remove("active");
 
+    transactionhistory.fetchTransactionHistory(currentName);
+
     if (d.style.display == "block") {
         a.style.display="block";
-        b.style.display="none";
+        // b.style.display="none";
         c.style.display="none";
     } else {
         $("#customercontent").fadeIn()
         d.style.display="block";
         slide.style.display="none";
         a.style.display="none";
-        b.style.display="none";
+        // b.style.display="none";
         c.style.display="none";
 
         review.fetchReview();

@@ -7,6 +7,7 @@
                 <td>
                     <h3>Username: <label id="userProfileName">Username</label></h3> 
                     <h3>Email: <label id="userProfileEmail">Email</label></h3>
+                    <h3>Points: <label id="userProfilePoints">0</label></h3>
                 </td>
             </tr>
         </table>
@@ -17,14 +18,16 @@
     <h2 style="margin: 20px 150px;">Transaction History</h2>
     <div id="custProfile" class="center" style="background-color: #33333387; width: 80%;">
         <div class="transaction" id="transactionTable" style="width: 100%;">
-            <div style="background-color: #333;">
-              <table>
+            <div  style="background-color: #333;">
+              <table class="center">
                 <tr>
-                  <td><img src="./../images/profile.png" style="padding: 10px;"></td>
-                  <td> 
-                    <h5>Name</h5>
-                    <h5> Comments</h5>
+                  <td>
+                    <h5>ID</h5><h5 id="historyID">asdfghjlk,.</h5>
                   </td>
+                  <td> 
+                    <h5>Date</h5><h5 id="historyDate">20202020220</h5>
+                  </td>
+                  <td><button class="button3" style="float: right;cursor: pointer;"><img src="./../../images/view.png" style="padding: 10px; float: right;"></button></td>
                 </tr>
               </table>
             </div>
