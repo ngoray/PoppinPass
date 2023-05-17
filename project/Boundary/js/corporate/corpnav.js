@@ -35,3 +35,23 @@ window.onbeforeunload = function() {
     console.log("Page is being refreshed or unloaded");
     sessionStorage.clear();
   }
+
+  function handleClick() {
+    try {
+        adminloginaccountcontroller.loginAdminAccount();
+      } catch (error) {
+        throw new Error("First function failed: " + error.message);
+      }
+    
+      try {
+        cinemamanagerloginaccountcontroller.loginManagerAccount();
+      } catch (error) {
+        throw new Error("Second function failed: " + error.message);
+      }
+    
+      try {
+        cinemaownerloginaccountcontroller.loginOwnerAccount();
+      } catch (error) {
+        throw new Error("Third function failed: " + error.message);
+      }
+  }

@@ -2,114 +2,101 @@ var db = require('./../../dbconnection');
 
 class Menu{
     // Create Food Menu
-    addMenuTable(menu, callback){
-
-        console.log("Image: "+ menu.image);
-        console.log("Name: "+ menu.name);
-        console.log("Type: "+ menu.type);
-        console.log("Small: $"+ menu.smallprice);
-        console.log("Medium: $"+ menu.mediumprice);
-        console.log("Large: $"+ menu.largeprice);
-        var sql = "INSERT INTO poppinpass.menu (image, name, type, smallprice, mediumprice, largeprice, availability) VALUES (?, ?, ?, ?, ?, ?, 'active')";
-        
-        db.query(sql, [menu.image,menu.name,menu.type,menu.smallprice,menu.mediumprice,menu.largeprice], callback);
-    }
-
     addMenu(request, respond) {
-        const menudata = {
-            image: request.body.image,
-            name: request.body.name,
-            type: request.body.type,
-            smallprice: request.body.smallprice,
-            mediumprice: request.body.mediumprice,
-            largeprice: request.body.largeprice
+      const menudata = {
+        image: request.body.image,
+        name: request.body.name,
+        type: request.body.type,
+        smallprice: request.body.smallprice,
+        mediumprice: request.body.mediumprice,
+        largeprice: request.body.largeprice
+      };
     
-        };
+      console.log("Image: " + menudata.image);
+      console.log("Name: " + menudata.name);
+      console.log("Type: " + menudata.type);
+      console.log("Small: $" + menudata.smallprice);
+      console.log("Medium: $" + menudata.mediumprice);
+      console.log("Large: $" + menudata.largeprice);
     
-        console.log(menudata);
+      var sql = "INSERT INTO poppinpass.menu (image, name, type, smallprice, mediumprice, largeprice, availability) VALUES (?, ?, ?, ?, ?, ?, 'active')";
     
-        menu.addMenuTable(menudata, (error, result) => {
-          console.log(result);
+      db.query(sql, [menudata.image, menudata.name, menudata.type, menudata.smallprice, menudata.mediumprice, menudata.largeprice], function(error, result) {
+        console.log(result);
     
-          if (error) {
-            respond.json({
-              message: 'Something went wrong',
-              error,
-            });
-          } else {
-            respond.json(result);
-          }
-        });
-      }
+        if (error) {
+          respond.json({
+            message: 'Something went wrong',
+            error,
+          });
+        } else {
+          respond.json(result);
+        }
+      });
+    }
+    
 
     // view Food Menu
-    viewAllMenuTable(callback) {
-        var sql = "SELECT * FROM poppinpass.menu";
-        return db.query(sql, callback);
-    }
-
     viewAllMenu(request, respond) {
-        menu.viewAllMenuTable((error, result) => {
-          if (error) {
-            respond.json(error);
-          } else {
-            respond.json(result);
-          }
-        });
-      }
+      var sql = "SELECT * FROM poppinpass.menu";
+    
+      db.query(sql, function(error, result) {
+        if (error) {
+          respond.json(error);
+        } else {
+          respond.json(result);
+        }
+      });
+    }
+    
 
     // update food Menu
-    updatemenuTable(menu, callback){
-        var sql = "UPDATE poppinpass.menu SET image = ?, name = ?, `type` = ?, smallprice = ?, mediumprice = ?, largeprice = ?, `availability` = ? WHERE _id = ?";
-
-        return db.query(sql, [menu.image,menu.name,menu.type,menu.smallprice,menu.mediumprice,menu.largeprice, menu.availability, menu._id], callback);
-    }
-
     updateMenu(request, respond) {
-        var menuDetails = {
-            "_id": parseInt(request.params._id),
-            "image":request.body.image,
-            "name":request.body.name,
-            "type":request.body.type,
-            "smallprice":request.body.smallprice,
-            "mediumprice":request.body.mediumprice,
-            "largeprice":request.body.largeprice,
-            "availability":request.body.availability
+      var menuDetails = {
+        "_id": parseInt(request.params._id),
+        "image": request.body.image,
+        "name": request.body.name,
+        "type": request.body.type,
+        "smallprice": request.body.smallprice,
+        "mediumprice": request.body.mediumprice,
+        "largeprice": request.body.largeprice,
+        "availability": request.body.availability
+      };
     
-          }
+      var sql = "UPDATE poppinpass.menu SET image = ?, name = ?, `type` = ?, smallprice = ?, mediumprice = ?, largeprice = ?, `availability` = ? WHERE _id = ?";
     
-          menu.updatemenuTable(menuDetails, function(error, result){
-            if (error) {
-                respond.json(error);
-                console.log(error);
-            } else {
-                respond.json(result);
-                console.log(menuDetails);
-            }
-        });
+      db.query(sql, [menuDetails.image, menuDetails.name, menuDetails.type, menuDetails.smallprice, menuDetails.mediumprice, menuDetails.largeprice, menuDetails.availability, menuDetails._id], function(error, result) {
+        if (error) {
+          respond.json(error);
+          console.log(error);
+        } else {
+          respond.json(result);
+          console.log(menuDetails);
+        }
+      });
     }
+    
 
     // Update Suspend
-    suspendMenu(menu, callback){
-      var sql = "UPDATE poppinpass.menu SET `availability` = ? WHERE _id = ?";
-      return db.query(sql, [menu.availability, menu._id], callback);
-    }
-
     suspendedMenu(request, respond) {
       var menuDetails = {
         "_id": parseInt(request.params._id),
-        "availability":request.body.availability
-      }
-      menu.suspendMenu(menuDetails, function(error, result){
-          if (error) {
-              respond.json(error);
-              console.log(error);
-          } else {
-              respond.json(result);
-              console.log(menuDetails);
-            }
-        });
-      }
+        "availability": request.body.availability
+      };
+    
+      var sql = "UPDATE poppinpass.menu SET `availability` = ? WHERE _id = ?";
+    
+      db.query(sql, [menuDetails.availability, menuDetails._id], function(error, result) {
+        if (error) {
+          respond.json(error);
+          console.log(error);
+        } else {
+          respond.json(result);
+          console.log(menuDetails);
+        }
+      });
+    }
+    
 }
 const menu = new Menu;
 module.exports = Menu;

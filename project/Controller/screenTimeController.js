@@ -1,154 +1,29 @@
+let st_array = []
 class ScreenTime {
     constructor(screentimeUrl, stbookingUrl) {
       this.screentimeUrl = screentimeUrl;
       this.stbookingUrl = stbookingUrl;
-      this.starray = [];
     }
 
-    fetchScreenTime()
-    {
-        const request = new XMLHttpRequest();
-        request.open("GET", this.screentimeUrl, true);
-        console.log(request);
-        request.onload = () => {
-            // Get all the movies records into our movie array
-            this.starray = JSON.parse(request.responseText);
-            console.log(this.starray);
-            // Call the function to display all movies tiles for "Now Showing"
-            this.displayScreenTime();
-          };
-
-          request.send();
-    }
-
-    displayScreenTime(){
-        const table = document.getElementById("getScreenTime");
-        let stCount = 0;
-        let message = "";
-        table.innerHTML = "";
-        const totalst = this.starray.length;
-
-        for (let count = 0; count < totalst; count++)
-        {
-            const id = this.starray[count]._id;
-            const timing = this.starray[count].time;
-            const day = this.starray[count].day;
-            const cell = '<td>\
-                            <strong id="st_id" style="display:none;">\
-                                '+id+'\
-                            </strong>\
-                            <a>\
-                                '+day+'\
-                            </a>\
-                        </td>\
-                        <td width="30%">\
-                            <a>\
-                                '+timing+'\
-                            </a>\
-                        </td>\
-                        <td width="15%">\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="screentime.showScreenTimeDetails(this)">\
-                                <img src="./../images/edit.png" width="30px" height="30px">\
-                            </button>\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="screentime.suspendScreenTime(this)">\
-                                <img src="./../images/delete.png" width="30px" height="30px">\
-                            </button>\    </td>'
-            
-            table.insertAdjacentHTML("beforeend", cell);
-            stCount++;    
-        }
-    }
-
-    showScreenTimeDetails(element)
-    {
-        console.log(this.starray);
+    showScreenTimeDetails(element){
         var item = element.getAttribute("item");
         console.log(item);
-        var id = this.starray[item]._id; 
+        var id = st_array[item]._id; 
+        movies.getMovieDataST();
+        cinemaroom.fetchCinemaRoomST();
         
         document.getElementById("updateScreenTimetable").style.display ="block";
-        document.getElementById("updatestId").value = this.starray[item]._id;
-        document.getElementById("updateDay").value = this.starray[item].day;
-        document.getElementById("updateTime").value = this.starray[item].time;
+        document.getElementById("updatestId").value = st_array[item]._id;
+        document.getElementById("updateDay").value = st_array[item].day;
+        document.getElementById("updateTime").value = st_array[item].time;
     }
 
-    updateScreenTime(currentIndex){
-        var id = parseInt(document.getElementById("updatestId").value);
-    var currentIndex = -1;
-    for (var i = 0; i < this.starray.length; i++) {
-        if (id == this.starray[i]._id) {   
-        currentIndex = i;
-        break; // Exit the loop once a match is found
-     }
-    }
-    const edit_st_url = this.screentimeUrl + "/" + id;
-    const response = confirm("Are you sure you want to edit ScreenTime?");
-
-    const day = document.getElementById("updateDay").value;
-    const time = document.getElementById("updateTime").value;
-
-    const editedst = {
-        _id: id,
-        day: day,
-        time: time
-      };
-
-      if (response == true) {
-        const updatest = new XMLHttpRequest();
-        updatest.open("PUT", edit_st_url, true);
-        updatest.setRequestHeader("Content-Type", "application/json");
-
-        this.starray[currentIndex].day = day;
-        this.starray[currentIndex].time= time;
-
-        updatest.onload = function () {
-            alert("The screentime information has been edited");
-            document.getElementById("updateScreenTimetable").style.display ="none";
-            document.getElementById("manageScreenTime").style.display ="none";
-
-            mScreenTime();
-        };
-
-        updatest.send(JSON.stringify(editedst));
-        }
-    
-    }
-
-    addScreenTime()
-    {
-        const addScreenTime = new XMLHttpRequest();
-        addScreenTime.open('POST', this.screentimeUrl, true);
-    
-        const day = document.getElementById("createDay").value;
-        const time = document.getElementById("createTime").value;
-    
-        const screentimeDetails = {
-            "day": day,
-            "time": time
-        }
-    
-        console.log(screentimeDetails)
-    
-        addScreenTime.setRequestHeader("Content-Type", "application/json");
-        addScreenTime.onload = function () {
-            const output = JSON.parse(addScreenTime.responseText);
-                alert("Seat added!");
-                document.getElementById("createTime").value = "";
-                document.getElementById("createScreenTimetable").style.display="none";
-                document.getElementById("manageScreenTime").style.display="none";
-                mScreenTime();
-            
-        };
-        addScreenTime.send(JSON.stringify(screentimeDetails));
-    }
-
-    suspendScreenTime(element)
-    {
+    suspendScreenTime(element){
         var response = confirm("Are you sure you want to suspend this screentime?");
         if (response == true)
         {
             var item = element.getAttribute("item");
-            var id = this.starray[item]._id;
+            var id = st_array[item]._id;
             var suspendST = new XMLHttpRequest();
 
         var sus_st_url = this.screentimeUrl + "/" + id;
@@ -167,8 +42,7 @@ class ScreenTime {
 
     }
 
-    fetchScreenTime4Cust(title)
-    {
+    fetchScreenTime4Cust(title){
         
         const stmoviedeets = {
             "movietitle": title
@@ -180,8 +54,8 @@ class ScreenTime {
         
         request.onload = () => {
             // Get all the movies records into our movie array
-            this.starray = JSON.parse(request.responseText);
-            console.log(this.starray);
+            st_array = JSON.parse(request.responseText);
+            console.log(st_array);
             screentime.displayScreenTime4Cust()
             // Call the function to display all movies tiles for "Now Showing"
           };
@@ -201,20 +75,20 @@ class ScreenTime {
         let stCount = 0;
         let message = "";
         table1.innerHTML = "";
-        const totalst = this.starray.length;
+        const totalst = st_array.length;
 
         for (let count = 0; count < totalst; count++)
         {
-            document.getElementById("ticketDay").innerHTML = this.starray[count].day;
-            document.getElementById("bookMovieTitle").innerHTML = this.starray[count].title;
-            document.getElementById("summaryTitle").innerHTML = this.starray[count].title;
-            var rm = this.starray[count].roomnumber;
+            document.getElementById("ticketDay").innerHTML = st_array[count].day;
+            document.getElementById("bookMovieTitle").innerHTML = st_array[count].title;
+            document.getElementById("summaryTitle").innerHTML = st_array[count].title;
+            var rm = st_array[count].roomnumber;
             var rmtrim = rm.trim();
             document.getElementById("summaryRoom").innerHTML = rmtrim;
             document.getElementById("bookRoomName").innerHTML = rmtrim;
 
-            const id = this.starray[count]._id;
-            const timing = this.starray[count].time;
+            const id = st_array[count]._id;
+            const timing = st_array[count].time;
             const cell = '<td> \
                                 <button id="StTime" onclick="viewTicketType()" item = '+count+' class="button2">'+timing+'</button> \
                             </td>'
@@ -228,13 +102,11 @@ class ScreenTime {
 }
 
 const screentime = new ScreenTime("/screentimes", "/screentiming");
-console.log(screentime.screentimeUrl);
 
 class CreateScreenTimeController {
     constructor(screentimeUrl, stbookingUrl) {
         this.screentimeUrl = screentimeUrl;
         this.stbookingUrl = stbookingUrl;
-        this.starray = [];
       }
 
       addScreenTime()
@@ -244,10 +116,15 @@ class CreateScreenTimeController {
       
           const day = document.getElementById("createDay").value;
           const time = document.getElementById("createTime").value;
+          const title = document.getElementById("createMovieST").value;
+          const rm = document.getElementById("createRoomNumberST").value;
+          
       
           const screentimeDetails = {
               "day": day,
-              "time": time
+              "time": time,
+              "title":title,
+              "roomnumber":rm
           }
       
           console.log(screentimeDetails)
@@ -255,7 +132,7 @@ class CreateScreenTimeController {
           addScreenTime.setRequestHeader("Content-Type", "application/json");
           addScreenTime.onload = function () {
               const output = JSON.parse(addScreenTime.responseText);
-                  alert("Seat added!");
+                  alert("Screentime added!");
                   document.getElementById("createTime").value = "";
                   document.getElementById("createScreenTimetable").style.display="none";
                   document.getElementById("manageScreenTime").style.display="none";
@@ -266,12 +143,12 @@ class CreateScreenTimeController {
       }
 }
 const createscreentimecontroller = new CreateScreenTimeController("/screentimes", "/screentiming");
-
+// DONE
 class ViewScreenTimeController {
     constructor(screentimeUrl, stbookingUrl) {
         this.screentimeUrl = screentimeUrl;
         this.stbookingUrl = stbookingUrl;
-        this.starray = [];
+  
       }
 
     fetchScreenTime()
@@ -281,8 +158,7 @@ class ViewScreenTimeController {
           console.log(request);
           request.onload = () => {
               // Get all the movies records into our movie array
-              this.starray = JSON.parse(request.responseText);
-              console.log(this.starray);
+              st_array = JSON.parse(request.responseText);
               // Call the function to display all movies tiles for "Now Showing"
               this.displayScreenTime();
             };
@@ -295,13 +171,13 @@ class ViewScreenTimeController {
           let stCount = 0;
           let message = "";
           table.innerHTML = "";
-          const totalst = this.starray.length;
+          const totalst = st_array.length;
   
           for (let count = 0; count < totalst; count++)
           {
-              const id = this.starray[count]._id;
-              const timing = this.starray[count].time;
-              const day = this.starray[count].day;
+              const id = st_array[count]._id;
+              const timing = st_array[count].time;
+              const day = st_array[count].day;
               const cell = '<td>\
                               <strong id="st_id" style="display:none;">\
                                   '+id+'\
@@ -319,7 +195,7 @@ class ViewScreenTimeController {
                               <button item = '+count+' style="background-color:#333333a0;" onclick="screentime.showScreenTimeDetails(this)">\
                                   <img src="./../images/edit.png" width="30px" height="30px">\
                               </button>\
-                              <button item = '+count+' style="background-color:#333333a0;" onclick="screentime.suspendScreenTime(this)">\
+                              <button item = '+count+' style="background-color:#333333a0;" onclick="suspendscreentimecontroller.suspendScreenTime(this)">\
                                   <img src="./../images/delete.png" width="30px" height="30px">\
                               </button>\    </td>'
               
@@ -334,26 +210,14 @@ class UpdateScreenTimeController {
     constructor(screentimeUrl, stbookingUrl) {
         this.screentimeUrl = screentimeUrl;
         this.stbookingUrl = stbookingUrl;
-        this.starray = [];
       }
     
-    showScreenTimeDetails(element){
-          console.log(this.starray);
-          var item = element.getAttribute("item");
-          console.log(item);
-          var id = this.starray[item]._id; 
-          
-          document.getElementById("updateScreenTimetable").style.display ="block";
-          document.getElementById("updatestId").value = this.starray[item]._id;
-          document.getElementById("updateDay").value = this.starray[item].day;
-          document.getElementById("updateTime").value = this.starray[item].time;
-    }
 
     updateScreenTime(currentIndex){
         var id = parseInt(document.getElementById("updatestId").value);
         var currentIndex = -1;
-        for (var i = 0; i < this.starray.length; i++) {
-            if (id == this.starray[i]._id) {   
+        for (var i = 0; i < st_array.length; i++) {
+            if (id == st_array[i]._id) {   
             currentIndex = i;
             break; // Exit the loop once a match is found
             }
@@ -363,20 +227,30 @@ class UpdateScreenTimeController {
 
         const day = document.getElementById("updateDay").value;
         const time = document.getElementById("updateTime").value;
+        const title = document.getElementById("updateMovieST").value;
+        const rm = document.getElementById("updateRoomNumberST").value;
+        console.log("rm: "+rm);
 
+        console.log()
         const editedst = {
             _id: id,
             day: day,
-            time: time
+            time: time,
+            title:title,
+            roomnumber:rm
         };
+
+        console.log("THE DATA I AM SENDNING: "+ JSON.stringify(editedst))
 
         if (response == true) {
             const updatest = new XMLHttpRequest();
             updatest.open("PUT", edit_st_url, true);
             updatest.setRequestHeader("Content-Type", "application/json");
 
-            this.starray[currentIndex].day = day;
-            this.starray[currentIndex].time= time;
+            st_array[currentIndex].day = day;
+            st_array[currentIndex].time= time;
+            st_array[currentIndex].title = title;
+            st_array[currentIndex].roomnumber = rm;
 
             updatest.onload = function () {
                 alert("The screentime information has been edited");
@@ -390,20 +264,19 @@ class UpdateScreenTimeController {
     
     }
 }
-const updatescreentimecontroller = new UpdateScreenTimeController("/screentimes", "/screentiming");
+const updatescreentimecontroller = new UpdateScreenTimeController("/screentime", "/screentiming");
 
 class SuspendScreenTimeController {
     constructor(screentimeUrl, stbookingUrl) {
         this.screentimeUrl = screentimeUrl;
         this.stbookingUrl = stbookingUrl;
-        this.starray = [];
       }
     
     suspendScreenTime(element){
         var response = confirm("Are you sure you want to suspend this screentime?");
         if (response == true){
             var item = element.getAttribute("item");
-            var id = this.starray[item]._id;
+            var id = st_array[item]._id;
             var suspendST = new XMLHttpRequest();
             var sus_st_url = this.screentimeUrl + "/" + id;
             console.log(id);
@@ -426,7 +299,6 @@ class SearchScreenTimeController {
     constructor(screentimeUrl, stbookingUrl) {
         this.screentimeUrl = screentimeUrl;
         this.stbookingUrl = stbookingUrl;
-        this.starray = [];
       }
 }
 const searchscreentimecontroller = new SearchScreenTimeController("/screentimes", "/screentiming");

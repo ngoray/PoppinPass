@@ -39,7 +39,7 @@ function drinkMenu(){
     b.classList.add("active");
     c.classList.remove("active");
 
-    menu.getDrinks();
+    customerviewmenucontroller.getDrinks();
 
     if (y.style.display == "block") {
         x.style.display="none";
@@ -66,7 +66,7 @@ function comboMenu(){
     b.classList.remove("active");
     c.classList.add("active");
 
-    menu.getCombo();
+    customerviewmenucontroller.getCombo();
 
     if (z.style.display == "block") {
         x.style.display="none";

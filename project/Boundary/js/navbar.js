@@ -124,7 +124,7 @@ function moviePage() {
     x.classList.remove("active");
     z.classList.remove("active");
 
-    transactionhistory.fetchTransactionHistory(this);
+    viewtransactionhistorycontroller.fetchTransactionHistory(this);
 
     if (d.style.display == "block") {
         a.style.display="block";

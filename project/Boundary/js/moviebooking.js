@@ -68,7 +68,7 @@ function viewSeatMap(){
 }
 
 function viewMenu(){
-    menu.getSnacks();
+    customerviewmenucontroller.getSnacks();
     document.getElementById('bookSeatMap').style.display="none";
     $("#menupage").fadeIn()
     document.getElementById('menupage').style.display="block";

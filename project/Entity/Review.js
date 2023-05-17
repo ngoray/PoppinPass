@@ -4,13 +4,6 @@ var db = require('./../../dbconnection');
 class Review {
 
   // add reviews
-  addReviewTable(reviews, callback){
-
-    var sql = "INSERT INTO poppinpass.reviews (name, email, rating, review) VALUES (?, ?, ?, ?)";
-    
-    db.query(sql, [reviews.name, reviews.email, reviews.rating, reviews.review], callback);
-}
-
   addReview(request, respond) {
     const reviewComment = {
       name: request.body.name,
@@ -18,12 +11,12 @@ class Review {
       rating: request.body.rating,
       review: request.body.review,
     };
-
-    console.log(reviewComment);
-
-    review.addReviewTable(reviewComment, (error, result) => {
+  
+    var sql = "INSERT INTO poppinpass.reviews (name, email, rating, review) VALUES (?, ?, ?, ?)";
+  
+    db.query(sql, [reviewComment.name, reviewComment.email, reviewComment.rating, reviewComment.review], function(error, result) {
       console.log(result);
-
+  
       if (error) {
         respond.json({
           message: 'Something went wrong',
@@ -34,24 +27,23 @@ class Review {
       }
     });
   }
+  
 
 // view all reviews
-  viewAllReviewTable(callback) {
-    var sql = "SELECT * FROM poppinpass.reviews";
-    return db.query(sql, callback);
+viewAllReview(request, respond) {
+  var sql = "SELECT * FROM poppinpass.reviews";
+  
+  db.query(sql, function(error, result) {
+    console.log("called");
+
+    if (error) {
+      respond.json(error);
+    } else {
+      respond.json(result);
+    }
+  });
 }
 
-  viewAllReview(request, respond) {
-
-    console.log("called");
-    review.viewAllReviewTable((error, result) => {
-      if (error) {
-        respond.json(error);
-      } else {
-        respond.json(result);
-      }
-    });
-  }
 }
 const review = new Review;
 module.exports = Review;

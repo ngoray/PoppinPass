@@ -4,21 +4,19 @@ var db = require('./../../dbconnection');
 class ScreenTime {
 
   // add screentime
-  addScreenTimeTable(screentime, callback){
-
-    var sql = "INSERT INTO poppinpass.screentime (day, time) VALUES (?, ?)";
-    
-    db.query(sql, [screentime.day, screentime.time], callback);
-}
   addScreenTime(request, respond) {
     const screentimeDetails = {
       day: request.body.day,
-      time: request.body.time
+      time: request.body.time,
+      title:request.body.title,
+      roomnum:request.body.roomnumber
     };
-
-    screentime.addScreenTimeTable(screentimeDetails, (error, result) => {
+  
+    var sql = "INSERT INTO poppinpass.screentime (day, time, roomnumber, title) VALUES (?, ?, ?, ?)";
+    
+    db.query(sql, [screentimeDetails.day, screentimeDetails.time, screentimeDetails.roomnum, screentimeDetails.title], function(error, result) {
       console.log(result);
-
+  
       if (error) {
         respond.json({
           message: 'Something went wrong',
@@ -29,15 +27,13 @@ class ScreenTime {
       }
     });
   }
+  
 
   // view all screen time
-  viewAllScreenTimeTable(callback) {
-    var sql = "SELECT * FROM poppinpass.screentime";
-    return db.query(sql, callback);
-}
-
   viewAllScreenTime(request, respond) {
-    screentime.viewAllScreenTimeTable((error, result) => {
+    var sql = "SELECT * FROM poppinpass.screentime";
+  
+    db.query(sql, function(error, result) {
       if (error) {
         respond.json(error);
       } else {
@@ -45,73 +41,68 @@ class ScreenTime {
       }
     });
   }
+  
 
-viewCertainScreenTimeTable(screentime, callback){
-  var sql = "SELECT * FROM poppinpass.screentime WHERE title = ?";
-    return db.query(sql, [screentime.movietitle],callback);
-}
+  viewCertainScreenTime(request, respond) {
+    console.log("screentime_" + request.body.movietitle);
+    const stDetails = {
+      movietitle: request.body.movietitle
+    };
+  
+    var sql = "SELECT * FROM poppinpass.screentime WHERE title = ?";
+  
+    db.query(sql, [stDetails.movietitle], function(error, result) {
+      if (error) {
+        respond.json(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
+  
+  
+  // update screen time
+  updateScreenTime(request, respond) {
+  
+    var ScreenTimeDetails = {
+      "_id": parseInt(request.params._id),
+      "day": request.body.day,
+      "time": request.body.time,
+      "title":request.body.title,
+      "roomnum":request.body.roomnumber
+    }
+    console.log(ScreenTimeDetails);
+  
+    var sql = "UPDATE poppinpass.screentime SET day = ?, time = ?, title = ?, roomnumber = ? WHERE _id = ?";
+  
+    db.query(sql, [ScreenTimeDetails.day, ScreenTimeDetails.time, ScreenTimeDetails.title, ScreenTimeDetails.roomnum, ScreenTimeDetails._id], function(error, result) {
+      if (error) {
+        respond.json(error);
+        console.log(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
+  
 
+suspendScreenTime(request, respond) {
+  var ScreenTimeDetails = {
+    "_id": parseInt(request.params._id),
+  }
 
-viewCertainScreenTime(request, respond){
-  console.log( "screentime_"+ request.body.movietitle);
-  const stDetails = {
-    movietitle: request.body.movietitle
-  };
+  var sql = "DELETE FROM poppinpass.screentime WHERE _id = ?";
 
-  console.log()
-  screentime.viewCertainScreenTimeTable(stDetails, (error, result) => {
+  db.query(sql, [ScreenTimeDetails._id], function(error, result) {
     if (error) {
       respond.json(error);
+      console.log(error);
     } else {
       respond.json(result);
     }
   });
 }
-  
-  // update screen time
-  updateScreenTimeTable(screentime, callback) {
-    var sql = "UPDATE poppinpass.screentime SET day = ?, time = ? WHERE _id = ?";
 
-    return db.query(sql, [screentime.day, screentime.time, screentime._id], callback);
-}
-
-  updateScreenTime(request, respond) {
-    var ScreenTimeDetails = {
-        "_id": parseInt(request.params._id),
-        "day":request.body.day,
-        "time":request.body.time
-      }
-
-    screentime.updateScreenTimeTable(ScreenTimeDetails, function(error, result){
-        if (error) {
-            respond.json(error);
-            console.log(error);
-        } else {
-            respond.json(result);
-        }
-    });
-}
-
-  suspendScreenTimeTable(screentime, callback) {
-    var sql = "DELETE FROM poppinpass.screentime WHERE _id = ?";
-
-    return db.query(sql, [screentime._id], callback);
-  }
-
-  suspendScreenTime(request, respond) {
-    var ScreenTimeDetails = {
-        "_id": parseInt(request.params._id),
-      }
-
-    screentime.suspendScreenTimeTable(ScreenTimeDetails, function(error, result){
-        if (error) {
-            respond.json(error);
-            console.log(error);
-        } else {
-            respond.json(result);
-        }
-    });
-}
 
 }
 const screentime = new ScreenTime;

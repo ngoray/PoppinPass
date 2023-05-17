@@ -126,7 +126,7 @@
                     </td>
                     <td>
                         <div style="float: right;">
-                            <button class="button" style="width: 48%;" onclick="cinemaroom.addCinemaRoom()">Create</button>
+                            <button class="button" style="width: 48%;" onclick="createseatmapcontroller.addCinemaRoom()">Create</button>
                             <button class="button" style="width: 48%;" onclick="cinemaroom.closeAddRoomNumberModal()">Cancel</button>
                         </div>
                     </td>
@@ -268,7 +268,7 @@
                 </td>
                 <td>
                     <div style="float: right;">
-                        <button class="button" style="width: 48%;" onclick="occupancy.addOccu()">Create</button>
+                        <button class="button" style="width: 48%;" onclick="createoccupancycontroller.addOccu()">Create</button>
                         <button class="button" style="width: 48%;" onclick="occupancy.closeAddOccupancyModal()">Cancel</button>
                     </div>
                 </td>
@@ -304,7 +304,7 @@
                 </td>
                 <td>
                     <div style="float: right;">
-                        <button class="button" style="width: 48%;" onclick="occupancy.updateOccu(this)">Update</button>
+                        <button class="button" style="width: 48%;" onclick="updateoccupancycontroller.updateOccu(this)">Update</button>
                         <button class="button" style="width: 48%;" onclick="occupancy.cancelOccupancyDetails()">Cancel</button>
                     </div>
                 </td>
@@ -379,7 +379,7 @@
                 <tr>
                     <td colspan="2">
                         <div style="float: right;">
-                            <button class="button" style="width: 48%;" onclick="screentime.addScreenTime()">Create</button>
+                            <button class="button" style="width: 48%;" onclick="createscreentimecontroller.addScreenTime()">Create</button>
                             <button class="button" style="width: 48%;" onclick="closeAddScreenTimeModal()">Cancel</button>
                         </div>
                     </td>
@@ -390,7 +390,7 @@
           <div class="adminedit" id="updateScreenTimetable" style="display: none;">
             <br><br><br><br>
             <center>
-                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Add Screen Time</h2></div>
+                <div style="background-color:rgb(255, 130, 6); width: 50%; padding: 3px;"><h2>Edit Screen Time</h2></div>
             </center>
             <table class="center" style="background-color: #333;">
                 <tr>
@@ -412,18 +412,18 @@
                     </tr>
                     <tr>
                         <td>
-                            <select id="createMovieST">
+                            <select id="updateMovieST">
                             </select>
                         </td>
                         <td>
-                            <select id="createRoomNumberST">
+                            <select id="updateRoomNumberST">
                             </select>
                         </td>
                     </tr>
                     <tr>
                     <td colspan="2">
                         <div style="float: right;">
-                            <button class="button" style="width: 48%;" onclick="screentime.updateScreenTime()">Update</button>
+                            <button class="button" style="width: 48%;" onclick="updatescreentimecontroller.updateScreenTime()">Update</button>
                             <button class="button" style="width: 48%;" onclick="closeUpdateScreenTimeModal()">Cancel</button>
                         </div>
                     </td>
@@ -539,7 +539,7 @@
             <tr>
                 <td colspan="3">
                     <div style="float: right;">
-                        <button class="button" style="width: 48%;" onclick="movies.addMovie()">Create</button>
+                        <button class="button" style="width: 48%;" onclick="createmoviecontroller.addMovie()">Create</button>
                         <button class="button" style="width: 48%;" onclick="closeAddMovieModal()">Cancel</button>
                     </div>
                 </td>
@@ -622,7 +622,7 @@
             <tr>
                 <td colspan="3">
                     <div style="float: right;">
-                        <button class="button" style="width: 48%;" onclick="movies.updateMovie4manager()">Update</button>
+                        <button class="button" style="width: 48%;" onclick="updatemoviecontroller.updateMovie4manager()">Update</button>
                         <button class="button" style="width: 48%;" onclick="closeUpdateMovieModal()">Cancel</button>
                     </div>
                 </td>
@@ -694,7 +694,7 @@
                     </td>
                     <td>
                         <div style="float: right;">
-                            <button class="button" style="width: 48%;" onclick="ticket.addTicketType()">Create</button>
+                            <button class="button" style="width: 48%;" onclick="createticketcontroller.addTicketType()">Create</button>
                             <button class="button" style="width: 48%;" onclick="ticket.closeAddTicketModal()">Cancel</button>
                         </div>
                     </td>
@@ -734,7 +734,7 @@
                     </td>
                     <td>
                         <div style="float: right;">
-                            <button class="button" style="width: 48%;" onclick="ticket.updateTicketType()">Update</button>
+                            <button class="button" style="width: 48%;" onclick="updateticketcontroller.updateTicketType(this)">Update</button>
                             <button class="button" style="width: 48%;" onclick="ticket.closeUpdateTicketModal()">Cancel</button>
                         </div>
                     </td>
@@ -784,7 +784,7 @@
                 <tr>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="width: 250px;">
                         <input type="text" id="createMenuName" placeholder="name...">
                         <select id="createMenuType">
                             <option value="Snacks">Snacks</option>
@@ -792,7 +792,7 @@
                             <option value="Combo">Combo</option>
                           </select>
                     </td>
-                    <td colspan="2" style="width: 350px;">
+                    <td colspan="2">
                         <center>
                         <img id="output1" src="#" style="width: 300px; height: 150px;">
                         <input type="file" id = "picname" onchange="loadFile(event), displayCreateMenu()"/>
@@ -801,23 +801,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td>
-                        <input type="text" id="createMenuSmallPrice" placeholder="Price for Small...">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <input type="text" id="createMenuMediumPrice" placeholder="Price for Medium...">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <input type="text" id="createMenuLargePrice" placeholder="Price for Large...">
-                    </td>
-                </tr>
                 <tr>
                     <td>
                         <label>Price for Small Size:</label>
@@ -829,13 +812,22 @@
                         <label>Price for Large Size:</label>
                     </td>
                 </tr>
+
                 <tr>
                     <td>
-                        <div> </div>
+                        <input type="text" id="createMenuSmallPrice" placeholder="Price for Small...">
                     </td>
                     <td>
+                        <input type="text" id="createMenuMediumPrice" placeholder="Price for Medium...">
+                    </td>
+                    <td>
+                        <input type="text" id="createMenuLargePrice" placeholder="Price for Large...">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
                         <div style="float: right;">
-                            <button class="button" style="width: 48%;" onclick="menu.newMenu()">Create</button>
+                            <button class="button" style="width: 48%;" onclick="createmenucontroller.newMenu()">Create</button>
                             <button class="button" style="width: 48%;" onclick="menu.closeAddMenuModal()">Cancel</button>
                         </div>
                     </td>
@@ -903,7 +895,7 @@
                 <tr>
                     <td colspan="3">
                         <div style="float: right;">
-                            <button class="button" style="width: 48%;" onclick="menu.updateMenu()">Update</button>
+                            <button class="button" style="width: 48%;" onclick="updatemenucontroller.updateMenu()">Update</button>
                             <button class="button" style="width: 48%;" onclick="closeUpdateMenuModal()">Cancel</button>
                         </div>
                     </td>

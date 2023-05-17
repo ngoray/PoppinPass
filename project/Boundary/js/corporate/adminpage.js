@@ -26,7 +26,7 @@ function viewUserAccount() {
     a.classList.add("active");
     b.classList.remove("active");
 
-    useraccount.fetchUserAccount();
+    viewuseraccountcontroller.fetchUserAccount();
 
     $("#viewUserAccount").fadeIn()
     w.style.display = "block";

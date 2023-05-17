@@ -20,7 +20,7 @@ function mSeatMap() {
     e.classList.remove("active");
     f.classList.remove("active");
 
-    cinemaroom.fetchCinemaRoom();
+    viewcinemaroomcontroller.fetchCinemaRoom();
 
     if (u.style.display == "block") {
         u.style.display = "block";
@@ -62,7 +62,7 @@ function mOccupancy() {
     e.classList.remove("active");
     f.classList.remove("active");
 
-    occupancy.fetchOccu();
+    viewoccupancycontroller.fetchOccu();
 
     if (v.style.display == "block") {
         u.style.display = "none";
@@ -104,7 +104,7 @@ function mScreenTime() {
     e.classList.remove("active");
     f.classList.remove("active");
 
-    screentime.fetchScreenTime();
+    viewscreentimecontroller.fetchScreenTime();
 
     if (w.style.display == "block") {
         u.style.display = "none";
@@ -147,7 +147,7 @@ function mMovies() {
     f.classList.remove("active");
 
     //HERE
-    movies.getMovieData2();
+    viewmoviecontroller.getMovieData4Manager();
 
     if (x.style.display == "block") {
         u.style.display = "none";
@@ -189,7 +189,7 @@ function mMovieTicket() {
     e.classList.add("active");
     f.classList.remove("active");
 
-    ticket.fetchTicketType();
+    viewticketcontroller.fetchTicketType();
 
     if (y.style.display == "block") {
         u.style.display = "none";
@@ -231,7 +231,7 @@ function mFoodBeveragesTicket() {
     e.classList.remove("active");
     f.classList.add("active");
 
-    menu.fetchMenu();
+    viewmenucontroller.fetchMenu();
 
     if (z.style.display == "block") {
         u.style.display = "none";
@@ -254,6 +254,7 @@ function mFoodBeveragesTicket() {
 function openAddMovieModal(){
     $("#createMovietable").fadeIn()
     document.getElementById("createMovietable").style.display="block";
+    
 }
 
 function closeAddMovieModal(){
@@ -325,6 +326,8 @@ function closeUpdateMenuModal(){
 
 function openAddScreenTimeModal(){
     document.getElementById("createScreenTimetable").style.display="block";
+    movies.getMovieDataST();
+    cinemaroom.fetchCinemaRoomST();
 }
 
 function closeAddScreenTimeModal() {

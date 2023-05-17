@@ -1,4 +1,48 @@
-class CreateReview {
+let review_array = []
+
+class ViewReviewController {
+  constructor(ViewReviewUrl) {
+    this.ViewReviewUrl = ViewReviewUrl;
+    this.view_review_array = [];
+  }
+
+  fetchReview() {
+    const ViewReviewRequest = new XMLHttpRequest();
+    ViewReviewRequest.open('GET', this.ViewReviewUrl, true);
+    console.log(ViewReviewRequest);
+    // Use an arrow function to preserve the 'this' context
+    ViewReviewRequest.onload = () => {
+        review_array = JSON.parse(ViewReviewRequest.responseText);
+        console.log("ok");
+        console.log("array length: "+ review_array.length);
+        this.displayReviews();
+    };
+    ViewReviewRequest.send();
+  }
+  displayReviews() {
+    const table = document.getElementById("reviewTable");
+    let ViewReviewCount = 0;
+    let message = "";
+    
+    table.innerHTML = "";
+    const totalReviews = review_array.length;
+    
+    for (let count = 0; count < totalReviews; count++) {     
+      const name = review_array[count].name;
+      const review = review_array[count].review;
+      const rating = review_array[count].rating;
+      const cell ='<div style="background-color: #333;"><table border="0" style="width:100%;"><tr><td width="60px"><img src="./../images/profile.png" style="padding: 10px;"></td> <td> <h5 style="text-align:left;">'+ name +'</h5><h5 style="text-align:left;">'+ review +'</h5></td><td><h5 style="text-align:right;">'+rating+'</h5></td><td width="35px"><img src="./../images/star.png" style="width:30px; height:30px;"/></td></tr></table></div><br>'
+      table.insertAdjacentHTML("beforeend", cell);
+      ViewReviewCount++;
+    }
+
+    message = ViewReviewCount + " Reviews ";
+    document.getElementById("reviewsummary").textContent = message;
+  }
+}
+const viewreview = new ViewReviewController("/review");
+
+class CreateReviewController {
 
   constructor(AddReviewUrl) {
     this.AddReviewUrl = AddReviewUrl;
@@ -37,47 +81,5 @@ class CreateReview {
 
 }
 
-const createreview = new CreateReview("/review");
+const createreview = new CreateReviewController("/review");
 
-
-class ViewReview {
-  constructor(ViewReviewUrl) {
-    this.ViewReviewUrl = ViewReviewUrl;
-    this.view_review_array = [];
-  }
-
-  fetchReview() {
-    const ViewReviewRequest = new XMLHttpRequest();
-    ViewReviewRequest.open('GET', this.ViewReviewUrl, true);
-    console.log(ViewReviewRequest);
-    // Use an arrow function to preserve the 'this' context
-    ViewReviewRequest.onload = () => {
-        this.view_review_array = JSON.parse(ViewReviewRequest.responseText);
-        console.log("ok");
-        console.log(this.view_review_array);
-        this.displayReviews();
-    };
-    ViewReviewRequest.send();
-  }
-  displayReviews() {
-    const table = document.getElementById("reviewTable");
-    let ViewReviewCount = 0;
-    let message = "";
-    
-    table.innerHTML = "";
-    const totalReviews = this.view_review_array.length;
-    
-    for (let count = 0; count < totalReviews; count++) {     
-      const name = this.view_review_array[count].name;
-      const review = this.view_review_array[count].review;
-      const rating = this.view_review_array[count].rating;
-      const cell ='<div style="background-color: #333;"><table border="0" style="width:100%;"><tr><td width="60px"><img src="./../images/profile.png" style="padding: 10px;"></td> <td> <h5 style="text-align:left;">'+ name +'</h5><h5 style="text-align:left;">'+ review +'</h5></td><td><h5 style="text-align:right;">'+rating+'</h5></td><td width="35px"><img src="./../images/star.png" style="width:30px; height:30px;"/></td></tr></table></div><br>'
-      table.insertAdjacentHTML("beforeend", cell);
-      ViewReviewCount++;
-    }
-
-    message = ViewReviewCount + " Reviews ";
-    document.getElementById("reviewsummary").textContent = message;
-  }
-}
-const viewreview = new ViewReview("/review");
