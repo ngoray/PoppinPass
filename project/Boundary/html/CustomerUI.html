@@ -32,49 +32,87 @@
               </table>
             </div>
             <br>
-            <div style="background-color: #333;">
-              
-              <table>
-                <tr>
-                  <td><img src="./../images/profile.png" style="padding: 10px;"></td>
-                  <td> 
-                    <h5>Name</h5>
-                    <h5> Comments</h5>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <br>
-            <div style="background-color: #333;">    
-              <table>
-                <tr>
-                  <td><img src="./../images/profile.png" style="padding: 10px;"></td>
-                  <td> 
-                    <h5>Name</h5>
-                    <h5> Comments</h5>
-                  </td>
-                </tr>
-              </table>
-            </div>
-
-            <br>
-            <div style="background-color: #333;">
-              
-              <table>
-                <tr>
-                  <td><img src="./../images/profile.png" style="padding: 10px;"></td>
-                  <td> 
-                    <h5>Name</h5>
-                    <h5> Comments</h5>
-                  </td>
-                </tr>
-              </table>
-            </div>
           </div>
-        </td>
-      </tr>
-    </table> 
-  </div>
-        
+      </div>
+
+
+
+<div id="viewTransactionHistory" class="modal">
+  
+  <div class="modal-content animate">
+    <div class="container" style="background-color: rgb(255, 130, 6)">
+      <label style="color: white"><b>Transaction ID:</b></label> <label style="color: white;" id="viewTransactionId"></label>
+      <a href="#" style="color: white;position: relative; left: 80%;text-decoration:none;" onclick="document.getElementById('viewTransactionHistory').style.display='none'"><font size="5">&times;</font></a>
     </div>
+
+    <div class="container" style="background-color: #333;">
+      <table class="center" style="width: 100%;">
+        <tr>
+          <td>
+            <label>Movie:</label>
+          </td>
+          <td>
+            <label id="viewTHTitle">Empty</label>
+          </td>
+          <td rowspan="7">
+            <center>
+              <div style="position: relative;">
+                <img src="./../../images/code.png" style="width: 150px; height: 150px;"/>
+              </div>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Time:</label>
+          </td>
+          <td>
+            <label id="viewTHTime">Empty</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Cinema:</label>
+          </td>
+          <td>
+            <label id="viewTHCinema">Empty</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Seat:</label>
+          </td>
+          <td>
+            <label id="viewTHSeat">Empty</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>TicketType:</label>
+          </td>
+          <td>
+            <label id="viewTHTicketType">Empty</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Food:</label>
+          </td>
+          <td>
+            <label id="viewTHFoodName">Empty</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Cost:</label>
+          </td>
+          <td>
+            <label id="viewTHTotalPrice">Empty</label>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
 </div>

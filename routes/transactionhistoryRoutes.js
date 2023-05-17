@@ -13,6 +13,24 @@ class HistoryRoutes {
     app.route("/viewhistory")
         .post(th.viewTransaction);
 
+    app.route("/ticketmonthly")
+        .get(th.viewMonthlyTicket);
+
+    app.route("/ticketweekly")
+        .get(th.viewWeeklyTicket);
+
+    app.route("/ticketdaily")
+        .get(th.viewDailyTicket);
+
+    app.route("/foodmonthly")
+        .get(th.viewMonthlyFood);
+
+    app.route("/foodweekly")
+        .get(th.viewWeeklyFood);
+
+    app.route("/fooddaily")
+        .get(th.viewDailyFood);
+
     }
 }
 

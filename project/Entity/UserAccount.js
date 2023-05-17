@@ -118,6 +118,55 @@ login(request, respond) {
         });
     }
 
+
+    updateCustomerAccounttable(useraccount, callback){
+        var sql = "UPDATE poppinpass.useraccount SET password = ? WHERE name = ?";
+
+        return db.query(sql, [useraccount.password, useraccount.name], callback);
+    }
+
+    updateCustomerAccount(request, respond) {
+        var UADetails = {
+            "name":request.body.name,
+            "password":request.body.password
+            
+          }
+    
+          useraccount.updateCustomerAccounttable(UADetails, function(error, result){
+            if (error) {
+                respond.json(error);
+                console.log(error);
+            } else {
+                respond.json(result);
+                console.log(UADetails);
+            }
+        });
+    }
+
+    updateLoyaltyPointsTable(useraccount, callback){
+        var sql = "UPDATE poppinpass.useraccount SET loyaltypoints = ? WHERE name = ?";
+
+        return db.query(sql, [useraccount.loyaltypoints, useraccount.name], callback);
+    }
+
+    updateLoyaltyPoints(request, respond) {
+        var UADetails = {
+            "name":request.body.name,
+            "loyaltypoints":request.body.loyaltypoints
+            
+          }
+    
+          useraccount.updateLoyaltyPointsTable(UADetails, function(error, result){
+            if (error) {
+                respond.json(error);
+                console.log(error);
+            } else {
+                respond.json(result);
+                console.log(UADetails);
+            }
+        });
+    }
+
 }
 
     

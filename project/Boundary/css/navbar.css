@@ -41,3 +41,15 @@ ul.topnav {
     left: 18%;
     border-radius: 25px;
   }
+
+  .pwr:hover{
+    background-image: url("./../../images/powerOn.png");
+    width: 30px;
+    height: 30px;
+  }
+  
+  .pwr {
+    background-image: url("../../images/power.png");
+    width: 30px;
+    height: 30px;
+  }

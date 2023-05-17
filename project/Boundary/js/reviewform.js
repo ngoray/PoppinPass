@@ -12,8 +12,7 @@ var aText = new Array(
     var sContents = ''; // initialise contents variable
     var iRow; // initialise current row
      
-    function typewriter()
-    {
+function typewriter(){
      sContents =  ' ';
      iRow = Math.max(0, iIndex-iScrollAt);
      var destination = document.getElementById("reviewtext");

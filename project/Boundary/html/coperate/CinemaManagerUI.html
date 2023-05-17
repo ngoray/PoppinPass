@@ -24,7 +24,7 @@
                 </tr>
             </table>
             <div class="adminScroll">
-                <table id="getRoomNumber" style="background-color: #333;" width="100%">
+                <table id="getRoomNumber"  width="100%">
                 </table>
             </div>
         </div>
@@ -247,7 +247,7 @@
                 </tr>
             </table>
             <div class="adminScroll">
-                <table id="getOccupancy" style="width: 100%; background-color: #333;">
+                <table id="getOccupancy" style="width: 100%;">
     
                 </table>
             </div>
@@ -338,7 +338,7 @@
                 </tr>
             </table>
             <div class="adminScroll">
-                <table id="getScreenTime" style="background-color: #333;" width="100%">
+                <table id="getScreenTime" width="100%">
                 </table>
             </div>
         </div>
@@ -457,7 +457,7 @@
                 </tr>
             </table>
             <div class="adminScroll">
-                <table id="getMovies" style="background-color: #333;" width="100%">
+                <table id="getMovies" width="100%">
                 </table>
             </div>
       </div>
@@ -659,7 +659,7 @@
                 </tr>
             </table>
             <div class="adminScroll">
-                <table id="getTicket" style="background-color: #333;" width="100%">
+                <table id="getTicket" width="100%">
                 </table>
             </div>
         </div>
@@ -769,7 +769,7 @@
                 </tr>
             </table>
             <div class="adminScroll">
-                <table id="getMenu" style="background-color: #333;" width="100%">
+                <table id="getMenu" width="100%">
                 </table>
             </div>
         </div>
@@ -786,8 +786,13 @@
                 <tr>
                     <td>
                         <input type="text" id="createMenuName" placeholder="name...">
+                        <select id="createMenuType">
+                            <option value="Snacks">Snacks</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Combo">Combo</option>
+                          </select>
                     </td>
-                    <td rowspan="4" style="width: 350px;">
+                    <td colspan="2" style="width: 350px;">
                         <center>
                         <img id="output1" src="#" style="width: 300px; height: 150px;">
                         <input type="file" id = "picname" onchange="loadFile(event), displayCreateMenu()"/>
@@ -795,15 +800,7 @@
                         </center>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <select id="createMenuType">
-                            <option value="Snacks">Snacks</option>
-                            <option value="Drinks">Drinks</option>
-                            <option value="Combo">Combo</option>
-                          </select>
-                    </td>
-                </tr>
+
                 <tr>
                     <td>
                         <input type="text" id="createMenuSmallPrice" placeholder="Price for Small...">
@@ -821,7 +818,17 @@
                         <input type="text" id="createMenuLargePrice" placeholder="Price for Large...">
                     </td>
                 </tr>
-
+                <tr>
+                    <td>
+                        <label>Price for Small Size:</label>
+                    </td>
+                    <td>
+                        <label>Price for Medium Size:</label>
+                    </td>
+                    <td>
+                        <label>Price for Large Size:</label>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <div> </div>
@@ -846,11 +853,20 @@
                 <tr>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="width: 250px;">
                         <input type="text" id="updateMenuName" placeholder="name...">
                         <input id="editmenu_id" style="display: none;"/>
+                        <select id="updateMenuType">
+                            <option value="Snacks">Snacks</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Combo">Combo</option>
+                        </select>
+                        <select id="updateAvailability">
+                            <option value="active">active</option>
+                            <option value="suspend">suspend</option>
+                        </select>
                     </td>
-                    <td rowspan="5" style="width: 350px;">
+                    <td colspan="2">
                         <center>
                         <img id="updateOutput1" src="#" style="width: 300px; height: 150px;">
                         <input type="file" id = "updatepicname" onchange="loadFile1(event), displayUpdateMenu()"/>
@@ -860,43 +876,32 @@
                 </tr>
                 <tr>
                     <td>
-                        <select id="updateMenuType">
-                            <option value="Snacks">Snacks</option>
-                            <option value="Drinks">Drinks</option>
-                            <option value="Combo">Combo</option>
-                          </select>
+                        <label>Price for Small Size:</label>
+                    </td>
+
+
+                    <td>
+                        <label>Price for Medium Size:</label>
+                    </td>
+                    <td>
+                        <label>Price for Large Size:</label>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="text" id="updateMenuSmallPrice" placeholder="Price for Small...">
                     </td>
-                </tr>
 
-                <tr>
+
                     <td>
                         <input type="text" id="updateMenuMediumPrice" placeholder="Price for Medium...">
                     </td>
-                </tr>
-
-                <tr>
                     <td>
                         <input type="text" id="updateMenuLargePrice" placeholder="Price for Large...">
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <select id="updateAvailability">
-                            <option value="active">active</option>
-                            <option value="suspend">suspend</option>
-                          </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div> </div>
-                    </td>
-                    <td>
+                    <td colspan="3">
                         <div style="float: right;">
                             <button class="button" style="width: 48%;" onclick="menu.updateMenu()">Update</button>
                             <button class="button" style="width: 48%;" onclick="closeUpdateMenuModal()">Cancel</button>

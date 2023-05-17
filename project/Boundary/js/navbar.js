@@ -99,7 +99,7 @@ function moviePage() {
         c.style.display="none";
         d.style.display="none";
 
-        review.fetchReview();
+        viewreview.fetchReview();
         typewriter();
     }
  }
@@ -124,7 +124,7 @@ function moviePage() {
     x.classList.remove("active");
     z.classList.remove("active");
 
-    transactionhistory.fetchTransactionHistory(currentName);
+    transactionhistory.fetchTransactionHistory(this);
 
     if (d.style.display == "block") {
         a.style.display="block";

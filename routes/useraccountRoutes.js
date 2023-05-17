@@ -15,6 +15,12 @@ class UserAccountRoutes{
 
         app.route('/login')
         .post(useraccount.login);
+
+        app.route("/updatelp/:name")
+        .put(useraccount.updateLoyaltyPoints);
+
+        app.route("/updatePassword/:name")
+        .put(useraccount.updateCustomerAccount);
     }
 
 }

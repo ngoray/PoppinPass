@@ -23,7 +23,7 @@
             </tr>
         </table>
         <div class="adminScroll">
-            <table id="getUserProfile" style="background-color: #333333c4;" width="100%">
+            <table id="getUserProfile" width="100%">
             </table>
             <table id="getSearchProfile" style="display:none; background-color: #333333c4;" width="100%">
             </table>
@@ -61,7 +61,7 @@
             </td>
             <td>
                 <div style="float: right;">
-                    <button class="button" style="width: 48%;" onclick="userprofile.addUserProfile()">Create</button>
+                    <button class="button" style="width: 48%;" onclick="createuserprofilecontroller.addUserProfile()">Create</button>
                     <button class="button" style="width: 48%;" onclick="userprofile.closeCreateUserProfileModal()">Cancel</button>
                 </div>
             </td>
@@ -100,7 +100,7 @@
             </td>
             <td>
                 <div style="float: right;">
-                    <button class="button" style="width: 48%;" onclick="userprofile.updateUserProfile(this)">Update</button>
+                    <button class="button" style="width: 48%;" onclick="updateuserprofilecontroller.updateUserProfile(this)">Update</button>
                     <button class="button" style="width: 48%;" onclick="userprofile.closeEditUserProfileModal()">Cancel</button>
                 </div>
             </td>
@@ -140,7 +140,7 @@
             </tr>
         </table>
         <div class="adminScroll">
-            <table id="getUser" style="background-color: #333333c4;" width="100%">
+            <table id="getUser" width="100%">
 
             </table>
         </div>
@@ -174,7 +174,7 @@
                         Password:
                     </td>
                     <td>
-                        <input type="password" id="createAccountPassword" placeholder="Password...">
+                        <input type="text" id="createAccountPassword" placeholder="Password...">
                     </td>
                 </tr>
                 <tr>

@@ -5,7 +5,7 @@ function viewUserProfile() {
     var a = document.getElementById("viewUsA");
     var b = document.getElementById("viewUsP");
 
-    userprofile.fetchUserProfile();
+    viewuserprofilecontroller.fetchUserProfile();
     
     a.classList.remove("active");
     b.classList.add("active");

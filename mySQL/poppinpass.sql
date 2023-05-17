@@ -157,7 +157,7 @@ CREATE TABLE `occupancy` (
 
 LOCK TABLES `occupancy` WRITE;
 /*!40000 ALTER TABLE `occupancy` DISABLE KEYS */;
-INSERT INTO `occupancy` VALUES (1,'A1','A'),(2,'A2','A'),(3,'A3','A'),(4,'A4','A'),(5,'A5','A'),(6,'B1','B'),(7,'B2','B'),(8,'B3','B'),(9,'B4','B'),(10,'B5','B'),(11,'C1','C'),(12,'C2','C'),(13,'C3','C'),(14,'C4','C'),(15,'C5','C'),(16,'D1','D'),(17,'D2','D'),(18,'D3','D'),(19,'D4','D'),(20,'D5','D'),(21,'E1','E'),(22,'E2','E'),(23,'E3','E'),(24,'E4','E'),(25,'E5','E'),(26,'F1','F');
+INSERT INTO `occupancy` VALUES (1,'A1','A'),(2,'A2','A'),(3,'A3','A'),(4,'A4','A'),(5,'A5','A'),(6,'B1','B'),(7,'B2','B'),(8,'B3','B'),(9,'B4','B'),(10,'B5','B'),(11,'C1','C'),(12,'C2','C'),(13,'C3','C'),(14,'C4','C'),(15,'C5','C'),(16,'D1','D'),(17,'D2','D'),(18,'D3','D'),(19,'D4','D'),(20,'D5','D'),(21,'E1','E'),(22,'E2','E'),(23,'E3','E'),(24,'E4','E'),(25,'E5','E'),(26,'F2','F');
 /*!40000 ALTER TABLE `occupancy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,7 +244,7 @@ CREATE TABLE `seatmap` (
 
 LOCK TABLES `seatmap` WRITE;
 /*!40000 ALTER TABLE `seatmap` DISABLE KEYS */;
-INSERT INTO `seatmap` VALUES (173,'A1','A','Room1','active'),(175,'C1','C','Room1','active'),(177,'E1','E','Room1','active'),(178,'E2','E','Room1','active'),(179,'D2','D','Room1','active'),(180,'C2','C','Room1','active'),(181,'B2','B','Room1','active'),(182,'A2','A','Room1','active'),(183,'A3','A','Room1','active'),(184,'B3','B','Room1','active'),(185,'C3','C','Room1','active'),(186,'D3','D','Room1','active'),(188,'E4','E','Room1','active'),(189,'D4','D','Room1','active'),(190,'C4','C','Room1','active'),(191,'B4','B','Room1','active'),(192,'A4','A','Room1','active'),(193,'A5','A','Room1','active'),(194,'B5','B','Room1','active'),(195,'C5','C','Room1','active'),(196,'D5','D','Room1','active'),(198,'E3','E','Room1','Booked'),(199,'A3','A','F1','active'),(200,'A1','A','Room2','active'),(201,'E3','E','F1','active'),(202,'A5','A','F1','active');
+INSERT INTO `seatmap` VALUES (173,'A1','A','Room1','active'),(175,'C1','C','Room1','active'),(177,'E1','E','Room1','Booked'),(178,'E2','E','Room1','active'),(179,'D2','D','Room1','active'),(180,'C2','C','Room1','active'),(181,'B2','B','Room1','active'),(182,'A2','A','Room1','active'),(183,'A3','A','Room1','active'),(184,'B3','B','Room1','active'),(185,'C3','C','Room1','active'),(186,'D3','D','Room1','active'),(188,'E4','E','Room1','Booked'),(189,'D4','D','Room1','active'),(190,'C4','C','Room1','active'),(191,'B4','B','Room1','active'),(192,'A4','A','Room1','active'),(193,'A5','A','Room1','active'),(194,'B5','B','Room1','active'),(195,'C5','C','Room1','active'),(196,'D5','D','Room1','active'),(198,'E3','E','Room1','Booked'),(199,'A3','A','F1','active'),(200,'A1','A','Room2','active'),(201,'E3','E','F1','active'),(202,'A5','A','F1','active');
 /*!40000 ALTER TABLE `seatmap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +270,7 @@ CREATE TABLE `transactionhistory` (
   KEY `accountname` (`accountname`) /*!80000 INVISIBLE */,
   KEY `movietitle` (`movietitle`),
   CONSTRAINT `accountname` FOREIGN KEY (`accountname`) REFERENCES `useraccount` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,6 +279,7 @@ CREATE TABLE `transactionhistory` (
 
 LOCK TABLES `transactionhistory` WRITE;
 /*!40000 ALTER TABLE `transactionhistory` DISABLE KEYS */;
+INSERT INTO `transactionhistory` VALUES (2,'c','movietitle','tickettype','screentime','roomno','seatno','foodname','totalprice','2023-05-15'),(3,'c','Battle Of The Sexes','Senior Citizen','3pm,3pm','Room1',' E1','Nacho Cheese','FREE (points redeemed)','2023-05-15'),(4,'c','Battle Of The Sexes','Senior Citizen','Monday,3pm','Room1',' E4','Popcorn','FREE (points redeemed)','2023-05-15');
 /*!40000 ALTER TABLE `transactionhistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,6 +297,7 @@ CREATE TABLE `useraccount` (
   `password` varchar(45) NOT NULL,
   `role` varchar(45) NOT NULL,
   `status` varchar(45) NOT NULL,
+  `loyaltypoints` int NOT NULL,
   PRIMARY KEY (`_id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `email_UNIQUE` (`email`),
@@ -310,7 +312,7 @@ CREATE TABLE `useraccount` (
 
 LOCK TABLES `useraccount` WRITE;
 /*!40000 ALTER TABLE `useraccount` DISABLE KEYS */;
-INSERT INTO `useraccount` VALUES (1,'a','a@a.a','a','User Admin','active'),(4,'b','b','b','Cinema Manager','active'),(5,'c','c','c','Customer','active'),(6,'d','d','d','User Admin','active'),(7,'e','e','e','Customer','active');
+INSERT INTO `useraccount` VALUES (1,'a','a@a.a','a','User Admin','active',0),(4,'b','b','b','Cinema Manager','active',0),(5,'c','c','c','Customer','active',100),(6,'d','d','d','User Admin','active',0),(7,'e','e','e','Customer','active',0);
 /*!40000 ALTER TABLE `useraccount` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,4 +351,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-14 22:51:30
+-- Dump completed on 2023-05-16  0:09:10
