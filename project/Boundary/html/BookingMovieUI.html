@@ -1,7 +1,14 @@
 <div style="display: none; width: 100%;" id="bookingpage">
-    <table width="100%"id="bookST">
+    <div id="bookST">
+        <br><br><br><br>
+    <table class="center" border="1" width="100%">
         <tr>
-            <td width="10%">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td width="30%">
                 <button class="button" style="background-color: #33333300;" onclick="returnHome()"><div class="imge"></div></button>
             </td>
             <td>
@@ -9,7 +16,7 @@
                     <img id="bookingPoster" src="./../../images/products/pony_poster.jpg" style="margin: 20px 20px;"/>
                 </center>
             </td>
-            <td width="40%">
+            <td width="60%">
                 <h3 id="ticketDay">Empty</h3>
                 <table id = "monday">
                         <td>
@@ -23,16 +30,16 @@
             </td>
         </tr>
     </table>
+    </div>
     <div id="bookTicketType" style="display: none;">
-       
     <table class="center">
         <tr>
             <td colspan="2">
-                <button class="button" style="float: right;" onclick="createTable()">+</button>
+                <button class="button" style="float: right;" onclick="createTable()">New Ticket</button>
             </td>
         </tr>
         <tr id="myTable">
-            <td style="background-color: #333;">
+            <td>
                 <table style="width: 100%;">
                     <tr>
                         <td>
@@ -64,6 +71,7 @@
 </div>
 
 <div id="bookSeatMap" style="display: none;">
+    <br><br>
     <table style="width: 100%; height: 400px;">
         <tr>
             <td colspan="3">
@@ -88,6 +96,7 @@
             <td rowspan="5"></td>
         
                 <td>
+                    <br><br><br><br><br><br><br>
                     <center id="BrowA">
                         <button class="mapbtn" style="background-color:rgb(255, 130, 6);">A1</button>
                     </center>
@@ -150,92 +159,74 @@
 
                 <table class="center">
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
+                            <center>
                             <h1>Booking Summary</h1>
+                        </center>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <img id="summaryPoster" src="./../../images/products/Ah Boys To Men 4.jpg">
-                        </td>
+                        <td colspan="3"><br>&nbsp;<br><br>&nbsp;<br></td>
                     </tr>
                     <tr>
                         <td>
-                            <label>Title:</label>
-                        </td>
-                        <td>
-                            <label id="summaryTitle">empty</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Room:</label>
-                        </td>
-                        <td>
-                            <label id="summaryRoom">empty</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Seat:</label>
-                        </td>
-                        <td>
-                            <label id="summarySeat"></label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Day:</label>
-                        </td>
-                        <td>
-                            <label id="summaryTime">empty</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Screen Time:</label>
-                        </td>
-                        <td>
-                            <label id="summaryDay">empty</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Ticket Type:</label>
-                        </td>
-                        <td>
-                            <label id="summaryType">empty</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Quantity:</label>
-                        </td>
-                        <td>
-                            <label id="summaryQuantity">empty</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
+                            <label>Title:</label><br>
+                            <label>Room:</label><br>
+                            <label>Seat:</label><br>
+                            <label>Day:</label><br>
+                            <label>Screen Time:</label><br>
+                            <label>Ticket Type:</label><br>
+                            <label>Quantity:</label><br>
                             <label>Food:</label>
                         </td>
                         <td>
-                            <label id="summaryFood">empty</label>
+                            <div style="float: right;">
+                                <label id="summaryTitle">empty</label>
+                            </div>
+                            <br>
+                            <div style="float: right;"><label id="summaryRoom">empty</label></div><br>
+                                
+                                <div style="float: right;"><label id="summarySeat"></label></div><br>
+                                
+                                <div style="float: right;"><label id="summaryDay">empty</label></div><br>
+                                
+                                <div style="float: right;"><label id="summaryTime">empty</label></div><br>
+                                
+                                <div style="float: right;"><label id="summaryType">empty</label></div><br>
+                                
+                                <div style="float: right;"><label id="summaryQuantity">empty</label></div><br>
+                                
+                                <div style="float: right;"><label id="summaryFood">empty</label></div>
+                                
+                        </td>
+                        <td>
+                            <div style="float: right;">
+                                <img id="summaryPoster" src="./../../images/products/Ah Boys To Men 4.jpg" width="300px" height="150px">
+                            </div>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td colspan="3"><br><br></td>
+                    </tr>
+
                     <tr>
                         <td>
                             <label>Current Points:</label>
                         </td>
                         <td>
-                            <label id="summaryPoints">empty</label>
+                            <div style="float: right;">
+                                <label id="summaryPoints">empty</label>
+                            </div>
                         </td>
                         <td>
+                            <div style="float: right;">
                             <label>Redeem Point</label>
                             <label class="switch">
                                 <input onclick="handleCheckboxClick(event)" type="checkbox">
                                 <span class="slider round"></span>
                               </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -243,12 +234,14 @@
                             <label>Total Price:</label>
                         </td>
                         <td>
-                            <label id="summaryPrice">empty</label>
-                            <label style="display: none;" id="summaryPru">empty</label>
+                            <div style="float: right;">
+                                <label id="summaryPrice">empty</label>
+                                <label style="display: none;" id="summaryPru">empty</label>
+                            </div> 
                         </td>
                     </tr>
                     <tr>
-                        <td><br><br></td>
+                        <td colspan="3"><br><br></td>
                     </tr>
                     <tr>
                         <td colspan="3">

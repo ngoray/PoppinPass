@@ -13,6 +13,9 @@ class MovieTicketRoutes{
         app.route("/movieticket/:_id")
         .put(movieticket.updateMovieTicket)
         .delete(movieticket.suspendMovieTicket);
+
+        app.route('/searchticket')
+        .post(movieticket.searchTicketType);
     }
 
 }

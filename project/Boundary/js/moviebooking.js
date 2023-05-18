@@ -5,6 +5,15 @@ function returnHome(){
     moviePage();
 }
 
+function resetbooking(){
+
+        document.getElementById('bookST').style.display="none";
+        document.getElementById('bookTicketType').style.display="none";
+        document.getElementById('bookSeatMap').style.display="none";
+        document.getElementById('menupage').style.display="none";
+        document.getElementById('movieBookingSum').style.display="none";
+}
+
 function check4LoginMovie(){
    if (sessionStorage.getItem("name") === null){
        alert("PLS LOGIN TO CONTINUE");
@@ -23,7 +32,6 @@ function check4LoginMovie(){
         document.getElementById("bookingPoster").src='./../images/products/' + fileName;
         document.getElementById("summaryPoster").src='./../images/products/' + fileName;
         // allSpacesRemoved = movietitle.replaceAll(' ', '');
-        
        
         bookMoviePage();
         screentime.fetchScreenTime4Cust(movietitle1);

@@ -44,17 +44,17 @@ class Occupancy {
           occuArray = JSON.parse(OccuRequest.responseText);
           console.log("ok");
           console.log(occuArray);
-          this.displayRowA(this.row1);
-          this.displayRowB(this.row2);
-          this.displayRowC(this.row3);
-          this.displayRowD(this.row4);
-          this.displayRowE(this.row5);
+          this.generateRowA(this.row1);
+          this.generateRowB(this.row2);
+          this.generateRowC(this.row3);
+          this.generateRowD(this.row4);
+          this.generateRowE(this.row5);
       };
   
       OccuRequest.send();
   }
 
-  displayRowA(row1) {
+  generateRowA(row1) {
       const table = document.getElementById("rowA");
       let RowCount = 0;
       let message = "";
@@ -75,7 +75,7 @@ class Occupancy {
       }
     }
 
-    displayRowB(row2) {
+    generateRowB(row2) {
       const table = document.getElementById("rowB");
       let RowCount = 0;
       let message = "";
@@ -96,7 +96,7 @@ class Occupancy {
       }
     }
 
-    displayRowC(row3) {
+    generateRowC(row3) {
       const table = document.getElementById("rowC");
       let RowCount = 0;
       let message = "";
@@ -118,7 +118,7 @@ class Occupancy {
     }
 
 
-    displayRowD(row4) {
+    generateRowD(row4) {
       const table = document.getElementById("rowD");
       let RowCount = 0;
       let message = "";
@@ -139,7 +139,7 @@ class Occupancy {
       }
     }
 
-    displayRowE(row5) {
+    generateRowE(row5) {
       const table = document.getElementById("rowE");
       let RowCount = 0;
       let message = "";
@@ -212,13 +212,13 @@ class ViewOccupancyController {
         occuArray = JSON.parse(OccuRequest.responseText);
         console.log("ok");
         console.log(occuArray);
-        this.displayOccu();
+        this.generateOccu();
     };
 
     OccuRequest.send();
   }
 
-  displayOccu() {
+  generateOccu() {
     const table = document.getElementById("getOccupancy");
     let occuCount = 0;
     let message = "";

@@ -3,6 +3,25 @@ var db = require('./../../dbconnection');
 
 class ScreenTime {
 
+  searchScreenTime(request, respond) {
+
+    const searchDetails = {
+      search: request.body.search
+    };
+
+    var sql = "SELECT * FROM poppinpass.screentime WHERE title LIKE ?;";
+  
+    db.query(sql, [searchDetails.search], function (error, result) {
+      console.log("result: " + result);
+  
+      if (error) {
+        respond.json(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
+
   // add screentime
   addScreenTime(request, respond) {
     const screentimeDetails = {

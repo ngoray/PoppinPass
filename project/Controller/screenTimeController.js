@@ -56,7 +56,7 @@ class ScreenTime {
             // Get all the movies records into our movie array
             st_array = JSON.parse(request.responseText);
             console.log(st_array);
-            screentime.displayScreenTime4Cust()
+            screentime.generateScreenTime4Cust()
             // Call the function to display all movies tiles for "Now Showing"
           };
           console.log(JSON.stringify(stmoviedeets));
@@ -64,7 +64,7 @@ class ScreenTime {
 
     }
 
-    displayScreenTime4Cust(){
+    generateScreenTime4Cust(){
         const table1 = document.getElementById("monday");
         const table2 = document.getElementById("tuesday");
         const table3 = document.getElementById("wednesday");
@@ -159,14 +159,14 @@ class ViewScreenTimeController {
           request.onload = () => {
               // Get all the movies records into our movie array
               st_array = JSON.parse(request.responseText);
-              // Call the function to display all movies tiles for "Now Showing"
-              this.displayScreenTime();
+              // Call the function to generate all movies tiles for "Now Showing"
+              this.generateScreenTime();
             };
   
             request.send();
       }
   
-    displayScreenTime(){
+    generateScreenTime(){
           const table = document.getElementById("getScreenTime");
           let stCount = 0;
           let message = "";
@@ -296,9 +296,67 @@ class SuspendScreenTimeController {
 const suspendscreentimecontroller = new SuspendScreenTimeController("/screentimes", "/screentiming");
 
 class SearchScreenTimeController {
-    constructor(screentimeUrl, stbookingUrl) {
+    constructor(screentimeUrl, stbookingUrl, searchUrl) {
         this.screentimeUrl = screentimeUrl;
         this.stbookingUrl = stbookingUrl;
+        this.searchUrl = searchUrl;
+      }
+
+      searchScreenTime(){
+        var input, filter, table, tr, td, a, i, txtValue;
+          input = document.getElementById("stSearch");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("getst");
+          const searchM = new XMLHttpRequest();
+    
+          if (filter === null)
+          {
+            document.getElementById("viewst").style.display="none";
+            viewUserProfile();
+          }
+    
+          else{
+            const search1 = "%" +filter + "%"
+            console.log ("search: " + search1);
+            searchM.open('POST', this.searchUrl, true);
+    
+          const searchdata = {
+            "search": search1
+          }
+    
+          console.log("search data: "+ JSON.stringify(searchdata))
+    
+          searchM.setRequestHeader("Content-Type", "application/json");
+          searchM.onload = function () {
+            st_array = []
+            st_array = JSON.parse(searchM.responseText);
+            console.log("array length" + st_array.length);
+            document.getElementById("getst").style.display="none";
+            document.getElementById("getSearchst").style.display="block";
+            
+    
+            const table = document.getElementById("getSearchst");
+            let upCount = 0;
+            let message = "";
+            table.innerHTML = "";
+            const totalup = st_array.length;
+            console.log("array length" + st_array.length);
+    
+            for (let count = 0; count < totalup; count++)
+            {
+                const id = st_array[count]._id;
+                const name = st_array[count].name;
+                const price = st_array[count].price;
+                const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+name+'</a></td><td>'+price+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick=""><img src="./../images/edit.png" width="30px" height="30px"></td>'
+    
+                table.insertAdjacentHTML("beforeend", cell);
+                console.log(table);
+                upCount++;
+            }
+          };
+          searchM.send(JSON.stringify(searchdata));
+        }
+    
       }
 }
-const searchscreentimecontroller = new SearchScreenTimeController("/screentimes", "/screentiming");
+const searchscreentimecontroller = new SearchScreenTimeController("/screentimes", "/screentiming", "/searchscreentime");

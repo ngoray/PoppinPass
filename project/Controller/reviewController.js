@@ -15,11 +15,11 @@ class ViewReviewController {
         review_array = JSON.parse(ViewReviewRequest.responseText);
         console.log("ok");
         console.log("array length: "+ review_array.length);
-        this.displayReviews();
+        this.generateReviews();
     };
     ViewReviewRequest.send();
   }
-  displayReviews() {
+  generateReviews() {
     const table = document.getElementById("reviewTable");
     let ViewReviewCount = 0;
     let message = "";

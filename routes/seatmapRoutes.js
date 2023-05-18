@@ -19,6 +19,9 @@ class SmRoutes{
 
         app.route("/smbooking")
         .post(sm.getUnbookedSM);
+
+        app.route('/searchseatmap')
+        .post(sm.searchSeatMap);
     }
 
 }

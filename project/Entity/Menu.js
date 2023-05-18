@@ -1,6 +1,27 @@
 var db = require('./../../dbconnection');
 
 class Menu{
+
+  searchMenu(request, respond) {
+
+    const searchDetails = {
+      search: request.body.search
+    };
+
+    var sql = "SELECT * FROM poppinpass.menu WHERE name LIKE ?;";
+  
+    db.query(sql, [searchDetails.search], function (error, result) {
+      console.log("result: " + result);
+  
+      if (error) {
+        respond.json(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
+
+
     // Create Food Menu
     addMenu(request, respond) {
       const menudata = {

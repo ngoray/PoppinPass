@@ -322,3 +322,131 @@ function setitem(){
 </body>
 </html>
 
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Graph Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="myChart"></canvas>
+
+  <script>
+    // Get the canvas element
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Define the data for the chart
+    var data = {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: 'My Dataset',
+        data: [12, 19, 3, 5, 2, 3],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // Create the chart
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Modal Example</title>
+  <style>
+    .modal {
+  display: none; /* Hide the modal by default */
+  position: fixed; /* Position the modal */
+  z-index: 1; /* Make sure it appears on top of other elements */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scrolling if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black overlay */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* Center the modal on the page */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <input type="text" id="searchInput" onclick="openSearchModal()" placeholder="Search...">
+  
+  <div id="searchModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeSearchModal()">&times;</span>
+      <h2>Search Modal</h2>
+      <!-- Search form or content goes here -->
+    </div>
+  </div>
+
+  <script>
+    function openSearchModal() {
+  var modal = document.getElementById("searchModal");
+  modal.style.display = "block";
+}
+
+function closeSearchModal() {
+  var modal = document.getElementById("searchModal");
+  modal.style.display = "none";
+}
+
+  </script>
+</body>
+</html>
+
+
+

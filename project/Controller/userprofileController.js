@@ -27,15 +27,15 @@ class UserProfile {
       fetchUserProfile.onload = () => {
         userprofile_array = JSON.parse(fetchUserProfile.responseText);
   
-        this.displayUserProfile2();
-        this.displayUpdateUserProfile();
+        this.generateUserProfile2();
+        this.generateUpdateUserProfile();
       };
   
       
       fetchUserProfile.send();
   }
 
-  displayUserProfile2(){
+  generateUserProfile2(){
     const table = document.getElementById("getUserProfiles");
       let upCount = 0;
       let message = "";
@@ -64,7 +64,7 @@ class UserProfile {
     document.getElementById("editUserProfileRoleDescription").value = userprofile_array[item].description;
   }
 
-  displayUpdateUserProfile(){
+  generateUpdateUserProfile(){
     const table = document.getElementById("updateGetUserProfiles");
       let upCount = 0;
       let message = "";
@@ -133,14 +133,14 @@ class ViewUserProfileController {
   
       fetchUserProfile.onload = () => {
         userprofile_array = JSON.parse(fetchUserProfile.responseText);
-        this.displayUserProfile();
+        this.generateUserProfile();
       };
   
       
       fetchUserProfile.send();
   }
 
-  displayUserProfile(){
+  generateUserProfile(){
     const table = document.getElementById("getUserProfile");
       let upCount = 0;
       let message = "";

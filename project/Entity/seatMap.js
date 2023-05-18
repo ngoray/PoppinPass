@@ -2,6 +2,25 @@ var db = require('./../../dbconnection');
 
 class Seatmap {
 
+  searchSeatMap(request, respond) {
+
+    const searchDetails = {
+      search: request.body.search
+    };
+
+    var sql = "SELECT * FROM poppinpass.seatmap WHERE roomnumber LIKE ?;";
+  
+    db.query(sql, [searchDetails.search], function (error, result) {
+      console.log("result: " + result);
+  
+      if (error) {
+        respond.json(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
+
   addSM(request, respond) {
     const smdata = {
       seatno: request.body.seatno,

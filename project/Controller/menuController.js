@@ -131,12 +131,12 @@ class ViewMenuController {
         menuRequest.onload = () => {
             menu_array = JSON.parse(menuRequest.responseText);
             console.log(menu_array);
-            this.displayMenu();
+            this.generateMenu();
         };
         menuRequest.send();
     }
 
-    displayMenu(){
+    generateMenu(){
         const table = document.getElementById("getMenu");
         let menuCount = 0;
         let message = "";
@@ -200,13 +200,13 @@ class customerViewMenuController {
             menu_array = JSON.parse(request.responseText);
         
         // Call the function to display all movies tiles for "Now Showing"
-        customerviewmenucontroller.displayDrinks(this.Drinks);
+        customerviewmenucontroller.generateDrinks(this.Drinks);
         };
         
         // This command starts the calling of the movies web api
         request.send();
     }
-    displayDrinks(Drinks) {
+    generateDrinks(Drinks) {
         const table = document.getElementById("drinksmenu");
         let drinkCount = 0;
         
@@ -215,6 +215,7 @@ class customerViewMenuController {
         
         for (let count = 0; count < totalMenu; count++) {
             if (menu_array[count].type === Drinks) {
+            if (menu_array[count].availability === "active"){
             const image = "./../images/menu/" + menu_array[count].image;
             const name = menu_array[count].name;
             const smallprice = menu_array[count].smallprice;
@@ -264,6 +265,7 @@ class customerViewMenuController {
                 drinkCount++;
               }
             }
+        }
     }
 
     getSnacks() {
@@ -275,14 +277,14 @@ class customerViewMenuController {
         // Get all the movies records into our movie array
         menu_array = JSON.parse(request.responseText);
         
-        // Call the function to display all movies tiles for "Now Showing"
-        customerviewmenucontroller.displaySnacks(this.Snacks);
+        // Call the function to generate all movies tiles for "Now Showing"
+        customerviewmenucontroller.generateSnacks(this.Snacks);
         };
         
         // This command starts the calling of the movies web api
         request.send();
     }
-    displaySnacks(Snacks) {
+    generateSnacks(Snacks) {
         const table = document.getElementById("snacksmenu");
         let drinkCount = 0;
         
@@ -291,16 +293,17 @@ class customerViewMenuController {
         
         for (let count = 0; count < totalMenu; count++) {
             if (menu_array[count].type === Snacks) {
-            const image = "./../images/menu/" + menu_array[count].image;
-            const name = menu_array[count].name;
-            const smallprice = menu_array[count].smallprice;
-            const mediumprice = menu_array[count].mediumprice;
-            const largeprice = menu_array[count].largeprice;
+            if (menu_array[count].availability === "active"){
+                const image = "./../images/menu/" + menu_array[count].image;
+                const name = menu_array[count].name;
+                const smallprice = menu_array[count].smallprice;
+                const mediumprice = menu_array[count].mediumprice;
+                const largeprice = menu_array[count].largeprice;
         
-            const cell =
-                  ' <td>\
-                  <img src="'+image+'" style="margin:10px 25px;width: 450px; height: 300px;">\
-                  <table class="centerTable" style="width: 450px;">\
+                const cell =
+                      ' <td>\
+                    <img src="'+image+'" style="margin:10px 25px;width: 450px; height: 300px;">\
+                    <table class="centerTable" style="width: 450px;">\
                       <tr>\
                           <td colspan="3">\
                               <center><h2>'+name+'</h2></center>\
@@ -341,6 +344,7 @@ class customerViewMenuController {
               }
             }
         }
+    }
 
 
     getCombo() {
@@ -352,14 +356,14 @@ class customerViewMenuController {
         // Get all the movies records into our movie array
         menu_array = JSON.parse(request.responseText);
         
-        // Call the function to display all movies tiles for "Now Showing"
-        customerviewmenucontroller.displayCombo(this.Combo);
+        // Call the function to generate all movies tiles for "Now Showing"
+        customerviewmenucontroller.generateCombo(this.Combo);
         };
         
         // This command starts the calling of the movies web api
         request.send();
     }
-    displayCombo(Combo) {
+    generateCombo(Combo) {
         const table = document.getElementById("combomenu");
         let drinkCount = 0;
         
@@ -368,6 +372,7 @@ class customerViewMenuController {
         
         for (let count = 0; count < totalMenu; count++) {
             if (menu_array[count].type === Combo) {
+            if (menu_array[count].availability === "active"){
             const image = "./../images/menu/" + menu_array[count].image;
             const name = menu_array[count].name;
             const smallprice = menu_array[count].smallprice;
@@ -416,6 +421,7 @@ class customerViewMenuController {
                 table.insertAdjacentHTML("beforeend", cell);
                 drinkCount++;
               }
+            }
             }
     }
 }
@@ -520,5 +526,65 @@ class SuspendMenuController {
 }
 const suspendmenucontroller = new SuspendMenuController("/suspendmenu");
 
-class SearchMenuController{}
-const searchmenucontroller = new SearchMenuController("/menu","/suspendmenu");
+class SearchMenuController{
+    constructor(searchUrl) {
+        this.searchUrl = searchUrl;
+    }
+    searchMenu(){
+        var input, filter, table, tr, td, a, i, txtValue;
+          input = document.getElementById("menuSearch");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("getMenu");
+          const searchM = new XMLHttpRequest();
+    
+          if (filter === null)
+          {
+            document.getElementById("viewMenu").style.display="none";
+            viewUserProfile();
+          }
+    
+          else{
+            const search1 = "%" +filter + "%"
+            console.log ("search: " + search1);
+            searchM.open('POST', this.searchUrl, true);
+    
+          const searchdata = {
+            "search": search1
+          }
+    
+          console.log("search data: "+ JSON.stringify(searchdata))
+    
+          searchM.setRequestHeader("Content-Type", "application/json");
+          searchM.onload = function () {
+            menu_array = []
+            menu_array = JSON.parse(searchM.responseText);
+            console.log("array length" + menu_array.length);
+            document.getElementById("getMenu").style.display="none";
+            document.getElementById("getSearchMenu").style.display="block";
+            
+    
+            const table = document.getElementById("getSearchMenu");
+            let upCount = 0;
+            let message = "";
+            table.innerHTML = "";
+            const totalup = menu_array.length;
+            console.log("array length" + menu_array.length);
+    
+            for (let count = 0; count < totalup; count++)
+            {
+                const id = menu_array[count]._id;
+                const name = menu_array[count].name;
+                const price = menu_array[count].price;
+                const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+name+'</a></td><td>'+price+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick=""><img src="./../images/edit.png" width="30px" height="30px"></td>'
+    
+                table.insertAdjacentHTML("beforeend", cell);
+                console.log(table);
+                upCount++;
+            }
+          };
+          searchM.send(JSON.stringify(searchdata));
+        }
+    
+      }
+}
+const searchmenucontroller = new SearchMenuController("/searchmenu");

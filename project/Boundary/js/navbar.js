@@ -17,6 +17,8 @@ function moviePage() {
     z.classList.remove("active");
     w.classList.remove("active");
 
+    resetbooking();
+
     if (c.style.display == "block") {
         a.style.display="none";
         d.style.display="none";
@@ -87,6 +89,8 @@ function moviePage() {
     x.classList.remove("active");
     w.classList.remove("active");
 
+    resetbooking();
+
     if (a.style.display == "block") {
         // b.style.display="none";
         c.style.display="none";
@@ -126,6 +130,8 @@ function moviePage() {
 
     viewtransactionhistorycontroller.fetchTransactionHistory(this);
 
+    resetbooking();
+
     if (d.style.display == "block") {
         a.style.display="block";
         // b.style.display="none";
@@ -151,10 +157,11 @@ function moviePage() {
     var a = document.getElementById("feedbackpage");
     var slide = document.getElementById("slideshow");
 
-    if (d.style.display == "block") {
+    if (e.style.display == "block") {
         a.style.display="none";
         b.style.display="none";
         c.style.display="none";
+        d.style.display="none";
     } else {
         $("bookingpage").fadeIn()
         e.style.display="block";
@@ -165,4 +172,26 @@ function moviePage() {
         c.style.display="none";
 
     }
+
+    document.getElementById('bookST').style.display="block";
+ }
+
+ function custLoggingout(){
+    $("custloggout1").fadeIn()
+    var a = document.getElementById("custloggout1");
+    a.style.display="block";
+ }
+
+ function CancelCustLogout(){
+    $("custloggout1").fadeIn()
+    document.getElementById("custloggout1").style.display="none";
+ }
+ function custLogout(){
+    sessionStorage.clear();
+    document.getElementById("custloggout1").style.display="none";
+    document.getElementById("customercontent").style.display ="none";
+    document.getElementById("userCart").style.display ="none";
+    document.getElementById("uProfile").style.display ="none";
+    document.getElementById("loginbtn").style.display ="block";
+    moviePage();
  }

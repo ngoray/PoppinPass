@@ -68,11 +68,11 @@ class SeatMap {
       console.log(grs.responseText);
       console.log("ok");
       console.log(this.smarray);
-      this.displayRowA4Cust(this.row1);
-      this.displayRowB4Cust(this.row2);
-      this.displayRowC4Cust(this.row3);
-      this.displayRowD4Cust(this.row4);
-      this.displayRowE4Cust(this.row5);
+      this.generateRowA4Cust(this.row1);
+      this.generateRowB4Cust(this.row2);
+      this.generateRowC4Cust(this.row3);
+      this.generateRowD4Cust(this.row4);
+      this.generateRowE4Cust(this.row5);
 
 
     }
@@ -80,7 +80,7 @@ class SeatMap {
     grs.send(JSON.stringify(smData));
   }
 
-  displayRowA4Cust(row1) {
+  generateRowA4Cust(row1) {
     const table = document.getElementById("BrowA");
     let RowCount = 0;
     let message = "";
@@ -102,7 +102,7 @@ class SeatMap {
     }
   }
 
-  displayRowB4Cust(row2) {
+  generateRowB4Cust(row2) {
     const table = document.getElementById("BrowB");
     let RowCount = 0;
     let message = "";
@@ -124,7 +124,7 @@ class SeatMap {
     }
   }
 
-  displayRowC4Cust(row3) {
+  generateRowC4Cust(row3) {
     const table = document.getElementById("BrowC");
     let RowCount = 0;
     let message = "";
@@ -146,7 +146,7 @@ class SeatMap {
     }
   }
 
-  displayRowD4Cust(row4) {
+  generateRowD4Cust(row4) {
     const table = document.getElementById("BrowD");
     let RowCount = 0;
     let message = "";
@@ -168,7 +168,7 @@ class SeatMap {
     }
   }
 
-  displayRowE4Cust(row5) {
+  generateRowE4Cust(row5) {
     const table = document.getElementById("BrowE");
     let RowCount = 0;
     let message = "";
@@ -289,18 +289,18 @@ class ViewSeatMapController {
       console.log(grs.responseText);
       console.log("ok");
       console.log(smarray);
-      this.displayRowA(this.row1);
-      this.displayRowB(this.row2);
-      this.displayRowC(this.row3);
-      this.displayRowD(this.row4);
-      this.displayRowE(this.row5);
+      this.generateRowA(this.row1);
+      this.generateRowB(this.row2);
+      this.generateRowC(this.row3);
+      this.generateRowD(this.row4);
+      this.generateRowE(this.row5);
 
 
     }
     console.log(smData);
     grs.send(JSON.stringify(smData));
   }
-  displayRowA(row1) {
+  generateRowA(row1) {
     const table = document.getElementById("rowA1");
     let RowCount = 0;
     let message = "";
@@ -321,7 +321,7 @@ class ViewSeatMapController {
       }
     }
   }
-  displayRowB(row2) {
+  generateRowB(row2) {
     const table = document.getElementById("rowB1");
     let RowCount = 0;
     let message = "";
@@ -342,7 +342,7 @@ class ViewSeatMapController {
       }
     }
   }
-  displayRowC(row3) {
+  generateRowC(row3) {
     const table = document.getElementById("rowC1");
     let RowCount = 0;
     let message = "";
@@ -363,7 +363,7 @@ class ViewSeatMapController {
       }
     }
   }
-  displayRowD(row4) {
+  generateRowD(row4) {
     const table = document.getElementById("rowD1");
     let RowCount = 0;
     let message = "";
@@ -384,7 +384,7 @@ class ViewSeatMapController {
       }
     }
   }
-  displayRowE(row5) {
+  generateRowE(row5) {
     const table = document.getElementById("rowE1");
     let RowCount = 0;
     let message = "";

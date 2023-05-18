@@ -1,5 +1,55 @@
 <div id="ownerpagecontent">
-    <div id="generateReport" style="display: none;">G report</div>
-    <div id="viewReport" style="display: none;">V report</div>
+    <div id="generateReport" style="display: none;">
+        <div id="Selection">
+        <br><br><br><br><br><br>
+        <table class="center">
+            <tr>
+                <td><center><h3>Generate Tickets Booked Report</h3></center></td>
+                <td><center><h3>Generate Food Sales Report</h3></center></td>
+            </tr>
+            <tr>
+                <td><button class="button" onclick="generateDailyTicks()" style="width: 100%;">Daily</button></td>
+                <td><button class="button" onclick="generateDailyFood()" style="width: 100%;">Daily</button></td>
+            </tr>
+            <tr>
+                <td><button class="button" onclick="generateWeeklyTicks()" style="width: 100%;">Weekly</button></td>
+                <td><button class="button" onclick="generateWeeklyFood()" style="width: 100%;">Weekly</button></td>
+            </tr>
+            <tr>
+                <td><button class="button" onclick="generateMonthlyTicks()" style="width: 100%;">Monthly</button></td>
+                <td><button class="button" onclick="generateMonthlyFood()" style="width: 100%;">Monthly</button></td>
+            </tr>
+        </table>
+        </div>
+
+            <br><br><br><br><br>
+            <canvas class="center" id="DailyTickChart" style="background: color #333;;width: 50%; display: none;"></canvas>
+            <canvas class="center" id="WeeklyTickChart" style="background: color #333;;width: 50%;display: none;"></canvas>
+            <canvas class="center" id="MonthlyTickChart" style="background: color #333;;width: 50%;display: none;"></canvas>
+            <canvas class="center" id="DailyFoodChart" style="background: color #333;;width: 50%;display: none;"></canvas>
+            <canvas class="center" id="WeeklyFoodChart" style="background: color #333;;width: 50%;display: none;"></canvas>
+            <canvas class="center" id="MonthlyFoodChart" style="background: color #333;;width: 50%;display: none;"></canvas>
+
+        </div>
+    </div>
+    <div id="viewReport" style="display: none;">
+        <br><br>
+        <table border="1" class="center">
+            <tr>
+                <td>
+                    <center>
+                        <button onclick="" class="button button3" style="background-color:#333;width:100%;cursor: pointer;">View Tickets Booked Report</button>
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <button onclick="" class="button button3" style="background-color:#333;width:100%;cursor: pointer;">View Food Sales Report</button>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <canvas class="center" id="YearTickChart" style="background: color #333;;width: 50%; display: none;"></canvas>
+        <canvas class="center" id="YearFoodChart" style="background: color #333;;width: 50%;display: none;"></canvas>
+    </div>
 
 </div>

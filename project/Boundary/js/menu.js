@@ -12,7 +12,7 @@ function snackMenu(){
     b.classList.remove("active");
     c.classList.remove("active");
 
-    menu.getSnacks();
+    customerviewmenucontroller.getSnacks();
 
     if (x.style.display == "block") {
         y.style.display="none";

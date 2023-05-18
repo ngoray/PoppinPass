@@ -13,13 +13,13 @@ class CinemaRoom {
         cinemaroomRequest.onload = () => {
             cinemaroomArray = [];
             cinemaroomArray = JSON.parse(cinemaroomRequest.responseText);
-            this.displayCinemaRoomST();
+            this.generateCinemaRoomST();
         };
     
         cinemaroomRequest.send();
     }
 
-    displayCinemaRoomST(){
+    generateCinemaRoomST(){
         const table = document.getElementById("createRoomNumberST");
         const table2 = document.getElementById("updateRoomNumberST");
           let upCount = 0;
@@ -141,13 +141,13 @@ class ViewCinemaRoomController {
             cinemaroomArray = JSON.parse(cinemaroomRequest.responseText);
             console.log("ok");
             console.log(cinemaroomArray);
-            this.displayCinemaRoom();
+            this.generateCinemaRoom();
         };
     
         cinemaroomRequest.send();
     }
 
-    displayCinemaRoom() {
+    generateCinemaRoom() {
         const table = document.getElementById("getRoomNumber");
         let cinemaroomCount = 0;
         let message = "";

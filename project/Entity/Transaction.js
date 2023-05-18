@@ -67,8 +67,8 @@ class Transaction{
     
 
 // monthly for tickets; returns month(date) and tickets_booked(int)
-viewMonthlyTicket(request, respond) {
-  var sql = "SELECT CONCAT(YEAR(`date`), '-', LPAD(MONTH(`date`), 2, '0')) AS `Month`, SUM(`quantityoftickets`) AS `Total Tickets Booked` FROM `transactionhistory` WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH) GROUP BY `Month`";
+generateMonthlyTicket(request, respond) {
+  var sql = "SELECT CONCAT(YEAR(`date`), '-', LPAD(MONTH(`date`), 2, '0')) AS `Month`, SUM(`quantityoftickets`) AS `Total_Tickets_Booked` FROM `transactionhistory` WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH) GROUP BY `Month`";
 
   db.query(sql, function (error, result) {
     if (error) {
@@ -81,7 +81,7 @@ viewMonthlyTicket(request, respond) {
 }
 
 // weekly for tickets; returns week(varchar) and tickets_booked(int)
-viewWeeklyTicket(request, respond) {
+generateWeeklyTicket(request, respond) {
   var sql = "SELECT WEEK(date) AS week_number, SUM(quantityoftickets) AS total_tickets_booked FROM transactionhistory WHERE date >= DATE_SUB(CURDATE(), INTERVAL 3 WEEK) AND date <= CURDATE() GROUP BY WEEK(date) ORDER BY WEEK(date) ASC";
 
   db.query(sql, function (error, result) {
@@ -96,7 +96,7 @@ viewWeeklyTicket(request, respond) {
 
 
 // daily for tickets; returns day(date) and tickets_booked(int)
-viewDailyTicket(request, respond) {
+generateDailyTicket(request, respond) {
   var sql = "SELECT `date`, SUM(`quantityoftickets`) AS `tickets_booked` FROM `transactionhistory` WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY `date`";
 
   db.query(sql, function (error, result) {
@@ -112,7 +112,7 @@ viewDailyTicket(request, respond) {
 
 
 // monthly for food; returns month(y-m) and fooditems_sold(int)
-viewMonthlyFood(request, respond) {
+generateMonthlyFood(request, respond) {
   var sql = "SELECT DATE_FORMAT(date, '%Y-%m') AS month, COUNT(*) AS fooditems_sold FROM transactionhistory WHERE date >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH) GROUP BY DATE_FORMAT(date, '%Y-%m') ORDER BY DATE_FORMAT(date, '%Y-%m') ASC";
 
   db.query(sql, function (error, result) {
@@ -127,7 +127,7 @@ viewMonthlyFood(request, respond) {
 
 
 // weekly for food; returns week_number(int) and fooditems_sold(int)
-viewWeeklyFood(request, respond) {
+generateWeeklyFood(request, respond) {
   var sql = "SELECT WEEK(date, 1) as week_number, COUNT(*) as fooditems_sold FROM transactionhistory WHERE date >= DATE_SUB(CURDATE(), INTERVAL 4 WEEK) AND date <= CURDATE() GROUP BY WEEK(date, 1) ORDER BY WEEK(date, 1) ASC;";
 
   db.query(sql, function (error, result) {
@@ -142,7 +142,7 @@ viewWeeklyFood(request, respond) {
 
 
 // daily for food; returns date(Date) and fooditems_sold(int)
-viewDailyFood(request, respond) {
+generateDailyFood(request, respond) {
   var sql = "SELECT DATE(`date`) AS `Date`, COUNT(*) AS `fooditems_sold` FROM `transactionhistory` WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY `Date`";
 
   db.query(sql, function (error, result) {
@@ -154,6 +154,35 @@ viewDailyFood(request, respond) {
       }
     });
   }
+
+  //generateReport
+  viewYearlyTickets(request, respond) {
+    var sql = "SELECT SUM(quantityoftickets) AS total_tickets FROM transactionhistory WHERE date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+  
+    db.query(sql, function (error, result) {
+      if (error) {
+        respond.json(error);
+      } else {
+        console.log(result);
+        respond.json(result);
+        }
+      });
+    }
+
+  viewYearlyFood(request, respond) {
+    var sql = "SELECT COUNT(*) AS total_records FROM transactionhistory WHERE date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+  
+    db.query(sql, function (error, result) {
+      if (error) {
+        respond.json(error);
+      } else {
+        console.log(result);
+        respond.json(result);
+        }
+      });
+    }  
+
+
 }
 const transaction = new Transaction;
 module.exports = Transaction;

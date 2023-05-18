@@ -3,6 +3,24 @@ var db = require('./../../dbconnection');
 
 class Occupancy {
 
+  searchOccupancy(request, respond) {
+
+    const searchDetails = {
+      search: request.body.search
+    };
+
+    var sql = "SELECT * FROM poppinpass.occupancy WHERE seatno LIKE ?;";
+  
+    db.query(sql, [searchDetails.search], function (error, result) {
+  
+      if (error) {
+        respond.json(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
+
   // add occupancy
   addOccu(request, respond) {
     const occupancyDetails = {

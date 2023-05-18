@@ -17,6 +17,9 @@ class ScreenTimeRoutes{
         //THIS ROUTE IS FOR WHEN CUST WANTS TO VIEW SCREENTIME OF A CERTAIN MOVIE
         app.route('/screentiming')
         .post(screentime.viewCertainScreenTime);
+
+        app.route('/searchscreentime')
+        .post(screentime.searchScreenTime);
     }
 
 }

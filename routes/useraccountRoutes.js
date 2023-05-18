@@ -21,6 +21,9 @@ class UserAccountRoutes{
 
         app.route("/updatePassword/:name")
         .put(useraccount.updateCustomerAccount);
+
+        app.route('/searchuseraccount')
+        .post(useraccount.searchUserAccount);
     }
 
 }

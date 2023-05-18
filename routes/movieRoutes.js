@@ -15,6 +15,9 @@ class MovieRoutes{
 
         app.route('/movies/:_id')
         .put(movie.updateMovie4Manager);
+
+        app.route('/searchmovie')
+        .post(movie.searchMovie);
     }
 
 }

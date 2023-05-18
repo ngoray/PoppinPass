@@ -14,22 +14,22 @@ class HistoryRoutes {
         .post(th.viewTransaction);
 
     app.route("/ticketmonthly")
-        .get(th.viewMonthlyTicket);
+        .get(th.generateMonthlyTicket);
 
     app.route("/ticketweekly")
-        .get(th.viewWeeklyTicket);
+        .get(th.generateWeeklyTicket);
 
     app.route("/ticketdaily")
-        .get(th.viewDailyTicket);
+        .get(th.generateDailyTicket);
 
     app.route("/foodmonthly")
-        .get(th.viewMonthlyFood);
+        .get(th.generateMonthlyFood);
 
     app.route("/foodweekly")
-        .get(th.viewWeeklyFood);
+        .get(th.generateWeeklyFood);
 
     app.route("/fooddaily")
-        .get(th.viewDailyFood);
+        .get(th.generateDailyFood);
 
     }
 }

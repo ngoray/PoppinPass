@@ -19,8 +19,8 @@ class Movies {
         movie_array = JSON.parse(request.responseText);
 
         console.log("movie_array: "+ movie_array);
-        // Call the function to display all movies tiles for "Now Showing"
-        this.displayMovieDataST();
+        // Call the function to generate all movies tiles for "Now Showing"
+        this.generateMovieDataST();
 
       };
   
@@ -28,7 +28,7 @@ class Movies {
       request.send();
     }
 
-    displayMovieDataST(){
+    generateMovieDataST(){
       const table = document.getElementById("createMovieST");
       const table2 = document.getElementById("updateMovieST");
       console.log("movie array length: "+ movie_array.length);
@@ -50,11 +50,6 @@ class Movies {
 
 
     }
-
-
-  
-
-
     //SHOW MOVIE DETAILS FOR CUSTOMER
     showMovieDetails(element){
         var item = element.getAttribute("item");
@@ -79,8 +74,6 @@ class Movies {
         var movieModal = document.getElementById("movieModal");
         movieModal.style.display="block";
     }
-
-
     //SHOW MOVIE DETAILS FOR MANAGER
     showMovieDetails2(element){
         var item = element.getAttribute("item");
@@ -108,6 +101,70 @@ class Movies {
         var movieModal = document.getElementById("updateMovietable");
         movieModal.style.display="block";
     }
+
+    //everything below is used for manager page instead of homepage
+    getMovieData4Customer() {
+          const request = new XMLHttpRequest();
+          request.open("GET", this.movieUrl, true);
+      
+          // This function will be called when data returns from the web api
+          request.onload = () => {
+            // Get all the movies records into our movie array
+            movie_array = JSON.parse(request.responseText);
+      
+            // Call the function to generate all movies tiles for "Now Showing"
+            this.generateMovies4cust();
+          };
+      
+          // This command starts the calling of the movies web api
+          request.send();
+        }
+    
+    generateMovies4cust() {
+            const table = document.getElementById("getMooviesdata");
+            let movieCount = 0;
+            let message = "";
+            table.innerHTML = "";
+            const totalmovies = movie_array.length;
+    
+            for (let count = 0; count < totalmovies; count++)
+            {
+                const id = movie_array[count]._id;
+                const title = movie_array[count].title;
+                const thumb = "./../images/products/" + movie_array[count].thumb;
+                const advice = movie_array[count].advice;
+                const genre = movie_array[count].availability;
+                const duration = movie_array[count].duration;
+    
+    
+                const cell ='<td style="width: 20%;">\
+                              <img src="'+thumb+'" width="100px" height="50px">\
+                            </td>\
+                            <td style="width: 20%;">\
+                              <strong id="movie_id" style="display:none;">\
+                                '+id+'\
+                              </strong>\
+                              <a>\
+                                '+title+'\
+                              </a>\
+                            </td>\
+                            <td>\
+                              <a>\
+                                '+genre+'\
+                              </a>\
+                              <a id="movie_suspend" style="display:none;">Suspended</a>\
+                            </td>\
+                            <td  width="10%">\
+                              <button item = '+count+' style="background-color:#333333a0;" onclick="movies.showMovieDetails(this)">\
+                                <img src="./../images/view.png" width="30px" height="30px">\
+                              </button>\
+                            </td>'
+    
+                table.insertAdjacentHTML("beforeend", cell);
+                movieCount++;
+            }
+        
+        }
     
 }
   const movies = new Movies('/movies', '/movie', '/searchmovie');
@@ -202,15 +259,15 @@ class ViewMovieController {
         // Get all the movies records into our movie array
         movie_array = JSON.parse(request.responseText);
   
-        // Call the function to display all movies tiles for "Now Showing"
-        this.displayMovies4Manager();
+        // Call the function to generate all movies tiles for "Now Showing"
+        this.generateMovies4Manager();
       };
   
       // This command starts the calling of the movies web api
       request.send();
     }
 
-    displayMovies4Manager() {
+    generateMovies4Manager() {
         const table = document.getElementById("getMovies");
         let movieCount = 0;
         let message = "";
@@ -276,8 +333,8 @@ class CustomerViewMovieController {
          
           movie_array = JSON.parse(request.responseText);
     
-          this.displayMovies(this.comingSoon);
-          this.displayMovies2(this.nowShowing);
+          this.generateMovies(this.comingSoon);
+          this.generateMovies2(this.nowShowing);
         };
     
        
@@ -285,7 +342,7 @@ class CustomerViewMovieController {
       }
   
      
-      displayMovies(comingSoon) {
+      generateMovies(comingSoon) {
         const table = document.getElementById("moviesTable");
         let movieCount = 0;
         let message = "";
@@ -336,7 +393,7 @@ class CustomerViewMovieController {
         document.getElementById("parent").textContent = "";
       }
   
-          displayMovies2(nowShowing) {
+          generateMovies2(nowShowing) {
             const table = document.getElementById("moviesTable2");
             let movieCount = 0;
             let message = "";
@@ -497,7 +554,7 @@ class SuspendMoviesController {
     console.log(id);
     const edit_movie_url = this.moviesuspendURL + "/" + id;
     
-    const response = confirm("Are you sure you want to edit your information?");
+    const response = confirm("Are you sure you want to suspend the movie?");
       
     const availability = document.getElementById("movie_suspend").innerHTML;
       
@@ -515,7 +572,7 @@ class SuspendMoviesController {
           movie_array[item].availability = availability;
   
           updateMovie.onload = function () {
-              alert("Your movie information has been edited.");
+              alert("Your movie information has been suspended.");
               document.getElementById("manageMovies").style.display = "none";
               mMovies();
           };
@@ -535,6 +592,63 @@ class SearchMoviesController {
     this.searchUrl = searchUrl
     this.comingSoon = "Coming Soon";
     this.nowShowing = "Now Showing";
+  }
+
+  searchMovie(){
+    var input, filter, table, tr, td, a, i, txtValue;
+      input = document.getElementById("movieSearch");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("getmovie");
+      const searchM = new XMLHttpRequest();
+
+      if (filter === null)
+      {
+        document.getElementById("viewmovie").style.display="none";
+        viewUserProfile();
+      }
+
+      else{
+        const search1 = "%" +filter + "%"
+        console.log ("search: " + search1);
+        searchM.open('POST', this.searchUrl, true);
+
+      const searchdata = {
+        "search": search1
+      }
+
+      console.log("search data: "+ JSON.stringify(searchdata))
+
+      searchM.setRequestHeader("Content-Type", "application/json");
+      searchM.onload = function () {
+        movie_array = []
+        movie_array = JSON.parse(searchM.responseText);
+        console.log("array length" + movie_array.length);
+        document.getElementById("getmovie").style.display="none";
+        document.getElementById("getSearchmovie").style.display="block";
+        
+
+        const table = document.getElementById("getSearchmovie");
+        let upCount = 0;
+        let message = "";
+        table.innerHTML = "";
+        const totalup = movie_array.length;
+        console.log("array length" + movie_array.length);
+
+        for (let count = 0; count < totalup; count++)
+        {
+            const id = movie_array[count]._id;
+            const name = movie_array[count].name;
+            const price = movie_array[count].price;
+            const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+name+'</a></td><td>'+price+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick=""><img src="./../images/edit.png" width="30px" height="30px"></td>'
+
+            table.insertAdjacentHTML("beforeend", cell);
+            console.log(table);
+            upCount++;
+        }
+      };
+      searchM.send(JSON.stringify(searchdata));
+    }
+
   }
 }
 const searchmoviescontroller = new SearchMoviesController('/movies', '/movie', '/searchmovie');

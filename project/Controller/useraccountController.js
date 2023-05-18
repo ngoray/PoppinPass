@@ -93,8 +93,8 @@ class UserAccount {
       updatepoints.open("PUT", edit_points_url, true);
       updatepoints.setRequestHeader("Content-Type", "application/json");
 
-      this.ua_array.name = name;
-      this.ua_array.loyaltypoints = loyaltypoints;
+      ua_array.name = name;
+      ua_array.loyaltypoints = loyaltypoints;
       loyaltypoints = document.getElementById("userProfilePoints").innerHTML;
 
       updatepoints.onload = function () { };
@@ -210,13 +210,13 @@ class ViewUserAccountController {
             ua_array = JSON.parse(request.responseText);
             console.log(ua_array);
 
-            this.displayUserAccount();
+            this.generateUserAccount();
           };
 
           request.send();
   }
 
-  displayUserAccount(){
+  generateUserAccount(){
     const table = document.getElementById("getUser");
         let uaCount = 0;
         let message = "";
@@ -502,7 +502,7 @@ class CustomerLoginAccountController {
       document.getElementById("uProfile").classList.add("active");
   
       var currentName = sessionStorage.getItem("name");
-      transactionhistory.fetchTransactionHistory(currentName);
+      viewtransactionhistorycontroller.fetchTransactionHistory(currentName);
                     
       // customer.showCustProfile(this);
       $("#customercontent").fadeIn()

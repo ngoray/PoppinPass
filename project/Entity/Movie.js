@@ -1,6 +1,25 @@
 "use strict"
 var db = require('./../../dbconnection');
 class Movie {
+
+  searchMovie(request, respond) {
+
+    const searchDetails = {
+      search: request.body.search
+    };
+
+    var sql = "SELECT * FROM poppinpass.screentime WHERE title LIKE ?;";
+  
+    db.query(sql, [searchDetails.search], function (error, result) {
+      console.log("result: " + result);
+  
+      if (error) {
+        respond.json(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
     // Get all Movies
     viewAllMovies(request, respond) {
         var sql = "SELECT * FROM poppinpass.movie";

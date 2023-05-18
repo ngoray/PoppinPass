@@ -3,6 +3,25 @@ const jwt = require('jsonwebtoken');
 
 class UserAccount{
 
+  searchUserAccount(request, respond) {
+
+    const searchDetails = {
+      search: request.body.search
+    };
+
+    var sql = "SELECT * FROM poppinpass.useraccount WHERE name LIKE ?;";
+  
+    db.query(sql, [searchDetails.search], function (error, result) {
+      console.log("result: " + result);
+  
+      if (error) {
+        respond.json(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
+
     login(request, respond) {
         var corplog = { "name": request.body.name, "password": request.body.password };
         var sql = "SELECT * FROM poppinpass.useraccount WHERE name = ? AND password = ?";

@@ -64,14 +64,14 @@ class Ticket {
             // Get all the movies records into our movie array
             this.ticket_array = JSON.parse(request.responseText);
             console.log(this.ticket_array);
-            // Call the function to display all movies tiles for "Now Showing"
-            this.displayTicketType2();
+            // Call the function to generate all movies tiles for "Now Showing"
+            this.generateTicketType2();
           };
 
           request.send();
     }
 
-    displayTicketType2()
+    generateTicketType2()
     {
         const table = document.getElementById("TicketType");
         let mtCount = 0;
@@ -148,14 +148,14 @@ class ViewTicketController {
             // Get all the movies records into our movie array
             ticket_array = JSON.parse(request.responseText);
             console.log(ticket_array);
-            // Call the function to display all movies tiles for "Now Showing"
-            this.displayTicketType();
+            // Call the function to generate all movies tiles for "Now Showing"
+            this.generateTicketType();
           };
 
           request.send();
     }
 
-    displayTicketType(){
+    generateTicketType(){
         const table = document.getElementById("getTicket");
         let mtCount = 0;
         let message = "";
@@ -287,9 +287,94 @@ class SuspendTicketController {
 const suspendticketcontroller = new SuspendTicketController("/movieticket");
 
 class SearchTicketController {
-    constructor(ticketUrl) {
+    constructor(ticketUrl, searchUrl) {
         this.ticketUrl = ticketUrl;
+        this.searchUrl = searchUrl;
         this.ticket_array = [];
       }
+
+
+      searchTicketType(){
+        var input, filter, table, tr, td, a, i, txtValue;
+      input = document.getElementById("tickettypeSearch");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("getticketType");
+      const searchTT = new XMLHttpRequest();
+
+      if (filter === null)
+      {
+        document.getElementById("viewticketType").style.display="none";
+        viewUserAccount()
+      }
+
+      else{
+        const search1 = "%" +filter + "%"
+        console.log ("search: " + search1);
+        searchTT.open('POST', this.searchUrl, true);
+
+      const searchdata = {
+        "search": search1
+      }
+
+      console.log("search data: "+ JSON.stringify(searchdata))
+
+      searchTT.setRequestHeader("Content-Type", "application/json");
+      searchTT.onload = function () {
+        ticket_array= []
+        ticket_array = JSON.parse(searchTT.responseText);
+        console.log("array length" + ticket_array.length);
+        document.getElementById("getUserProfile").style.display="none";
+        document.getElementById("getSearchProfile").style.display="block";
+        
+
+        const table = document.getElementById("getUser");
+        let ttCount = 0;
+        let message = "";
+        table.innerHTML = "";
+        const totaltt = ticket_array.length;
+
+      for (let count = 0; count < totaltt; count++)
+      {
+          const id = ticket_array[count]._id;
+          const name = ticket_array[count].name;
+          const age = ticket_array[count].age;
+          const price = ticket_array[count].price;
+          
+
+          const cell = '<td colspan="2" width="19%">\
+                          <strong id="st_id" style="display:none;">\
+                              '+id+'\
+                          </strong>\
+                          <a>\
+                              '+name+'\
+                          </a>\
+                      </td>\
+                      <td>\
+                          <a>\
+                              '+age+'\
+                          </a>\
+                      </td>\
+                      <td>\
+                          <a>\
+                              '+price+'\
+                          </a>\
+                      </td>\
+                      <td width="10%">\
+                          <button item = '+count+' style="background-color:#333333a0;" onclick="">\
+                              <img src="./../images/edit.png" width="30px" height="30px">\
+                          </button>\
+                          <button item = '+count+' style="background-color:#333333a0;" onclick="">\
+                              <img src="./../images/delete.png" width="30px" height="30px">\
+                          </button>\    </td>'
+          
+          table.insertAdjacentHTML("beforeend", cell);
+          ttCount++;
+          
+  }
+      };
+      searchTT.send(JSON.stringify(searchdata));
+    }
+
+      }
 }
-const searchticketcontroller = new SearchTicketController("/movieticket");
+const searchticketcontroller = new SearchTicketController("/movieticket","/searchticket");

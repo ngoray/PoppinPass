@@ -3,9 +3,10 @@
   <!-- <li><a href="#2" id="menu" onclick="menuPage()">Menu</a></li> -->
   <li><a href="#3" id="feedback" onclick="reviewPage()">Reviews</a></li>
   <li><a href="#4" id="uProfile" style="display: none;" onclick="profilePage()">Profile</a></li>
-  <input style="display: none;" type="text" placeholder="Search.." name="search">
+  <li></li>
+  <li><input id="movieSearchResult" onclick="openSearchModal()" style="display: block; width: 500px; position: relative; left: 350px;" type="text" placeholder="Search.." name="search"></li>
   <li class="right">
-    <a  id="userCart" height="20px" class="button2 button3" onclick="" style="display: none;">Loggout</a>
+    <a  id="userCart" height="20px" class="button2 button3" onclick="custLoggingout()" style="display: none;">Loggout</a>
       <!-- <img id="userCart" src="./../../images/power.png" width="30px" height="30px" style="display: none; margin: 10px 10px;"/> -->
     <a href="#login" id="loginbtn" onclick="document.getElementById('id01').style.display='block'">Login</a>
   </li>

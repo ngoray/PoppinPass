@@ -16,6 +16,7 @@ function gReport() {
         y.style.display = "block";
         z.style.display = "none";
     }
+
 }
 
 function vReport() {
@@ -32,4 +33,103 @@ function vReport() {
     y.style.display = "none";
     z.style.display = "block";
 
+}
+
+function generateDailyTicks(){
+    generatedailyticketsbookedcontroller.fetchDailyTickGraph();
+    document.getElementById("DailyTickChart").style.display="block";
+    document.getElementById("WeeklyTickChart").style.display="none";
+    document.getElementById("MonthlyTickChart").style.display="none";
+    document.getElementById("DailyFoodChart").style.display="none";
+    document.getElementById("WeeklyFoodChart").style.display="none";
+    document.getElementById("MonthlyFoodChart").style.display="none";
+    document.getElementById("Selection").style.display="none";
+    document.getElementById("gReport").style.display="none";
+    document.getElementById("vReport").style.display="none";
+    document.getElementById("gbtn").style.display="block";
+    
+}
+
+function generateWeeklyTicks(){
+    generateweeklyticketsbookedcontroller.fetchWeeklyTickGraph();
+    document.getElementById("WeeklyTickChart").style.display="block";
+    document.getElementById("DailyTickChart").style.display="none";
+    document.getElementById("MonthlyTickChart").style.display="none";
+    document.getElementById("DailyFoodChart").style.display="none";
+    document.getElementById("WeeklyFoodChart").style.display="none";
+    document.getElementById("MonthlyFoodChart").style.display="none";
+    document.getElementById("Selection").style.display="none";
+    document.getElementById("gbtn").style.display="block";
+    document.getElementById("gReport").style.display="none";
+    document.getElementById("vReport").style.display="none";
+}
+
+function generateMonthlyTicks(){
+    generatemonthlyticketsbookedcontroller.fetchMonthlyTickGraph();
+    document.getElementById("WeeklyTickChart").style.display="none";
+    document.getElementById("DailyTickChart").style.display="none";
+    document.getElementById("MonthlyTickChart").style.display="block";
+    document.getElementById("DailyFoodChart").style.display="none";
+    document.getElementById("WeeklyFoodChart").style.display="none";
+    document.getElementById("MonthlyFoodChart").style.display="none";
+    document.getElementById("Selection").style.display="none";
+    document.getElementById("gbtn").style.display="block";
+    document.getElementById("gReport").style.display="none";
+    document.getElementById("vReport").style.display="none";
+}
+
+function generateDailyFood(){
+    generatedailyfoodsalescontroller.fetchDailyFoodGraph();
+    document.getElementById("WeeklyTickChart").style.display="none";
+    document.getElementById("DailyTickChart").style.display="none";
+    document.getElementById("MonthlyTickChart").style.display="none";
+    document.getElementById("DailyFoodChart").style.display="block";
+    document.getElementById("WeeklyFoodChart").style.display="none";
+    document.getElementById("MonthlyFoodChart").style.display="none";
+    document.getElementById("Selection").style.display="none";
+    document.getElementById("gbtn").style.display="block";
+    document.getElementById("gReport").style.display="none";
+    document.getElementById("vReport").style.display="none";
+}
+
+function generateWeeklyFood(){
+    generateweeklyfoodsalescontroller.fetchWeeklyFoodGraph();
+    document.getElementById("WeeklyTickChart").style.display="none";
+    document.getElementById("DailyTickChart").style.display="none";
+    document.getElementById("MonthlyTickChart").style.display="none";
+    document.getElementById("DailyFoodChart").style.display="none";
+    document.getElementById("WeeklyFoodChart").style.display="block";
+    document.getElementById("MonthlyFoodChart").style.display="none";
+    document.getElementById("Selection").style.display="none";
+    document.getElementById("gbtn").style.display="block";
+    document.getElementById("gReport").style.display="none";
+    document.getElementById("vReport").style.display="none";
+}
+
+function generateMonthlyFood(){
+    generatemonthlyfoodsalescontroller.fetchMonthlyFoodGraph();
+    document.getElementById("WeeklyTickChart").style.display="none";
+    document.getElementById("DailyTickChart").style.display="none";
+    document.getElementById("MonthlyTickChart").style.display="none";
+    document.getElementById("DailyFoodChart").style.display="none";
+    document.getElementById("WeeklyFoodChart").style.display="none";
+    document.getElementById("MonthlyFoodChart").style.display="block";
+    document.getElementById("Selection").style.display="none";
+    document.getElementById("gbtn").style.display="block";
+    document.getElementById("gReport").style.display="none";
+    document.getElementById("vReport").style.display="none";
+}
+
+function return2Main(){
+    document.getElementById("WeeklyTickChart").style.display="none";
+    document.getElementById("DailyTickChart").style.display="none";
+    document.getElementById("MonthlyTickChart").style.display="none";
+    document.getElementById("DailyFoodChart").style.display="none";
+    document.getElementById("WeeklyFoodChart").style.display="none";
+    document.getElementById("MonthlyFoodChart").style.display="none";
+    document.getElementById("gbtn").style.display="none";
+    $("Selection").fadeIn();
+    document.getElementById("Selection").style.display="block";
+    document.getElementById("gReport").style.display="block";
+    document.getElementById("vReport").style.display="block";
 }

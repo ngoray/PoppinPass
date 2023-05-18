@@ -3,6 +3,25 @@ var db = require('./../../dbconnection');
 
 class MovieTicket {
 
+  searchTicketType(request, respond) {
+
+    const searchDetails = {
+      search: request.body.search
+    };
+
+    var sql = "SELECT * FROM poppinpass.movieticket WHERE name LIKE ?;";
+  
+    db.query(sql, [searchDetails.search], function (error, result) {
+      console.log("result: " + result);
+  
+      if (error) {
+        respond.json(error);
+      } else {
+        respond.json(result);
+      }
+    });
+  }
+
   // add MovieTicket
   addMovieTicket(request, respond) {
     const movieTicketDetails = {
@@ -81,6 +100,8 @@ class MovieTicket {
       }
     });
   }
+
+  
   
 }
 const movieticket = new MovieTicket;
