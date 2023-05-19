@@ -157,7 +157,7 @@ generateDailyFood(request, respond) {
 
   //generateReport
   viewYearlyTickets(request, respond) {
-    var sql = "SELECT SUM(quantityoftickets) AS tickets_booked FROM transactionhistory WHERE date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)";
+    var sql = "SELECT YEAR(date) AS years, COUNT(*) AS tickets_booked FROM `transactionhistory` GROUP BY YEAR(date);";
 
     db.query(sql, function (error, result) {
       if (error) {

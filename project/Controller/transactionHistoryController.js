@@ -290,12 +290,12 @@ class ViewReportController{
 
 
     request1.onload = () => {
-      if (request.status === 200) {
-        const data = JSON.parse(request.responseText);
+      if (request1.status === 200) {
+        const data = JSON.parse(request1.responseText);
         console.log(data);
         generateYearlyTicketGraph(data);
       } else {
-        console.error(`Request failed with status ${request.status}`);
+        console.error(`Request failed with status ${request1.status}`);
       }
     };
 

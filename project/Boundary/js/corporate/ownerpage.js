@@ -135,15 +135,19 @@ function return2Main(){
 }
 
 function generateYearlyFood(){
+    var canvas = document.getElementById("YearTickChart");
+    var context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    viewreportcontroller.fetchYearlyFoodGraph();
+    document.getElementById("YearTickChart").style.display="none";
+    document.getElementById("YearFoodChart").style.display="block";
+}
+
+function generateYearlyTick(){
+    var canvas = document.getElementById("YearFoodChart");
+    var context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
     viewreportcontroller.fetchYearlyTicketGraph();
-    document.getElementById("WeeklyTickChart").style.display="none";
-    document.getElementById("DailyTickChart").style.display="none";
-    document.getElementById("MonthlyTickChart").style.display="none";
-    document.getElementById("DailyFoodChart").style.display="none";
-    document.getElementById("WeeklyFoodChart").style.display="none";
-    document.getElementById("MonthlyFoodChart").style.display="block";
-    document.getElementById("Selection").style.display="none";
-    document.getElementById("gbtn").style.display="block";
-    document.getElementById("gReport").style.display="none";
-    document.getElementById("vReport").style.display="none";
+    document.getElementById("YearTickChart").style.display="block";
+    document.getElementById("YearFoodChart").style.display="none";
 }

@@ -704,8 +704,8 @@ generateYearlyFoodGraph(data) {
 
 function // Method to generate the graph using Chart.js
 generateYearlyTicketGraph(data) {
-        var labels = data.map(entry => entry.date);
-        var ticketData = data.map(entry => entry.total_records);
+        var labels = data.map(entry => entry.years);
+        var ticketData = data.map(entry => entry.tickets_booked);
     
         // Get the canvas element
         var ctx = document.getElementById('YearTickChart').getContext('2d');
