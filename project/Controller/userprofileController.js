@@ -133,32 +133,11 @@ class ViewUserProfileController {
   
       fetchUserProfile.onload = () => {
         userprofile_array = JSON.parse(fetchUserProfile.responseText);
-        this.generateUserProfile();
+        generateUserProfile();
       };
   
       
       fetchUserProfile.send();
-  }
-
-  generateUserProfile(){
-    const table = document.getElementById("getUserProfile");
-      let upCount = 0;
-      let message = "";
-      table.innerHTML = "";
-      const totalup = userprofile_array.length;
-      console.log("array length" + userprofile_array.length);
-
-      for (let count = 0; count < totalup; count++)
-      {
-          const id = userprofile_array[count]._id;
-          const role = userprofile_array[count].role;
-          const desc = userprofile_array[count].description;
-          const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+role+'</a></td><td>'+desc+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="userprofile.showUserProfileDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
-
-          table.insertAdjacentHTML("beforeend", cell);
-          console.log(table);
-          upCount++;
-      }
   }
 
 }

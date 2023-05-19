@@ -76,6 +76,16 @@ function viewSeatMap(){
 }
 
 function viewMenu(){
+    const table1 = document.getElementById("BrowA");
+    const table2 = document.getElementById("BrowB");
+    const table3 = document.getElementById("BrowC");
+    const table4 = document.getElementById("BrowD");
+    const table5 = document.getElementById("BrowE");
+    table1.innerHTML = "";
+    table2.innerHTML = "";
+    table3.innerHTML = "";
+    table4.innerHTML = "";
+    table5.innerHTML = "";
     customerviewmenucontroller.getSnacks();
     document.getElementById('bookSeatMap').style.display="none";
     $("#menupage").fadeIn()

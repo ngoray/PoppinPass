@@ -212,29 +212,10 @@ class ViewOccupancyController {
         occuArray = JSON.parse(OccuRequest.responseText);
         console.log("ok");
         console.log(occuArray);
-        this.generateOccu();
+        generateOccu();
     };
 
     OccuRequest.send();
-  }
-
-  generateOccu() {
-    const table = document.getElementById("getOccupancy");
-    let occuCount = 0;
-    let message = "";
-    table.innerHTML = "";
-    const totalOccu = occuArray.length;
-
-    for (let count = 0; count < totalOccu; count++)
-    {
-        const id = occuArray[count]._id;
-        const seatno = occuArray[count].seatno;
-        const row = occuArray[count].row;
-        const cell ='<td style="width: 30%;"><strong id="occu_id" style="display:none;">'+id+'</strong><a>'+seatno+'</a></td><td><a>'+row+'</a></td><td ><button item = '+count+' style="background-color:#333333a0; float:right;" onclick="occupancy.showOccuDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
-
-        table.insertAdjacentHTML("beforeend", cell);
-        occuCount++;
-    }
   }
 }
 const viewoccupancycontroller = new ViewOccupancyController("/occupancy");
@@ -303,8 +284,43 @@ class SuspendOccupancyController {
   constructor(occuUrl) {
     this.occuUrl = occuUrl;
   }
+
+ suspendOccu(element)
+  {
+      var response = confirm("Are you sure you want to suspend this Seat?");
+      if (response == true)
+      {
+          var item = element.getAttribute("item");
+          var id = occuArray[item]._id;
+          const suspendoccu = new XMLHttpRequest();
+
+          var sus_occu_url = this.occuUrl + "/" + id;
+          console.log(id);
+          const status = document.getElementById("occuSus").innerHTML;
+          const suspendOccu = {
+            _id: id,
+            status: status
+          };
+
+          console.log(status);
+
+          suspendoccu.open("PUT", sus_occu_url, true);
+          suspendoccu.setRequestHeader("Content-Type", "application/json"); 
+
+          occuArray[item].status = status;
+
+          console.log(occuArray[item].status);
+
+          suspendoccu.onload = function () {
+          alert("the seat has been suspended");
+          document.getElementById("manageOccupancy").style.display="none";
+          mOccupancy();
+      };
+      suspendoccu.send(JSON.stringify(suspendOccu));
+      }    
+  }
 }
-const suspendoccupancycontroller = new SuspendOccupancyController("/occupancy");
+const suspendoccupancycontroller = new SuspendOccupancyController("/occu");
 
 class SearchOccupancyController {
   constructor(searchUrl) {
@@ -355,7 +371,6 @@ class SearchOccupancyController {
           const id = occuArray[count]._id;
           const seatno = occuArray[count].seatno;
           const row = occuArray[count].row;
-          const cell ='<td style="width: 30%;"><strong id="occu_id" style="display:none;">'+id+'</strong><a>'+seatno+'</a></td><td><a>'+row+'</a></td><td ><button item = '+count+' style="background-color:#333333a0; float:right;" onclick="occupancy.showOccuDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
 
           table.insertAdjacentHTML("beforeend", cell);
           occuCount++;

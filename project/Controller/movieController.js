@@ -250,7 +250,7 @@ class ViewMovieController {
   }
 
      //everything below is used for manager page instead of homepage
-     getMovieData4Manager() {
+  getMovieData4Manager() {
       const request = new XMLHttpRequest();
       request.open("GET", this.movieUrl, true);
   
@@ -260,56 +260,11 @@ class ViewMovieController {
         movie_array = JSON.parse(request.responseText);
   
         // Call the function to generate all movies tiles for "Now Showing"
-        this.generateMovies4Manager();
+        generateMovies4Manager();
       };
   
       // This command starts the calling of the movies web api
       request.send();
-    }
-
-    generateMovies4Manager() {
-        const table = document.getElementById("getMovies");
-        let movieCount = 0;
-        let message = "";
-        table.innerHTML = "";
-        const totalmovies = movie_array.length;
-
-        for (let count = 0; count < totalmovies; count++)
-        {
-            const id = movie_array[count]._id;
-            const title = movie_array[count].title;
-            const advice = movie_array[count].advice;
-            const genre = movie_array[count].availability;
-            const duration = movie_array[count].duration;
-
-
-            const cell ='<td style="width: 20%;">\
-                          <strong id="movie_id" style="display:none;">\
-                            '+id+'\
-                          </strong>\
-                          <a>\
-                            '+title+'\
-                          </a>\
-                        </td>\
-                        <td>\
-                          <a>\
-                            '+genre+'\
-                          </a>\
-                          <a id="movie_suspend" style="display:none;">Suspended</a>\
-                        </td>\
-                        <td  width="10%">\
-                          <button item = '+count+' style="background-color:#333333a0;" onclick="movies.showMovieDetails2(this)">\
-                            <img src="./../images/edit.png" width="30px" height="30px">\
-                          </button>\
-                          <button item = '+count+' style="background-color:#333333a0;" onclick="suspendmoviescontroller.suspendMovieStatus(this)">\
-                            <img src="./../images/delete.png" width="30px" height="30px">\
-                          </button>\
-                        </td>'
-
-            table.insertAdjacentHTML("beforeend", cell);
-            movieCount++;
-        }
-    
     }
 }
 const viewmoviecontroller = new ViewMovieController('/movies', '/movie', '/searchmovie');
@@ -333,116 +288,13 @@ class CustomerViewMovieController {
          
           movie_array = JSON.parse(request.responseText);
     
-          this.generateMovies(this.comingSoon);
-          this.generateMovies2(this.nowShowing);
+          generateMovies(this.comingSoon);
+          generateMovies2(this.nowShowing);
         };
     
        
         request.send();
       }
-  
-     
-      generateMovies(comingSoon) {
-        const table = document.getElementById("moviesTable");
-        let movieCount = 0;
-        let message = "";
-    
-        table.innerHTML = "";
-        const totalMovies = movie_array.length;
-    
-        for (let count = 0; count < totalMovies; count++) {
-          if (movie_array[count].availability === comingSoon) {
-            const thumbnail = "products/" + movie_array[count].thumb;
-            const title = movie_array[count].title;
-    
-            const cell =
-              '<div>                                                                                                                                                                                                   \
-                                <div class="flip-container" >                                                                                                                                                                                       \
-                                    <div class="flipper">                                                                                                                                                                                           \
-                                        <div class="front">                                                                                                                                                                                         \
-                                            <a id="movies" class="movies" href="#" data-toggle="modal" data-target="#movieModal" item=' +
-              count +
-              '>                                                                                                \
-                                                <img class="img-fluid img-thumbnail" src="./../images/'+thumbnail+'" />                                                                                                                                       \
-                                            </a>                                                                                                                                                                                                    \
-                                        </div>                                                                                                                                                                                                      \
-                                        <div class="back">                                                                                                                                                                                          \
-                                            <div class="bg-dark mystyle text-center py-3" style="text-align:center;" >                                                                                                                                                         \
-                                                <span>' +
-              title +
-              "<br>" +
-              "(" +
-              movie_array[count].genre +
-              ')</span><br>                                                                                                                                                                      \
-                                                <button item="' +
-              count +
-              '" type="button" class="button" style="width:60%; border-radius:25px;" onClick="movies.showMovieDetails(this)" >See More</button>       \
-                                            </div>                                                                                                                                                                                                  \
-                                        </div>                                                                                                                                                                                                      \
-                                    </div>                                                                                                                                                                                                          \
-                                </div>                                                                                                                                                                                                              \
-                            </div>';
-    
-            table.insertAdjacentHTML("beforeend", cell);
-            movieCount++;
-          }
-        }
-    
-        message = movieCount + " Movies " + comingSoon;
-        document.getElementById("summary").textContent = message;
-        document.getElementById("parent").textContent = "";
-      }
-  
-          generateMovies2(nowShowing) {
-            const table = document.getElementById("moviesTable2");
-            let movieCount = 0;
-            let message = "";
-        
-            table.innerHTML = "";
-            const totalMovies = movie_array.length;
-        
-            for (let count = 0; count < totalMovies; count++) {
-              if (movie_array[count].availability === nowShowing) {
-                const thumbnail = "products/" + movie_array[count].thumb;
-                const title = movie_array[count].title;
-        
-                const cell =
-                  '<div class="scroll">                                                                                                                                                                                                   \
-                                    <div class="flip-container" >                                                                                                                                                                                       \
-                                        <div class="flipper">                                                                                                                                                                                           \
-                                            <div class="front">                                                                                                                                                                                         \
-                                                <a id="movies" class="movies" href="#" data-toggle="modal" data-target="#movieModal" item=' +
-                  count +
-                  '>                                                                                                \
-                                                    <img class="img-fluid img-thumbnail" src="./../images/' + thumbnail +'" />                                                                                                                                       \
-                                                </a>                                                                                                                                                                                                    \
-                                            </div>                                                                                                                                                                                                      \
-                                            <div class="back">                                                                                                                                                                                          \
-                                                <div class="bg-dark mystyle text-center py-3" style="text-align:center;" >                                                                                                                                                         \
-                                                    <span>' +
-                  title +
-                  "<br>" +
-                  "(" +
-                  movie_array[count].genre +
-                  ')</span><br>                                                                                                                                                                      \
-                                                    <button item="' +
-                  count +
-                  '" type="button" class="button" style="width:60%; border-radius:25px;" onClick="movies.showMovieDetails(this)" >See More</button>       \
-                                                </div>                                                                                                                                                                                                  \
-                                            </div>                                                                                                                                                                                                      \
-                                        </div>                                                                                                                                                                                                          \
-                                    </div>                                                                                                                                                                                                              \
-                                </div>';
-        
-                table.insertAdjacentHTML("beforeend", cell);
-                movieCount++;
-              }
-            }
-        
-            message = movieCount + " Movies " + nowShowing;
-            document.getElementById("summary2").textContent = message;
-            document.getElementById("parent2").textContent = "";
-          }
 }
 const customerviewmoviecontroller = new CustomerViewMovieController('/movies', '/movie', '/searchmovie');
 // DONE
@@ -639,8 +491,7 @@ class SearchMoviesController {
             const id = movie_array[count]._id;
             const name = movie_array[count].name;
             const price = movie_array[count].price;
-            const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+name+'</a></td><td>'+price+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick=""><img src="./../images/edit.png" width="30px" height="30px"></td>'
-
+            SearchMovies();
             table.insertAdjacentHTML("beforeend", cell);
             console.log(table);
             upCount++;

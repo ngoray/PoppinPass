@@ -15,6 +15,9 @@ class OccupancyRoutes{
 
         app.route('/searchoccupancy')
         .post(occupancy.searchOccupancy);
+
+        app.route("/occu/:_id")
+        .put(occupancy.suspendedOccu);
     }
 
 }

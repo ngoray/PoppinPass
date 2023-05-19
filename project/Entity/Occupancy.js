@@ -28,7 +28,7 @@ class Occupancy {
       row: request.body.row
     };
   
-    var sql = "INSERT INTO poppinpass.occupancy (seatno, `row`) VALUES (?, ?)";
+    var sql = "INSERT INTO poppinpass.occupancy (seatno, `row`, `status`) VALUES (?, ?, 'active')";
     
     db.query(sql, [occupancyDetails.seatno, occupancyDetails.row], function(error, result) {
       console.log(result);
@@ -80,6 +80,25 @@ class Occupancy {
     });
   }
   
+  suspendedOccu(request, respond) {
+    var OccupancyDetails = {
+      "_id": parseInt(request.params._id),
+      "status": request.body.status
+    };
+  
+    var sql = "UPDATE poppinpass.occupancy SET `status` = ? WHERE _id = ?";
+  
+    db.query(sql, [OccupancyDetails.status, OccupancyDetails._id], function(error, result) {
+      if (error) {
+        respond.json(error);
+        console.log(error);
+      } else {
+        respond.json(result);
+        console.log(OccupancyDetails);
+      }
+    });
+  }
+
 }
 const occupancy = new Occupancy;
 module.exports = Occupancy;

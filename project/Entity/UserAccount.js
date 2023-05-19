@@ -118,8 +118,6 @@ class UserAccount{
         });
       }
       
-
-
     updateCustomerAccount(request, respond) {
         var UADetails = {
           "name": request.body.name,
@@ -155,6 +153,37 @@ class UserAccount{
           } else {
             respond.json(result);
             console.log(UADetails);
+          }
+        });
+      }
+
+    viewLoyaltyPoints(request, respond) {
+        var sql = "SELECT loyaltypoints FROM poppinpass.useraccount WHERE _id = ?";
+      
+        db.query(sql, function (error, result) {
+          if (error) {
+            respond.json(error);
+          } else {
+            respond.json(result);
+          }
+        });
+      }
+    
+    suspendedUserAccount(request, respond) {
+        var AccountDetails = {
+          "_id": parseInt(request.params._id),
+          "status": request.body.status
+        };
+      
+        var sql = "UPDATE poppinpass.useraccount SET `status` = ? WHERE _id = ?";
+      
+        db.query(sql, [AccountDetails.status, AccountDetails._id], function(error, result) {
+          if (error) {
+            respond.json(error);
+            console.log(error);
+          } else {
+            respond.json(result);
+            console.log(AccountDetails);
           }
         });
       }

@@ -131,49 +131,9 @@ class ViewMenuController {
         menuRequest.onload = () => {
             menu_array = JSON.parse(menuRequest.responseText);
             console.log(menu_array);
-            this.generateMenu();
+            generateMenu();
         };
         menuRequest.send();
-    }
-
-    generateMenu(){
-        const table = document.getElementById("getMenu");
-        let menuCount = 0;
-        let message = "";
-        table.innerHTML = "";
-        const totalmenu = menu_array.length;
-
-        for (let count = 0; count < totalmenu; count++)
-        {
-            const id = menu_array[count]._id;
-            const image = menu_array[count].image;
-            const name = menu_array[count].name;
-            const smol = menu_array[count].smallprice;
-            const med = menu_array[count].mediumprice;
-            const large = menu_array[count].largeprice;
-            const availability = menu_array[count].availability;
-            const cell ='<td width="20%">\
-                            <img src="./../images/menu/'+image+'" width="100px" height="70px">\
-                        </td>\
-                        <td>\
-                            <label id="Menu_id" style="display:none;">'+id+'</label>\
-                            <a>'+name+'</a>\
-                        </td>\
-                        <td>\
-                                <label>'+availability+'</label>\
-                                <label id="suspendMenu" style="display:none;">suspended</label>\
-                        </td>\
-                        <td width="10%">\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="menu.showMenuDetails(this)">\
-                                <img src="./../images/edit.png" width="30px" height="30px">\
-                                <button item = '+count+' style="background-color:#333333a0;" onclick="suspendmenucontroller.suspendMenu(this)">\
-                                <img src="./../images/delete.png" width="30px" height="30px">\
-                        </td>'
-
-            table.insertAdjacentHTML("beforeend", cell);
-            menuCount++;
-        }
-
     }
 }
 const viewmenucontroller = new ViewMenuController("/menu");
@@ -575,7 +535,6 @@ class SearchMenuController{
                 const id = menu_array[count]._id;
                 const name = menu_array[count].name;
                 const price = menu_array[count].price;
-                const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+name+'</a></td><td>'+price+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick=""><img src="./../images/edit.png" width="30px" height="30px"></td>'
     
                 table.insertAdjacentHTML("beforeend", cell);
                 console.log(table);

@@ -15,29 +15,9 @@ class ViewReviewController {
         review_array = JSON.parse(ViewReviewRequest.responseText);
         console.log("ok");
         console.log("array length: "+ review_array.length);
-        this.generateReviews();
+        generateReviews();
     };
     ViewReviewRequest.send();
-  }
-  generateReviews() {
-    const table = document.getElementById("reviewTable");
-    let ViewReviewCount = 0;
-    let message = "";
-    
-    table.innerHTML = "";
-    const totalReviews = review_array.length;
-    
-    for (let count = 0; count < totalReviews; count++) {     
-      const name = review_array[count].name;
-      const review = review_array[count].review;
-      const rating = review_array[count].rating;
-      const cell ='<div style="background-color: #333;"><table border="0" style="width:100%;"><tr><td width="60px"><img src="./../images/profile.png" style="padding: 10px;"></td> <td> <h5 style="text-align:left;">'+ name +'</h5><h5 style="text-align:left;">'+ review +'</h5></td><td><h5 style="text-align:right;">'+rating+'</h5></td><td width="35px"><img src="./../images/star.png" style="width:30px; height:30px;"/></td></tr></table></div><br>'
-      table.insertAdjacentHTML("beforeend", cell);
-      ViewReviewCount++;
-    }
-
-    message = ViewReviewCount + " Reviews ";
-    document.getElementById("reviewsummary").textContent = message;
   }
 }
 const viewreview = new ViewReviewController("/review");

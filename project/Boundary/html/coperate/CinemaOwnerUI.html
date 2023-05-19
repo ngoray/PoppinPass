@@ -31,19 +31,19 @@
             <canvas class="center" id="MonthlyFoodChart" style="background: color #333;;width: 50%;display: none;"></canvas>
 
         </div>
-    </div>
+
     <div id="viewReport" style="display: none;">
         <br><br>
         <table border="1" class="center">
             <tr>
                 <td>
                     <center>
-                        <button onclick="" class="button button3" style="background-color:#333;width:100%;cursor: pointer;">View Tickets Booked Report</button>
+                        <button onclick="viewreportcontroller.fetchYearlyTicketGraph()" class="button button3" style="background-color:#333;width:100%;cursor: pointer;">View Tickets Booked Report</button>
                     </center>
                 </td>
                 <td>
                     <center>
-                        <button onclick="" class="button button3" style="background-color:#333;width:100%;cursor: pointer;">View Food Sales Report</button>
+                        <button onclick="viewreportcontroller.fetchYearlyFoodGraph()" class="button button3" style="background-color:#333;width:100%;cursor: pointer;">View Food Sales Report</button>
                     </center>
                 </td>
             </tr>

@@ -5,7 +5,6 @@ class SeatMap {
     this.smUrl2 = smUrl2; 
     this.smUrl4cust = smUrl4cust;
     this.booked = [];
-    this.smarray = [];
     this.row1 = "A";
     this.row2 = "B";
     this.row3 = "C";
@@ -50,6 +49,16 @@ class SeatMap {
     document.getElementById("corploggout").style.display ="block";
     document.getElementById("managerMenu").style.display ="block";
     document.getElementById("seatMapContent").style.display ="block";
+    const table1 = document.getElementById("rowA1");
+    const table2 = document.getElementById("rowB1");
+    const table3 = document.getElementById("rowC1");
+    const table4 = document.getElementById("rowD1");
+    const table5 = document.getElementById("rowE1");
+    table1.innerHTML = "";
+    table2.innerHTML = "";
+    table3.innerHTML = "";
+    table4.innerHTML = "";
+    table5.innerHTML = "";
   }
 
   getRoomSeats4Cust(roomnum){
@@ -64,10 +73,10 @@ class SeatMap {
     console.log("Data: "+ JSON.stringify(smData));
     grs.setRequestHeader("Content-Type", "application/json");
     grs.onload = () =>{
-      this.smarray = JSON.parse(grs.responseText);
+      smarray = JSON.parse(grs.responseText);
       console.log(grs.responseText);
       console.log("ok");
-      console.log(this.smarray);
+      console.log(smarray);
       this.generateRowA4Cust(this.row1);
       this.generateRowB4Cust(this.row2);
       this.generateRowC4Cust(this.row3);
@@ -86,15 +95,15 @@ class SeatMap {
     let message = "";
 
     table.innerHTML = "";
-    const totalRow = this.smarray.length;
+    const totalRow = smarray.length;
 
     for (let count = 0; count < totalRow; count++) {
-      if (this.smarray[count].row === row1) {
-        const seatno = this.smarray[count].seatno;
-        const row = this.smarray[count].row;
-        const id = this.smarray[count]._id;
+      if (smarray[count].row === row1) {
+        const seatno = smarray[count].seatno;
+        const row = smarray[count].row;
+        const id = smarray[count]._id;
         const cell =
-          '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this); >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+        '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this);" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
 
         table.insertAdjacentHTML("beforeend", cell);
         RowCount++;
@@ -108,15 +117,15 @@ class SeatMap {
     let message = "";
 
     table.innerHTML = "";
-    const totalRow = this.smarray.length;
+    const totalRow = smarray.length;
 
     for (let count = 0; count < totalRow; count++) {
-      if (this.smarray[count].row === row2) {
-        const seatno = this.smarray[count].seatno;
-        const row = this.smarray[count].row;
-        const id = this.smarray[count]._id;
+      if (smarray[count].row === row2) {
+        const seatno = smarray[count].seatno;
+        const row = smarray[count].row;
+        const id = smarray[count]._id;
         const cell =
-        '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this); >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+        '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this);" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
 
         table.insertAdjacentHTML("beforeend", cell);
         RowCount++;
@@ -130,13 +139,13 @@ class SeatMap {
     let message = "";
 
     table.innerHTML = "";
-    const totalRow = this.smarray.length;
+    const totalRow = smarray.length;
 
     for (let count = 0; count < totalRow; count++) {
-      if (this.smarray[count].row === row3) {
-        const seatno = this.smarray[count].seatno;
-        const row = this.smarray[count].row;
-        const id = this.smarray[count]._id;
+      if (smarray[count].row === row3) {
+        const seatno = smarray[count].seatno;
+        const row = smarray[count].row;
+        const id = smarray[count]._id;
         const cell =
         '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this);" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
 
@@ -152,15 +161,15 @@ class SeatMap {
     let message = "";
 
     table.innerHTML = "";
-    const totalRow = this.smarray.length;
+    const totalRow = smarray.length;
 
     for (let count = 0; count < totalRow; count++) {
-      if (this.smarray[count].row === row4) {
-        const seatno = this.smarray[count].seatno;
-        const row = this.smarray[count].row;
-        const id = this.smarray[count]._id;
+      if (smarray[count].row === row4) {
+        const seatno = smarray[count].seatno;
+        const row = smarray[count].row;
+        const id = smarray[count]._id;
         const cell =
-        '<button item="' + count +'" class="mapbtn"  try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this); >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
+        '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this);" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
 
         table.insertAdjacentHTML("beforeend", cell);
         RowCount++;
@@ -174,13 +183,13 @@ class SeatMap {
     let message = "";
 
     table.innerHTML = "";
-    const totalRow = this.smarray.length;
+    const totalRow = smarray.length;
 
     for (let count = 0; count < totalRow; count++) {
-      if (this.smarray[count].row === row5) {
-        const seatno = this.smarray[count].seatno;
-        const row = this.smarray[count].row;
-        const id = this.smarray[count]._id;
+      if (smarray[count].row === row5) {
+        const seatno = smarray[count].seatno;
+        const row = smarray[count].row;
+        const id = smarray[count]._id;
 
         const cell =
         '<button item="' + count +'" class="mapbtn" try="'+seatno+'" id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="seatmap.updateSM(this);" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
@@ -286,125 +295,18 @@ class ViewSeatMapController {
     grs.setRequestHeader("Content-Type", "application/json");
     grs.onload = () =>{
       smarray = JSON.parse(grs.responseText);
+      console.log("NUMBER OF SEATS FOR THIS ROOM: "+ JSON.stringify(smarray));
       console.log(grs.responseText);
-      console.log("ok");
-      console.log(smarray);
-      this.generateRowA(this.row1);
-      this.generateRowB(this.row2);
-      this.generateRowC(this.row3);
-      this.generateRowD(this.row4);
-      this.generateRowE(this.row5);
+      generateRowA(this.row1);
+      generateRowB(this.row2);
+      generateRowC(this.row3);
+      generateRowD(this.row4);
+      generateRowE(this.row5);
 
 
     }
     console.log(smData);
     grs.send(JSON.stringify(smData));
-  }
-  generateRowA(row1) {
-    const table = document.getElementById("rowA1");
-    let RowCount = 0;
-    let message = "";
-
-    table.innerHTML = "";
-    const totalRow = smarray.length;
-
-    for (let count = 0; count < totalRow; count++) {
-      if (smarray[count].row === row1) {
-        const seatno = smarray[count].seatno;
-        const row = smarray[count].row;
-        const id = smarray[count]._id;
-        const cell =
-          '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="suspendseatmapcontroller.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
-
-        table.insertAdjacentHTML("beforeend", cell);
-        RowCount++;
-      }
-    }
-  }
-  generateRowB(row2) {
-    const table = document.getElementById("rowB1");
-    let RowCount = 0;
-    let message = "";
-
-    table.innerHTML = "";
-    const totalRow = smarray.length;
-
-    for (let count = 0; count < totalRow; count++) {
-      if (smarray[count].row === row2) {
-        const seatno = smarray[count].seatno;
-        const row = smarray[count].row;
-        const id = smarray[count]._id;
-        const cell =
-        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="suspendseatmapcontroller.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
-
-        table.insertAdjacentHTML("beforeend", cell);
-        RowCount++;
-      }
-    }
-  }
-  generateRowC(row3) {
-    const table = document.getElementById("rowC1");
-    let RowCount = 0;
-    let message = "";
-
-    table.innerHTML = "";
-    const totalRow = smarray.length;
-
-    for (let count = 0; count < totalRow; count++) {
-      if (smarray[count].row === row3) {
-        const seatno = smarray[count].seatno;
-        const row = smarray[count].row;
-        const id = smarray[count]._id;
-        const cell =
-        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="suspendseatmapcontroller.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
-
-        table.insertAdjacentHTML("beforeend", cell);
-        RowCount++;
-      }
-    }
-  }
-  generateRowD(row4) {
-    const table = document.getElementById("rowD1");
-    let RowCount = 0;
-    let message = "";
-
-    table.innerHTML = "";
-    const totalRow = smarray.length;
-
-    for (let count = 0; count < totalRow; count++) {
-      if (smarray[count].row === row4) {
-        const seatno = smarray[count].seatno;
-        const row = smarray[count].row;
-        const id = smarray[count]._id;
-        const cell =
-        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="suspendseatmapcontroller.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
-
-        table.insertAdjacentHTML("beforeend", cell);
-        RowCount++;
-      }
-    }
-  }
-  generateRowE(row5) {
-    const table = document.getElementById("rowE1");
-    let RowCount = 0;
-    let message = "";
-
-    table.innerHTML = "";
-    const totalRow = smarray.length;
-
-    for (let count = 0; count < totalRow; count++) {
-      if (smarray[count].row === row5) {
-        const seatno = smarray[count].seatno;
-        const row = smarray[count].row;
-        const id = smarray[count]._id;
-
-        const cell =
-        '<button item="' + count +'" class="mapbtn"  id="'+id+'" style="background-color:rgb(255, 130, 6);" onclick="suspendseatmapcontroller.suspendSM(this)" >'+seatno+'</button><label style="display:none;" id="seatrow">'+row+'</label>';
-
-        table.insertAdjacentHTML("beforeend", cell);
-        RowCount++;
-      }
-    }
   }
 
 }
@@ -433,9 +335,6 @@ class UpdateSeatMapController {
         break; // Exit the loop once a match is found
      }
     }
-    console.log("THE ID OF CURENT INDEX IS: "+ smarray[currentIndex]._id);
-
-    console.log("seatno: "+name);
     var bookedSM_url = this.smUrl + "/" + id;
 
     const susSM = new XMLHttpRequest();
@@ -445,8 +344,7 @@ class UpdateSeatMapController {
     console.log(seatnobooking.innerHTML);
 
     susSM.onload = function () {
-  
-      // document.getElementById("summarySeat").innerHTML = this.smarray[currentIndex].seatno;
+      alert("The Seatmap information has been edited, please switch to other tabs to refresh");
 
   };
   susSM.send();
@@ -495,5 +393,47 @@ class SearchSeatMapController {
     this.row4 = "D";
     this.row5 = "E";
   }
+
+  searchSeatMap(){
+    var input, filter, table, tr, td, a, i, txtValue;
+      input = document.getElementById("smSearch");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("getsm");
+      const searchM = new XMLHttpRequest();
+
+      if (filter === null)
+      {
+        document.getElementById("viewsm").style.display="none";
+        viewUserProfile();
+      }
+
+      else{
+        const search1 = "%" +filter + "%"
+        console.log ("search: " + search1);
+        searchsM.open('POST', this.searchUrl, true);
+
+      const searchdata = {
+        "search": search1
+      }
+
+      console.log("search data: "+ JSON.stringify(searchdata))
+
+      searchsM.setRequestHeader("Content-Type", "application/json");
+      searchsM.onload = function () {
+        smarray = []
+        smarray = JSON.parse(searchsM.responseText);
+        console.log("array length" + smarray.length);
+        document.getElementById("getst").style.display="none";
+        document.getElementById("getSearchsm").style.display="block";
+        
+
+        SearchSeatMap();
+      };
+      searchsM.send(JSON.stringify(searchdata));
+    }
+
+  }
+
+
 }
 const searchseatmapcontroller = new SearchSeatMapController("/seatmap", "/seatmaps", "/smbooking");

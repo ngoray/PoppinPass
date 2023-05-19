@@ -31,6 +31,12 @@ class HistoryRoutes {
     app.route("/fooddaily")
         .get(th.generateDailyFood);
 
+    app.route("/viewyearlyticket")
+        .get(th.viewYearlyTickets);
+        
+    app.route("/viewyearlyfood")
+        .get(th.viewYearlyFood);
+
     }
 }
 

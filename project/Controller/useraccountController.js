@@ -38,44 +38,6 @@ class UserAccount {
     document.getElementById("updateUserAccounttable").style.display ="none";
   }
 
-  // updateLoyaltyPoints(){
-
-  //   console.log("updatelp called");
-
-  //   var id = sessionStorage.getItem("id");
-    
-
-  //   var lp = sessionStorage.getItem("loyaltypoints");
-  //   var currentlp = document.getElementById("summaryPoints").innerHTML;
-  //   lp = parseInt(lp);
-  //   currentlp = parseInt(currentlp);
-
-  //   console.log("lp:" + lp + " currentlp: "+currentlp);
-  //   if (lp === currentlp){
-  //     console.log("points unchanged")
-  //     break;
-  //   }
-  //   else{
-  //     var lp = sessionStorage.setItem("loyaltypoints", currentlp);
-  //     const update_lp_url = this.lpUrl + "/" + id;
-
-  //     const lpinfo = {
-  //       loyaltypoints: currentlp
-  //     };
-
-  //     const updatelp = new XMLHttpRequest();
-  //     updatelp.open("PUT", update_lp_url, true);
-  //     updatelp.setRequestHeader("Content-Type", "application/json");
-
-  //     this.ua_array[currentIndex].loyaltypoints = currentlp;
-  //     updateua.onload = function () {
-  //       console.log("lp updated");
-        
-  //   };
-  //   updateua.send(JSON.stringify(lpinfo));
-  //   }
-  // }
-
     updateLoyaltyPoints(){
       var name = sessionStorage.getItem("name");
       var currentpoints = parseInt(document.getElementById("summaryPoints").innerHTML);
@@ -210,63 +172,10 @@ class ViewUserAccountController {
             ua_array = JSON.parse(request.responseText);
             console.log(ua_array);
 
-            this.generateUserAccount();
+            generateUserAccount();
           };
 
           request.send();
-  }
-
-  generateUserAccount(){
-    const table = document.getElementById("getUser");
-        let uaCount = 0;
-        let message = "";
-        table.innerHTML = "";
-        const totalua = ua_array.length;
-
-        for (let count = 0; count < totalua; count++)
-        {
-            const id = ua_array[count]._id;
-            const name = ua_array[count].name;
-            const email = ua_array[count].email;
-            const role = ua_array[count].role;
-            const status = ua_array[count].status;
-
-            const cell = '<td colspan="2" width="19%">\
-                            <strong id="st_id" style="display:none;">\
-                                '+id+'\
-                            </strong>\
-                            <a>\
-                                '+name+'\
-                            </a>\
-                        </td>\
-                        <td>\
-                            <a>\
-                                '+email+'\
-                            </a>\
-                        </td>\
-                        <td>\
-                            <a>\
-                                '+role+'\
-                            </a>\
-                        </td>\
-                        <td>\
-                            <a>\
-                                '+status+'\
-                            </a>\
-                        </td>\
-                        <td width="10%">\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="useraccount.showUserAccountDetails(this)">\
-                                <img src="./../images/edit.png" width="30px" height="30px">\
-                            </button>\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="useraccount.suspendScreenTime(this)">\
-                                <img src="./../images/delete.png" width="30px" height="30px">\
-                            </button>\    </td>'
-            
-            table.insertAdjacentHTML("beforeend", cell);
-            uaCount++;
-            
-    }
-
   }
 
 }
@@ -628,17 +537,41 @@ class UpdateCustomerAccountController {
 const updatecustomeraccountcontroller = new UpdateCustomerAccountController("updatePassword"); 
 
 class SuspendUserAccountController {
-  constructor(loginUrl, createUrl, searchUrl, lpUrl, passUrl) {
-    this.loginUrl = loginUrl;
-    this.createUrl = createUrl;
-    this.searchUrl = searchUrl;
-    this.lpUrl = lpUrl;
-    this.passUrl = passUrl;
+  constructor(suspendUrl) {
+    this.suspendUrl = suspendUrl;
+  }
 
-    this.ua_array = [];
+  suspendUserAccount(element)
+  {
+      var response = confirm("Are you sure you want to suspend this Account?");
+      if (response == true)
+      {
+          var item = element.getAttribute("item");
+          var id = ua_array[item]._id;
+
+          var sus_acc_url = this.suspendUrl + "/" + id;
+          console.log(id);
+          const status = document.getElementById("susAcc").innerHTML;
+          const suspendAccount = {
+            _id: id,
+            status: status
+          };
+          const suspendAcc = new XMLHttpRequest();
+          suspendAcc.open("PUT", sus_acc_url, true);
+          suspendAcc.setRequestHeader("Content-Type", "application/json"); 
+
+          ua_array[item].status = status;
+
+          suspendAcc.onload = function () {
+          alert("the seat has been suspended");
+          document.getElementById("viewUserAccount").style.display="none";
+          viewUserAccount();
+      };
+      suspendAcc.send(JSON.stringify(suspendAccount));
+      }    
   }
 }
-const suspenduseraccountcontroller = new SuspendUserAccountController("/login", "/useraccount", "/searchuseraccount","/updatelp", "updatePassword"); 
+const suspenduseraccountcontroller = new SuspendUserAccountController("/account"); 
 
 class SearchUserAccountController {
   constructor(searchUrl) {
@@ -734,4 +667,59 @@ class SearchUserAccountController {
   }
 }
 const searchuseraccountcontroller = new SearchUserAccountController("/searchuseraccount"); 
+
+class ViewCustomerLoyaltyPointController{
+  constructor(viewptUrl) {
+    this.viewptUrl = viewptUrl;
+  }
+
+  fetchLoyaltyPoints(){
+    const request = new XMLHttpRequest();
+        request.open("GET", this.viewptUrl, true);
+        console.log(request);
+        request.onload = () => {
+           
+            ua_array = JSON.parse(request.responseText);
+            console.log(ua_array);
+
+            showUserAccountDetails(this);
+          };
+
+          request.send();
+  }
+}
+const viewcustomerloyaltypointcontroller = new ViewCustomerLoyaltyPointController("/viewloyaltypoints");
+
+class UpdateCustomerLoyaltyPointController{
+  constructor(updateptUrl) {
+    this.updateptUrl = updateptUrl;
+  }
+
+  updateLoyaltyPoints(){
+    var name = sessionStorage.getItem("name");
+    var currentpoints = parseInt(document.getElementById("summaryPoints").innerHTML);
+    var loyaltypoints = currentpoints +5;
+    const edit_points_url = this.updateptUrl + "/" + name;
+
+    const editedpt = {
+      name: name,
+      loyaltypoints: loyaltypoints
+    };
+
+    console.log(editedpt);
+
+    const updatepoints = new XMLHttpRequest();
+    updatepoints.open("PUT", edit_points_url, true);
+    updatepoints.setRequestHeader("Content-Type", "application/json");
+
+    ua_array.name = name;
+    ua_array.loyaltypoints = loyaltypoints;
+    loyaltypoints = document.getElementById("userProfilePoints").innerHTML;
+
+    updatepoints.onload = function () { };
+
+    updatepoints.send(JSON.stringify(editedpt));
+  }
+}
+const updatecustomerloyaltypointcontroller = new UpdateCustomerLoyaltyPointController("/updatelp"); 
 

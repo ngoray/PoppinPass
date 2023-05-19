@@ -40,7 +40,6 @@ class CinemaRoom {
       }
 
     showseatMapDetails(element) {
-        console.log(cinemaroomArray);
         var item = element.getAttribute("item");
         console.log(item);
         const currentIndex = item;
@@ -52,6 +51,7 @@ class CinemaRoom {
 
         document.getElementById("suspendCinemaSeats").style.display ="block";
         var cinemaRoom = cinemaroomArray[item].roomnumber;
+        console.log("THE CINMEMA ROOM IS :"+cinemaRoom);
         document.getElementById("suspendRoomName").innerHTML = cinemaroomArray[item].roomnumber;
         console.log(cinemaroomArray[item].roomnumber);
         viewseatmapcontroller.getRoomSeats(cinemaRoom);
@@ -141,54 +141,12 @@ class ViewCinemaRoomController {
             cinemaroomArray = JSON.parse(cinemaroomRequest.responseText);
             console.log("ok");
             console.log(cinemaroomArray);
-            this.generateCinemaRoom();
+            generateCinemaRoom();
         };
     
         cinemaroomRequest.send();
     }
 
-    generateCinemaRoom() {
-        const table = document.getElementById("getRoomNumber");
-        let cinemaroomCount = 0;
-        let message = "";
-        table.innerHTML = "";
-        const totalCinemaRoom = cinemaroomArray.length;
-
-        for (let count = 0; count < totalCinemaRoom; count++)
-        {
-            const id = cinemaroomArray[count]._id;
-            const roomno = cinemaroomArray[count].roomnumber;
-            const status = cinemaroomArray[count].availability;
-            const cell ='<td width="25%">\
-                            <strong id="occu_id" style="display:none;">\
-                                '+id+'\
-                            </strong>\
-                            <a>\
-                                '+roomno+'\
-                            </a>\
-                        </td>\
-                        <td>\
-                            <a>\
-                                '+status+'\
-                            </a>\
-                            <a id="cinema_suspend" style="display: none;">Suspended</a>\
-                        </td>\
-                        <td width="10%">\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showCinemaRoomDetails(this)">\
-                                    <img src="./../images/add.png" width="30px" height="30px">\
-                            </button>\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="cinemaroom.showseatMapDetails(this)">\
-                                <img src="./../images/edit.png" width="30px" height="30px">\
-                            </button>\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="suspendcinemaroomcontroller.suspendCinemaRoomStatus(this)">\
-                                <img src="./../images/delete.png" width="30px" height="30px">\
-                            </button>\
-                        </td> '
-
-            table.insertAdjacentHTML("beforeend", cell);
-            cinemaroomCount++;
-        }
-    }
 }
 const viewcinemaroomcontroller = new ViewCinemaRoomController("/room");
 

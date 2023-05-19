@@ -133,3 +133,17 @@ function return2Main(){
     document.getElementById("gReport").style.display="block";
     document.getElementById("vReport").style.display="block";
 }
+
+function generateYearlyFood(){
+    viewreportcontroller.fetchYearlyTicketGraph();
+    document.getElementById("WeeklyTickChart").style.display="none";
+    document.getElementById("DailyTickChart").style.display="none";
+    document.getElementById("MonthlyTickChart").style.display="none";
+    document.getElementById("DailyFoodChart").style.display="none";
+    document.getElementById("WeeklyFoodChart").style.display="none";
+    document.getElementById("MonthlyFoodChart").style.display="block";
+    document.getElementById("Selection").style.display="none";
+    document.getElementById("gbtn").style.display="block";
+    document.getElementById("gReport").style.display="none";
+    document.getElementById("vReport").style.display="none";
+}

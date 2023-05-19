@@ -24,6 +24,12 @@ class UserAccountRoutes{
 
         app.route('/searchuseraccount')
         .post(useraccount.searchUserAccount);
+
+        app.route('/viewloyaltypoints')
+        .post(useraccount.viewLoyaltyPoints);
+
+        app.route('/account/:_id')
+        .put(useraccount.suspendedUserAccount);
     }
 
 }

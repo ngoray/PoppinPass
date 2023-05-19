@@ -121,7 +121,7 @@ class CreateTicketController {
         addTicketType.setRequestHeader("Content-Type", "application/json");
         addTicketType.onload = function () {
             const output = JSON.parse(addTicketType.responseText);
-                alert("Seat added!");
+                alert("Ticket added!");
                 document.getElementById("createTicketName").value = "";
                 document.getElementById("createTicketAge").value = "";
                 document.getElementById("createTicketPrice").value = "";
@@ -140,7 +140,7 @@ class ViewTicketController {
         this.ticketUrl = ticketUrl;
       }
 
-      fetchTicketType(){
+    fetchTicketType(){
         const request = new XMLHttpRequest();
         request.open("GET", this.ticketUrl, true);
         console.log(request);
@@ -149,55 +149,10 @@ class ViewTicketController {
             ticket_array = JSON.parse(request.responseText);
             console.log(ticket_array);
             // Call the function to generate all movies tiles for "Now Showing"
-            this.generateTicketType();
+            generateTicketType();
           };
 
           request.send();
-    }
-
-    generateTicketType(){
-        const table = document.getElementById("getTicket");
-        let mtCount = 0;
-        let message = "";
-        table.innerHTML = "";
-        const totalmt = ticket_array.length;
-        
-        for (let count = 0; count < totalmt; count++)
-        {
-            const id = ticket_array[count]._id;
-            const name = ticket_array[count].name;
-            const age = ticket_array[count].age;
-            const price = ticket_array[count].price;
-            const cell = '<td>\
-                            <strong id="mt_id" style="display:none;">\
-                                '+id+'\
-                            </strong>\
-                            <a>\
-                                '+name+'\
-                            </a>\
-                        </td>\
-                        <td>\
-                            <a>\
-                                '+age+'\
-                            </a>\
-                        </td>\
-                        <td>\
-                            <a>\
-                                '+price+'\
-                            </a>\
-                        </td>\
-                        <td width="10%">\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="ticket.showTicketTypeDetails(this)">\
-                                <img src="./../images/edit.png" width="30px" height="30px">\
-                            </button>\
-                            <button item = '+count+' style="background-color:#333333a0;" onclick="suspendticketcontroller.suspendMovieTicket(this)">\
-                                <img src="./../images/delete.png" width="30px" height="30px">\
-                            </button>\    </td>'
-            
-            table.insertAdjacentHTML("beforeend", cell);
-            mtCount++;            
-        }
-
     }
 }
 const viewticketcontroller = new ViewTicketController("/movieticket");
@@ -294,7 +249,7 @@ class SearchTicketController {
       }
 
 
-      searchTicketType(){
+    searchTicketType(){
         var input, filter, table, tr, td, a, i, txtValue;
       input = document.getElementById("tickettypeSearch");
       filter = input.value.toUpperCase();
@@ -340,32 +295,7 @@ class SearchTicketController {
           const age = ticket_array[count].age;
           const price = ticket_array[count].price;
           
-
-          const cell = '<td colspan="2" width="19%">\
-                          <strong id="st_id" style="display:none;">\
-                              '+id+'\
-                          </strong>\
-                          <a>\
-                              '+name+'\
-                          </a>\
-                      </td>\
-                      <td>\
-                          <a>\
-                              '+age+'\
-                          </a>\
-                      </td>\
-                      <td>\
-                          <a>\
-                              '+price+'\
-                          </a>\
-                      </td>\
-                      <td width="10%">\
-                          <button item = '+count+' style="background-color:#333333a0;" onclick="">\
-                              <img src="./../images/edit.png" width="30px" height="30px">\
-                          </button>\
-                          <button item = '+count+' style="background-color:#333333a0;" onclick="">\
-                              <img src="./../images/delete.png" width="30px" height="30px">\
-                          </button>\    </td>'
+            searchTicketType();
           
           table.insertAdjacentHTML("beforeend", cell);
           ttCount++;

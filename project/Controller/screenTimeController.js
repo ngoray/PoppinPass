@@ -160,48 +160,10 @@ class ViewScreenTimeController {
               // Get all the movies records into our movie array
               st_array = JSON.parse(request.responseText);
               // Call the function to generate all movies tiles for "Now Showing"
-              this.generateScreenTime();
+              generateScreenTime();
             };
   
             request.send();
-      }
-  
-    generateScreenTime(){
-          const table = document.getElementById("getScreenTime");
-          let stCount = 0;
-          let message = "";
-          table.innerHTML = "";
-          const totalst = st_array.length;
-  
-          for (let count = 0; count < totalst; count++)
-          {
-              const id = st_array[count]._id;
-              const timing = st_array[count].time;
-              const day = st_array[count].day;
-              const cell = '<td>\
-                              <strong id="st_id" style="display:none;">\
-                                  '+id+'\
-                              </strong>\
-                              <a>\
-                                  '+day+'\
-                              </a>\
-                          </td>\
-                          <td width="30%">\
-                              <a>\
-                                  '+timing+'\
-                              </a>\
-                          </td>\
-                          <td width="15%">\
-                              <button item = '+count+' style="background-color:#333333a0;" onclick="screentime.showScreenTimeDetails(this)">\
-                                  <img src="./../images/edit.png" width="30px" height="30px">\
-                              </button>\
-                              <button item = '+count+' style="background-color:#333333a0;" onclick="suspendscreentimecontroller.suspendScreenTime(this)">\
-                                  <img src="./../images/delete.png" width="30px" height="30px">\
-                              </button>\    </td>'
-              
-              table.insertAdjacentHTML("beforeend", cell);
-              stCount++;    
-          }
       }
 }
 const viewscreentimecontroller = new ViewScreenTimeController("/screentimes", "/screentiming");
@@ -347,8 +309,7 @@ class SearchScreenTimeController {
                 const id = st_array[count]._id;
                 const name = st_array[count].name;
                 const price = st_array[count].price;
-                const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+name+'</a></td><td>'+price+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick=""><img src="./../images/edit.png" width="30px" height="30px"></td>'
-    
+                searchST();    
                 table.insertAdjacentHTML("beforeend", cell);
                 console.log(table);
                 upCount++;
