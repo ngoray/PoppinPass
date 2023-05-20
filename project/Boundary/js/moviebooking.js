@@ -12,6 +12,7 @@ function resetbooking(){
         document.getElementById('bookSeatMap').style.display="none";
         document.getElementById('menupage').style.display="none";
         document.getElementById('movieBookingSum').style.display="none";
+        document.getElementById('quant').value="";
 }
 
 function check4LoginMovie(){
@@ -127,7 +128,6 @@ function handleCheckboxClick(event) {
         
         if (currentPT >= 100){
             console.log("Checkbox is checked");
-            alert("checked");
             document.getElementById('movieBookingSum').style.display="none"
             document.getElementById("summaryPrice").innerHTML = "FREE (points redeemed)";
             newPT = currentPT - 100;
@@ -137,7 +137,7 @@ function handleCheckboxClick(event) {
             checkbox.checked;
         }else if (points < 100){
             checkbox.checked = false;
-            alert("HAHA LOSER")
+            alert("Insufficient Points")
         }
 
     }

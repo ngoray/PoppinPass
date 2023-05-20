@@ -44,6 +44,7 @@ class CreateTransactionHistoryController {
     const seatno = document.getElementById("summarySeat").innerHTML;
     const foodname = document.getElementById("summaryFood").innerHTML;
     const totalprice = document.getElementById("summaryPrice").innerHTML;
+    const quantity = parseInt(document.getElementById("summaryQuantity").innerHTML);
     
     
     const historyData = {
@@ -54,7 +55,8 @@ class CreateTransactionHistoryController {
         "roomno": roomno,
         "seatno": seatno,
         "foodname": foodname,
-        "totalprice": totalprice
+        "totalprice": totalprice,
+        "quantityoftickets" : quantity
     }
     
         console.log(historyData)
@@ -64,6 +66,7 @@ class CreateTransactionHistoryController {
           alert("Transaction Successful");
           updatecustomerloyaltypointcontroller.updateLoyaltyPoints();
           document.getElementById('movieBookingSum').style.display="none";
+          document.getElementById('quant').value="";
           profilePage();
         };
         addHistory.send(JSON.stringify(historyData));

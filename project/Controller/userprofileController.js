@@ -259,3 +259,34 @@ class SearchUserProfileController {
   }
 }
 const searchuserprofilecontroller = new SearchUserProfileController("/searchuserprofile");
+
+class SuspendUserProfileController{
+  constructor(suspendUrl) {
+    this.suspendUrl = suspendUrl;
+  }
+
+  suspendUserProfile(element){
+    var response = confirm("Are you sure you want to suspend this Profile?");
+    if (response == true)
+    {
+        var item = element.getAttribute("item");
+        var id = userprofile_array[item]._id;
+        var suspendUp = new XMLHttpRequest();
+
+    var sus_up_url = this.suspendUrl + "/" + id;
+    console.log(id);
+
+
+    suspendUp.open("DELETE", sus_up_url); 
+    suspendUp.onload = function () {
+        alert("the profile has been suspended");
+        document.getElementById("viewUserProfile").style.display="none";
+        viewUserProfile();
+    };
+    suspendUp.send();
+    }
+    
+
+  }
+}
+const suspenduserprofilecontroller = new SuspendUserProfileController("/userprofile");

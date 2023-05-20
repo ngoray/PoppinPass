@@ -48,10 +48,7 @@ class UserProfile{
         respond.json(result);
       }
     });
-  }
-  
-
-  
+  } 
 
   viewAllUserProfile(request, respond) {
     var sql = "SELECT * FROM poppinpass.userprofile";
@@ -82,6 +79,24 @@ class UserProfile{
       } else {
         respond.json(result);
         console.log(UPDetails);
+      }
+    });
+  }
+
+  suspendedUserProfile(request, respond) {
+    var AccountDetails = {
+      "_id": parseInt(request.params._id),
+    };
+  
+    var sql = "DELETE FROM userprofile WHERE _id = ?";
+  
+    db.query(sql, [AccountDetails._id], function(error, result) {
+      if (error) {
+        respond.json(error);
+        console.log(error);
+      } else {
+        respond.json(result);
+        console.log(AccountDetails);
       }
     });
   }

@@ -11,7 +11,8 @@ class UserProfileRoutes{
         .get(userProfile.viewAllUserProfile);
 
         app.route("/userprofile/:_id")
-        .put(userProfile.updateUserProfile);
+        .put(userProfile.updateUserProfile)
+        .delete(userProfile.suspendedUserProfile);
 
         app.route('/searchuserprofile')
         .post(userProfile.searchUserProfile);

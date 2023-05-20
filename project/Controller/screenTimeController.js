@@ -255,7 +255,7 @@ class SuspendScreenTimeController {
           
     }
 }
-const suspendscreentimecontroller = new SuspendScreenTimeController("/screentimes", "/screentiming");
+const suspendscreentimecontroller = new SuspendScreenTimeController("/screentime", "/screentiming");
 
 class SearchScreenTimeController {
     constructor(screentimeUrl, stbookingUrl, searchUrl) {

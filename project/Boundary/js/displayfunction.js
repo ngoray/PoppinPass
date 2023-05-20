@@ -74,7 +74,14 @@ function generateUserProfile(){
           const id = userprofile_array[count]._id;
           const role = userprofile_array[count].role;
           const desc = userprofile_array[count].description;
-          const cell ='<td><strong id="up_id" style="display:none;">'+id+'</strong><a>'+role+'</a></td><td>'+desc+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="userprofile.showUserProfileDetails(this)"><img src="./../images/edit.png" width="30px" height="30px"></td>'
+          const cell ='<td>\
+                        <strong id="up_id" style="display:none;">'+id+'</strong><a>'+role+'</a></td>\
+                        <td>'+desc+'</td><td width="10%"><button item = '+count+' style="background-color:#333333a0;" onclick="userprofile.showUserProfileDetails(this)"><img src="./../images/edit.png" width="30px" height="30px">\
+                        </button>\
+                        <button item = '+count+' style="background-color:#333333a0;" onclick="suspenduserprofilecontroller.suspendUserProfile(this)">\
+                        <img src="./../images/delete.png" width="30px" height="30px">\
+                        </button>\
+                      </td>'
 
           table.insertAdjacentHTML("beforeend", cell);
           console.log(table);
@@ -841,18 +848,18 @@ function searchTicketType(){
     <a>\
         '+name+'\
     </a>\
-</td>\
-<td>\
+  </td>\
+  <td>\
     <a>\
         '+age+'\
     </a>\
-</td>\
-<td>\
+  </td>\
+  <td>\
     <a>\
         '+price+'\
     </a>\
-</td>\
-<td width="10%">\
+  </td>\
+  <td width="10%">\
     <button item = '+count+' style="background-color:#333333a0;" onclick="">\
         <img src="./../images/edit.png" width="30px" height="30px">\
     </button>\

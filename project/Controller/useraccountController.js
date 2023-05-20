@@ -491,8 +491,8 @@ class UpdateCustomerAccountController {
       updatecust.open("PUT", edit_cust_url, true);
       updatecust.setRequestHeader("Content-Type", "application/json");
 
-      this.ua_array.name = name;
-      this.ua_array.password = password;
+      ua_array.name = name;
+      ua_array.password = password;
 
       updatecust.onload = function () {
           alert("Your customer account information has been edited");

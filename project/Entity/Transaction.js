@@ -47,11 +47,12 @@ class Transaction{
         seatno: request.body.seatno,
         foodname: request.body.foodname,
         totalprice: request.body.totalprice,
+        quantityoftickets: request.body.quantityoftickets
       };
     
-      var sql = "INSERT INTO poppinpass.transactionhistory (accountname, movietitle, tickettype, screentime, roomno, seatno, foodname, totalprice, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE)";
+      var sql = "INSERT INTO poppinpass.transactionhistory (accountname, movietitle, tickettype, screentime, roomno, seatno, foodname, totalprice,quantityoftickets, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, CURRENT_DATE)";
     
-      db.query(sql, [transacdeets.accountname, transacdeets.movietitle, transacdeets.tickettype, transacdeets.screentime, transacdeets.roomno, transacdeets.seatno, transacdeets.foodname, transacdeets.totalprice], function (error, result) {
+      db.query(sql, [transacdeets.accountname, transacdeets.movietitle, transacdeets.tickettype, transacdeets.screentime, transacdeets.roomno, transacdeets.seatno, transacdeets.foodname, transacdeets.totalprice,transacdeets.quantityoftickets], function (error, result) {
         console.log(result);
     
         if (error) {

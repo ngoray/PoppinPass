@@ -214,8 +214,7 @@ class SuspendTicketController {
         this.ticketUrl = ticketUrl;
       }
 
-    suspendMovieTicket(element)
-      {
+    suspendMovieTicket(element){
           var response = confirm("Are you sure you want to suspend this Movie Ticket?");
           if (response == true)
           {
@@ -237,7 +236,7 @@ class SuspendTicketController {
           }
           
   
-      }
+    }
 }
 const suspendticketcontroller = new SuspendTicketController("/movieticket");
 
