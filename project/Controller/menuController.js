@@ -4,7 +4,6 @@ class Menu {
     constructor(menuUrl,newmenuUrl) {
         this.menuUrl = menuUrl;
         this.newmenuUrl = newmenuUrl;
-        this.menu_array = [];
         this.Snacks = "Snacks";
         this.Drinks = "Drinks";
         this.Combo = "Combo";

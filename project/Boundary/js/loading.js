@@ -1,6 +1,6 @@
 function play(){    
   var audio = new Audio('./../phaudio.mp3');
-  //audio.play();
+  audio.play();
 }
 
 function move() {

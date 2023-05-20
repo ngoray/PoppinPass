@@ -212,13 +212,13 @@ class SeatMap {
 
     var id1 = parseInt(id);
     var currentIndex = -1;
-    for (var i = 0; i < this.smarray.length; i++) {
-        if (id1 == this.smarray[i]._id) {   
+    for (var i = 0; i < smarray.length; i++) {
+        if (id1 == smarray[i]._id) {   
         currentIndex = i;
         break; // Exit the loop once a match is found
      }
     }
-    console.log("THE ID OF CURENT INDEX IS: "+ this.smarray[currentIndex]._id);
+    console.log("THE ID OF CURENT INDEX IS: "+ smarray[currentIndex]._id);
 
     console.log("seatno: "+name);
     var bookedSM_url = this.smUrl + "/" + id;

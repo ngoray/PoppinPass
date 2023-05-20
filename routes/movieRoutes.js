@@ -11,7 +11,7 @@ class MovieRoutes{
         .post(movie.addMovie);
     
         app.route('/movie/:_id')
-        .put(movie.updateMovieStatus);
+        .put(movie.suspendMovieStatus);
 
         app.route('/movies/:_id')
         .put(movie.updateMovie4Manager);

@@ -38,33 +38,7 @@ class UserAccount {
     document.getElementById("updateUserAccounttable").style.display ="none";
   }
 
-    updateLoyaltyPoints(){
-      var name = sessionStorage.getItem("name");
-      var currentpoints = parseInt(document.getElementById("summaryPoints").innerHTML);
-      var loyaltypoints = currentpoints +5;
-      const edit_points_url = this.lpUrl + "/" + name;
-
-      const editedpt = {
-        name: name,
-        loyaltypoints: loyaltypoints
-      };
-
-      console.log(editedpt);
-
-      const updatepoints = new XMLHttpRequest();
-      updatepoints.open("PUT", edit_points_url, true);
-      updatepoints.setRequestHeader("Content-Type", "application/json");
-
-      ua_array.name = name;
-      ua_array.loyaltypoints = loyaltypoints;
-      loyaltypoints = document.getElementById("userProfilePoints").innerHTML;
-
-      updatepoints.onload = function () { };
-
-      updatepoints.send(JSON.stringify(editedpt));
-    }
-
-  } 
+} 
 const useraccount = new UserAccount("/login", "/useraccount", "/searchuseraccount","/updatelp", "/updatePassword"); 
 
 class AdminCreateAccountController {
@@ -714,9 +688,14 @@ class UpdateCustomerLoyaltyPointController{
 
     ua_array.name = name;
     ua_array.loyaltypoints = loyaltypoints;
-    loyaltypoints = document.getElementById("userProfilePoints").innerHTML;
+    document.getElementById("userProfilePoints").innerHTML = ua_array.loyaltypoints;
+    console.log(ua_array.loyaltypoints);
 
-    updatepoints.onload = function () { };
+    updatepoints.onload = function () { 
+      // loyaltypoints = document.getElementById("userProfilePoints").innerHTML;
+      document.getElementById("userProfilePoints").style.display="none";
+      document.getElementById("userProfilePoints").style.display="block";
+    };
 
     updatepoints.send(JSON.stringify(editedpt));
   }

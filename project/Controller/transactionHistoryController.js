@@ -62,7 +62,7 @@ class CreateTransactionHistoryController {
         addHistory.setRequestHeader("Content-Type", "application/json");
         addHistory.onload = function () {
           alert("Transaction Successful");
-          useraccount.updateLoyaltyPoints();
+          updatecustomerloyaltypointcontroller.updateLoyaltyPoints();
           document.getElementById('movieBookingSum').style.display="none";
           profilePage();
         };

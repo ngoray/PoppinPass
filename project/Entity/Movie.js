@@ -79,7 +79,7 @@ class Movie {
       
 
     // Update Specific Movie
-    updateMovieStatus(request, respond) {
+    suspendMovieStatus(request, respond) {
         const movieDetails = {
           _id: parseInt(request.params._id),
           availability: request.body.availability

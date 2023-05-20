@@ -229,7 +229,7 @@ class SuspendTicketController {
   
           suspendticket.open("DELETE", sus_mt_url); 
           suspendticket.onload = function () {
-              alert("the screentime has been suspended");
+              alert("the ticket has been suspended");
               document.getElementById("manageMovieTicket").style.display="none";
               mMovieTicket();
           };
